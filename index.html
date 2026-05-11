@@ -649,6 +649,22 @@
   body.mode-student .admin-only { display: none !important; }
   body.mode-student .student-only { display: initial; }
   body.mode-student #editorQuestions { display: none; }
+  body.mode-student .app {
+    grid-template-columns: 240px 1fr;
+  }
+  body.mode-student .editor-pane {
+    padding: var(--space-md);
+  }
+  body.mode-student .toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  body.mode-student .toolbar-row .btn { width: 100%; justify-content: center; }
+  body.mode-student .saved-list { max-height: none; }
+  body.mode-student .saved-item { padding: 8px 10px; }
+  body.mode-student .saved-item-meta { display: none; }
+  body.mode-student .auth-row { flex-direction: column; align-items: flex-start; }
   body.mode-anon .admin-only,
   body.mode-anon .student-only,
   body.mode-anon #savedList { display: none !important; }
@@ -1686,8 +1702,29 @@ body { background: #fff !important; padding: 0 !important; }
   border-radius: 12px;
   padding: 18px 22px;
   margin-bottom: 12px;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 .print-question .question-card:hover { box-shadow: none; }
+
+/* Keep diagrams small enough that the question + image + working space
+   all fit on a single A4 page. */
+.print-question .question-image {
+  margin: 8px 0;
+  text-align: center;
+}
+.print-question .question-image img {
+  max-height: 65mm;
+  max-width: 70%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+.print-question .img-caption {
+  font-size: 0.78rem;
+  color: #5C5C5C;
+  margin-top: 4px;
+}
 
 .working-space {
   flex: 1;
@@ -2277,7 +2314,38 @@ document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
 
-onAuthStateChanged(fbAuth, (user) => {
+async function migrateLegacyWorksheets() {
+  if (!isAdmin()) return;
+  try {
+    const legacy = await getDocs(collection(fbDb, 'users', currentUser.uid, 'worksheets'));
+    if (legacy.empty) return;
+    const shared = await getDocs(collection(fbDb, 'worksheets'));
+    const existing = new Set(shared.docs.map(d => d.id));
+    let migrated = 0;
+    for (const d of legacy.docs) {
+      if (existing.has(d.id)) continue;
+      const data = d.data();
+      await setDoc(doc(fbDb, 'worksheets', d.id), {
+        id: d.id,
+        title: data.title || 'Untitled',
+        state: data.state, // already stringified
+        ownerEmail: currentUser.email,
+        ownerUid: currentUser.uid,
+        savedAt: serverTimestamp(),
+        savedAtClient: data.savedAtClient || new Date().toISOString()
+      });
+      migrated++;
+    }
+    if (migrated > 0) {
+      console.info(`Migrated ${migrated} legacy worksheet(s) to shared collection.`);
+      await refreshSavedList();
+    }
+  } catch (e) {
+    console.warn('Legacy migration skipped:', e.message || e);
+  }
+}
+
+onAuthStateChanged(fbAuth, async (user) => {
   currentUser = user || null;
   currentSavedId = null;
   // For students, clear any in-progress editor state and let them pick from the library.
@@ -2289,7 +2357,9 @@ onAuthStateChanged(fbAuth, (user) => {
     renderPreview();
   }
   refreshAuthUi();
-  refreshSavedList();
+  await refreshSavedList();
+  // If admin, one-shot migrate any worksheets saved before the shared collection was introduced.
+  if (currentUser && isAdmin()) migrateLegacyWorksheets();
 });
 
 refreshAuthUi();
