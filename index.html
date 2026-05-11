@@ -638,6 +638,39 @@
     border-radius: 3px;
     font-family: ui-monospace, monospace;
   }
+
+  /* ============================ ROLE MODES ============================
+     body.mode-student → hides every admin-only control (editor area,
+     element add buttons, JSON load/save, system save, etc).
+     body.mode-admin   → default editor experience.
+     body.mode-anon    → nothing signed in: hide library and save controls. */
+  .admin-only { /* shown only to admin */ }
+  .student-only { display: none; }
+  body.mode-student .admin-only { display: none !important; }
+  body.mode-student .student-only { display: initial; }
+  body.mode-student #editorQuestions { display: none; }
+  body.mode-student .toolbar h1::after {
+    content: ' — Student view';
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+  }
+  body.mode-anon .admin-only,
+  body.mode-anon .student-only,
+  body.mode-anon #savedList { display: none !important; }
+  body.mode-anon #editorQuestions { opacity: 0.4; pointer-events: none; }
+  body.mode-anon .anon-banner { display: block; }
+  .anon-banner {
+    display: none;
+    margin: var(--space-md) 0;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-light);
+    color: var(--accent-deep);
+    text-align: center;
+    font-size: var(--font-size-sm);
+  }
   .saved-list {
     margin-top: var(--space-sm);
     background: var(--bg-primary);
@@ -760,19 +793,20 @@
       <input type="text" id="worksheetTitle" class="title-input" placeholder="Worksheet title" value="New Worksheet" />
       <input type="text" id="worksheetSubtitle" class="title-input" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
-        <button class="btn btn-primary" id="addQuestionBtn">+ Add Question</button>
-        <button class="btn" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
-        <button class="btn" id="newWorksheetBtn">New</button>
-        <button class="btn" id="exportHtmlBtn">Download HTML</button>
-        <button class="btn" id="exportPdfBtn">Export PDF</button>
-        <button class="btn" id="saveJsonBtn">Save JSON</button>
-        <button class="btn" id="loadJsonBtn">Load JSON</button>
+        <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
+        <button class="btn admin-only" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
+        <button class="btn admin-only" id="newWorksheetBtn">New</button>
+        <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
+        <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
+        <button class="btn admin-only" id="saveJsonBtn">Save JSON</button>
+        <button class="btn admin-only" id="loadJsonBtn">Load JSON</button>
         <input type="file" id="loadJsonInput" accept="application/json" style="display:none" />
-        <label class="btn preview-toggle" style="cursor:pointer;">
+        <label class="btn preview-toggle admin-only" style="cursor:pointer;">
           <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
         </label>
       </div>
       <div id="savedList" class="saved-list"></div>
+      <div class="anon-banner">Sign in with Google to access worksheets.</div>
     </div>
 
     <div id="editorQuestions"></div>
@@ -2054,10 +2088,24 @@ function refreshAuthUi() {
   const signInBtn = document.getElementById('googleSignInBtn');
   const signOutBtn = document.getElementById('signOutBtn');
   const saveSystemBtn = document.getElementById('saveSystemBtn');
+  const titleInput = document.getElementById('worksheetTitle');
+  const subtitleInput = document.getElementById('worksheetSubtitle');
+  const showAnswersToggle = document.getElementById('showAnswersToggle');
+
+  // Body mode class drives most of the UI via CSS.
+  document.body.classList.remove('mode-admin', 'mode-student', 'mode-anon');
+  if (!currentUser) {
+    document.body.classList.add('mode-anon');
+  } else if (isAdmin()) {
+    document.body.classList.add('mode-admin');
+  } else {
+    document.body.classList.add('mode-student');
+  }
 
   if (currentUser) {
     chip.classList.remove('guest');
-    chip.textContent = `Signed in as ${currentUser.email}`;
+    const roleLabel = isAdmin() ? 'admin' : 'student';
+    chip.textContent = `Signed in as ${currentUser.email} (${roleLabel})`;
     signInBtn.style.display = 'none';
     signOutBtn.style.display = '';
   } else {
@@ -2066,23 +2114,34 @@ function refreshAuthUi() {
     signInBtn.style.display = '';
     signOutBtn.style.display = 'none';
   }
-  const allowed = currentUser && (currentUser.email || '').toLowerCase() === ALLOWED_EMAIL;
-  saveSystemBtn.disabled = !allowed;
-  saveSystemBtn.style.opacity = allowed ? '1' : '0.5';
-  saveSystemBtn.title = allowed
+
+  // Students see a read-only worksheet preview, no admin controls.
+  const studentRO = currentUser && !isAdmin();
+  titleInput.readOnly = studentRO;
+  subtitleInput.readOnly = studentRO;
+  if (studentRO) {
+    showAnswers = false;
+    if (showAnswersToggle) showAnswersToggle.checked = false;
+  }
+
+  saveSystemBtn.disabled = !isAdmin();
+  saveSystemBtn.style.opacity = isAdmin() ? '1' : '0.5';
+  saveSystemBtn.title = isAdmin()
     ? 'Save this worksheet to the cloud'
     : `Sign in as ${ALLOWED_EMAIL} to enable cloud saving`;
 }
 
 /* ---------- Firestore CRUD ---------- */
 function worksheetsCol() {
-  if (!currentUser) return null;
-  return collection(fbDb, 'users', currentUser.uid, 'worksheets');
+  return collection(fbDb, 'worksheets');
+}
+function isAdmin() {
+  return currentUser && (currentUser.email || '').toLowerCase() === ALLOWED_EMAIL;
 }
 
 async function saveToSystem() {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
-  if ((currentUser.email || '').toLowerCase() !== ALLOWED_EMAIL) {
+  if (!isAdmin()) {
     alert(`Cloud saving is restricted to ${ALLOWED_EMAIL}.`);
     return;
   }
@@ -2092,11 +2151,13 @@ async function saveToSystem() {
   btn.disabled = true;
   try {
     const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-    const ref = doc(fbDb, 'users', currentUser.uid, 'worksheets', id);
+    const ref = doc(fbDb, 'worksheets', id);
     await setDoc(ref, {
       id,
       title: state.title || 'Untitled',
-      state: JSON.stringify(state), // stringify so nested arrays/data URLs pass cleanly under Firestore's depth/size rules
+      state: JSON.stringify(state),
+      ownerEmail: currentUser.email,
+      ownerUid: currentUser.uid,
       savedAt: serverTimestamp(),
       savedAtClient: new Date().toISOString()
     });
@@ -2107,8 +2168,11 @@ async function saveToSystem() {
     console.error(e);
     btn.textContent = original;
     alert('Save failed: ' + (e.message || e) +
-      '\n\nIf this is your first save, make sure Firestore rules allow:\n' +
-      'match /users/{uid}/worksheets/{ws} { allow read, write: if request.auth.uid == uid; }');
+      '\n\nMake sure Firestore rules allow:\n' +
+      "match /worksheets/{ws} {\n" +
+      "  allow read: if request.auth != null;\n" +
+      "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
+      "}");
   } finally {
     btn.disabled = false;
     setTimeout(() => {
@@ -2120,7 +2184,7 @@ async function saveToSystem() {
 async function loadFromSystem(id) {
   if (!currentUser) return;
   try {
-    const ref = doc(fbDb, 'users', currentUser.uid, 'worksheets', id);
+    const ref = doc(fbDb, 'worksheets', id);
     const snap = await getDoc(ref);
     if (!snap.exists()) return;
     const data = snap.data();
@@ -2129,7 +2193,7 @@ async function loadFromSystem(id) {
     currentSavedId = id;
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
-    renderEditor();
+    if (isAdmin()) renderEditor();
     renderPreview();
     await refreshSavedList();
   } catch (e) {
@@ -2138,10 +2202,10 @@ async function loadFromSystem(id) {
 }
 
 async function deleteFromSystem(id) {
-  if (!currentUser) return;
+  if (!currentUser || !isAdmin()) return;
   if (!confirm('Delete this saved worksheet from the cloud?')) return;
   try {
-    await deleteDoc(doc(fbDb, 'users', currentUser.uid, 'worksheets', id));
+    await deleteDoc(doc(fbDb, 'worksheets', id));
     if (currentSavedId === id) currentSavedId = null;
     await refreshSavedList();
   } catch (e) {
@@ -2158,7 +2222,6 @@ async function refreshSavedList() {
     const snap = await getDocs(query(col, orderBy('savedAtClient', 'desc')));
     savedItemsCache = snap.docs.map(d => d.data());
   } catch (e) {
-    // If the index/order field is missing for old docs, fall back to unordered.
     try {
       const snap = await getDocs(worksheetsCol());
       savedItemsCache = snap.docs.map(d => d.data())
@@ -2168,10 +2231,19 @@ async function refreshSavedList() {
       savedItemsCache = [];
     }
   }
-  if (savedItemsCache.length === 0) return;
+  if (savedItemsCache.length === 0) {
+    if (!isAdmin()) {
+      const empty = document.createElement('div');
+      empty.className = 'saved-item';
+      empty.innerHTML = '<div class="saved-item-name" style="cursor:default; color:var(--text-tertiary);">No worksheets available yet.</div>';
+      list.appendChild(empty);
+    }
+    return;
+  }
   const header = document.createElement('div');
   header.className = 'saved-item';
-  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">My saved worksheets (${savedItemsCache.length})</div>`;
+  const headerLabel = isAdmin() ? `My saved worksheets (${savedItemsCache.length})` : `Available worksheets (${savedItemsCache.length})`;
+  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">${headerLabel}</div>`;
   list.appendChild(header);
   savedItemsCache.forEach((it) => {
     const row = document.createElement('div');
@@ -2186,10 +2258,12 @@ async function refreshSavedList() {
     if (it.savedAtClient) {
       meta.textContent = new Date(it.savedAtClient).toLocaleString();
     }
-    const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
     row.appendChild(name);
     row.appendChild(meta);
-    row.appendChild(del);
+    if (isAdmin()) {
+      const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
+      row.appendChild(del);
+    }
     list.appendChild(row);
   });
 }
@@ -2212,13 +2286,22 @@ document.getElementById('newWorksheetBtn').addEventListener('click', newWorkshee
 onAuthStateChanged(fbAuth, (user) => {
   currentUser = user || null;
   currentSavedId = null;
+  // For students, clear any in-progress editor state and let them pick from the library.
+  if (currentUser && !isAdmin()) {
+    state = { title: '', subtitle: '', questions: [] };
+    document.getElementById('worksheetTitle').value = '';
+    document.getElementById('worksheetSubtitle').value = '';
+    renderEditor();
+    renderPreview();
+  }
   refreshAuthUi();
   refreshSavedList();
 });
 
 refreshAuthUi();
 
-// Seed with one empty question so the workflow is obvious.
+// Seed with one empty question so the workflow is obvious (admin only —
+// students should start at an empty preview and pick a worksheet to view).
 addQuestion();
 </script>
 </body>
