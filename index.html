@@ -841,6 +841,9 @@ import {
   getFirestore, doc, setDoc, getDoc, deleteDoc, collection, getDocs,
   serverTimestamp, orderBy, query
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import {
+  getStorage, ref as storageRef, uploadString, getBytes, deleteObject
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUSI3Uh28IeqASEp0JhH4QPaVt-O3meBo",
@@ -855,7 +858,10 @@ const firebaseConfig = {
 const fbApp = initializeApp(firebaseConfig);
 const fbAuth = getAuth(fbApp);
 const fbDb = getFirestore(fbApp);
+const fbStorage = getStorage(fbApp);
 const googleProvider = new GoogleAuthProvider();
+
+const WORKSHEET_STORAGE_PREFIX = 'worksheets';
 
 /* =========================================================================
    STATE
@@ -2170,6 +2176,10 @@ function isAdmin() {
   return currentUser && (currentUser.email || '').toLowerCase() === ALLOWED_EMAIL;
 }
 
+function worksheetStoragePath(id) {
+  return `${WORKSHEET_STORAGE_PREFIX}/${id}.json`;
+}
+
 async function saveToSystem() {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
@@ -2182,15 +2192,26 @@ async function saveToSystem() {
   btn.disabled = true;
   try {
     const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-    const ref = doc(fbDb, 'worksheets', id);
-    await setDoc(ref, {
+    const path = worksheetStoragePath(id);
+    const json = JSON.stringify(state);
+
+    // 1. Upload the full worksheet JSON to Cloud Storage (no 1 MB doc limit).
+    await uploadString(storageRef(fbStorage, path), json, 'raw', {
+      contentType: 'application/json',
+      customMetadata: { ownerUid: currentUser.uid }
+    });
+
+    // 2. Write only lightweight metadata to Firestore.
+    await setDoc(doc(fbDb, 'worksheets', id), {
       id,
       title: state.title || 'Untitled',
-      state: JSON.stringify(state),
+      subtitle: state.subtitle || '',
+      storagePath: path,
       ownerEmail: currentUser.email,
       ownerUid: currentUser.uid,
       savedAt: serverTimestamp(),
-      savedAtClient: new Date().toISOString()
+      savedAtClient: new Date().toISOString(),
+      sizeBytes: json.length
     });
     currentSavedId = id;
     btn.textContent = '✓ Saved';
@@ -2203,6 +2224,10 @@ async function saveToSystem() {
       "match /worksheets/{ws} {\n" +
       "  allow read: if request.auth != null;\n" +
       "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
+      "}\n\nAnd Storage rules allow (Firebase Storage tab → Rules):\n" +
+      "match /worksheets/{file} {\n" +
+      "  allow read: if request.auth != null;\n" +
+      "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
       "}");
   } finally {
     btn.disabled = false;
@@ -2212,14 +2237,30 @@ async function saveToSystem() {
   }
 }
 
+async function fetchWorksheetState(data) {
+  // New format: state lives in Cloud Storage at data.storagePath.
+  if (data.storagePath) {
+    const bytes = await getBytes(storageRef(fbStorage, data.storagePath));
+    const text = new TextDecoder().decode(bytes);
+    return JSON.parse(text);
+  }
+  // Legacy format: state was embedded directly in the Firestore doc.
+  if (typeof data.state === 'string') return JSON.parse(data.state);
+  if (data.state && typeof data.state === 'object') return data.state;
+  throw new Error('Worksheet has no state payload.');
+}
+
 async function loadFromSystem(id) {
   if (!currentUser) return;
   try {
     const ref = doc(fbDb, 'worksheets', id);
     const snap = await getDoc(ref);
-    if (!snap.exists()) return;
+    if (!snap.exists()) {
+      alert('That worksheet no longer exists.');
+      return;
+    }
     const data = snap.data();
-    const parsed = typeof data.state === 'string' ? JSON.parse(data.state) : data.state;
+    const parsed = await fetchWorksheetState(data);
     state = parsed;
     currentSavedId = id;
     document.getElementById('worksheetTitle').value = state.title || '';
@@ -2228,6 +2269,7 @@ async function loadFromSystem(id) {
     renderPreview();
     await refreshSavedList();
   } catch (e) {
+    console.error(e);
     alert('Load failed: ' + (e.message || e));
   }
 }
@@ -2236,6 +2278,14 @@ async function deleteFromSystem(id) {
   if (!currentUser || !isAdmin()) return;
   if (!confirm('Delete this saved worksheet from the cloud?')) return;
   try {
+    // Best-effort: delete storage blob first; ignore if it doesn't exist (legacy docs).
+    try {
+      await deleteObject(storageRef(fbStorage, worksheetStoragePath(id)));
+    } catch (storageErr) {
+      if (storageErr && storageErr.code && storageErr.code !== 'storage/object-not-found') {
+        console.warn('Storage delete warning:', storageErr.code || storageErr.message);
+      }
+    }
     await deleteDoc(doc(fbDb, 'worksheets', id));
     if (currentSavedId === id) currentSavedId = null;
     await refreshSavedList();
