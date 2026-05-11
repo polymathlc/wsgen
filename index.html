@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Worksheet Creator</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <style>
   @font-face {
@@ -596,6 +597,136 @@
     .app { grid-template-columns: 1fr; height: auto; }
     .editor-pane, .preview-pane { height: auto; overflow: visible; }
   }
+
+  /* ============================ AUTH / SYSTEM SAVE ============================ */
+  .auth-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+  }
+  .auth-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border: 1px solid var(--accent-light);
+  }
+  .auth-chip.guest {
+    background: var(--bg-primary);
+    color: var(--text-tertiary);
+    border-color: var(--border-subtle);
+  }
+  .saved-list {
+    margin-top: var(--space-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .saved-list:empty { display: none; }
+  .saved-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: var(--font-size-sm);
+  }
+  .saved-item:last-child { border-bottom: none; }
+  .saved-item-name { flex: 1; color: var(--text-primary); cursor: pointer; }
+  .saved-item-name:hover { color: var(--accent-deep); }
+  .saved-item-meta { color: var(--text-tertiary); font-size: var(--font-size-xs); }
+
+  /* ============================ ANSWER FIELD / KEY / VIDEO ============================ */
+  .answer-field {
+    margin-top: var(--space-md);
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+  }
+  .answer-field-prefix {
+    font-weight: 700;
+    color: var(--accent-deep);
+    white-space: nowrap;
+  }
+  .answer-field-line {
+    flex: 1;
+    border-bottom: 1.5px solid var(--text-primary);
+    min-height: 1.2em;
+    padding: 0 4px;
+  }
+  .answer-field-line.filled {
+    border-bottom-color: var(--correct-base);
+    color: var(--correct-dark);
+    font-weight: 600;
+  }
+
+  .answer-key {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    background: var(--correct-bg);
+    border: 1.5px solid var(--correct-light);
+  }
+  .answer-key-title {
+    font-weight: 700;
+    color: var(--correct-dark);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .answer-key-body {
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    line-height: var(--line-height-normal);
+  }
+  .answer-key.hidden-from-student {
+    background: var(--bg-tertiary);
+    border-style: dashed;
+    border-color: var(--border-medium);
+    color: var(--text-tertiary);
+    text-align: center;
+    padding: var(--space-sm);
+  }
+  .answer-key.hidden-from-student .answer-key-title { color: var(--text-tertiary); }
+  .answer-key.hidden-from-student .answer-key-body { display: none; }
+
+  .video-block {
+    margin: var(--space-md) 0;
+  }
+  .video-block iframe, .video-block video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    background: #000;
+  }
+  .video-caption {
+    margin-top: 6px;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .video-placeholder {
+    padding: var(--space-lg);
+    border: 2px dashed var(--border-medium);
+    border-radius: var(--radius-md);
+    color: var(--text-tertiary);
+    text-align: center;
+    font-size: var(--font-size-sm);
+  }
 </style>
 </head>
 <body>
@@ -605,10 +736,17 @@
   <aside class="editor-pane">
     <div class="toolbar">
       <h1>Worksheet Creator</h1>
+      <div class="auth-row">
+        <span id="authChip" class="auth-chip guest">Not signed in</span>
+        <div id="googleSignInBtn"></div>
+        <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
+      </div>
       <input type="text" id="worksheetTitle" class="title-input" placeholder="Worksheet title" value="New Worksheet" />
       <input type="text" id="worksheetSubtitle" class="title-input" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
         <button class="btn btn-primary" id="addQuestionBtn">+ Add Question</button>
+        <button class="btn" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
+        <button class="btn" id="newWorksheetBtn">New</button>
         <button class="btn" id="exportHtmlBtn">Download HTML</button>
         <button class="btn" id="saveJsonBtn">Save JSON</button>
         <button class="btn" id="loadJsonBtn">Load JSON</button>
@@ -617,6 +755,7 @@
           <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
         </label>
       </div>
+      <div id="savedList" class="saved-list"></div>
     </div>
 
     <div id="editorQuestions"></div>
@@ -671,6 +810,12 @@ function makeElement(type) {
         ],
         correctId: null
       };
+    case 'answer':
+      return { ...base, label: 'Ans : (a)', answer: '', lineLength: 30 };
+    case 'answerKey':
+      return { ...base, text: '' };
+    case 'video':
+      return { ...base, url: '', caption: '' };
   }
 }
 function nextPartLabel() {
@@ -733,6 +878,9 @@ function renderEditorQuestion(q, qIndex) {
   addRow.appendChild(makeAddBtn('+ Image', () => addElement(q, 'image')));
   addRow.appendChild(makeAddBtn('+ Part', () => addElement(q, 'part')));
   addRow.appendChild(makeAddBtn('+ MCQ', () => addElement(q, 'mcq')));
+  addRow.appendChild(makeAddBtn('+ Answer field', () => addElement(q, 'answer')));
+  addRow.appendChild(makeAddBtn('+ Answer key', () => addElement(q, 'answerKey')));
+  addRow.appendChild(makeAddBtn('+ Video (Dropbox)', () => addElement(q, 'video')));
   card.appendChild(addRow);
 
   return card;
@@ -778,7 +926,99 @@ function renderElementEditor(q, el, elIndex) {
     case 'image':      wrap.appendChild(buildImageEditor(el)); break;
     case 'part':       wrap.appendChild(buildPartEditor(el)); break;
     case 'mcq':        wrap.appendChild(buildMcqEditor(el)); break;
+    case 'answer':     wrap.appendChild(buildAnswerEditor(el)); break;
+    case 'answerKey':  wrap.appendChild(buildAnswerKeyEditor(el)); break;
+    case 'video':      wrap.appendChild(buildVideoEditor(el)); break;
   }
+  return wrap;
+}
+
+function buildAnswerEditor(el) {
+  const wrap = document.createElement('div');
+
+  const labelLbl = document.createElement('label');
+  labelLbl.className = 'field-label';
+  labelLbl.textContent = 'Prefix shown to student (e.g. "Ans : (a)")';
+  wrap.appendChild(labelLbl);
+
+  const labelInput = document.createElement('input');
+  labelInput.type = 'text';
+  labelInput.className = 'text-line';
+  labelInput.value = el.label || '';
+  labelInput.placeholder = 'Ans : (a)';
+  labelInput.addEventListener('input', () => { el.label = labelInput.value; renderPreview(); });
+  wrap.appendChild(labelInput);
+
+  const ansLbl = document.createElement('label');
+  ansLbl.className = 'field-label';
+  ansLbl.textContent = 'Correct answer (revealed when "Show answers" is on)';
+  ansLbl.style.marginTop = '6px';
+  wrap.appendChild(ansLbl);
+
+  const ansInput = document.createElement('input');
+  ansInput.type = 'text';
+  ansInput.className = 'text-line';
+  ansInput.value = el.answer || '';
+  ansInput.placeholder = 'Expected answer';
+  ansInput.addEventListener('input', () => { el.answer = ansInput.value; renderPreview(); });
+  wrap.appendChild(ansInput);
+
+  return wrap;
+}
+
+function buildAnswerKeyEditor(el) {
+  const wrap = document.createElement('div');
+
+  const lbl = document.createElement('label');
+  lbl.className = 'field-label';
+  lbl.textContent = 'Answer key (only shown when "Show answers" is on)';
+  wrap.appendChild(lbl);
+
+  const ta = document.createElement('textarea');
+  ta.className = 'text-area';
+  ta.placeholder = 'e.g.\n(a) 42\n(b) Because the velocity is constant.';
+  ta.value = el.text || '';
+  ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
+  wrap.appendChild(ta);
+
+  return wrap;
+}
+
+function buildVideoEditor(el) {
+  const wrap = document.createElement('div');
+
+  const lbl = document.createElement('label');
+  lbl.className = 'field-label';
+  lbl.textContent = 'Dropbox share link (or any direct video URL)';
+  wrap.appendChild(lbl);
+
+  const urlInput = document.createElement('input');
+  urlInput.type = 'text';
+  urlInput.className = 'text-line';
+  urlInput.value = el.url || '';
+  urlInput.placeholder = 'https://www.dropbox.com/scl/fi/.../recording.mp4?dl=0';
+  urlInput.addEventListener('input', () => { el.url = urlInput.value; renderPreview(); });
+  wrap.appendChild(urlInput);
+
+  const captionLbl = document.createElement('label');
+  captionLbl.className = 'field-label';
+  captionLbl.textContent = 'Caption (optional)';
+  captionLbl.style.marginTop = '6px';
+  wrap.appendChild(captionLbl);
+
+  const cap = document.createElement('input');
+  cap.type = 'text';
+  cap.className = 'text-line';
+  cap.value = el.caption || '';
+  cap.placeholder = 'e.g. Lesson recording';
+  cap.addEventListener('input', () => { el.caption = cap.value; renderPreview(); });
+  wrap.appendChild(cap);
+
+  const hint = document.createElement('div');
+  hint.style.cssText = 'margin-top:6px; font-size:var(--font-size-xs); color:var(--text-tertiary);';
+  hint.textContent = 'Tip: Dropbox links ending in ?dl=0 are converted automatically for inline playback.';
+  wrap.appendChild(hint);
+
   return wrap;
 }
 
@@ -1115,7 +1355,98 @@ function renderPreviewElement(el) {
       });
       return list;
     }
+    case 'answer': {
+      const row = document.createElement('div');
+      row.className = 'answer-field';
+      const prefix = document.createElement('span');
+      prefix.className = 'answer-field-prefix';
+      prefix.textContent = el.label || 'Ans :';
+      const line = document.createElement('span');
+      line.className = 'answer-field-line';
+      if (showAnswers && el.answer) {
+        line.classList.add('filled');
+        line.textContent = el.answer;
+      } else {
+        line.innerHTML = '&nbsp;';
+      }
+      row.appendChild(prefix);
+      row.appendChild(line);
+      return row;
+    }
+    case 'answerKey': {
+      const block = document.createElement('div');
+      block.className = 'answer-key';
+      if (!showAnswers) {
+        block.classList.add('hidden-from-student');
+        const t = document.createElement('div');
+        t.className = 'answer-key-title';
+        t.textContent = 'Answer key (hidden)';
+        block.appendChild(t);
+        return block;
+      }
+      const t = document.createElement('div');
+      t.className = 'answer-key-title';
+      t.textContent = 'Answer key';
+      const body = document.createElement('div');
+      body.className = 'answer-key-body';
+      body.textContent = el.text || '';
+      block.appendChild(t);
+      block.appendChild(body);
+      return block;
+    }
+    case 'video': {
+      const wrap = document.createElement('div');
+      wrap.className = 'video-block';
+      const embed = toEmbeddableVideoUrl(el.url || '');
+      if (!embed) {
+        const ph = document.createElement('div');
+        ph.className = 'video-placeholder';
+        ph.textContent = '(paste a Dropbox share link to embed the video)';
+        wrap.appendChild(ph);
+      } else if (embed.kind === 'native') {
+        const v = document.createElement('video');
+        v.src = embed.url;
+        v.controls = true;
+        v.preload = 'metadata';
+        wrap.appendChild(v);
+      } else {
+        const ifr = document.createElement('iframe');
+        ifr.src = embed.url;
+        ifr.allow = 'autoplay; fullscreen';
+        ifr.allowFullscreen = true;
+        wrap.appendChild(ifr);
+      }
+      if (el.caption) {
+        const cap = document.createElement('div');
+        cap.className = 'video-caption';
+        cap.textContent = el.caption;
+        wrap.appendChild(cap);
+      }
+      return wrap;
+    }
   }
+}
+
+/* Turn Dropbox share links into something playable in-page.
+   - https://www.dropbox.com/.../file.mp4?dl=0  →  ...?raw=1  (native <video>)
+   - https://www.dropbox.com/scl/fi/... (no clear extension)  →  iframe via dl.dropboxusercontent.com
+   - Other URLs: if they end with a video extension, play natively; else iframe. */
+function toEmbeddableVideoUrl(raw) {
+  const url = (raw || '').trim();
+  if (!url) return null;
+  const isVideoExt = /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i.test(url);
+  let normalized = url;
+  if (/dropbox\.com/.test(url)) {
+    normalized = url
+      .replace(/^https?:\/\/www\.dropbox\.com/, 'https://dl.dropboxusercontent.com')
+      .replace(/[?&]dl=0/, '')
+      .replace(/[?&]dl=1/, '');
+    normalized += (normalized.includes('?') ? '&' : '?') + 'raw=1';
+    if (isVideoExt) return { kind: 'native', url: normalized };
+    return { kind: 'iframe', url: normalized };
+  }
+  if (isVideoExt) return { kind: 'native', url: normalized };
+  return { kind: 'iframe', url: normalized };
 }
 
 /* =========================================================================
@@ -1191,6 +1522,17 @@ function buildStandaloneHtml() {
       }
     });
   });
+  document.querySelectorAll('.answer-field').forEach((row) => {
+    const expected = (row.dataset.answer || '').trim().toLowerCase();
+    const input = row.querySelector('.answer-field-input');
+    if (!input) return;
+    input.addEventListener('blur', () => {
+      input.classList.remove('correct','wrong');
+      if (!expected) return;
+      if (input.value.trim().toLowerCase() === expected) input.classList.add('correct');
+      else if (input.value.trim()) input.classList.add('wrong');
+    });
+  });
 ${'<\/script>'}
 </body>
 </html>`;
@@ -1230,6 +1572,21 @@ function elementToHtml(el, qIndex, elIndex) {
         `<div class="option-item"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${escapeHtml(opt.text)}</div></div>`
       ).join('');
       return `<div class="options-list" data-key="${qIndex}-${elIndex}">${opts}</div>`;
+    }
+    case 'answer': {
+      return `<div class="answer-field" data-answer="${escapeAttr(el.answer || '')}"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><input type="text" class="answer-field-input" placeholder="" /></div>`;
+    }
+    case 'answerKey': {
+      return `<details class="answer-key-export"><summary>Show answer key</summary><div class="answer-key-body">${escapeHtml(el.text || '')}</div></details>`;
+    }
+    case 'video': {
+      const embed = toEmbeddableVideoUrl(el.url || '');
+      const cap = el.caption ? `<div class="video-caption">${escapeHtml(el.caption)}</div>` : '';
+      if (!embed) return `<div class="video-block"><div class="video-placeholder">(no video link provided)</div>${cap}</div>`;
+      if (embed.kind === 'native') {
+        return `<div class="video-block"><video src="${escapeAttr(embed.url)}" controls preload="metadata"></video>${cap}</div>`;
+      }
+      return `<div class="video-block"><iframe src="${escapeAttr(embed.url)}" allow="autoplay; fullscreen" allowfullscreen></iframe>${cap}</div>`;
     }
   }
   return '';
@@ -1293,6 +1650,18 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .option-item.wrong-answer .option-radio::after{content:'×'; position:absolute; top:-3px; left:5px; color:white; font-weight:700; font-size:18px;}
 .option-label{flex:1; font-size:var(--font-size-base); line-height:var(--line-height-normal);}
 .option-marker{font-weight:700; color:var(--text-tertiary); margin-right:var(--space-sm);}
+.answer-field{margin-top:var(--space-md); display:flex; align-items:baseline; gap:var(--space-sm); font-size:var(--font-size-base);}
+.answer-field-prefix{font-weight:700; color:var(--accent-deep); white-space:nowrap;}
+.answer-field-input{flex:1; border:none; border-bottom:1.5px solid var(--text-primary); background:transparent; font:inherit; padding:2px 4px; outline:none;}
+.answer-field-input.correct{border-bottom-color:var(--correct-base); color:var(--correct-base); font-weight:600;}
+.answer-field-input.wrong{border-bottom-color:var(--wrong-base); color:var(--wrong-base);}
+.answer-key-export{margin-top:var(--space-md); padding:var(--space-md); border-radius:var(--radius-md); background:var(--correct-bg); border:1.5px solid #C8E6C9;}
+.answer-key-export summary{cursor:pointer; font-weight:700; color:#43A047; text-transform:uppercase; font-size:var(--font-size-sm); letter-spacing:0.05em;}
+.answer-key-export .answer-key-body{margin-top:8px; white-space:pre-wrap;}
+.video-block{margin:var(--space-md) 0;}
+.video-block iframe, .video-block video{width:100%; aspect-ratio:16/9; border:none; border-radius:var(--radius-md); background:#000;}
+.video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
+.video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
 `;
 }
 
@@ -1354,6 +1723,209 @@ document.getElementById('showAnswersToggle').addEventListener('change', (e) => {
   showAnswers = e.target.checked;
   renderPreview();
 });
+
+/* =========================================================================
+   GOOGLE SIGN-IN + SYSTEM STORAGE (localStorage gated by Gmail)
+   =========================================================================
+   Replace GOOGLE_CLIENT_ID with your own OAuth Client ID from
+   https://console.cloud.google.com/apis/credentials  (type: "Web application",
+   authorised JavaScript origin = the page's origin).
+   The placeholder value below lets the UI render but login will fail until
+   replaced with a real client id. */
+const GOOGLE_CLIENT_ID = 'REPLACE_WITH_YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com';
+const ALLOWED_EMAIL = 'chungzhikai@gmail.com';
+const STORAGE_KEY = 'wsgen:worksheets';
+
+let currentUser = null; // { email, name, picture }
+let currentSavedId = null; // id of the worksheet currently loaded from storage, if any
+
+function decodeJwt(token) {
+  try {
+    const payload = token.split('.')[1];
+    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+    return JSON.parse(decodeURIComponent(escape(json)));
+  } catch (_) { return null; }
+}
+
+function onCredentialResponse(resp) {
+  const claims = decodeJwt(resp.credential);
+  if (!claims || !claims.email) {
+    alert('Sign-in failed: no email in token.');
+    return;
+  }
+  currentUser = { email: claims.email, name: claims.name || claims.email, picture: claims.picture };
+  refreshAuthUi();
+  refreshSavedList();
+}
+
+function signOut() {
+  currentUser = null;
+  currentSavedId = null;
+  if (window.google && google.accounts && google.accounts.id) {
+    google.accounts.id.disableAutoSelect();
+  }
+  refreshAuthUi();
+  refreshSavedList();
+}
+
+function refreshAuthUi() {
+  const chip = document.getElementById('authChip');
+  const btnSlot = document.getElementById('googleSignInBtn');
+  const signOutBtn = document.getElementById('signOutBtn');
+  const saveSystemBtn = document.getElementById('saveSystemBtn');
+
+  if (currentUser) {
+    chip.classList.remove('guest');
+    chip.textContent = `Signed in as ${currentUser.email}`;
+    btnSlot.style.display = 'none';
+    signOutBtn.style.display = '';
+  } else {
+    chip.classList.add('guest');
+    chip.textContent = 'Not signed in';
+    btnSlot.style.display = '';
+    signOutBtn.style.display = 'none';
+  }
+  // Save-to-system is enabled only for the allowed Gmail
+  const allowed = currentUser && currentUser.email.toLowerCase() === ALLOWED_EMAIL;
+  saveSystemBtn.disabled = !allowed;
+  saveSystemBtn.style.opacity = allowed ? '1' : '0.5';
+  saveSystemBtn.title = allowed
+    ? 'Save this worksheet to your account'
+    : `Sign in as ${ALLOWED_EMAIL} to enable saving`;
+}
+
+function initGoogleSignIn() {
+  if (!window.google || !google.accounts || !google.accounts.id) {
+    setTimeout(initGoogleSignIn, 200);
+    return;
+  }
+  try {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: onCredentialResponse,
+      auto_select: false
+    });
+    google.accounts.id.renderButton(
+      document.getElementById('googleSignInBtn'),
+      { theme: 'outline', size: 'medium', text: 'signin_with', shape: 'pill' }
+    );
+  } catch (e) {
+    document.getElementById('googleSignInBtn').innerHTML =
+      '<span style="font-size:var(--font-size-xs); color:var(--wrong-dark);">Google Sign-In init failed — check GOOGLE_CLIENT_ID</span>';
+  }
+}
+
+/* ---------- localStorage-backed "system" ---------- */
+function readAll() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch (_) { return {}; }
+}
+function writeAll(obj) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+}
+
+function saveToSystem() {
+  if (!currentUser) { alert('Please sign in with Google first.'); return; }
+  if (currentUser.email.toLowerCase() !== ALLOWED_EMAIL) {
+    alert(`Saving is restricted to ${ALLOWED_EMAIL}.`);
+    return;
+  }
+  const all = readAll();
+  const userBucket = all[currentUser.email] || {};
+  const id = currentSavedId || `ws_${Date.now().toString(36)}`;
+  userBucket[id] = {
+    id,
+    savedAt: new Date().toISOString(),
+    state: state
+  };
+  all[currentUser.email] = userBucket;
+  writeAll(all);
+  currentSavedId = id;
+  refreshSavedList();
+  flashSavedFeedback();
+}
+
+function flashSavedFeedback() {
+  const btn = document.getElementById('saveSystemBtn');
+  const original = btn.textContent;
+  btn.textContent = '✓ Saved';
+  setTimeout(() => { btn.textContent = original; }, 1400);
+}
+
+function loadFromSystem(id) {
+  if (!currentUser) return;
+  const all = readAll();
+  const item = all[currentUser.email] && all[currentUser.email][id];
+  if (!item) return;
+  state = JSON.parse(JSON.stringify(item.state));
+  currentSavedId = id;
+  document.getElementById('worksheetTitle').value = state.title || '';
+  document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+  renderEditor();
+  renderPreview();
+  refreshSavedList();
+}
+
+function deleteFromSystem(id) {
+  if (!currentUser) return;
+  if (!confirm('Delete this saved worksheet?')) return;
+  const all = readAll();
+  if (all[currentUser.email]) {
+    delete all[currentUser.email][id];
+    writeAll(all);
+  }
+  if (currentSavedId === id) currentSavedId = null;
+  refreshSavedList();
+}
+
+function refreshSavedList() {
+  const list = document.getElementById('savedList');
+  list.innerHTML = '';
+  if (!currentUser) return;
+  const bucket = (readAll()[currentUser.email]) || {};
+  const items = Object.values(bucket).sort((a, b) =>
+    (b.savedAt || '').localeCompare(a.savedAt || '')
+  );
+  if (items.length === 0) return;
+  const header = document.createElement('div');
+  header.className = 'saved-item';
+  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">My saved worksheets (${items.length})</div>`;
+  list.appendChild(header);
+  items.forEach((it) => {
+    const row = document.createElement('div');
+    row.className = 'saved-item';
+    const name = document.createElement('div');
+    name.className = 'saved-item-name';
+    name.textContent = (it.state && it.state.title) || '(untitled)';
+    if (it.id === currentSavedId) name.style.fontWeight = '700';
+    name.addEventListener('click', () => loadFromSystem(it.id));
+    const meta = document.createElement('span');
+    meta.className = 'saved-item-meta';
+    meta.textContent = new Date(it.savedAt).toLocaleString();
+    const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
+    row.appendChild(name);
+    row.appendChild(meta);
+    row.appendChild(del);
+    list.appendChild(row);
+  });
+}
+
+function newWorksheet() {
+  if (state.questions.length > 0 && !confirm('Discard the current worksheet and start fresh?')) return;
+  state = { title: 'New Worksheet', subtitle: '', questions: [] };
+  currentSavedId = null;
+  document.getElementById('worksheetTitle').value = state.title;
+  document.getElementById('worksheetSubtitle').value = '';
+  addQuestion();
+  refreshSavedList();
+}
+
+document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
+document.getElementById('signOutBtn').addEventListener('click', signOut);
+document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
+
+refreshAuthUi();
+initGoogleSignIn();
 
 // Seed with one empty question so the workflow is obvious.
 addQuestion();
