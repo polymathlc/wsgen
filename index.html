@@ -649,12 +649,6 @@
   body.mode-student .admin-only { display: none !important; }
   body.mode-student .student-only { display: initial; }
   body.mode-student #editorQuestions { display: none; }
-  body.mode-student .toolbar h1::after {
-    content: ' — Student view';
-    font-weight: 500;
-    color: var(--text-secondary);
-    font-size: 0.9em;
-  }
   body.mode-anon .admin-only,
   body.mode-anon .student-only,
   body.mode-anon #savedList { display: none !important; }
@@ -783,15 +777,15 @@
   <!-- =============== EDITOR =============== -->
   <aside class="editor-pane">
     <div class="toolbar">
-      <h1>Worksheet Creator</h1>
+      <h1><span class="admin-only">Worksheet Creator</span><span class="student-only">Worksheets</span></h1>
       <div class="auth-row">
         <span id="authChip" class="auth-chip guest">Not signed in</span>
         <button class="btn btn-tiny" id="googleSignInBtn">Sign in with Google</button>
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
       </div>
       <div id="authHint" class="auth-hint" style="display:none;"></div>
-      <input type="text" id="worksheetTitle" class="title-input" placeholder="Worksheet title" value="New Worksheet" />
-      <input type="text" id="worksheetSubtitle" class="title-input" placeholder="Subtitle / description (optional)" />
+      <input type="text" id="worksheetTitle" class="title-input admin-only" placeholder="Worksheet title" value="New Worksheet" />
+      <input type="text" id="worksheetSubtitle" class="title-input admin-only" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
