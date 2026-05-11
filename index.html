@@ -748,6 +748,7 @@
         <button class="btn" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
         <button class="btn" id="newWorksheetBtn">New</button>
         <button class="btn" id="exportHtmlBtn">Download HTML</button>
+        <button class="btn" id="exportPdfBtn">Export PDF</button>
         <button class="btn" id="saveJsonBtn">Save JSON</button>
         <button class="btn" id="loadJsonBtn">Load JSON</button>
         <input type="file" id="loadJsonInput" accept="application/json" style="display:none" />
@@ -1465,6 +1466,195 @@ function exportHtml() {
   URL.revokeObjectURL(url);
 }
 
+/* =========================================================================
+   PDF EXPORT — opens a print-friendly window (one question per page,
+   ruled working space) and triggers the browser's print-to-PDF dialog.
+   ========================================================================= */
+function exportPdf() {
+  const html = buildPrintableHtml();
+  const w = window.open('', '_blank');
+  if (!w) {
+    alert('Please allow pop-ups to export PDF.');
+    return;
+  }
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+}
+
+function buildPrintableHtml() {
+  const css = getEmbeddedPreviewCss() + getPrintCss();
+  const body = state.questions.map((q, qIndex) => questionToPrintHtml(q, qIndex)).join('\n');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>${escapeHtml(state.title)} — Print</title>
+<style>${css}</style>
+</head>
+<body>
+<div class="print-doc">
+  <header class="print-header">
+    <h2>${escapeHtml(state.title)}</h2>
+    ${state.subtitle ? `<p>${escapeHtml(state.subtitle)}</p>` : ''}
+    <div class="student-row">
+      <span>Name: <span class="student-line"></span></span>
+      <span>Class: <span class="student-line short"></span></span>
+      <span>Date: <span class="student-line short"></span></span>
+    </div>
+  </header>
+  ${body}
+</div>
+<script>
+  window.addEventListener('load', () => setTimeout(() => window.print(), 250));
+${'<\/script>'}
+</body>
+</html>`;
+}
+
+function questionToPrintHtml(q, qIndex) {
+  const firstTextIdx = q.elements.findIndex(e => e.type === 'text');
+  const stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
+  const bodyParts = q.elements.map((el, j) => {
+    if (j === firstTextIdx) return '';
+    return elementToPrintHtml(el, qIndex, j);
+  }).join('\n');
+
+  return `
+<section class="print-question">
+  <article class="question-card">
+    <div class="question-header">
+      <div class="question-number">${qIndex + 1}</div>
+      <div class="question-stem">${escapeHtml(stemText)}</div>
+    </div>
+    ${bodyParts}
+  </article>
+  <div class="working-space">
+    <div class="working-space-label">Working / Notes</div>
+    <div class="ruled-lines"></div>
+  </div>
+</section>`;
+}
+
+function elementToPrintHtml(el, qIndex, elIndex) {
+  switch (el.type) {
+    case 'text':
+      return `<div class="question-sub">${escapeHtml(el.text)}</div>`;
+    case 'image': {
+      if (!el.dataUrl) return '';
+      const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
+      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
+    }
+    case 'part':
+      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${escapeHtml(el.text)}</span></div>`;
+    case 'mcq': {
+      const opts = el.options.map((opt, i) =>
+        `<div class="option-item print-option"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${escapeHtml(opt.text)}</div></div>`
+      ).join('');
+      return `<div class="options-list">${opts}</div>`;
+    }
+    case 'answer':
+      return `<div class="answer-field"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><span class="answer-field-print-line"></span></div>`;
+    case 'answerKey':
+      // Answer keys are not printed on student worksheets.
+      return '';
+    case 'video': {
+      const cap = el.caption ? escapeHtml(el.caption) : 'Video';
+      const url = (el.url || '').trim();
+      if (!url) return '';
+      return `<div class="video-print"><strong>▶ ${cap}:</strong> <span class="video-print-url">${escapeHtml(url)}</span></div>`;
+    }
+  }
+  return '';
+}
+
+function getPrintCss() {
+  return `
+@page { size: A4; margin: 18mm 16mm; }
+body { background: #fff !important; padding: 0 !important; }
+.print-doc { max-width: 100%; margin: 0; }
+.print-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1.5px solid #1A1A1A; }
+.print-header h2 { font-size: 1.6rem; font-weight: 700; }
+.print-header p { color: #5C5C5C; font-size: 0.9rem; margin-top: 4px; }
+.student-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 10px; font-size: 0.9rem; }
+.student-line { display: inline-block; min-width: 200px; border-bottom: 1px solid #1A1A1A; vertical-align: bottom; }
+.student-line.short { min-width: 90px; }
+
+.print-question {
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+  break-after: page;
+  min-height: calc(100vh - 60mm);
+}
+.print-question:last-child { page-break-after: auto; break-after: auto; }
+.print-question .question-card {
+  box-shadow: none;
+  border: 1.5px solid #1A1A1A;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+}
+.print-question .question-card:hover { box-shadow: none; }
+
+.working-space {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  border: 1.5px dashed #5C5C5C;
+  border-radius: 10px;
+  padding: 10px 14px 14px;
+  min-height: 110mm;
+}
+.working-space-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5C5C5C;
+  margin-bottom: 8px;
+}
+.ruled-lines {
+  flex: 1;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 9mm,
+    #B8B8B2 9mm,
+    #B8B8B2 calc(9mm + 0.5px)
+  );
+  min-height: 90mm;
+}
+
+.answer-field-print-line {
+  display: inline-block;
+  flex: 1;
+  min-width: 60mm;
+  border-bottom: 1.2px solid #1A1A1A;
+  height: 1.2em;
+}
+
+.print-option:hover { background: #fff !important; transform: none !important; border-color: #D4D4CF !important; }
+.print-option .option-radio { background: #fff !important; }
+
+.video-print {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border: 1px dashed #B8B8B2;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #5C5C5C;
+}
+.video-print-url { word-break: break-all; }
+
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-question { min-height: auto; }
+}
+`;
+}
+
 function escapeHtml(s) {
   return String(s || '')
     .replace(/&/g, '&amp;')
@@ -1702,6 +1892,7 @@ function loadJson(file) {
    ========================================================================= */
 document.getElementById('addQuestionBtn').addEventListener('click', addQuestion);
 document.getElementById('exportHtmlBtn').addEventListener('click', exportHtml);
+document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
 document.getElementById('saveJsonBtn').addEventListener('click', saveJson);
 document.getElementById('loadJsonBtn').addEventListener('click', () =>
   document.getElementById('loadJsonInput').click()
