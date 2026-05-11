@@ -2180,6 +2180,16 @@ function worksheetStoragePath(id) {
   return `${WORKSHEET_STORAGE_PREFIX}/${id}.json`;
 }
 
+// Each Firestore doc is capped at ~1 MiB. Worksheets with embedded base64 images
+// blow past that easily, so we shard the JSON across sibling docs in the same
+// `worksheets/` collection (so the user's existing Firestore rules cover us
+// without any Storage rule setup). Chunk size leaves headroom for field
+// overhead and UTF-8 expansion.
+const CHUNK_CHARS = 700_000;
+const CHUNK_SUFFIX = '__chunk__';
+const chunkDocId = (id, i) => `${id}${CHUNK_SUFFIX}${i}`;
+const isChunkDocId = (docId) => typeof docId === 'string' && docId.includes(CHUNK_SUFFIX);
+
 async function saveToSystem() {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
@@ -2192,27 +2202,48 @@ async function saveToSystem() {
   btn.disabled = true;
   try {
     const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-    const path = worksheetStoragePath(id);
     const json = JSON.stringify(state);
+    const chunks = [];
+    for (let i = 0; i < json.length; i += CHUNK_CHARS) {
+      chunks.push(json.slice(i, i + CHUNK_CHARS));
+    }
+    if (chunks.length === 0) chunks.push('');
 
-    // 1. Upload the full worksheet JSON to Cloud Storage (no 1 MB doc limit).
-    await uploadString(storageRef(fbStorage, path), json, 'raw', {
-      contentType: 'application/json',
-      customMetadata: { ownerUid: currentUser.uid }
-    });
+    // 1. Find out how many chunks the previous version had so we can clear
+    //    any orphans if the new version is shorter.
+    let prevChunkCount = 0;
+    try {
+      const prevSnap = await getDoc(doc(fbDb, 'worksheets', id));
+      if (prevSnap.exists()) prevChunkCount = prevSnap.data().chunkCount || 0;
+    } catch (_) { /* best-effort */ }
 
-    // 2. Write only lightweight metadata to Firestore.
+    // 2. Write every chunk doc.
+    for (let i = 0; i < chunks.length; i++) {
+      await setDoc(doc(fbDb, 'worksheets', chunkDocId(id, i)), {
+        parentId: id,
+        index: i,
+        data: chunks[i]
+      });
+    }
+
+    // 3. Write the metadata doc last so a partial save can't be discovered.
     await setDoc(doc(fbDb, 'worksheets', id), {
       id,
       title: state.title || 'Untitled',
       subtitle: state.subtitle || '',
-      storagePath: path,
+      chunkCount: chunks.length,
       ownerEmail: currentUser.email,
       ownerUid: currentUser.uid,
       savedAt: serverTimestamp(),
       savedAtClient: new Date().toISOString(),
       sizeBytes: json.length
     });
+
+    // 4. Drop any leftover chunk docs from a longer previous save.
+    for (let i = chunks.length; i < prevChunkCount; i++) {
+      try { await deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, i))); } catch (_) {}
+    }
+
     currentSavedId = id;
     btn.textContent = '✓ Saved';
     await refreshSavedList();
@@ -2222,10 +2253,6 @@ async function saveToSystem() {
     alert('Save failed: ' + (e.message || e) +
       '\n\nMake sure Firestore rules allow:\n' +
       "match /worksheets/{ws} {\n" +
-      "  allow read: if request.auth != null;\n" +
-      "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
-      "}\n\nAnd Storage rules allow (Firebase Storage tab → Rules):\n" +
-      "match /worksheets/{file} {\n" +
       "  allow read: if request.auth != null;\n" +
       "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
       "}");
@@ -2238,13 +2265,30 @@ async function saveToSystem() {
 }
 
 async function fetchWorksheetState(data) {
-  // New format: state lives in Cloud Storage at data.storagePath.
-  if (data.storagePath) {
-    const bytes = await getBytes(storageRef(fbStorage, data.storagePath));
-    const text = new TextDecoder().decode(bytes);
-    return JSON.parse(text);
+  // New format: state sharded across Firestore chunk docs.
+  if (data.chunkCount && data.chunkCount > 0) {
+    const parts = new Array(data.chunkCount);
+    for (let i = 0; i < data.chunkCount; i++) {
+      const snap = await getDoc(doc(fbDb, 'worksheets', chunkDocId(data.id, i)));
+      if (!snap.exists()) throw new Error(`Missing chunk ${i + 1} of ${data.chunkCount}.`);
+      parts[i] = snap.data().data || '';
+    }
+    return JSON.parse(parts.join(''));
   }
-  // Legacy format: state was embedded directly in the Firestore doc.
+  // Older save: state was uploaded to Cloud Storage.
+  if (data.storagePath) {
+    try {
+      const bytes = await getBytes(storageRef(fbStorage, data.storagePath));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (e) {
+      throw new Error(
+        'Could not read this worksheet from Cloud Storage (' +
+        (e.code || e.message || e) + '). ' +
+        'Have the admin open it and click Save to System once to re-upload it.'
+      );
+    }
+  }
+  // Oldest legacy format: full state embedded in the Firestore doc.
   if (typeof data.state === 'string') return JSON.parse(data.state);
   if (data.state && typeof data.state === 'object') return data.state;
   throw new Error('Worksheet has no state payload.');
@@ -2278,12 +2322,28 @@ async function deleteFromSystem(id) {
   if (!currentUser || !isAdmin()) return;
   if (!confirm('Delete this saved worksheet from the cloud?')) return;
   try {
-    // Best-effort: delete storage blob first; ignore if it doesn't exist (legacy docs).
+    // Look up chunkCount so we can drop the shards too.
+    let chunkCount = 0;
+    let storagePath = null;
     try {
-      await deleteObject(storageRef(fbStorage, worksheetStoragePath(id)));
-    } catch (storageErr) {
-      if (storageErr && storageErr.code && storageErr.code !== 'storage/object-not-found') {
-        console.warn('Storage delete warning:', storageErr.code || storageErr.message);
+      const metaSnap = await getDoc(doc(fbDb, 'worksheets', id));
+      if (metaSnap.exists()) {
+        const md = metaSnap.data();
+        chunkCount = md.chunkCount || 0;
+        storagePath = md.storagePath || null;
+      }
+    } catch (_) {}
+
+    for (let i = 0; i < chunkCount; i++) {
+      try { await deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, i))); } catch (_) {}
+    }
+    if (storagePath) {
+      try {
+        await deleteObject(storageRef(fbStorage, storagePath));
+      } catch (storageErr) {
+        if (storageErr && storageErr.code && storageErr.code !== 'storage/object-not-found') {
+          console.warn('Storage delete warning:', storageErr.code || storageErr.message);
+        }
       }
     }
     await deleteDoc(doc(fbDb, 'worksheets', id));
@@ -2298,14 +2358,20 @@ async function refreshSavedList() {
   const list = document.getElementById('savedList');
   list.innerHTML = '';
   if (!currentUser) { savedItemsCache = []; return; }
+  const isRealWorksheet = (d, docId) =>
+    !isChunkDocId(docId) && d && d.parentId === undefined && (d.title || d.id);
   try {
     const col = worksheetsCol();
     const snap = await getDocs(query(col, orderBy('savedAtClient', 'desc')));
-    savedItemsCache = snap.docs.map(d => d.data());
+    savedItemsCache = snap.docs
+      .filter(d => isRealWorksheet(d.data(), d.id))
+      .map(d => d.data());
   } catch (e) {
     try {
       const snap = await getDocs(worksheetsCol());
-      savedItemsCache = snap.docs.map(d => d.data())
+      savedItemsCache = snap.docs
+        .filter(d => isRealWorksheet(d.data(), d.id))
+        .map(d => d.data())
         .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''));
     } catch (e2) {
       console.error(e2);
