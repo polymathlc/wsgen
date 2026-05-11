@@ -638,6 +638,30 @@
     border-radius: 3px;
     font-family: ui-monospace, monospace;
   }
+  .rules-helper {
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+  }
+  .rules-helper summary {
+    cursor: pointer;
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+  .rules-helper pre {
+    margin-top: 8px;
+    padding: 8px;
+    background: #FAFAFA;
+    border-radius: var(--radius-sm);
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+  }
 
   /* ============================ ROLE MODES ============================
      body.mode-student → hides every admin-only control (editor area,
@@ -800,6 +824,23 @@
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
       </div>
       <div id="authHint" class="auth-hint" style="display:none;"></div>
+      <details class="admin-only rules-helper">
+        <summary>Required Firestore rules (click to view / copy)</summary>
+<pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /worksheets/{wsId} {
+      allow read:  if request.auth != null;
+      allow write: if request.auth != null
+                   &amp;&amp; request.auth.token.email == 'chungzhikai@gmail.com';
+    }
+  }
+}</pre>
+        <div style="font-size:11px; color:var(--text-tertiary); margin-top:6px;">
+          Publish these in <a href="https://console.firebase.google.com/project/mathgen--app/firestore/rules" target="_blank" rel="noopener">Firebase Console → Firestore → Rules</a>.
+          Without them students get "permission denied" when trying to view worksheets.
+        </div>
+      </details>
       <input type="text" id="worksheetTitle" class="title-input admin-only" placeholder="Worksheet title" value="New Worksheet" />
       <input type="text" id="worksheetSubtitle" class="title-input admin-only" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
@@ -2248,6 +2289,7 @@ async function refreshSavedList() {
   const list = document.getElementById('savedList');
   list.innerHTML = '';
   if (!currentUser) { savedItemsCache = []; return; }
+  let fetchError = null;
   try {
     const col = worksheetsCol();
     const snap = await getDocs(query(col, orderBy('savedAtClient', 'desc')));
@@ -2258,9 +2300,44 @@ async function refreshSavedList() {
       savedItemsCache = snap.docs.map(d => d.data())
         .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''));
     } catch (e2) {
-      console.error(e2);
+      console.error('Firestore read failed:', e2);
       savedItemsCache = [];
+      fetchError = e2;
     }
+  }
+  if (fetchError) {
+    const banner = document.createElement('div');
+    banner.className = 'saved-item';
+    banner.style.cssText = 'flex-direction:column; align-items:flex-start; background:#FFEBEE; color:#B71C1C; padding:10px;';
+    const code = (fetchError && fetchError.code) || '';
+    if (code === 'permission-denied') {
+      banner.innerHTML =
+        '<div style="font-weight:700; margin-bottom:4px;">⚠ Permission denied</div>' +
+        '<div style="font-size:12px; line-height:1.4;">' +
+          'Your Firebase Firestore rules block this account from reading worksheets. ' +
+          'The admin must publish the rules shown in the browser Console.' +
+        '</div>';
+      console.warn(
+        '%cFirestore rules to publish for student access:',
+        'font-weight:bold; color:#1565C0;',
+        "\n\nrules_version = '2';\n" +
+        "service cloud.firestore {\n" +
+        "  match /databases/{database}/documents {\n" +
+        "    match /worksheets/{wsId} {\n" +
+        "      allow read:  if request.auth != null;\n" +
+        "      allow write: if request.auth != null\n" +
+        "                   && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
+        "    }\n" +
+        "  }\n" +
+        "}\n"
+      );
+    } else {
+      banner.innerHTML =
+        '<div style="font-weight:700; margin-bottom:4px;">⚠ Could not load worksheets</div>' +
+        '<div style="font-size:12px;">' + (fetchError.message || code || String(fetchError)) + '</div>';
+    }
+    list.appendChild(banner);
+    return;
   }
   if (savedItemsCache.length === 0) {
     if (!isAdmin()) {
