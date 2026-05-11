@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Worksheet Creator</title>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <style>
   @font-face {
@@ -623,6 +622,22 @@
     color: var(--text-tertiary);
     border-color: var(--border-subtle);
   }
+  .auth-hint {
+    margin-top: 6px;
+    padding: 8px 10px;
+    background: #FFF8E1;
+    border: 1px solid #FFE082;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    color: #6D4C41;
+    line-height: 1.5;
+  }
+  .auth-hint code {
+    background: rgba(0,0,0,0.06);
+    padding: 0 4px;
+    border-radius: 3px;
+    font-family: ui-monospace, monospace;
+  }
   .saved-list {
     margin-top: var(--space-sm);
     background: var(--bg-primary);
@@ -738,9 +753,10 @@
       <h1>Worksheet Creator</h1>
       <div class="auth-row">
         <span id="authChip" class="auth-chip guest">Not signed in</span>
-        <div id="googleSignInBtn"></div>
+        <button class="btn btn-tiny" id="googleSignInBtn">Sign in with Google</button>
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
       </div>
+      <div id="authHint" class="auth-hint" style="display:none;"></div>
       <input type="text" id="worksheetTitle" class="title-input" placeholder="Worksheet title" value="New Worksheet" />
       <input type="text" id="worksheetSubtitle" class="title-input" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
@@ -772,7 +788,31 @@
   </main>
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, getDoc, deleteDoc, collection, getDocs,
+  serverTimestamp, orderBy, query
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAUSI3Uh28IeqASEp0JhH4QPaVt-O3meBo",
+  authDomain: "mathgen--app.firebaseapp.com",
+  projectId: "mathgen--app",
+  storageBucket: "mathgen--app.firebasestorage.app",
+  messagingSenderId: "165654161198",
+  appId: "1:165654161198:web:16c8bd60eb3a2aa7edbcbf",
+  measurementId: "G-0MWZFG211D"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const fbAuth = getAuth(fbApp);
+const fbDb = getFirestore(fbApp);
+const googleProvider = new GoogleAuthProvider();
+
 /* =========================================================================
    STATE
    ========================================================================= */
@@ -1506,7 +1546,20 @@ function buildPrintableHtml() {
   ${body}
 </div>
 <script>
-  window.addEventListener('load', () => setTimeout(() => window.print(), 250));
+  function waitForImages() {
+    const imgs = Array.from(document.images || []);
+    if (imgs.length === 0) return Promise.resolve();
+    return Promise.all(imgs.map(img => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+      return new Promise(res => {
+        img.addEventListener('load', res, { once: true });
+        img.addEventListener('error', res, { once: true });
+      });
+    }));
+  }
+  window.addEventListener('load', () => {
+    waitForImages().then(() => setTimeout(() => window.print(), 200));
+  });
 ${'<\/script>'}
 </body>
 </html>`;
@@ -1562,7 +1615,18 @@ function elementToPrintHtml(el, qIndex, elIndex) {
       const cap = el.caption ? escapeHtml(el.caption) : 'Video';
       const url = (el.url || '').trim();
       if (!url) return '';
-      return `<div class="video-print"><strong>▶ ${cap}:</strong> <span class="video-print-url">${escapeHtml(url)}</span></div>`;
+      // Use Dropbox's preview URL (?dl=0) when scanned so phones open in-app/browser nicely.
+      const scanUrl = url.replace(/[?&]raw=1/, '');
+      const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data=${encodeURIComponent(scanUrl)}`;
+      return `
+<div class="video-print">
+  <div class="video-print-meta">
+    <div class="video-print-title">▶ ${cap}</div>
+    <div class="video-print-url">${escapeHtml(url)}</div>
+    <div class="video-print-hint">Scan the QR code to watch.</div>
+  </div>
+  <img class="video-print-qr" src="${escapeAttr(qrSrc)}" alt="QR code for video link" />
+</div>`;
     }
   }
   return '';
@@ -1639,14 +1703,28 @@ body { background: #fff !important; padding: 0 !important; }
 .print-option .option-radio { background: #fff !important; }
 
 .video-print {
-  margin: 8px 0;
-  padding: 8px 12px;
+  margin: 10px 0;
+  padding: 10px 14px;
   border: 1px dashed #B8B8B2;
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #5C5C5C;
+  color: #1A1A1A;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  page-break-inside: avoid;
 }
-.video-print-url { word-break: break-all; }
+.video-print-meta { flex: 1; min-width: 0; }
+.video-print-title { font-weight: 700; margin-bottom: 4px; }
+.video-print-url { word-break: break-all; color: #5C5C5C; font-size: 0.8rem; }
+.video-print-hint { margin-top: 4px; font-size: 0.78rem; color: #8A8A8A; }
+.video-print-qr {
+  width: 32mm;
+  height: 32mm;
+  flex-shrink: 0;
+  border: 1px solid #E8E8E4;
+  background: #fff;
+}
 
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -1916,183 +1994,198 @@ document.getElementById('showAnswersToggle').addEventListener('change', (e) => {
 });
 
 /* =========================================================================
-   GOOGLE SIGN-IN + SYSTEM STORAGE (localStorage gated by Gmail)
+   FIREBASE AUTH + FIRESTORE CLOUD SAVE
    =========================================================================
-   Replace GOOGLE_CLIENT_ID with your own OAuth Client ID from
-   https://console.cloud.google.com/apis/credentials  (type: "Web application",
-   authorised JavaScript origin = the page's origin).
-   The placeholder value below lets the UI render but login will fail until
-   replaced with a real client id. */
-const GOOGLE_CLIENT_ID = 'REPLACE_WITH_YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com';
+   Auth: Google sign-in via Firebase Auth (popup).
+   Storage: Firestore at  users/{uid}/worksheets/{wsId}
+   Save-to-cloud is gated to chungzhikai@gmail.com — the rest of the UI
+   works for anyone (they can still use the local JSON Save/Load).
+   ========================================================================= */
 const ALLOWED_EMAIL = 'chungzhikai@gmail.com';
-const STORAGE_KEY = 'wsgen:worksheets';
 
-let currentUser = null; // { email, name, picture }
-let currentSavedId = null; // id of the worksheet currently loaded from storage, if any
+let currentUser = null; // Firebase User object (or null)
+let currentSavedId = null; // id of the worksheet currently loaded from cloud, if any
+let savedItemsCache = []; // cached list for re-render
 
-function decodeJwt(token) {
+function showAuthHint(html, kind = 'info') {
+  const hint = document.getElementById('authHint');
+  hint.innerHTML = html;
+  hint.style.display = '';
+  hint.dataset.kind = kind;
+}
+function hideAuthHint() {
+  const hint = document.getElementById('authHint');
+  hint.style.display = 'none';
+  hint.innerHTML = '';
+}
+
+async function signInGoogle() {
   try {
-    const payload = token.split('.')[1];
-    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
-    return JSON.parse(decodeURIComponent(escape(json)));
-  } catch (_) { return null; }
+    hideAuthHint();
+    await signInWithPopup(fbAuth, googleProvider);
+    // onAuthStateChanged will refresh the UI.
+  } catch (e) {
+    const code = e && e.code ? e.code : '';
+    if (code === 'auth/popup-blocked') {
+      showAuthHint('Pop-up was blocked — please allow pop-ups and try again.');
+    } else if (code === 'auth/unauthorized-domain') {
+      showAuthHint(
+        'This domain is not authorised for sign-in. ' +
+        'Open the <a href="https://console.firebase.google.com/project/mathgen--app/authentication/settings" target="_blank" rel="noopener">Firebase Auth settings</a> ' +
+        'and add this page\'s domain under <em>Authorised domains</em>.'
+      );
+    } else if (code === 'auth/operation-not-allowed') {
+      showAuthHint(
+        'Google sign-in is not enabled for this Firebase project. ' +
+        'Enable it under <a href="https://console.firebase.google.com/project/mathgen--app/authentication/providers" target="_blank" rel="noopener">Authentication → Sign-in method → Google</a>.'
+      );
+    } else {
+      showAuthHint('Sign-in failed: ' + (e.message || code || e));
+    }
+  }
 }
 
-function onCredentialResponse(resp) {
-  const claims = decodeJwt(resp.credential);
-  if (!claims || !claims.email) {
-    alert('Sign-in failed: no email in token.');
-    return;
-  }
-  currentUser = { email: claims.email, name: claims.name || claims.email, picture: claims.picture };
-  refreshAuthUi();
-  refreshSavedList();
-}
-
-function signOut() {
-  currentUser = null;
-  currentSavedId = null;
-  if (window.google && google.accounts && google.accounts.id) {
-    google.accounts.id.disableAutoSelect();
-  }
-  refreshAuthUi();
-  refreshSavedList();
+async function signOutUser() {
+  try { await fbSignOut(fbAuth); } catch (_) {}
 }
 
 function refreshAuthUi() {
   const chip = document.getElementById('authChip');
-  const btnSlot = document.getElementById('googleSignInBtn');
+  const signInBtn = document.getElementById('googleSignInBtn');
   const signOutBtn = document.getElementById('signOutBtn');
   const saveSystemBtn = document.getElementById('saveSystemBtn');
 
   if (currentUser) {
     chip.classList.remove('guest');
     chip.textContent = `Signed in as ${currentUser.email}`;
-    btnSlot.style.display = 'none';
+    signInBtn.style.display = 'none';
     signOutBtn.style.display = '';
   } else {
     chip.classList.add('guest');
     chip.textContent = 'Not signed in';
-    btnSlot.style.display = '';
+    signInBtn.style.display = '';
     signOutBtn.style.display = 'none';
   }
-  // Save-to-system is enabled only for the allowed Gmail
-  const allowed = currentUser && currentUser.email.toLowerCase() === ALLOWED_EMAIL;
+  const allowed = currentUser && (currentUser.email || '').toLowerCase() === ALLOWED_EMAIL;
   saveSystemBtn.disabled = !allowed;
   saveSystemBtn.style.opacity = allowed ? '1' : '0.5';
   saveSystemBtn.title = allowed
-    ? 'Save this worksheet to your account'
-    : `Sign in as ${ALLOWED_EMAIL} to enable saving`;
+    ? 'Save this worksheet to the cloud'
+    : `Sign in as ${ALLOWED_EMAIL} to enable cloud saving`;
 }
 
-function initGoogleSignIn() {
-  if (!window.google || !google.accounts || !google.accounts.id) {
-    setTimeout(initGoogleSignIn, 200);
-    return;
-  }
-  try {
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: onCredentialResponse,
-      auto_select: false
-    });
-    google.accounts.id.renderButton(
-      document.getElementById('googleSignInBtn'),
-      { theme: 'outline', size: 'medium', text: 'signin_with', shape: 'pill' }
-    );
-  } catch (e) {
-    document.getElementById('googleSignInBtn').innerHTML =
-      '<span style="font-size:var(--font-size-xs); color:var(--wrong-dark);">Google Sign-In init failed — check GOOGLE_CLIENT_ID</span>';
-  }
+/* ---------- Firestore CRUD ---------- */
+function worksheetsCol() {
+  if (!currentUser) return null;
+  return collection(fbDb, 'users', currentUser.uid, 'worksheets');
 }
 
-/* ---------- localStorage-backed "system" ---------- */
-function readAll() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
-  catch (_) { return {}; }
-}
-function writeAll(obj) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
-}
-
-function saveToSystem() {
+async function saveToSystem() {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
-  if (currentUser.email.toLowerCase() !== ALLOWED_EMAIL) {
-    alert(`Saving is restricted to ${ALLOWED_EMAIL}.`);
+  if ((currentUser.email || '').toLowerCase() !== ALLOWED_EMAIL) {
+    alert(`Cloud saving is restricted to ${ALLOWED_EMAIL}.`);
     return;
   }
-  const all = readAll();
-  const userBucket = all[currentUser.email] || {};
-  const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-  userBucket[id] = {
-    id,
-    savedAt: new Date().toISOString(),
-    state: state
-  };
-  all[currentUser.email] = userBucket;
-  writeAll(all);
-  currentSavedId = id;
-  refreshSavedList();
-  flashSavedFeedback();
-}
-
-function flashSavedFeedback() {
   const btn = document.getElementById('saveSystemBtn');
   const original = btn.textContent;
-  btn.textContent = '✓ Saved';
-  setTimeout(() => { btn.textContent = original; }, 1400);
-}
-
-function loadFromSystem(id) {
-  if (!currentUser) return;
-  const all = readAll();
-  const item = all[currentUser.email] && all[currentUser.email][id];
-  if (!item) return;
-  state = JSON.parse(JSON.stringify(item.state));
-  currentSavedId = id;
-  document.getElementById('worksheetTitle').value = state.title || '';
-  document.getElementById('worksheetSubtitle').value = state.subtitle || '';
-  renderEditor();
-  renderPreview();
-  refreshSavedList();
-}
-
-function deleteFromSystem(id) {
-  if (!currentUser) return;
-  if (!confirm('Delete this saved worksheet?')) return;
-  const all = readAll();
-  if (all[currentUser.email]) {
-    delete all[currentUser.email][id];
-    writeAll(all);
+  btn.textContent = '⏳ Saving…';
+  btn.disabled = true;
+  try {
+    const id = currentSavedId || `ws_${Date.now().toString(36)}`;
+    const ref = doc(fbDb, 'users', currentUser.uid, 'worksheets', id);
+    await setDoc(ref, {
+      id,
+      title: state.title || 'Untitled',
+      state: JSON.stringify(state), // stringify so nested arrays/data URLs pass cleanly under Firestore's depth/size rules
+      savedAt: serverTimestamp(),
+      savedAtClient: new Date().toISOString()
+    });
+    currentSavedId = id;
+    btn.textContent = '✓ Saved';
+    await refreshSavedList();
+  } catch (e) {
+    console.error(e);
+    btn.textContent = original;
+    alert('Save failed: ' + (e.message || e) +
+      '\n\nIf this is your first save, make sure Firestore rules allow:\n' +
+      'match /users/{uid}/worksheets/{ws} { allow read, write: if request.auth.uid == uid; }');
+  } finally {
+    btn.disabled = false;
+    setTimeout(() => {
+      if (btn.textContent === '✓ Saved') btn.textContent = original;
+    }, 1400);
   }
-  if (currentSavedId === id) currentSavedId = null;
-  refreshSavedList();
 }
 
-function refreshSavedList() {
+async function loadFromSystem(id) {
+  if (!currentUser) return;
+  try {
+    const ref = doc(fbDb, 'users', currentUser.uid, 'worksheets', id);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) return;
+    const data = snap.data();
+    const parsed = typeof data.state === 'string' ? JSON.parse(data.state) : data.state;
+    state = parsed;
+    currentSavedId = id;
+    document.getElementById('worksheetTitle').value = state.title || '';
+    document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+    renderEditor();
+    renderPreview();
+    await refreshSavedList();
+  } catch (e) {
+    alert('Load failed: ' + (e.message || e));
+  }
+}
+
+async function deleteFromSystem(id) {
+  if (!currentUser) return;
+  if (!confirm('Delete this saved worksheet from the cloud?')) return;
+  try {
+    await deleteDoc(doc(fbDb, 'users', currentUser.uid, 'worksheets', id));
+    if (currentSavedId === id) currentSavedId = null;
+    await refreshSavedList();
+  } catch (e) {
+    alert('Delete failed: ' + (e.message || e));
+  }
+}
+
+async function refreshSavedList() {
   const list = document.getElementById('savedList');
   list.innerHTML = '';
-  if (!currentUser) return;
-  const bucket = (readAll()[currentUser.email]) || {};
-  const items = Object.values(bucket).sort((a, b) =>
-    (b.savedAt || '').localeCompare(a.savedAt || '')
-  );
-  if (items.length === 0) return;
+  if (!currentUser) { savedItemsCache = []; return; }
+  try {
+    const col = worksheetsCol();
+    const snap = await getDocs(query(col, orderBy('savedAtClient', 'desc')));
+    savedItemsCache = snap.docs.map(d => d.data());
+  } catch (e) {
+    // If the index/order field is missing for old docs, fall back to unordered.
+    try {
+      const snap = await getDocs(worksheetsCol());
+      savedItemsCache = snap.docs.map(d => d.data())
+        .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''));
+    } catch (e2) {
+      console.error(e2);
+      savedItemsCache = [];
+    }
+  }
+  if (savedItemsCache.length === 0) return;
   const header = document.createElement('div');
   header.className = 'saved-item';
-  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">My saved worksheets (${items.length})</div>`;
+  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">My saved worksheets (${savedItemsCache.length})</div>`;
   list.appendChild(header);
-  items.forEach((it) => {
+  savedItemsCache.forEach((it) => {
     const row = document.createElement('div');
     row.className = 'saved-item';
     const name = document.createElement('div');
     name.className = 'saved-item-name';
-    name.textContent = (it.state && it.state.title) || '(untitled)';
+    name.textContent = it.title || '(untitled)';
     if (it.id === currentSavedId) name.style.fontWeight = '700';
     name.addEventListener('click', () => loadFromSystem(it.id));
     const meta = document.createElement('span');
     meta.className = 'saved-item-meta';
-    meta.textContent = new Date(it.savedAt).toLocaleString();
+    if (it.savedAtClient) {
+      meta.textContent = new Date(it.savedAtClient).toLocaleString();
+    }
     const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
     row.appendChild(name);
     row.appendChild(meta);
@@ -2112,11 +2205,18 @@ function newWorksheet() {
 }
 
 document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
-document.getElementById('signOutBtn').addEventListener('click', signOut);
+document.getElementById('signOutBtn').addEventListener('click', signOutUser);
+document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
 
+onAuthStateChanged(fbAuth, (user) => {
+  currentUser = user || null;
+  currentSavedId = null;
+  refreshAuthUi();
+  refreshSavedList();
+});
+
 refreshAuthUi();
-initGoogleSignIn();
 
 // Seed with one empty question so the workflow is obvious.
 addQuestion();
