@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Worksheet Creator</title>
+
+<style>
+  @font-face {
+    font-family: 'RobotoQuestion';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+    unicode-range: U+003F;
+  }
+  @font-face {
+    font-family: 'RobotoQuestion';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
+    unicode-range: U+003F;
+  }
+</style>
+
+<style>
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FAFAFA;
+    --bg-tertiary: #F3F3F0;
+    --bg-soft: #F7F9FC;
+    --border-subtle: #E8E8E4;
+    --border-medium: #D4D4CF;
+    --border-strong: #B8B8B2;
+
+    --text-primary: #1A1A1A;
+    --text-secondary: #5C5C5C;
+    --text-tertiary: #8A8A8A;
+    --text-inverse: #FFFFFF;
+
+    --accent-light: #BBDEFB;
+    --accent-base: #64B5F6;
+    --accent-dark: #42A5F5;
+    --accent-deep: #1E88E5;
+    --accent-bg: #E3F2FD;
+
+    --correct-light: #C8E6C9;
+    --correct-base: #66BB6A;
+    --correct-dark: #43A047;
+    --correct-bg: #F1F8E9;
+    --wrong-light: #FFCDD2;
+    --wrong-base: #EF5350;
+    --wrong-dark: #E53935;
+    --wrong-bg: #FFEBEE;
+
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 4px rgba(0,0,0,0.05), 0 6px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 4px 6px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.1);
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+    --space-2xl: 64px;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+    --radius-full: 999px;
+
+    --font-family: 'RobotoQuestion', 'Century Gothic', CenturyGothic, AppleGothic, 'Trebuchet MS', sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-2xl: 2.5rem;
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.75;
+
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.25s ease;
+    --transition-slow: 0.4s ease;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  body {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    line-height: var(--line-height-normal);
+    min-height: 100vh;
+  }
+
+  img { max-width: 100%; display: block; }
+  input, button, select, textarea { font-family: inherit; }
+  button { cursor: pointer; border: none; background: none; }
+
+  /* ============================ LAYOUT ============================ */
+  .app {
+    display: grid;
+    grid-template-columns: minmax(420px, 1fr) minmax(520px, 1.2fr);
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .editor-pane, .preview-pane {
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .editor-pane {
+    background: var(--bg-tertiary);
+    border-right: 1px solid var(--border-subtle);
+    padding: var(--space-lg);
+  }
+
+  .preview-pane {
+    background: var(--bg-secondary);
+    padding: var(--space-xl);
+  }
+
+  /* ============================ TOOLBAR ============================ */
+  .toolbar {
+    position: sticky;
+    top: -24px;
+    z-index: 10;
+    background: var(--bg-tertiary);
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .toolbar h1 {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .title-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-sm);
+    transition: border-color var(--transition-base);
+  }
+
+  .title-input:focus {
+    outline: none;
+    border-color: var(--accent-base);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-subtle);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: all var(--transition-base);
+  }
+
+  .btn:hover {
+    border-color: var(--accent-base);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+
+  .btn-primary {
+    background: var(--accent-deep);
+    color: white;
+    border-color: var(--accent-deep);
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: white;
+  }
+
+  .btn-danger {
+    color: var(--wrong-dark);
+    border-color: var(--wrong-light);
+  }
+  .btn-danger:hover {
+    background: var(--wrong-bg);
+    border-color: var(--wrong-base);
+    color: var(--wrong-dark);
+  }
+
+  .btn-tiny {
+    padding: 4px 10px;
+    font-size: var(--font-size-xs);
+  }
+
+  /* ============================ EDITOR CARDS ============================ */
+  .editor-question {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    box-shadow: var(--shadow-xs);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .editor-question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+
+  .editor-question-title {
+    font-weight: 700;
+    color: var(--accent-deep);
+    font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .q-num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 4px;
+  }
+
+  .element-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .element {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .element-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .element-type {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .move-controls {
+    display: flex;
+    gap: 2px;
+  }
+
+  .icon-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    line-height: 1;
+    transition: all var(--transition-fast);
+  }
+  .icon-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+  .icon-btn.danger:hover {
+    background: var(--wrong-bg);
+    color: var(--wrong-dark);
+  }
+
+  .text-area, .text-line {
+    width: 100%;
+    padding: var(--space-sm);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    resize: vertical;
+    transition: border-color var(--transition-base);
+  }
+  .text-area { min-height: 64px; }
+  .text-area:focus, .text-line:focus {
+    outline: none;
+    border-color: var(--accent-base);
+  }
+
+  .field-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  /* ============ Image paste zone ============ */
+  .paste-zone {
+    border: 2px dashed var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    text-align: center;
+    color: var(--text-tertiary);
+    background: var(--bg-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-size: var(--font-size-sm);
+    outline: none;
+  }
+  .paste-zone:hover, .paste-zone:focus {
+    border-color: var(--accent-base);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+  .paste-zone.has-image {
+    padding: 8px;
+    border-style: solid;
+    border-color: var(--border-subtle);
+    background: var(--bg-primary);
+  }
+  .paste-zone img {
+    max-height: 200px;
+    margin: 0 auto;
+    border-radius: var(--radius-sm);
+  }
+
+  .part-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .part-label-input {
+    width: 50px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent-deep);
+  }
+
+  /* ============ MCQ editor ============ */
+  .mcq-option-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .mcq-option-row input[type="text"] {
+    flex: 1;
+  }
+  .mcq-marker {
+    width: 28px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-tertiary);
+  }
+  .mcq-correct {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    accent-color: var(--correct-base);
+  }
+
+  .add-element-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--border-subtle);
+  }
+
+  /* ============================ PREVIEW (matches index.html) ============================ */
+  .preview-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .preview-header h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .preview-header p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-top: 4px;
+  }
+
+  .questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .question-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
+  }
+  .question-card:hover { box-shadow: var(--shadow-md); }
+
+  .question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .question-number {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    font-weight: 700;
+    font-size: var(--font-size-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+  }
+
+  .question-stem {
+    flex: 1;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+    padding-top: 8px;
+    white-space: pre-wrap;
+  }
+
+  .question-sub {
+    margin-top: var(--space-md);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+    white-space: pre-wrap;
+  }
+
+  .part-stem {
+    margin-top: var(--space-md);
+    display: flex;
+    gap: var(--space-sm);
+    line-height: var(--line-height-relaxed);
+  }
+  .part-stem .part-marker {
+    font-weight: 700;
+    color: var(--accent-deep);
+    min-width: 28px;
+  }
+  .part-stem .part-text {
+    flex: 1;
+    white-space: pre-wrap;
+  }
+
+  .question-image {
+    margin: var(--space-md) 0;
+    text-align: center;
+  }
+  .question-image img {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin: var(--space-lg) 0 0;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    transition: all var(--transition-base);
+  }
+  .option-item:hover {
+    border-color: var(--accent-base);
+    background: var(--accent-bg);
+    transform: translateX(2px);
+  }
+  .option-item.correct-preview {
+    border-color: var(--correct-base);
+    background: var(--correct-bg);
+  }
+
+  .option-radio {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-medium);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    margin-top: 2px;
+  }
+  .option-item.correct-preview .option-radio {
+    border-color: var(--correct-base);
+    background: var(--correct-base);
+    position: relative;
+  }
+  .option-item.correct-preview .option-radio::after {
+    content: '';
+    position: absolute;
+    top: 4px; left: 3px;
+    width: 12px; height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg);
+  }
+
+  .option-label {
+    flex: 1;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-normal);
+  }
+  .option-marker {
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-right: var(--space-sm);
+  }
+
+  .empty-state {
+    padding: var(--space-2xl) var(--space-xl);
+    text-align: center;
+    color: var(--text-tertiary);
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    border: 2px dashed var(--border-subtle);
+  }
+
+  .preview-toggle {
+    margin-left: auto;
+  }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; height: auto; }
+    .editor-pane, .preview-pane { height: auto; overflow: visible; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- =============== EDITOR =============== -->
+  <aside class="editor-pane">
+    <div class="toolbar">
+      <h1>Worksheet Creator</h1>
+      <input type="text" id="worksheetTitle" class="title-input" placeholder="Worksheet title" value="New Worksheet" />
+      <input type="text" id="worksheetSubtitle" class="title-input" placeholder="Subtitle / description (optional)" />
+      <div class="toolbar-row">
+        <button class="btn btn-primary" id="addQuestionBtn">+ Add Question</button>
+        <button class="btn" id="exportHtmlBtn">Download HTML</button>
+        <button class="btn" id="saveJsonBtn">Save JSON</button>
+        <button class="btn" id="loadJsonBtn">Load JSON</button>
+        <input type="file" id="loadJsonInput" accept="application/json" style="display:none" />
+        <label class="btn preview-toggle" style="cursor:pointer;">
+          <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
+        </label>
+      </div>
+    </div>
+
+    <div id="editorQuestions"></div>
+  </aside>
+
+  <!-- =============== PREVIEW =============== -->
+  <main class="preview-pane">
+    <div class="preview-header">
+      <h2 id="previewTitle">New Worksheet</h2>
+      <p id="previewSubtitle"></p>
+    </div>
+    <div id="previewContainer" class="questions-container"></div>
+  </main>
+</div>
+
+<script>
+/* =========================================================================
+   STATE
+   ========================================================================= */
+let state = {
+  title: 'New Worksheet',
+  subtitle: '',
+  questions: []
+};
+let showAnswers = false;
+let uid = 0;
+const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
+
+/* =========================================================================
+   QUESTION / ELEMENT FACTORIES
+   ========================================================================= */
+function makeQuestion() {
+  return { id: newId(), elements: [] };
+}
+function makeElement(type) {
+  const base = { id: newId(), type };
+  switch (type) {
+    case 'text':
+      return { ...base, text: '' };
+    case 'image':
+      return { ...base, dataUrl: '', caption: '' };
+    case 'part':
+      return { ...base, label: nextPartLabel(), text: '' };
+    case 'mcq':
+      return {
+        ...base,
+        options: [
+          { id: newId(), text: '' },
+          { id: newId(), text: '' },
+          { id: newId(), text: '' },
+          { id: newId(), text: '' }
+        ],
+        correctId: null
+      };
+  }
+}
+function nextPartLabel() {
+  return '(a)';
+}
+
+/* =========================================================================
+   EDITOR RENDER
+   ========================================================================= */
+const editorRoot = document.getElementById('editorQuestions');
+
+function renderEditor() {
+  editorRoot.innerHTML = '';
+  if (state.questions.length === 0) {
+    const hint = document.createElement('div');
+    hint.className = 'empty-state';
+    hint.style.background = 'transparent';
+    hint.style.border = '2px dashed var(--border-medium)';
+    hint.innerHTML = 'No questions yet.<br/>Click <strong>+ Add Question</strong> to start.';
+    editorRoot.appendChild(hint);
+    return;
+  }
+  state.questions.forEach((q, qIndex) => {
+    editorRoot.appendChild(renderEditorQuestion(q, qIndex));
+  });
+}
+
+function renderEditorQuestion(q, qIndex) {
+  const card = document.createElement('div');
+  card.className = 'editor-question';
+
+  const header = document.createElement('div');
+  header.className = 'editor-question-header';
+
+  const title = document.createElement('div');
+  title.className = 'editor-question-title';
+  title.innerHTML = `<span class="q-num-badge">${qIndex + 1}</span> Question ${qIndex + 1}`;
+  header.appendChild(title);
+
+  const actions = document.createElement('div');
+  actions.className = 'header-actions';
+  actions.appendChild(makeIconBtn('↑', 'Move up', () => moveQuestion(qIndex, -1)));
+  actions.appendChild(makeIconBtn('↓', 'Move down', () => moveQuestion(qIndex, 1)));
+  actions.appendChild(makeIconBtn('✕', 'Delete question', () => removeQuestion(qIndex), true));
+  header.appendChild(actions);
+
+  card.appendChild(header);
+
+  const elList = document.createElement('div');
+  elList.className = 'element-list';
+  q.elements.forEach((el, elIndex) => {
+    elList.appendChild(renderElementEditor(q, el, elIndex));
+  });
+  card.appendChild(elList);
+
+  // Add-element row
+  const addRow = document.createElement('div');
+  addRow.className = 'add-element-row';
+  addRow.appendChild(makeAddBtn('+ Text', () => addElement(q, 'text')));
+  addRow.appendChild(makeAddBtn('+ Image', () => addElement(q, 'image')));
+  addRow.appendChild(makeAddBtn('+ Part', () => addElement(q, 'part')));
+  addRow.appendChild(makeAddBtn('+ MCQ', () => addElement(q, 'mcq')));
+  card.appendChild(addRow);
+
+  return card;
+}
+
+function makeIconBtn(label, title, onClick, danger=false) {
+  const b = document.createElement('button');
+  b.className = 'icon-btn' + (danger ? ' danger' : '');
+  b.title = title;
+  b.textContent = label;
+  b.addEventListener('click', onClick);
+  return b;
+}
+function makeAddBtn(label, onClick) {
+  const b = document.createElement('button');
+  b.className = 'btn btn-tiny';
+  b.textContent = label;
+  b.addEventListener('click', onClick);
+  return b;
+}
+
+function renderElementEditor(q, el, elIndex) {
+  const wrap = document.createElement('div');
+  wrap.className = 'element';
+
+  const head = document.createElement('div');
+  head.className = 'element-header';
+  const type = document.createElement('span');
+  type.className = 'element-type';
+  type.textContent = el.type;
+  head.appendChild(type);
+
+  const moveCtrls = document.createElement('div');
+  moveCtrls.className = 'move-controls';
+  moveCtrls.appendChild(makeIconBtn('↑', 'Move up', () => moveElement(q, elIndex, -1)));
+  moveCtrls.appendChild(makeIconBtn('↓', 'Move down', () => moveElement(q, elIndex, 1)));
+  moveCtrls.appendChild(makeIconBtn('✕', 'Delete', () => removeElement(q, elIndex), true));
+  head.appendChild(moveCtrls);
+  wrap.appendChild(head);
+
+  switch (el.type) {
+    case 'text':       wrap.appendChild(buildTextEditor(el)); break;
+    case 'image':      wrap.appendChild(buildImageEditor(el)); break;
+    case 'part':       wrap.appendChild(buildPartEditor(el)); break;
+    case 'mcq':        wrap.appendChild(buildMcqEditor(el)); break;
+  }
+  return wrap;
+}
+
+function buildTextEditor(el) {
+  const ta = document.createElement('textarea');
+  ta.className = 'text-area';
+  ta.placeholder = 'Question text...';
+  ta.value = el.text;
+  ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
+  return ta;
+}
+
+function buildImageEditor(el) {
+  const wrap = document.createElement('div');
+
+  const zone = document.createElement('div');
+  zone.className = 'paste-zone' + (el.dataUrl ? ' has-image' : '');
+  zone.tabIndex = 0;
+  if (el.dataUrl) {
+    const img = document.createElement('img');
+    img.src = el.dataUrl;
+    zone.appendChild(img);
+  } else {
+    zone.textContent = 'Click here, then paste an image (Ctrl+V / ⌘+V)';
+  }
+  zone.addEventListener('click', () => zone.focus());
+  zone.addEventListener('paste', (e) => {
+    const items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    for (const it of items) {
+      if (it.type && it.type.startsWith('image/')) {
+        const file = it.getAsFile();
+        const reader = new FileReader();
+        reader.onload = () => {
+          el.dataUrl = reader.result;
+          renderEditor();
+          renderPreview();
+        };
+        reader.readAsDataURL(file);
+        e.preventDefault();
+        return;
+      }
+    }
+  });
+  // Also accept drag-drop
+  zone.addEventListener('dragover', (e) => { e.preventDefault(); });
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        el.dataUrl = reader.result;
+        renderEditor();
+        renderPreview();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  wrap.appendChild(zone);
+
+  const captionLabel = document.createElement('label');
+  captionLabel.className = 'field-label';
+  captionLabel.textContent = 'Caption (optional)';
+  captionLabel.style.marginTop = '8px';
+  wrap.appendChild(captionLabel);
+
+  const caption = document.createElement('input');
+  caption.type = 'text';
+  caption.className = 'text-line';
+  caption.placeholder = 'e.g. Figure 1';
+  caption.value = el.caption || '';
+  caption.addEventListener('input', () => { el.caption = caption.value; renderPreview(); });
+  wrap.appendChild(caption);
+
+  if (el.dataUrl) {
+    const clear = document.createElement('button');
+    clear.className = 'btn btn-tiny btn-danger';
+    clear.style.marginTop = '8px';
+    clear.textContent = 'Remove image';
+    clear.addEventListener('click', () => {
+      el.dataUrl = '';
+      renderEditor();
+      renderPreview();
+    });
+    wrap.appendChild(clear);
+  }
+
+  return wrap;
+}
+
+function buildPartEditor(el) {
+  const wrap = document.createElement('div');
+  const row = document.createElement('div');
+  row.className = 'part-row';
+
+  const label = document.createElement('input');
+  label.type = 'text';
+  label.className = 'text-line part-label-input';
+  label.value = el.label;
+  label.addEventListener('input', () => { el.label = label.value; renderPreview(); });
+  row.appendChild(label);
+
+  const ta = document.createElement('textarea');
+  ta.className = 'text-area';
+  ta.placeholder = 'Part text...';
+  ta.value = el.text;
+  ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
+  row.appendChild(ta);
+
+  wrap.appendChild(row);
+  return wrap;
+}
+
+function buildMcqEditor(el) {
+  const wrap = document.createElement('div');
+
+  const lbl = document.createElement('div');
+  lbl.className = 'field-label';
+  lbl.textContent = 'Options — tick the box for the correct answer';
+  wrap.appendChild(lbl);
+
+  el.options.forEach((opt, i) => {
+    const row = document.createElement('div');
+    row.className = 'mcq-option-row';
+
+    const marker = document.createElement('span');
+    marker.className = 'mcq-marker';
+    marker.textContent = String.fromCharCode(65 + i);
+    row.appendChild(marker);
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'text-line';
+    input.placeholder = `Option ${marker.textContent}`;
+    input.value = opt.text;
+    input.addEventListener('input', () => { opt.text = input.value; renderPreview(); });
+    row.appendChild(input);
+
+    const correct = document.createElement('input');
+    correct.type = 'radio';
+    correct.name = `correct-${el.id}`;
+    correct.className = 'mcq-correct';
+    correct.title = 'Mark as correct';
+    correct.checked = el.correctId === opt.id;
+    correct.addEventListener('change', () => {
+      if (correct.checked) { el.correctId = opt.id; renderPreview(); }
+    });
+    row.appendChild(correct);
+
+    const del = makeIconBtn('✕', 'Remove option', () => {
+      el.options = el.options.filter(o => o.id !== opt.id);
+      if (el.correctId === opt.id) el.correctId = null;
+      renderEditor();
+      renderPreview();
+    }, true);
+    row.appendChild(del);
+
+    wrap.appendChild(row);
+  });
+
+  const addOpt = document.createElement('button');
+  addOpt.className = 'btn btn-tiny';
+  addOpt.textContent = '+ Add option';
+  addOpt.style.marginTop = '6px';
+  addOpt.addEventListener('click', () => {
+    el.options.push({ id: newId(), text: '' });
+    renderEditor();
+    renderPreview();
+  });
+  wrap.appendChild(addOpt);
+
+  return wrap;
+}
+
+/* =========================================================================
+   MUTATIONS
+   ========================================================================= */
+function addQuestion() {
+  state.questions.push(makeQuestion());
+  renderEditor(); renderPreview();
+}
+function removeQuestion(i) {
+  state.questions.splice(i, 1);
+  renderEditor(); renderPreview();
+}
+function moveQuestion(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= state.questions.length) return;
+  [state.questions[i], state.questions[j]] = [state.questions[j], state.questions[i]];
+  renderEditor(); renderPreview();
+}
+function addElement(q, type) {
+  q.elements.push(makeElement(type));
+  renderEditor(); renderPreview();
+}
+function removeElement(q, i) {
+  q.elements.splice(i, 1);
+  renderEditor(); renderPreview();
+}
+function moveElement(q, i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= q.elements.length) return;
+  [q.elements[i], q.elements[j]] = [q.elements[j], q.elements[i]];
+  renderEditor(); renderPreview();
+}
+
+/* =========================================================================
+   PREVIEW RENDER  (matches index.html question-card structure)
+   ========================================================================= */
+const previewContainer = document.getElementById('previewContainer');
+const previewTitleEl = document.getElementById('previewTitle');
+const previewSubtitleEl = document.getElementById('previewSubtitle');
+
+function renderPreview() {
+  previewTitleEl.textContent = state.title || 'Untitled Worksheet';
+  previewSubtitleEl.textContent = state.subtitle || '';
+  previewSubtitleEl.style.display = state.subtitle ? 'block' : 'none';
+
+  previewContainer.innerHTML = '';
+
+  if (state.questions.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'Your worksheet preview will appear here.';
+    previewContainer.appendChild(empty);
+    return;
+  }
+
+  state.questions.forEach((q, qIndex) => {
+    previewContainer.appendChild(renderPreviewQuestion(q, qIndex));
+  });
+}
+
+function renderPreviewQuestion(q, qIndex) {
+  const card = document.createElement('article');
+  card.className = 'question-card';
+
+  const header = document.createElement('div');
+  header.className = 'question-header';
+
+  const num = document.createElement('div');
+  num.className = 'question-number';
+  num.textContent = qIndex + 1;
+  header.appendChild(num);
+
+  // First text element acts as the stem; otherwise use a blank placeholder
+  const firstText = q.elements.find(e => e.type === 'text');
+  const stem = document.createElement('div');
+  stem.className = 'question-stem';
+  stem.textContent = firstText ? firstText.text : '';
+  header.appendChild(stem);
+
+  card.appendChild(header);
+
+  let stemConsumed = false;
+  q.elements.forEach((el) => {
+    if (el.type === 'text' && !stemConsumed) {
+      stemConsumed = true;
+      return;
+    }
+    card.appendChild(renderPreviewElement(el));
+  });
+
+  return card;
+}
+
+function renderPreviewElement(el) {
+  switch (el.type) {
+    case 'text': {
+      const d = document.createElement('div');
+      d.className = 'question-sub';
+      d.textContent = el.text;
+      return d;
+    }
+    case 'image': {
+      const wrap = document.createElement('div');
+      wrap.className = 'question-image';
+      if (el.dataUrl) {
+        const img = document.createElement('img');
+        img.src = el.dataUrl;
+        img.alt = el.caption || '';
+        wrap.appendChild(img);
+      } else {
+        const placeholder = document.createElement('div');
+        placeholder.style.cssText = 'padding:24px; border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); font-size:var(--font-size-sm);';
+        placeholder.textContent = '(image not yet pasted)';
+        wrap.appendChild(placeholder);
+      }
+      if (el.caption) {
+        const cap = document.createElement('div');
+        cap.style.cssText = 'margin-top:8px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;';
+        cap.textContent = el.caption;
+        wrap.appendChild(cap);
+      }
+      return wrap;
+    }
+    case 'part': {
+      const row = document.createElement('div');
+      row.className = 'part-stem';
+      const marker = document.createElement('span');
+      marker.className = 'part-marker';
+      marker.textContent = el.label || '';
+      const text = document.createElement('span');
+      text.className = 'part-text';
+      text.textContent = el.text || '';
+      row.appendChild(marker);
+      row.appendChild(text);
+      return row;
+    }
+    case 'mcq': {
+      const list = document.createElement('div');
+      list.className = 'options-list';
+      el.options.forEach((opt, i) => {
+        const item = document.createElement('div');
+        item.className = 'option-item';
+        if (showAnswers && el.correctId === opt.id) {
+          item.classList.add('correct-preview');
+        }
+        const radio = document.createElement('div');
+        radio.className = 'option-radio';
+        item.appendChild(radio);
+
+        const label = document.createElement('div');
+        label.className = 'option-label';
+        const marker = document.createElement('span');
+        marker.className = 'option-marker';
+        marker.textContent = String.fromCharCode(65 + i);
+        label.appendChild(marker);
+        label.appendChild(document.createTextNode(opt.text || ''));
+        item.appendChild(label);
+
+        list.appendChild(item);
+      });
+      return list;
+    }
+  }
+}
+
+/* =========================================================================
+   EXPORT — standalone worksheet HTML (paste-able images embedded as data URLs)
+   ========================================================================= */
+function exportHtml() {
+  const html = buildStandaloneHtml();
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (state.title || 'worksheet').replace(/[^a-z0-9_-]+/gi, '_').toLowerCase() + '.html';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escapeHtml(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function buildStandaloneHtml() {
+  const css = getEmbeddedPreviewCss();
+  const body = state.questions.map((q, qIndex) => questionToHtml(q, qIndex)).join('\n');
+  const correctMap = {};
+  state.questions.forEach((q, i) => {
+    q.elements.forEach((el, j) => {
+      if (el.type === 'mcq' && el.correctId) {
+        const idx = el.options.findIndex(o => o.id === el.correctId);
+        if (idx >= 0) correctMap[`${i}-${j}`] = idx;
+      }
+    });
+  });
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escapeHtml(state.title)}</title>
+<style>${css}</style>
+</head>
+<body>
+<div class="page">
+  <header class="preview-header">
+    <h2>${escapeHtml(state.title)}</h2>
+    ${state.subtitle ? `<p>${escapeHtml(state.subtitle)}</p>` : ''}
+  </header>
+  <div class="questions-container">
+    ${body}
+  </div>
+</div>
+<script>
+  const CORRECT = ${JSON.stringify(correctMap)};
+  document.querySelectorAll('.option-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const list = item.parentElement;
+      const key = list.dataset.key;
+      const idx = Array.from(list.children).indexOf(item);
+      list.querySelectorAll('.option-item').forEach(o => o.classList.remove('selected','correct-answer','wrong-answer'));
+      if (CORRECT[key] === undefined) { item.classList.add('selected'); return; }
+      if (CORRECT[key] === idx) item.classList.add('correct-answer');
+      else {
+        item.classList.add('wrong-answer');
+        list.children[CORRECT[key]].classList.add('correct-answer');
+      }
+    });
+  });
+${'<\/script>'}
+</body>
+</html>`;
+}
+
+function questionToHtml(q, qIndex) {
+  const firstTextIdx = q.elements.findIndex(e => e.type === 'text');
+  const stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
+  const bodyParts = q.elements.map((el, j) => {
+    if (j === firstTextIdx) return '';
+    return elementToHtml(el, qIndex, j);
+  }).join('\n');
+
+  return `
+<article class="question-card">
+  <div class="question-header">
+    <div class="question-number">${qIndex + 1}</div>
+    <div class="question-stem">${escapeHtml(stemText)}</div>
+  </div>
+  ${bodyParts}
+</article>`;
+}
+
+function elementToHtml(el, qIndex, elIndex) {
+  switch (el.type) {
+    case 'text':
+      return `<div class="question-sub">${escapeHtml(el.text)}</div>`;
+    case 'image': {
+      if (!el.dataUrl) return '';
+      const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
+      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
+    }
+    case 'part':
+      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${escapeHtml(el.text)}</span></div>`;
+    case 'mcq': {
+      const opts = el.options.map((opt, i) =>
+        `<div class="option-item"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${escapeHtml(opt.text)}</div></div>`
+      ).join('');
+      return `<div class="options-list" data-key="${qIndex}-${elIndex}">${opts}</div>`;
+    }
+  }
+  return '';
+}
+
+function getEmbeddedPreviewCss() {
+  return `
+@font-face {
+  font-family: 'RobotoQuestion'; font-style: normal; font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+  unicode-range: U+003F;
+}
+@font-face {
+  font-family: 'RobotoQuestion'; font-style: normal; font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
+  unicode-range: U+003F;
+}
+:root {
+  --bg-primary:#FFFFFF; --bg-secondary:#FAFAFA; --bg-tertiary:#F3F3F0; --bg-soft:#F7F9FC;
+  --border-subtle:#E8E8E4; --border-medium:#D4D4CF;
+  --text-primary:#1A1A1A; --text-secondary:#5C5C5C; --text-tertiary:#8A8A8A;
+  --accent-base:#64B5F6; --accent-dark:#42A5F5; --accent-deep:#1E88E5; --accent-bg:#E3F2FD;
+  --correct-base:#66BB6A; --correct-bg:#F1F8E9; --wrong-base:#EF5350; --wrong-bg:#FFEBEE;
+  --shadow-xs:0 1px 2px rgba(0,0,0,0.04); --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 4px 12px rgba(0,0,0,0.06); --shadow-md:0 2px 4px rgba(0,0,0,0.05),0 6px 20px rgba(0,0,0,0.08);
+  --space-sm:8px; --space-md:16px; --space-lg:24px; --space-xl:40px;
+  --radius-md:10px; --radius-xl:22px; --radius-full:999px;
+  --font-family:'RobotoQuestion','Century Gothic',CenturyGothic,AppleGothic,'Trebuchet MS',sans-serif;
+  --font-size-sm:0.875rem; --font-size-base:1rem; --font-size-md:1.125rem; --font-size-xl:2rem;
+  --line-height-normal:1.6; --line-height-relaxed:1.75;
+  --transition-base:0.25s ease;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-family); color:var(--text-primary); background:var(--bg-secondary); line-height:var(--line-height-normal); min-height:100vh; padding:var(--space-xl);}
+.page{max-width:900px; margin:0 auto;}
+.preview-header{margin-bottom:var(--space-lg); padding-bottom:var(--space-md); border-bottom:1px solid var(--border-subtle);}
+.preview-header h2{font-size:var(--font-size-xl); font-weight:700; letter-spacing:-0.01em;}
+.preview-header p{color:var(--text-secondary); font-size:var(--font-size-sm); margin-top:4px;}
+.questions-container{display:flex; flex-direction:column; gap:var(--space-lg);}
+.question-card{background:var(--bg-primary); border-radius:var(--radius-xl); padding:var(--space-xl); box-shadow:var(--shadow-sm); transition:box-shadow var(--transition-base);}
+.question-card:hover{box-shadow:var(--shadow-md);}
+.question-header{display:flex; align-items:flex-start; gap:var(--space-md); margin-bottom:var(--space-lg);}
+.question-number{flex-shrink:0; width:44px; height:44px; border-radius:var(--radius-full); background:var(--accent-bg); color:var(--accent-deep); font-weight:700; font-size:var(--font-size-md); display:flex; align-items:center; justify-content:center;}
+.question-stem{flex:1; font-size:var(--font-size-base); line-height:var(--line-height-relaxed); padding-top:8px; white-space:pre-wrap;}
+.question-sub{margin-top:var(--space-md); font-size:var(--font-size-base); line-height:var(--line-height-relaxed); white-space:pre-wrap;}
+.part-stem{margin-top:var(--space-md); display:flex; gap:var(--space-sm); line-height:var(--line-height-relaxed);}
+.part-stem .part-marker{font-weight:700; color:var(--accent-deep); min-width:28px;}
+.part-stem .part-text{flex:1; white-space:pre-wrap;}
+.question-image{margin:var(--space-md) 0; text-align:center;}
+.question-image img{max-width:100%; margin:0 auto; border-radius:var(--radius-md); box-shadow:var(--shadow-xs);}
+.img-caption{margin-top:8px; font-size:var(--font-size-sm); color:var(--text-secondary);}
+.options-list{display:flex; flex-direction:column; gap:var(--space-sm); margin:var(--space-lg) 0 0;}
+.option-item{display:flex; align-items:flex-start; gap:var(--space-md); padding:var(--space-md); border:1.5px solid var(--border-subtle); border-radius:var(--radius-md); background:var(--bg-primary); transition:all var(--transition-base); cursor:pointer;}
+.option-item:hover{border-color:var(--accent-base); background:var(--accent-bg); transform:translateX(2px);}
+.option-item.selected{border-color:var(--accent-deep); background:var(--accent-bg);}
+.option-item.correct-answer{border-color:var(--correct-base); background:var(--correct-bg);}
+.option-item.wrong-answer{border-color:var(--wrong-base); background:var(--wrong-bg);}
+.option-radio{flex-shrink:0; width:22px; height:22px; border:2px solid var(--border-medium); border-radius:var(--radius-full); background:var(--bg-primary); margin-top:2px; position:relative;}
+.option-item.correct-answer .option-radio{border-color:var(--correct-base); background:var(--correct-base);}
+.option-item.correct-answer .option-radio::after{content:''; position:absolute; top:4px; left:3px; width:12px; height:6px; border-left:2px solid white; border-bottom:2px solid white; transform:rotate(-45deg);}
+.option-item.wrong-answer .option-radio{border-color:var(--wrong-base); background:var(--wrong-base);}
+.option-item.wrong-answer .option-radio::after{content:'×'; position:absolute; top:-3px; left:5px; color:white; font-weight:700; font-size:18px;}
+.option-label{flex:1; font-size:var(--font-size-base); line-height:var(--line-height-normal);}
+.option-marker{font-weight:700; color:var(--text-tertiary); margin-right:var(--space-sm);}
+`;
+}
+
+/* =========================================================================
+   SAVE / LOAD JSON
+   ========================================================================= */
+function saveJson() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (state.title || 'worksheet').replace(/[^a-z0-9_-]+/gi, '_').toLowerCase() + '.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+function loadJson(file) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      if (!parsed || !Array.isArray(parsed.questions)) throw new Error('Invalid file.');
+      state = parsed;
+      document.getElementById('worksheetTitle').value = state.title || '';
+      document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+      renderEditor();
+      renderPreview();
+    } catch (e) {
+      alert('Could not load JSON: ' + e.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* =========================================================================
+   WIRE UP
+   ========================================================================= */
+document.getElementById('addQuestionBtn').addEventListener('click', addQuestion);
+document.getElementById('exportHtmlBtn').addEventListener('click', exportHtml);
+document.getElementById('saveJsonBtn').addEventListener('click', saveJson);
+document.getElementById('loadJsonBtn').addEventListener('click', () =>
+  document.getElementById('loadJsonInput').click()
+);
+document.getElementById('loadJsonInput').addEventListener('change', (e) => {
+  const f = e.target.files[0];
+  if (f) loadJson(f);
+  e.target.value = '';
+});
+document.getElementById('worksheetTitle').addEventListener('input', (e) => {
+  state.title = e.target.value;
+  renderPreview();
+});
+document.getElementById('worksheetSubtitle').addEventListener('input', (e) => {
+  state.subtitle = e.target.value;
+  renderPreview();
+});
+document.getElementById('showAnswersToggle').addEventListener('change', (e) => {
+  showAnswers = e.target.checked;
+  renderPreview();
+});
+
+// Seed with one empty question so the workflow is obvious.
+addQuestion();
+</script>
+</body>
+</html>
