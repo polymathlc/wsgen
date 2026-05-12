@@ -335,6 +335,72 @@
     border-color: var(--accent-base);
   }
 
+  /* ============ Fraction editor controls ============ */
+  .frac-input-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+  .frac-btn {
+    align-self: flex-end;
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--border-subtle);
+    line-height: 1.2;
+    transition: all var(--transition-fast);
+  }
+  .frac-btn:hover {
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border-color: var(--accent-light);
+  }
+  .frac-btn.frac-btn-mini {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+  .frac-btn-glyph {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 0.85;
+    font-size: 0.75em;
+    text-align: center;
+  }
+  .frac-btn-glyph > span:first-child {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+
+  /* ============ Rendered fractions (preview) ============ */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.85em;
+    line-height: 1;
+    margin: 0 0.18em;
+    position: relative;
+    top: -0.05em;
+  }
+  .frac > .frac-num {
+    border-bottom: 1.2px solid currentColor;
+    padding: 0 0.3em 1px;
+    display: block;
+  }
+  .frac > .frac-den {
+    padding: 1px 0.3em 0;
+    display: block;
+  }
+
   .field-label {
     display: block;
     font-size: var(--font-size-xs);
@@ -985,6 +1051,74 @@ function makeIconBtn(label, title, onClick, danger=false) {
   b.addEventListener('click', onClick);
   return b;
 }
+
+/* =========================================================================
+   FRACTIONS
+   - formatTextWithFractions(): plain text -> HTML where a/b becomes a real
+     stacked fraction. Skips dates / decimals via lookarounds in the regex.
+   - insertFractionAtCursor(): prompts for top/bottom and inserts "n/d" at
+     the cursor of the given input/textarea so the same auto-rendering kicks
+     in for typed fractions.
+   - makeFractionBtn() / wrapWithFractionTool() build the toolbar controls.
+   ========================================================================= */
+const FRACTION_REGEX = /(^|[^0-9./])(\d+)\/(\d+)(?![0-9./])/g;
+
+function formatTextWithFractions(raw) {
+  const escaped = escapeHtml(raw || '');
+  return escaped.replace(FRACTION_REGEX, (_, pre, n, d) =>
+    `${pre}<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`
+  );
+}
+
+function insertFractionAtCursor(input) {
+  const numRaw = prompt('Numerator (top of fraction):');
+  if (numRaw === null) return;
+  const denRaw = prompt('Denominator (bottom of fraction):');
+  if (denRaw === null) return;
+  const num = numRaw.trim();
+  const den = denRaw.trim();
+  if (!/^-?\d+$/.test(num) || !/^-?\d+$/.test(den)) {
+    alert('Please enter whole numbers for the numerator and denominator.');
+    return;
+  }
+  if (den === '0') {
+    alert('Denominator cannot be zero.');
+    return;
+  }
+  const txt = `${num}/${den}`;
+  const start = input.selectionStart ?? input.value.length;
+  const end = input.selectionEnd ?? input.value.length;
+  const before = input.value.slice(0, start);
+  const after = input.value.slice(end);
+  // Pad with a space so adjacent digits don't fuse with the fraction
+  // (e.g. typing next to "5" should produce "5 1/2", not "51/2").
+  const padBefore = before && !/[\s(\[]$/.test(before) ? ' ' : '';
+  const padAfter = after && !/^[\s.,;:!?)\]]/.test(after) ? ' ' : '';
+  const insertion = padBefore + txt + padAfter;
+  input.value = before + insertion + after;
+  const caret = before.length + insertion.length;
+  input.focus();
+  try { input.setSelectionRange(caret, caret); } catch (_) {}
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function makeFractionBtn(input, mini = false) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'frac-btn' + (mini ? ' frac-btn-mini' : '');
+  b.title = 'Insert a fraction. Tip: typing "3/4" anywhere also renders as a real fraction.';
+  b.innerHTML = '<span class="frac-btn-glyph"><span>a</span><span>b</span></span>' + (mini ? '' : '<span>Fraction</span>');
+  b.addEventListener('click', () => insertFractionAtCursor(input));
+  return b;
+}
+
+function wrapWithFractionTool(input) {
+  const wrap = document.createElement('div');
+  wrap.className = 'frac-input-wrap';
+  wrap.appendChild(input);
+  wrap.appendChild(makeFractionBtn(input));
+  return wrap;
+}
 function makeAddBtn(label, onClick) {
   const b = document.createElement('button');
   b.className = 'btn btn-tiny';
@@ -1052,7 +1186,7 @@ function buildAnswerEditor(el) {
   ansInput.value = el.answer || '';
   ansInput.placeholder = 'Expected answer';
   ansInput.addEventListener('input', () => { el.answer = ansInput.value; renderPreview(); });
-  wrap.appendChild(ansInput);
+  wrap.appendChild(wrapWithFractionTool(ansInput));
 
   return wrap;
 }
@@ -1070,7 +1204,7 @@ function buildAnswerKeyEditor(el) {
   ta.placeholder = 'e.g.\n(a) 42\n(b) Because the velocity is constant.';
   ta.value = el.text || '';
   ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
-  wrap.appendChild(ta);
+  wrap.appendChild(wrapWithFractionTool(ta));
 
   return wrap;
 }
@@ -1119,7 +1253,7 @@ function buildTextEditor(el) {
   ta.placeholder = 'Question text...';
   ta.value = el.text;
   ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
-  return ta;
+  return wrapWithFractionTool(ta);
 }
 
 function buildImageEditor(el) {
@@ -1218,7 +1352,7 @@ function buildPartEditor(el) {
   ta.placeholder = 'Part text...';
   ta.value = el.text;
   ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
-  row.appendChild(ta);
+  row.appendChild(wrapWithFractionTool(ta));
 
   wrap.appendChild(row);
   return wrap;
@@ -1248,6 +1382,7 @@ function buildMcqEditor(el) {
     input.value = opt.text;
     input.addEventListener('input', () => { opt.text = input.value; renderPreview(); });
     row.appendChild(input);
+    row.appendChild(makeFractionBtn(input, true));
 
     const correct = document.createElement('input');
     correct.type = 'radio';
@@ -1360,7 +1495,7 @@ function renderPreviewQuestion(q, qIndex) {
   const firstText = q.elements.find(e => e.type === 'text');
   const stem = document.createElement('div');
   stem.className = 'question-stem';
-  stem.textContent = firstText ? firstText.text : '';
+  stem.innerHTML = formatTextWithFractions(firstText ? firstText.text : '');
   header.appendChild(stem);
 
   card.appendChild(header);
@@ -1382,7 +1517,7 @@ function renderPreviewElement(el) {
     case 'text': {
       const d = document.createElement('div');
       d.className = 'question-sub';
-      d.textContent = el.text;
+      d.innerHTML = formatTextWithFractions(el.text);
       return d;
     }
     case 'image': {
@@ -1415,7 +1550,7 @@ function renderPreviewElement(el) {
       marker.textContent = el.label || '';
       const text = document.createElement('span');
       text.className = 'part-text';
-      text.textContent = el.text || '';
+      text.innerHTML = formatTextWithFractions(el.text || '');
       row.appendChild(marker);
       row.appendChild(text);
       return row;
@@ -1439,7 +1574,9 @@ function renderPreviewElement(el) {
         marker.className = 'option-marker';
         marker.textContent = String.fromCharCode(65 + i);
         label.appendChild(marker);
-        label.appendChild(document.createTextNode(opt.text || ''));
+        const optText = document.createElement('span');
+        optText.innerHTML = formatTextWithFractions(opt.text || '');
+        label.appendChild(optText);
         item.appendChild(label);
 
         list.appendChild(item);
@@ -1456,7 +1593,7 @@ function renderPreviewElement(el) {
       line.className = 'answer-field-line';
       if (showAnswers && el.answer) {
         line.classList.add('filled');
-        line.textContent = el.answer;
+        line.innerHTML = formatTextWithFractions(el.answer);
       } else {
         line.innerHTML = '&nbsp;';
       }
@@ -1480,7 +1617,7 @@ function renderPreviewElement(el) {
       t.textContent = 'Answer key';
       const body = document.createElement('div');
       body.className = 'answer-key-body';
-      body.textContent = el.text || '';
+      body.innerHTML = formatTextWithFractions(el.text || '');
       block.appendChild(t);
       block.appendChild(body);
       return block;
@@ -1628,7 +1765,7 @@ function questionToPrintHtml(q, qIndex) {
   <article class="question-card">
     <div class="question-header">
       <div class="question-number">${qIndex + 1}</div>
-      <div class="question-stem">${escapeHtml(stemText)}</div>
+      <div class="question-stem">${formatTextWithFractions(stemText)}</div>
     </div>
     ${bodyParts}
   </article>
@@ -1642,17 +1779,17 @@ function questionToPrintHtml(q, qIndex) {
 function elementToPrintHtml(el, qIndex, elIndex) {
   switch (el.type) {
     case 'text':
-      return `<div class="question-sub">${escapeHtml(el.text)}</div>`;
+      return `<div class="question-sub">${formatTextWithFractions(el.text)}</div>`;
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
       return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
     }
     case 'part':
-      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${escapeHtml(el.text)}</span></div>`;
+      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${formatTextWithFractions(el.text)}</span></div>`;
     case 'mcq': {
       const opts = el.options.map((opt, i) =>
-        `<div class="option-item print-option"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${escapeHtml(opt.text)}</div></div>`
+        `<div class="option-item print-option"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${formatTextWithFractions(opt.text)}</div></div>`
       ).join('');
       return `<div class="options-list">${opts}</div>`;
     }
@@ -1889,7 +2026,7 @@ function questionToHtml(q, qIndex) {
 <article class="question-card">
   <div class="question-header">
     <div class="question-number">${qIndex + 1}</div>
-    <div class="question-stem">${escapeHtml(stemText)}</div>
+    <div class="question-stem">${formatTextWithFractions(stemText)}</div>
   </div>
   ${bodyParts}
 </article>`;
@@ -1898,17 +2035,17 @@ function questionToHtml(q, qIndex) {
 function elementToHtml(el, qIndex, elIndex) {
   switch (el.type) {
     case 'text':
-      return `<div class="question-sub">${escapeHtml(el.text)}</div>`;
+      return `<div class="question-sub">${formatTextWithFractions(el.text)}</div>`;
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
       return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
     }
     case 'part':
-      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${escapeHtml(el.text)}</span></div>`;
+      return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${formatTextWithFractions(el.text)}</span></div>`;
     case 'mcq': {
       const opts = el.options.map((opt, i) =>
-        `<div class="option-item"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${escapeHtml(opt.text)}</div></div>`
+        `<div class="option-item"><div class="option-radio"></div><div class="option-label"><span class="option-marker">${String.fromCharCode(65+i)}</span>${formatTextWithFractions(opt.text)}</div></div>`
       ).join('');
       return `<div class="options-list" data-key="${qIndex}-${elIndex}">${opts}</div>`;
     }
@@ -1916,7 +2053,7 @@ function elementToHtml(el, qIndex, elIndex) {
       return `<div class="answer-field" data-answer="${escapeAttr(el.answer || '')}"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><input type="text" class="answer-field-input" placeholder="" /></div>`;
     }
     case 'answerKey': {
-      return `<details class="answer-key-export"><summary>Show answer key</summary><div class="answer-key-body">${escapeHtml(el.text || '')}</div></details>`;
+      return `<details class="answer-key-export"><summary>Show answer key</summary><div class="answer-key-body">${formatTextWithFractions(el.text || '')}</div></details>`;
     }
     case 'video': {
       const embed = toEmbeddableVideoUrl(el.url || '');
@@ -2001,6 +2138,9 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .video-block iframe, .video-block video{width:100%; aspect-ratio:16/9; border:none; border-radius:var(--radius-md); background:#000;}
 .video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
 .video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
+.frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.85em; line-height:1; margin:0 0.18em; position:relative; top:-0.05em;}
+.frac > .frac-num{border-bottom:1.2px solid currentColor; padding:0 0.3em 1px; display:block;}
+.frac > .frac-den{padding:1px 0.3em 0; display:block;}
 `;
 }
 
