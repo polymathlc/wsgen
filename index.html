@@ -1994,8 +1994,7 @@ function questionToPrintHtml(q, qIndex) {
     ${bodyParts}
   </article>
   <div class="working-space">
-    <div class="working-space-label">Working / Notes</div>
-    <div class="ruled-lines"></div>
+    <div class="working-space-label">Working</div>
   </div>
 </section>`;
 }
@@ -2097,10 +2096,8 @@ body { background: #fff !important; padding: 0 !important; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: 6px;
-  border: 1.5px dashed #5C5C5C;
-  border-radius: 10px;
-  padding: 10px 14px 14px;
+  margin-top: 10px;
+  padding: 0 4px;
   min-height: 110mm;
 }
 .working-space-label {
@@ -2110,17 +2107,6 @@ body { background: #fff !important; padding: 0 !important; }
   text-transform: uppercase;
   color: #5C5C5C;
   margin-bottom: 8px;
-}
-.ruled-lines {
-  flex: 1;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 9mm,
-    #B8B8B2 9mm,
-    #B8B8B2 calc(9mm + 0.5px)
-  );
-  min-height: 90mm;
 }
 
 .answer-field-print-line {
