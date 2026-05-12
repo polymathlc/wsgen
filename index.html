@@ -379,6 +379,60 @@
     padding-bottom: 1px;
   }
 
+  /* ============ Symbol / unit picker ============ */
+  .input-tools {
+    display: flex;
+    gap: 6px;
+    align-self: flex-end;
+    flex-wrap: wrap;
+  }
+  .sym-popover {
+    position: fixed;
+    z-index: 1000;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 10px;
+    width: 300px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .sym-section + .sym-section { margin-top: 10px; }
+  .sym-section-title {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .sym-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    gap: 4px;
+  }
+  .sym-grid.sym-grid-wide {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+  .sym-cell {
+    padding: 6px 4px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    text-align: center;
+    transition: all var(--transition-fast);
+    min-height: 30px;
+    line-height: 1.2;
+  }
+  .sym-cell:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-base);
+    color: var(--accent-deep);
+  }
+
   /* ============ Rendered fractions (preview) ============ */
   .frac {
     display: inline-flex;
@@ -1112,11 +1166,180 @@ function makeFractionBtn(input, mini = false) {
   return b;
 }
 
+/* =========================================================================
+   SYMBOL / UNIT PICKER
+   - One shared popover, anchored to whichever button opened it.
+   - Inserts the chosen glyph at the cursor of the associated input.
+   ========================================================================= */
+const SYMBOL_GROUPS = [
+  { title: 'Math', wide: false, items: [
+    { l: 'π',  i: 'π',  t: 'pi' },
+    { l: '×',  i: '×',  t: 'multiply' },
+    { l: '÷',  i: '÷',  t: 'divide' },
+    { l: '±',  i: '±',  t: 'plus-minus' },
+    { l: '·',  i: '·',  t: 'middle dot' },
+    { l: '≈',  i: '≈',  t: 'approximately' },
+    { l: '≠',  i: '≠',  t: 'not equal' },
+    { l: '≤',  i: '≤',  t: 'less than or equal' },
+    { l: '≥',  i: '≥',  t: 'greater than or equal' },
+    { l: '√',  i: '√',  t: 'square root' },
+    { l: '∞',  i: '∞',  t: 'infinity' },
+    { l: '°',  i: '°',  t: 'degree' },
+    { l: 'x²', i: '²',  t: 'superscript 2' },
+    { l: 'x³', i: '³',  t: 'superscript 3' },
+    { l: 'xⁿ', i: 'ⁿ',  t: 'superscript n' },
+    { l: 'x₂', i: '₂',  t: 'subscript 2' },
+    { l: 'x₃', i: '₃',  t: 'subscript 3' },
+  ]},
+  { title: 'Greek', wide: false, items: [
+    { l: 'α', i: 'α' }, { l: 'β', i: 'β' }, { l: 'γ', i: 'γ' },
+    { l: 'Δ', i: 'Δ' }, { l: 'θ', i: 'θ' }, { l: 'λ', i: 'λ' },
+    { l: 'μ', i: 'μ' }, { l: 'π', i: 'π' }, { l: 'ρ', i: 'ρ' },
+    { l: 'Σ', i: 'Σ' }, { l: 'φ', i: 'φ' }, { l: 'ω', i: 'ω' },
+    { l: 'Ω', i: 'Ω' },
+  ]},
+  { title: 'Length', wide: false, items: [
+    { l: 'mm', i: 'mm' }, { l: 'cm', i: 'cm' },
+    { l: 'm',  i: 'm' },  { l: 'km', i: 'km' },
+  ]},
+  { title: 'Area', wide: false, items: [
+    { l: 'mm²', i: 'mm²' }, { l: 'cm²', i: 'cm²' },
+    { l: 'm²',  i: 'm²' },  { l: 'km²', i: 'km²' },
+  ]},
+  { title: 'Volume', wide: true, items: [
+    { l: 'mm³', i: 'mm³' }, { l: 'cm³', i: 'cm³' },
+    { l: 'm³',  i: 'm³' },
+    { l: 'mL',  i: 'mL' },  { l: 'L',   i: 'L' },
+    { l: 'litres', i: 'litres' },
+  ]},
+  { title: 'Mass', wide: false, items: [
+    { l: 'mg', i: 'mg' }, { l: 'g', i: 'g' },
+    { l: 'kg', i: 'kg' }, { l: 't', i: 't', t: 'tonnes' },
+  ]},
+  { title: 'Time', wide: false, items: [
+    { l: 's', i: 's' }, { l: 'min', i: 'min' },
+    { l: 'h', i: 'h' }, { l: 'd', i: 'd', t: 'days' },
+  ]},
+  { title: 'Temperature', wide: false, items: [
+    { l: '°C', i: '°C' }, { l: '°F', i: '°F' }, { l: 'K', i: 'K' },
+  ]},
+];
+
+let activeSymbolPopover = null;
+let activeSymbolButton = null;
+
+function insertTextAtCursor(input, text) {
+  const start = input.selectionStart ?? input.value.length;
+  const end = input.selectionEnd ?? input.value.length;
+  input.value = input.value.slice(0, start) + text + input.value.slice(end);
+  const caret = start + text.length;
+  input.focus();
+  try { input.setSelectionRange(caret, caret); } catch (_) {}
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function closeSymbolPopover() {
+  if (!activeSymbolPopover) return;
+  activeSymbolPopover.remove();
+  activeSymbolPopover = null;
+  activeSymbolButton = null;
+  document.removeEventListener('mousedown', onDocMouseDownForSymbol, true);
+  document.removeEventListener('keydown', onKeyForSymbol);
+  window.removeEventListener('resize', closeSymbolPopover);
+  window.removeEventListener('scroll', closeSymbolPopover, true);
+}
+function onDocMouseDownForSymbol(e) {
+  if (!activeSymbolPopover) return;
+  if (activeSymbolPopover.contains(e.target)) return;
+  if (activeSymbolButton && activeSymbolButton.contains(e.target)) return;
+  closeSymbolPopover();
+}
+function onKeyForSymbol(e) {
+  if (e.key === 'Escape') closeSymbolPopover();
+}
+
+function openSymbolPopover(button, input) {
+  closeSymbolPopover();
+  const pop = document.createElement('div');
+  pop.className = 'sym-popover';
+  SYMBOL_GROUPS.forEach(group => {
+    const sec = document.createElement('div');
+    sec.className = 'sym-section';
+    const h = document.createElement('div');
+    h.className = 'sym-section-title';
+    h.textContent = group.title;
+    sec.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'sym-grid' + (group.wide ? ' sym-grid-wide' : '');
+    group.items.forEach(it => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sym-cell';
+      b.textContent = it.l;
+      b.title = it.t || it.l;
+      b.addEventListener('click', () => {
+        insertTextAtCursor(input, it.i);
+        closeSymbolPopover();
+      });
+      grid.appendChild(b);
+    });
+    sec.appendChild(grid);
+    pop.appendChild(sec);
+  });
+  document.body.appendChild(pop);
+
+  const r = button.getBoundingClientRect();
+  const popW = pop.offsetWidth || 300;
+  const popH = pop.offsetHeight || 200;
+  let left = r.left;
+  if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
+  if (left < 8) left = 8;
+  let top = r.bottom + 4;
+  if (top + popH > window.innerHeight - 8) {
+    // Open upward if there's no room below.
+    top = Math.max(8, r.top - popH - 4);
+  }
+  pop.style.left = `${left}px`;
+  pop.style.top = `${top}px`;
+
+  activeSymbolPopover = pop;
+  activeSymbolButton = button;
+  setTimeout(() => {
+    document.addEventListener('mousedown', onDocMouseDownForSymbol, true);
+    document.addEventListener('keydown', onKeyForSymbol);
+    window.addEventListener('resize', closeSymbolPopover);
+    window.addEventListener('scroll', closeSymbolPopover, true);
+  }, 0);
+}
+
+function makeSymbolBtn(input, mini = false) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'frac-btn' + (mini ? ' frac-btn-mini' : '');
+  b.title = 'Insert a symbol or unit (π, cm², mL, °C, …)';
+  b.innerHTML = mini
+    ? 'π'
+    : '<span>π</span> <span>Symbols</span> <span style="opacity:.5;">▾</span>';
+  b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (activeSymbolButton === b) {
+      closeSymbolPopover();
+    } else {
+      openSymbolPopover(b, input);
+    }
+  });
+  return b;
+}
+
 function wrapWithFractionTool(input) {
   const wrap = document.createElement('div');
   wrap.className = 'frac-input-wrap';
   wrap.appendChild(input);
-  wrap.appendChild(makeFractionBtn(input));
+  const tools = document.createElement('div');
+  tools.className = 'input-tools';
+  tools.appendChild(makeFractionBtn(input));
+  tools.appendChild(makeSymbolBtn(input));
+  wrap.appendChild(tools);
   return wrap;
 }
 function makeAddBtn(label, onClick) {
@@ -1383,6 +1606,7 @@ function buildMcqEditor(el) {
     input.addEventListener('input', () => { opt.text = input.value; renderPreview(); });
     row.appendChild(input);
     row.appendChild(makeFractionBtn(input, true));
+    row.appendChild(makeSymbolBtn(input, true));
 
     const correct = document.createElement('input');
     correct.type = 'radio';
