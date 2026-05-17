@@ -2047,7 +2047,13 @@ function getPrintCss() {
 @page { size: A4; margin: 18mm 16mm; }
 body { background: #fff !important; padding: 0 !important; }
 .print-doc { max-width: 100%; margin: 0; }
-.print-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1.5px solid #1A1A1A; }
+.print-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid #1A1A1A;
+  page-break-after: always;
+  break-after: page;
+}
 .print-header h2 { font-size: 1.6rem; font-weight: 700; }
 .print-header p { color: #5C5C5C; font-size: 0.9rem; margin-top: 4px; }
 .student-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 10px; font-size: 0.9rem; }
@@ -2059,7 +2065,11 @@ body { background: #fff !important; padding: 0 !important; }
   flex-direction: column;
   page-break-after: always;
   break-after: page;
-  min-height: calc(100vh - 60mm);
+  page-break-inside: avoid;
+  break-inside: avoid;
+  height: 261mm;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 .print-question:last-child { page-break-after: auto; break-after: auto; }
 .print-question .question-card {
@@ -2098,7 +2108,7 @@ body { background: #fff !important; padding: 0 !important; }
   flex-direction: column;
   margin-top: 10px;
   padding: 0 4px;
-  min-height: 110mm;
+  min-height: 0;
 }
 .working-space-label {
   font-size: 0.8rem;
@@ -2145,7 +2155,7 @@ body { background: #fff !important; padding: 0 !important; }
 
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .print-question { min-height: auto; }
+  .print-question { height: 261mm; }
 }
 `;
 }
