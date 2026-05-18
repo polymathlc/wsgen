@@ -217,6 +217,21 @@
     font-size: var(--font-size-xs);
   }
 
+  .btn:disabled,
+  .btn[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    border-color: var(--border-subtle);
+  }
+  .btn:disabled:hover,
+  .btn[disabled]:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    border-color: var(--border-subtle);
+  }
+
   /* ============================ EDITOR CARDS ============================ */
   .editor-question {
     background: var(--bg-primary);
@@ -869,6 +884,21 @@
     white-space: pre-wrap;
     line-height: var(--line-height-normal);
   }
+  .answer-key-image {
+    margin-top: 8px;
+    display: block;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--correct-light);
+    background: var(--bg-primary);
+  }
+
+  .reveal-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 4px 0 12px;
+  }
   .answer-key.hidden-from-student {
     background: var(--bg-tertiary);
     border-style: dashed;
@@ -992,6 +1022,8 @@ let state = {
   questions: []
 };
 let showAnswers = false;
+let revealedAnswers = new Set();
+let revealedVideos = new Set();
 let uid = 0;
 const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
 
@@ -1024,7 +1056,7 @@ function makeElement(type) {
     case 'answer':
       return { ...base, label: 'Ans : (a)', answer: '', lineLength: 30 };
     case 'answerKey':
-      return { ...base, text: '' };
+      return { ...base, text: '', dataUrl: '' };
     case 'video':
       return { ...base, url: '', caption: '' };
   }
@@ -1419,7 +1451,7 @@ function buildAnswerKeyEditor(el) {
 
   const lbl = document.createElement('label');
   lbl.className = 'field-label';
-  lbl.textContent = 'Answer key (only shown when "Show answers" is on)';
+  lbl.textContent = 'Answer key text (optional)';
   wrap.appendChild(lbl);
 
   const ta = document.createElement('textarea');
@@ -1428,6 +1460,70 @@ function buildAnswerKeyEditor(el) {
   ta.value = el.text || '';
   ta.addEventListener('input', () => { el.text = ta.value; renderPreview(); });
   wrap.appendChild(wrapWithFractionTool(ta));
+
+  const imgLbl = document.createElement('label');
+  imgLbl.className = 'field-label';
+  imgLbl.style.marginTop = '10px';
+  imgLbl.textContent = 'Answer key screenshot (optional) — click then paste (Ctrl+V / ⌘+V) or drop an image';
+  wrap.appendChild(imgLbl);
+
+  const zone = document.createElement('div');
+  zone.className = 'paste-zone' + (el.dataUrl ? ' has-image' : '');
+  zone.tabIndex = 0;
+  if (el.dataUrl) {
+    const img = document.createElement('img');
+    img.src = el.dataUrl;
+    zone.appendChild(img);
+  } else {
+    zone.textContent = 'Click here, then paste a screenshot (Ctrl+V / ⌘+V)';
+  }
+  zone.addEventListener('click', () => zone.focus());
+  zone.addEventListener('paste', (e) => {
+    const items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    for (const it of items) {
+      if (it.type && it.type.startsWith('image/')) {
+        const file = it.getAsFile();
+        const reader = new FileReader();
+        reader.onload = () => {
+          el.dataUrl = reader.result;
+          renderEditor();
+          renderPreview();
+        };
+        reader.readAsDataURL(file);
+        e.preventDefault();
+        return;
+      }
+    }
+  });
+  zone.addEventListener('dragover', (e) => { e.preventDefault(); });
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        el.dataUrl = reader.result;
+        renderEditor();
+        renderPreview();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  wrap.appendChild(zone);
+
+  if (el.dataUrl) {
+    const clear = document.createElement('button');
+    clear.className = 'btn btn-tiny btn-danger';
+    clear.style.marginTop = '8px';
+    clear.textContent = 'Remove screenshot';
+    clear.addEventListener('click', () => {
+      el.dataUrl = '';
+      renderEditor();
+      renderPreview();
+    });
+    wrap.appendChild(clear);
+  }
 
   return wrap;
 }
@@ -1703,6 +1799,13 @@ function renderPreview() {
   });
 }
 
+function questionHasAnswerKey(q) {
+  return q.elements.some(e => e.type === 'answerKey' && ((e.text && e.text.trim()) || e.dataUrl));
+}
+function questionHasVideo(q) {
+  return q.elements.some(e => e.type === 'video' && e.url && e.url.trim());
+}
+
 function renderPreviewQuestion(q, qIndex) {
   const card = document.createElement('article');
   card.className = 'question-card';
@@ -1724,19 +1827,57 @@ function renderPreviewQuestion(q, qIndex) {
 
   card.appendChild(header);
 
+  const hasAnswer = questionHasAnswerKey(q);
+  const hasVideo = questionHasVideo(q);
+  const showAnswerFor = showAnswers || revealedAnswers.has(q.id);
+  const showVideoFor = showAnswers || revealedVideos.has(q.id);
+
+  const actions = document.createElement('div');
+  actions.className = 'reveal-actions';
+
+  const ansBtn = document.createElement('button');
+  ansBtn.className = 'btn btn-tiny';
+  ansBtn.type = 'button';
+  ansBtn.textContent = showAnswerFor ? 'Hide answer' : 'Show answer';
+  ansBtn.disabled = !hasAnswer;
+  if (!hasAnswer) ansBtn.title = 'No answer key for this question';
+  ansBtn.addEventListener('click', () => {
+    if (revealedAnswers.has(q.id)) revealedAnswers.delete(q.id);
+    else revealedAnswers.add(q.id);
+    renderPreview();
+  });
+  actions.appendChild(ansBtn);
+
+  const vidBtn = document.createElement('button');
+  vidBtn.className = 'btn btn-tiny';
+  vidBtn.type = 'button';
+  vidBtn.textContent = showVideoFor ? 'Hide video' : 'Show video walkthrough';
+  vidBtn.disabled = !hasVideo;
+  if (!hasVideo) vidBtn.title = 'No video walkthrough for this question';
+  vidBtn.addEventListener('click', () => {
+    if (revealedVideos.has(q.id)) revealedVideos.delete(q.id);
+    else revealedVideos.add(q.id);
+    renderPreview();
+  });
+  actions.appendChild(vidBtn);
+
+  card.appendChild(actions);
+
   let stemConsumed = false;
   q.elements.forEach((el) => {
     if (el.type === 'text' && !stemConsumed) {
       stemConsumed = true;
       return;
     }
-    card.appendChild(renderPreviewElement(el));
+    card.appendChild(renderPreviewElement(el, { showAnswerFor, showVideoFor }));
   });
 
   return card;
 }
 
-function renderPreviewElement(el) {
+function renderPreviewElement(el, ctx = {}) {
+  const showAnswerFor = ctx.showAnswerFor ?? showAnswers;
+  const showVideoFor = ctx.showVideoFor ?? showAnswers;
   switch (el.type) {
     case 'text': {
       const d = document.createElement('div');
@@ -1828,7 +1969,7 @@ function renderPreviewElement(el) {
     case 'answerKey': {
       const block = document.createElement('div');
       block.className = 'answer-key';
-      if (!showAnswers) {
+      if (!showAnswerFor) {
         block.classList.add('hidden-from-student');
         const t = document.createElement('div');
         t.className = 'answer-key-title';
@@ -1839,16 +1980,32 @@ function renderPreviewElement(el) {
       const t = document.createElement('div');
       t.className = 'answer-key-title';
       t.textContent = 'Answer key';
-      const body = document.createElement('div');
-      body.className = 'answer-key-body';
-      body.innerHTML = formatTextWithFractions(el.text || '');
       block.appendChild(t);
-      block.appendChild(body);
+      if (el.text && el.text.trim()) {
+        const body = document.createElement('div');
+        body.className = 'answer-key-body';
+        body.innerHTML = formatTextWithFractions(el.text);
+        block.appendChild(body);
+      }
+      if (el.dataUrl) {
+        const img = document.createElement('img');
+        img.className = 'answer-key-image';
+        img.src = el.dataUrl;
+        img.alt = 'Answer key screenshot';
+        block.appendChild(img);
+      }
       return block;
     }
     case 'video': {
       const wrap = document.createElement('div');
       wrap.className = 'video-block';
+      if (!showVideoFor) {
+        const ph = document.createElement('div');
+        ph.className = 'video-placeholder';
+        ph.textContent = '▶ Video walkthrough (click "Show video walkthrough" to play)';
+        wrap.appendChild(ph);
+        return wrap;
+      }
       const embed = toEmbeddableVideoUrl(el.url || '');
       if (!embed) {
         const ph = document.createElement('div');
@@ -2272,7 +2429,12 @@ function elementToHtml(el, qIndex, elIndex) {
       return `<div class="answer-field" data-answer="${escapeAttr(el.answer || '')}"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><input type="text" class="answer-field-input" placeholder="" /></div>`;
     }
     case 'answerKey': {
-      return `<details class="answer-key-export"><summary>Show answer key</summary><div class="answer-key-body">${formatTextWithFractions(el.text || '')}</div></details>`;
+      const bodyText = (el.text && el.text.trim())
+        ? `<div class="answer-key-body">${formatTextWithFractions(el.text)}</div>` : '';
+      const bodyImg = el.dataUrl
+        ? `<img class="answer-key-image" src="${escapeAttr(el.dataUrl)}" alt="Answer key screenshot" />` : '';
+      if (!bodyText && !bodyImg) return '';
+      return `<details class="answer-key-export"><summary>Show answer key</summary>${bodyText}${bodyImg}</details>`;
     }
     case 'video': {
       const embed = toEmbeddableVideoUrl(el.url || '');
@@ -2353,6 +2515,7 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .answer-key-export{margin-top:var(--space-md); padding:var(--space-md); border-radius:var(--radius-md); background:var(--correct-bg); border:1.5px solid #C8E6C9;}
 .answer-key-export summary{cursor:pointer; font-weight:700; color:#43A047; text-transform:uppercase; font-size:var(--font-size-sm); letter-spacing:0.05em;}
 .answer-key-export .answer-key-body{margin-top:8px; white-space:pre-wrap;}
+.answer-key-export .answer-key-image{margin-top:8px; display:block; max-width:100%; border-radius:var(--radius-md); border:1px solid #C8E6C9; background:#fff;}
 .video-block{margin:var(--space-md) 0;}
 .video-block iframe, .video-block video{width:100%; aspect-ratio:16/9; border:none; border-radius:var(--radius-md); background:#000;}
 .video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
