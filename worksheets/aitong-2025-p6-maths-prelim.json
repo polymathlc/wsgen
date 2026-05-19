@@ -1,0 +1,1504 @@
+{
+  "title": "Ai Tong School 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Ai Tong School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_aitong25_2",
+      "elements": [
+        {
+          "id": "id_aitong25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_9",
+      "elements": [
+        {
+          "id": "id_aitong25_3",
+          "type": "text",
+          "text": "Which of the following is forty-five thousand and thirty in numerals?"
+        },
+        {
+          "id": "id_aitong25_4",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_5",
+              "text": "4530"
+            },
+            {
+              "id": "id_aitong25_6",
+              "text": "45 030"
+            },
+            {
+              "id": "id_aitong25_7",
+              "text": "45 300"
+            },
+            {
+              "id": "id_aitong25_8",
+              "text": "450 030"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_10",
+      "elements": [
+        {
+          "id": "id_aitong25_a",
+          "type": "text",
+          "text": "Round 7549 to the nearest hundred."
+        },
+        {
+          "id": "id_aitong25_b",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_c",
+              "text": "7000"
+            },
+            {
+              "id": "id_aitong25_d",
+              "text": "7500"
+            },
+            {
+              "id": "id_aitong25_e",
+              "text": "7600"
+            },
+            {
+              "id": "id_aitong25_f",
+              "text": "8000"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_17",
+      "elements": [
+        {
+          "id": "id_aitong25_11",
+          "type": "text",
+          "text": "Express 2.4 as a percentage."
+        },
+        {
+          "id": "id_aitong25_12",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_13",
+              "text": "0.024 %"
+            },
+            {
+              "id": "id_aitong25_14",
+              "text": "0.24 %"
+            },
+            {
+              "id": "id_aitong25_15",
+              "text": "24 %"
+            },
+            {
+              "id": "id_aitong25_16",
+              "text": "240 %"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_1f",
+      "elements": [
+        {
+          "id": "id_aitong25_18",
+          "type": "text",
+          "text": "What is the missing number in the box?"
+        },
+        {
+          "id": "id_aitong25_19",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Equation: 7.216 = 7 + 0.2 + [ ? ]"
+        },
+        {
+          "id": "id_aitong25_1a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_1b",
+              "text": "0.016"
+            },
+            {
+              "id": "id_aitong25_1c",
+              "text": "0.16"
+            },
+            {
+              "id": "id_aitong25_1d",
+              "text": "1.6"
+            },
+            {
+              "id": "id_aitong25_1e",
+              "text": "16"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_26",
+      "elements": [
+        {
+          "id": "id_aitong25_20",
+          "type": "text",
+          "text": "Which fraction is smaller than 1/2?"
+        },
+        {
+          "id": "id_aitong25_21",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_22",
+              "text": "5/7"
+            },
+            {
+              "id": "id_aitong25_23",
+              "text": "4/9"
+            },
+            {
+              "id": "id_aitong25_24",
+              "text": "3/6"
+            },
+            {
+              "id": "id_aitong25_25",
+              "text": "2/3"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_2e",
+      "elements": [
+        {
+          "id": "id_aitong25_27",
+          "type": "text",
+          "text": "Which of the following could be the mass of a mobile phone?"
+        },
+        {
+          "id": "id_aitong25_28",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Drawing of a mobile phone"
+        },
+        {
+          "id": "id_aitong25_29",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_2a",
+              "text": "0.05 kg"
+            },
+            {
+              "id": "id_aitong25_2b",
+              "text": "1.5 kg"
+            },
+            {
+              "id": "id_aitong25_2c",
+              "text": "15 g"
+            },
+            {
+              "id": "id_aitong25_2d",
+              "text": "150 g"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_35",
+      "elements": [
+        {
+          "id": "id_aitong25_2f",
+          "type": "text",
+          "text": "Arrange the following fractions from the smallest to the greatest:  6/11,  7/10,  3/5."
+        },
+        {
+          "id": "id_aitong25_30",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_31",
+              "text": "6/11, 3/5, 7/10"
+            },
+            {
+              "id": "id_aitong25_32",
+              "text": "6/11, 7/10, 3/5"
+            },
+            {
+              "id": "id_aitong25_33",
+              "text": "3/5, 6/11, 7/10"
+            },
+            {
+              "id": "id_aitong25_34",
+              "text": "3/5, 7/10, 6/11"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_3f",
+      "elements": [
+        {
+          "id": "id_aitong25_36",
+          "type": "text",
+          "text": "The figure shows a cube."
+        },
+        {
+          "id": "id_aitong25_37",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "A cube"
+        },
+        {
+          "id": "id_aitong25_38",
+          "type": "text",
+          "text": "Which one of the following is a net of a cube?"
+        },
+        {
+          "id": "id_aitong25_39",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four candidate cube nets labelled (1) to (4)"
+        },
+        {
+          "id": "id_aitong25_3a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_3b",
+              "text": "Net (1)"
+            },
+            {
+              "id": "id_aitong25_3c",
+              "text": "Net (2)"
+            },
+            {
+              "id": "id_aitong25_3d",
+              "text": "Net (3)"
+            },
+            {
+              "id": "id_aitong25_3e",
+              "text": "Net (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_47",
+      "elements": [
+        {
+          "id": "id_aitong25_40",
+          "type": "text",
+          "text": "The table below shows the number of students in four groups A, B, C and D.  Which of the following pie charts best represents the information?"
+        },
+        {
+          "id": "id_aitong25_41",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table: Group A=15, B=30, C=25, D=30; and four candidate pie charts labelled (1) to (4)"
+        },
+        {
+          "id": "id_aitong25_42",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_43",
+              "text": "Pie chart (1)"
+            },
+            {
+              "id": "id_aitong25_44",
+              "text": "Pie chart (2)"
+            },
+            {
+              "id": "id_aitong25_45",
+              "text": "Pie chart (3)"
+            },
+            {
+              "id": "id_aitong25_46",
+              "text": "Pie chart (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_4e",
+      "elements": [
+        {
+          "id": "id_aitong25_48",
+          "type": "text",
+          "text": "Find the value of 4y/2 + 10 − 4 when y = 4."
+        },
+        {
+          "id": "id_aitong25_49",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_4a",
+              "text": "11"
+            },
+            {
+              "id": "id_aitong25_4b",
+              "text": "14"
+            },
+            {
+              "id": "id_aitong25_4c",
+              "text": "22"
+            },
+            {
+              "id": "id_aitong25_4d",
+              "text": "28"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_58",
+      "elements": [
+        {
+          "id": "id_aitong25_4f",
+          "type": "text",
+          "text": "Amelia used identical unit cubes to build a solid.  She drew the top and side views of the solid as shown below."
+        },
+        {
+          "id": "id_aitong25_50",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Top view and side view of Amelia's solid"
+        },
+        {
+          "id": "id_aitong25_51",
+          "type": "text",
+          "text": "Which of the following could be the solid built by Amelia?"
+        },
+        {
+          "id": "id_aitong25_52",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four candidate front views of the solid labelled (1) to (4)"
+        },
+        {
+          "id": "id_aitong25_53",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_54",
+              "text": "Solid (1)"
+            },
+            {
+              "id": "id_aitong25_55",
+              "text": "Solid (2)"
+            },
+            {
+              "id": "id_aitong25_56",
+              "text": "Solid (3)"
+            },
+            {
+              "id": "id_aitong25_57",
+              "text": "Solid (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_5f",
+      "elements": [
+        {
+          "id": "id_aitong25_59",
+          "type": "text",
+          "text": "Hassan spent 35% of his monthly allowance on food and 2/5 of the remaining allowance on transport.  What percentage of his allowance was left?"
+        },
+        {
+          "id": "id_aitong25_5a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_5b",
+              "text": "65 %"
+            },
+            {
+              "id": "id_aitong25_5c",
+              "text": "61 %"
+            },
+            {
+              "id": "id_aitong25_5d",
+              "text": "39 %"
+            },
+            {
+              "id": "id_aitong25_5e",
+              "text": "25 %"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_67",
+      "elements": [
+        {
+          "id": "id_aitong25_60",
+          "type": "text",
+          "text": "The figure is made up of two identical semicircles with radius of 21 m.  Find the perimeter of the figure in terms of π."
+        },
+        {
+          "id": "id_aitong25_61",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure made up of two identical semicircles, with the diameter of one labelled 21 m"
+        },
+        {
+          "id": "id_aitong25_62",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_63",
+              "text": "21π m"
+            },
+            {
+              "id": "id_aitong25_64",
+              "text": "(21π + 21) m"
+            },
+            {
+              "id": "id_aitong25_65",
+              "text": "42π m"
+            },
+            {
+              "id": "id_aitong25_66",
+              "text": "(42π + 42) m"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_6f",
+      "elements": [
+        {
+          "id": "id_aitong25_68",
+          "type": "text",
+          "text": "Jack drew three triangles to form a figure.  The areas of the triangles were in the ratio 1 : 8 : 12.  He then shaded some parts of the figure as shown.  What is the ratio of the total area of the shaded parts to the area of the figure?"
+        },
+        {
+          "id": "id_aitong25_69",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Three nested triangles with some parts shaded"
+        },
+        {
+          "id": "id_aitong25_6a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_6b",
+              "text": "5 : 12"
+            },
+            {
+              "id": "id_aitong25_6c",
+              "text": "5 : 21"
+            },
+            {
+              "id": "id_aitong25_6d",
+              "text": "7 : 12"
+            },
+            {
+              "id": "id_aitong25_6e",
+              "text": "2 : 3"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_76",
+      "elements": [
+        {
+          "id": "id_aitong25_70",
+          "type": "text",
+          "text": "4 years ago, the ratio of Calvin's age to Lina's age is 2 : 7.  In 8 years' time, Calvin's age will be 2/5 of Lina's age.  How old is Calvin now?"
+        },
+        {
+          "id": "id_aitong25_71",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_aitong25_72",
+              "text": "10 years old"
+            },
+            {
+              "id": "id_aitong25_73",
+              "text": "18 years old"
+            },
+            {
+              "id": "id_aitong25_74",
+              "text": "22 years old"
+            },
+            {
+              "id": "id_aitong25_75",
+              "text": "30 years old"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_78",
+      "elements": [
+        {
+          "id": "id_aitong25_77",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_7b",
+      "elements": [
+        {
+          "id": "id_aitong25_79",
+          "type": "text",
+          "text": "What is the value of 30 − (8 + 16) ÷ 3 × 2?"
+        },
+        {
+          "id": "id_aitong25_7a",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_7f",
+      "elements": [
+        {
+          "id": "id_aitong25_7c",
+          "type": "text",
+          "text": "In the figure, EOH, FOJ and GOK are straight lines.  ∠EOF = 31° and ∠KOH = 96°.  Find ∠GOF."
+        },
+        {
+          "id": "id_aitong25_7d",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Three straight lines EOH, FOJ, GOK meeting at O with ∠EOF = 31° and ∠KOH = 96°"
+        },
+        {
+          "id": "id_aitong25_7e",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_82",
+      "elements": [
+        {
+          "id": "id_aitong25_80",
+          "type": "text",
+          "text": "Find the average of 15, 17, 0 and 4."
+        },
+        {
+          "id": "id_aitong25_81",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_85",
+      "elements": [
+        {
+          "id": "id_aitong25_83",
+          "type": "text",
+          "text": "A ribbon was cut into two pieces in the ratio 3 : 5.  The length of the longer piece was 35 cm.  What was the length of the ribbon at first?"
+        },
+        {
+          "id": "id_aitong25_84",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_89",
+      "elements": [
+        {
+          "id": "id_aitong25_86",
+          "type": "text",
+          "text": "In the figure, WXYZ is a rectangle.  Measure and write down the height of Triangle XMZ when MZ is the base."
+        },
+        {
+          "id": "id_aitong25_87",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle WXYZ with point M on WY (or similar) and triangle XMZ drawn inside"
+        },
+        {
+          "id": "id_aitong25_88",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_8b",
+      "elements": [
+        {
+          "id": "id_aitong25_8a",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_92",
+      "elements": [
+        {
+          "id": "id_aitong25_8c",
+          "type": "text",
+          "text": "The bar graph shows the time taken by 5 children to complete a race."
+        },
+        {
+          "id": "id_aitong25_8d",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Bar graph: time taken (seconds) by Elvin, Dan, Caili, Ben and Arif"
+        },
+        {
+          "id": "id_aitong25_8e",
+          "type": "part",
+          "label": "(a)",
+          "text": "Who was the fastest runner?"
+        },
+        {
+          "id": "id_aitong25_8f",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_90",
+          "type": "part",
+          "label": "(b)",
+          "text": "How much longer did Dan take than Elvin to complete the race?"
+        },
+        {
+          "id": "id_aitong25_91",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_96",
+      "elements": [
+        {
+          "id": "id_aitong25_93",
+          "type": "text",
+          "text": "A solid cuboid of height 21 cm has a square base of side 9 cm.  What is its volume?"
+        },
+        {
+          "id": "id_aitong25_94",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Cuboid with height 21 cm and square base of side 9 cm"
+        },
+        {
+          "id": "id_aitong25_95",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_9a",
+      "elements": [
+        {
+          "id": "id_aitong25_97",
+          "type": "text",
+          "text": "In the figure, rectangle WXYZ is made up of 8 identical smaller rectangles.  What fraction of rectangle WXYZ is shaded?  Express your answer in the simplest form."
+        },
+        {
+          "id": "id_aitong25_98",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle WXYZ split into 8 identical smaller rectangles with a zig-zag/triangular shaded region"
+        },
+        {
+          "id": "id_aitong25_99",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_9e",
+      "elements": [
+        {
+          "id": "id_aitong25_9b",
+          "type": "text",
+          "text": "A triangular piece of paper ABC is folded along the dotted line as shown.  AB = AC.  Find ∠p."
+        },
+        {
+          "id": "id_aitong25_9c",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Triangle ABC before folding (angle at A = 60°) and after folding (showing a 14° angle and angle p)"
+        },
+        {
+          "id": "id_aitong25_9d",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_a2",
+      "elements": [
+        {
+          "id": "id_aitong25_9f",
+          "type": "text",
+          "text": "Jen wants to spend the least amount of money to buy 25 muffins.  Each muffin is sold at $n.  How much will she pay for the muffins?  Express your answer in terms of n."
+        },
+        {
+          "id": "id_aitong25_a0",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Special offer: Buy 2 muffins and get 1 muffin free.  Each muffin is sold at $n."
+        },
+        {
+          "id": "id_aitong25_a1",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_a8",
+      "elements": [
+        {
+          "id": "id_aitong25_a3",
+          "type": "text",
+          "text": "In the square grid, AB and BC are straight lines."
+        },
+        {
+          "id": "id_aitong25_a4",
+          "type": "part",
+          "label": "(a)",
+          "text": "Measure and write down the size of ∠ABC."
+        },
+        {
+          "id": "id_aitong25_a5",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_a6",
+          "type": "part",
+          "label": "(b)",
+          "text": "AB and BC form two sides of a parallelogram ABCD.  Complete the drawing of the parallelogram ABCD.  Label Point D."
+        },
+        {
+          "id": "id_aitong25_a7",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with points A, B and C marked"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_ac",
+      "elements": [
+        {
+          "id": "id_aitong25_a9",
+          "type": "text",
+          "text": "Three beakers are filled with some water.  What is the total volume of water in the three beakers?"
+        },
+        {
+          "id": "id_aitong25_aa",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Three beakers showing 1 ℓ, 1 ℓ (half-marked) and 400 ml respectively"
+        },
+        {
+          "id": "id_aitong25_ab",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_b0",
+      "elements": [
+        {
+          "id": "id_aitong25_ad",
+          "type": "text",
+          "text": "In the figure, ABCD is a trapezium with AD // BC.  BCF is an isosceles triangle.  EFC is a straight line.  Find ∠ABF."
+        },
+        {
+          "id": "id_aitong25_ae",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Trapezium ABCD with AD // BC; isosceles triangle BCF inside; straight line EFC; given angles 114° at A and 80° at F"
+        },
+        {
+          "id": "id_aitong25_af",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_b4",
+      "elements": [
+        {
+          "id": "id_aitong25_b1",
+          "type": "text",
+          "text": "The figure is made up of two identical right-angled triangles overlapping each other.  XY = 3 cm and PQ is a straight line.  Find the area of the shaded part."
+        },
+        {
+          "id": "id_aitong25_b2",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two identical right-angled triangles overlapping; left triangle has height 8 cm and base 5 cm (P to vertical), Y on the hypotenuse with XY = 3 cm; PQ horizontal"
+        },
+        {
+          "id": "id_aitong25_b3",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_b7",
+      "elements": [
+        {
+          "id": "id_aitong25_b5",
+          "type": "text",
+          "text": "A shop had some bags for sale.  After selling 28 bags in the morning and 5/8 of the remaining bags in the afternoon, 1/4 of the bags were left unsold.  How many bags were sold altogether?"
+        },
+        {
+          "id": "id_aitong25_b6",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_b9",
+      "elements": [
+        {
+          "id": "id_aitong25_b8",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly in the space provided for each question and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_bd",
+      "elements": [
+        {
+          "id": "id_aitong25_ba",
+          "type": "text",
+          "text": "The table shows the water charges.  Mr Chan paid $89 for using 60 m³ of water.  How much did he pay per cubic metre for water consumption more than 40 m³?"
+        },
+        {
+          "id": "id_aitong25_bb",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Volume of water: First 40 m³ | Each additional m³.  Water charges: $1.40 per m³ | $? per m³"
+        },
+        {
+          "id": "id_aitong25_bc",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_c0",
+      "elements": [
+        {
+          "id": "id_aitong25_be",
+          "type": "text",
+          "text": "Deena had 2.07 kg of flour at first.  She used 459 g of it.  How many kilograms of flour was left?"
+        },
+        {
+          "id": "id_aitong25_bf",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_c4",
+      "elements": [
+        {
+          "id": "id_aitong25_c1",
+          "type": "text",
+          "text": "The line graph shows the growth of a plant over 4 weeks.  What was the percentage increase in the height of the plant from Week 1 to Week 3?"
+        },
+        {
+          "id": "id_aitong25_c2",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph: height of the plant (cm) vs Week 0 – Week 4"
+        },
+        {
+          "id": "id_aitong25_c3",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_c8",
+      "elements": [
+        {
+          "id": "id_aitong25_c5",
+          "type": "text",
+          "text": "Triangle ABC is an isosceles triangle that lies within a figure made up of a semicircle and a rectangle.  AB = AC.  Find the area of Triangle ABC."
+        },
+        {
+          "id": "id_aitong25_c6",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Composite figure: a semicircle on the left attached to a rectangle on the right (width 9 m at top, height 15 m); isosceles triangle ABC inside with A on the semicircle and B, C at the right vertices of the rectangle"
+        },
+        {
+          "id": "id_aitong25_c7",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_cc",
+      "elements": [
+        {
+          "id": "id_aitong25_c9",
+          "type": "text",
+          "text": "The figure is formed using 2 squares and 2 equilateral triangles.  The perimeter of the figure is 120 cm.  PQ is a straight line.  What is the length of PQ?"
+        },
+        {
+          "id": "id_aitong25_ca",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two squares and two equilateral triangles arranged so that PQ passes through the figure as a straight line"
+        },
+        {
+          "id": "id_aitong25_cb",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_ce",
+      "elements": [
+        {
+          "id": "id_aitong25_cd",
+          "type": "text",
+          "text": "For questions 6 to 17, show your working clearly in the space provided for each question and write the answers in the spaces provided.  The number of marks available is shown in the brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_d6",
+      "elements": [
+        {
+          "id": "id_aitong25_cf",
+          "type": "text",
+          "text": "A group of students were asked to choose their favourite fruit in a survey conducted.  The result was represented in the pie chart."
+        },
+        {
+          "id": "id_aitong25_d0",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart with sectors: Apple, Pear 35 %, Mango 1/5, Orange"
+        },
+        {
+          "id": "id_aitong25_d1",
+          "type": "text",
+          "text": "Half of the number of students chose mango or orange as their favourite fruit."
+        },
+        {
+          "id": "id_aitong25_d2",
+          "type": "part",
+          "label": "(a)",
+          "text": "What fraction of the students chose apple as their favourite fruit?  Express your answer in its simplest form.  [1]"
+        },
+        {
+          "id": "id_aitong25_d3",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_d4",
+          "type": "part",
+          "label": "(b)",
+          "text": "Each of the statements below is either true, false or not possible to tell from the information given.  Put a tick (✓) to indicate your answer.  [2]"
+        },
+        {
+          "id": "id_aitong25_d5",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table with statements: 'More students chose orange than pear as their favourite fruit.', '20 students chose mango as their favourite fruit.', 'More students were surveyed and all of them chose mango as their favourite fruit.  The percentage of students who chose apple as their favourite fruit remained the same.' — with True / False / Not possible to tell columns"
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_da",
+      "elements": [
+        {
+          "id": "id_aitong25_d7",
+          "type": "text",
+          "text": "Figure 1 shows an empty container with a rectangular base area of 30 cm².  Then, the container was filled with some water.  Figure 2 shows the front view of the container and Figure 3 shows the container turned upside down.  What is the capacity of the container?"
+        },
+        {
+          "id": "id_aitong25_d8",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure 1: empty container with base area 30 cm² and total height 7.8 cm.  Figure 2: front view, water height 4.6 cm with total container height 7.8 cm.  Figure 3: container upside down, water height 5.5 cm.  [3]"
+        },
+        {
+          "id": "id_aitong25_d9",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_e1",
+      "elements": [
+        {
+          "id": "id_aitong25_db",
+          "type": "text",
+          "text": "JKLM is a rhombus.  KLN and KLO are triangles.  LM = MN."
+        },
+        {
+          "id": "id_aitong25_dc",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rhombus JKLM with triangles KLN and KLO; given ∠NLK = 21° and angle 72° at J (vertex of the rhombus)"
+        },
+        {
+          "id": "id_aitong25_dd",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠LOK.  [1]"
+        },
+        {
+          "id": "id_aitong25_de",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_df",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠LNM.  [2]"
+        },
+        {
+          "id": "id_aitong25_e0",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_e4",
+      "elements": [
+        {
+          "id": "id_aitong25_e2",
+          "type": "text",
+          "text": "Kai read part of a book in the morning.  The ratio of the number of pages he read to the number of pages that were unread was 6 : 5.  After reading another 195 pages of the book in the afternoon, Kai still had 10 % of the book unread.  How many pages were there in the book?  [3]"
+        },
+        {
+          "id": "id_aitong25_e3",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_e7",
+      "elements": [
+        {
+          "id": "id_aitong25_e5",
+          "type": "text",
+          "text": "Town X and Town Y were 455 km apart.  Sam left Town X for Town Y, travelling at a constant speed of 85 km/h.  At the same time, Dan left Town Y for Town X, travelling along the same route at a constant speed of 90 km/h.  How long had they travelled when they met each other?  Express your answer in h and min.  [3]"
+        },
+        {
+          "id": "id_aitong25_e6",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_ed",
+      "elements": [
+        {
+          "id": "id_aitong25_e8",
+          "type": "text",
+          "text": "A fruit seller had some mangoes.  He sold 2/5 of them and donated 104 of them.  He was left with 1/3 of the mangoes and packed them into 24 bags.  Some bags contained 4 mangoes each while the rest contained 6 mangoes each."
+        },
+        {
+          "id": "id_aitong25_e9",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many mangoes were packed?  [2]"
+        },
+        {
+          "id": "id_aitong25_ea",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_eb",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many bags contained 6 mangoes each?  [2]"
+        },
+        {
+          "id": "id_aitong25_ec",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_f4",
+      "elements": [
+        {
+          "id": "id_aitong25_ee",
+          "type": "text",
+          "text": "The figure is made up of four identical quarter circles, two identical squares of sides 14 cm and a rectangle of breadth 19 cm.  Four identical semicircles lie within the figure."
+        },
+        {
+          "id": "id_aitong25_ef",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Composite figure: rectangle of breadth 19 cm with two 14 cm squares on the left and right ends; four identical quarter circles round the corners; four identical semicircles cut from the squares (shaded regions)"
+        },
+        {
+          "id": "id_aitong25_f0",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the perimeter of the unshaded part.  (Take π = 3.14)  [2]"
+        },
+        {
+          "id": "id_aitong25_f1",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_f2",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the area of the shaded parts.  (Take π = 3.14)  [3]"
+        },
+        {
+          "id": "id_aitong25_f3",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_fb",
+      "elements": [
+        {
+          "id": "id_aitong25_f5",
+          "type": "text",
+          "text": "Two rectangular tanks, Tank A and Tank B, are shown below.  At first, Tank A was 1/3-filled with water and Tank B was empty."
+        },
+        {
+          "id": "id_aitong25_f6",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Tank A: 48 cm × 20 cm × 36 cm (height), shaded portion at the bottom shows 1/3-filled.  Tank B: 60 cm × 10 cm × 45 cm (height), empty.  Each tank has a tap above it."
+        },
+        {
+          "id": "id_aitong25_f7",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the volume of water in Tank A at first?  [2]"
+        },
+        {
+          "id": "id_aitong25_f8",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_f9",
+          "type": "part",
+          "label": "(b)",
+          "text": "Both taps were then turned on at the same time.  Water from both taps flowed at the same rate of 2.4 litres per minute.  How long did it take for the height of the water in both tanks to be the same?  [3]"
+        },
+        {
+          "id": "id_aitong25_fa",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_102",
+      "elements": [
+        {
+          "id": "id_aitong25_fc",
+          "type": "text",
+          "text": "In the figure, ABCD is a square.  ABE is an equilateral triangle and DECF is a trapezium.  DE is parallel to FC, and FDA is a straight line."
+        },
+        {
+          "id": "id_aitong25_fd",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square ABCD with equilateral triangle ABE inside (E inside the square); trapezium DECF with DE // FC and FDA a straight line (F outside the square to the left of D)"
+        },
+        {
+          "id": "id_aitong25_fe",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠DEC.  [2]"
+        },
+        {
+          "id": "id_aitong25_ff",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_100",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠DFC.  [2]"
+        },
+        {
+          "id": "id_aitong25_101",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_10a",
+      "elements": [
+        {
+          "id": "id_aitong25_103",
+          "type": "text",
+          "text": "Selvi used rods to form figures that follow a pattern.  The first four figures are shown."
+        },
+        {
+          "id": "id_aitong25_104",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figures 1 – 4 made of rods (each figure looks like stacked rectangles)"
+        },
+        {
+          "id": "id_aitong25_105",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Figure: 1, 2, 3, 4.  Number of rods used: 7, 10, 12, 15."
+        },
+        {
+          "id": "id_aitong25_106",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the difference between the number of rods used for Figure 7 and Figure 9?  [1]"
+        },
+        {
+          "id": "id_aitong25_107",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_108",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many rods would she use for Figure 99?  [2]"
+        },
+        {
+          "id": "id_aitong25_109",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_113",
+      "elements": [
+        {
+          "id": "id_aitong25_10b",
+          "type": "text",
+          "text": "Three girls, Mabel, Candy and Lilian, had the same number of coins.  Mabel had only twenty-cent coins.  Candy and Lilian each had a mix of twenty-cent and one-dollar coins.  Candy had 36 one-dollar coins while Lilian had 13 one-dollar coins."
+        },
+        {
+          "id": "id_aitong25_10c",
+          "type": "part",
+          "label": "(a)",
+          "text": "Of the three girls, who had the least and who had the most amount of money?  [1]"
+        },
+        {
+          "id": "id_aitong25_10d",
+          "type": "answer",
+          "label": "Ans : (a) Least : ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_10e",
+          "type": "answer",
+          "label": "Most : ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_10f",
+          "type": "part",
+          "label": "(b)",
+          "text": "Candy used half of her one-dollar coins and some of her twenty-cent coins to buy a book that cost $20.40.  How many twenty-cent coins did Candy use?  [2]"
+        },
+        {
+          "id": "id_aitong25_110",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_aitong25_111",
+          "type": "part",
+          "label": "(c)",
+          "text": "What was the difference in the total value of Mabel and Lilian's coins?  [2]"
+        },
+        {
+          "id": "id_aitong25_112",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_aitong25_116",
+      "elements": [
+        {
+          "id": "id_aitong25_114",
+          "type": "text",
+          "text": "There were 16 more students in Team A than in Team B in a competition.  1/4 of the students in Team A and 3/7 of the students in Team B were girls.  The number of boys was twice the number of girls in the competition.  How many boys were there altogether?  [4]"
+        },
+        {
+          "id": "id_aitong25_115",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1455 @@
+{
+  "title": "Catholic High School 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Catholic High School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_chs25_2",
+      "elements": [
+        {
+          "id": "id_chs25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4).  Shade the oval (1, 2, 3 or 4) on the Optical Answer Sheet.  All diagrams are not drawn to scale.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_9",
+      "elements": [
+        {
+          "id": "id_chs25_3",
+          "type": "text",
+          "text": "Which of the following decimals is the smallest?"
+        },
+        {
+          "id": "id_chs25_4",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_5",
+              "text": "0.15"
+            },
+            {
+              "id": "id_chs25_6",
+              "text": "0.51"
+            },
+            {
+              "id": "id_chs25_7",
+              "text": "0.105"
+            },
+            {
+              "id": "id_chs25_8",
+              "text": "0.501"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_10",
+      "elements": [
+        {
+          "id": "id_chs25_a",
+          "type": "text",
+          "text": "Which of the following is the same as 2040 cm?"
+        },
+        {
+          "id": "id_chs25_b",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_c",
+              "text": "0.24 m"
+            },
+            {
+              "id": "id_chs25_d",
+              "text": "2.04 m"
+            },
+            {
+              "id": "id_chs25_e",
+              "text": "2 m 40 cm"
+            },
+            {
+              "id": "id_chs25_f",
+              "text": "20 m 40 cm"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_18",
+      "elements": [
+        {
+          "id": "id_chs25_11",
+          "type": "text",
+          "text": "Which of the following shows 1/5 of the figure shaded?"
+        },
+        {
+          "id": "id_chs25_12",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four shaded-figure options: (1) 5x5 grid with isolated shaded squares, (2) circle with vertical strip shaded, (3) row of 7 squares with some shaded, (4) pentagon split into triangular sectors with some shaded"
+        },
+        {
+          "id": "id_chs25_13",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_14",
+              "text": "Figure (1)"
+            },
+            {
+              "id": "id_chs25_15",
+              "text": "Figure (2)"
+            },
+            {
+              "id": "id_chs25_16",
+              "text": "Figure (3)"
+            },
+            {
+              "id": "id_chs25_17",
+              "text": "Figure (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_20",
+      "elements": [
+        {
+          "id": "id_chs25_19",
+          "type": "text",
+          "text": "Which of the following is likely to be the length of a road bicycle?"
+        },
+        {
+          "id": "id_chs25_1a",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Drawing of a bicycle with the length labelled '?'"
+        },
+        {
+          "id": "id_chs25_1b",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_1c",
+              "text": "17 cm"
+            },
+            {
+              "id": "id_chs25_1d",
+              "text": "170 cm"
+            },
+            {
+              "id": "id_chs25_1e",
+              "text": "17 m"
+            },
+            {
+              "id": "id_chs25_1f",
+              "text": "170 m"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_28",
+      "elements": [
+        {
+          "id": "id_chs25_21",
+          "type": "text",
+          "text": "In the number line, what is the mixed number represented by A?"
+        },
+        {
+          "id": "id_chs25_22",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Number line from 1 to 2 divided into 6 equal intervals, with arrow A near 1 5/6"
+        },
+        {
+          "id": "id_chs25_23",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_24",
+              "text": "1 2/3"
+            },
+            {
+              "id": "id_chs25_25",
+              "text": "1 3/4"
+            },
+            {
+              "id": "id_chs25_26",
+              "text": "1 5/6"
+            },
+            {
+              "id": "id_chs25_27",
+              "text": "1 6/7"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_2f",
+      "elements": [
+        {
+          "id": "id_chs25_29",
+          "type": "text",
+          "text": "Rachel watched a movie at the cinema.  The movie lasted for 2 h 15 min.  After the movie ended, she walked 25 minutes to reach her home.  She reached home at 6.55 p.m.  What time did the movie start?"
+        },
+        {
+          "id": "id_chs25_2a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_2b",
+              "text": "4.15 p.m."
+            },
+            {
+              "id": "id_chs25_2c",
+              "text": "4.40 p.m."
+            },
+            {
+              "id": "id_chs25_2d",
+              "text": "7.20 p.m."
+            },
+            {
+              "id": "id_chs25_2e",
+              "text": "9.35 p.m."
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_37",
+      "elements": [
+        {
+          "id": "id_chs25_30",
+          "type": "text",
+          "text": "Which of the following is a net of a cuboid?"
+        },
+        {
+          "id": "id_chs25_31",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four candidate nets labelled (1) to (4)"
+        },
+        {
+          "id": "id_chs25_32",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_33",
+              "text": "Net (1)"
+            },
+            {
+              "id": "id_chs25_34",
+              "text": "Net (2)"
+            },
+            {
+              "id": "id_chs25_35",
+              "text": "Net (3)"
+            },
+            {
+              "id": "id_chs25_36",
+              "text": "Net (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_3f",
+      "elements": [
+        {
+          "id": "id_chs25_38",
+          "type": "text",
+          "text": "Which line in the square grid is perpendicular to BC?"
+        },
+        {
+          "id": "id_chs25_39",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with quadrilateral DABC (or similar) drawn; points A (top), B (right), C (bottom), D (left)"
+        },
+        {
+          "id": "id_chs25_3a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_3b",
+              "text": "AC"
+            },
+            {
+              "id": "id_chs25_3c",
+              "text": "BA"
+            },
+            {
+              "id": "id_chs25_3d",
+              "text": "CD"
+            },
+            {
+              "id": "id_chs25_3e",
+              "text": "DA"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_47",
+      "elements": [
+        {
+          "id": "id_chs25_40",
+          "type": "text",
+          "text": "The square grid shows the position of 5 landmarks A, B, C, D and E.  Julian is standing at a location north-west of landmark D and east of landmark A.  In what direction is landmark C from Julian?"
+        },
+        {
+          "id": "id_chs25_41",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid showing landmarks A (left), B (upper middle), C (upper right), D (middle right of centre) and E (lower middle); a compass with North pointing up is at the side"
+        },
+        {
+          "id": "id_chs25_42",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_43",
+              "text": "North-east"
+            },
+            {
+              "id": "id_chs25_44",
+              "text": "North-west"
+            },
+            {
+              "id": "id_chs25_45",
+              "text": "South-east"
+            },
+            {
+              "id": "id_chs25_46",
+              "text": "South-west"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_4f",
+      "elements": [
+        {
+          "id": "id_chs25_48",
+          "type": "text",
+          "text": "The pie chart shows the number of pupils taking part in various activities at a sports carnival.  The same information is shown in a bar graph, but the names of the activities are not shown on the bar graph.  How many pupils took part in Soccer and Hockey altogether?"
+        },
+        {
+          "id": "id_chs25_49",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart with sectors: Badminton, Soccer, Hockey, Golf.  Bar graph 'Activities at sports carnival' with four unlabelled bars at approximately 100, 30, 50 and 70"
+        },
+        {
+          "id": "id_chs25_4a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_4b",
+              "text": "120"
+            },
+            {
+              "id": "id_chs25_4c",
+              "text": "130"
+            },
+            {
+              "id": "id_chs25_4d",
+              "text": "150"
+            },
+            {
+              "id": "id_chs25_4e",
+              "text": "170"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_57",
+      "elements": [
+        {
+          "id": "id_chs25_50",
+          "type": "text",
+          "text": "In the figure, FCEB and DGE are straight lines.  ABC is an equilateral triangle.  DGE = FCE and ∠CFD = 70°.  Find ∠CGE."
+        },
+        {
+          "id": "id_chs25_51",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Equilateral triangle ABC with straight lines FCEB (along the base) and DGE crossing it; ∠CFD = 70° at vertex F outside the triangle"
+        },
+        {
+          "id": "id_chs25_52",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_53",
+              "text": "40°"
+            },
+            {
+              "id": "id_chs25_54",
+              "text": "80°"
+            },
+            {
+              "id": "id_chs25_55",
+              "text": "100°"
+            },
+            {
+              "id": "id_chs25_56",
+              "text": "140°"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_5e",
+      "elements": [
+        {
+          "id": "id_chs25_58",
+          "type": "text",
+          "text": "Alex and Ben had $190 altogether at first.  After Alex gave Ben $30, Alex had $40 more than Ben.  How much did Ben have at first?"
+        },
+        {
+          "id": "id_chs25_59",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_5a",
+              "text": "$45"
+            },
+            {
+              "id": "id_chs25_5b",
+              "text": "$75"
+            },
+            {
+              "id": "id_chs25_5c",
+              "text": "$120"
+            },
+            {
+              "id": "id_chs25_5d",
+              "text": "$160"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_65",
+      "elements": [
+        {
+          "id": "id_chs25_5f",
+          "type": "text",
+          "text": "Arrange these volumes from the smallest to the largest:  2.25 ℓ,  2 2/5 ℓ,  2 ℓ 225 ml."
+        },
+        {
+          "id": "id_chs25_60",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_61",
+              "text": "2 2/5 ℓ, 2.25 ℓ, 2 ℓ 225 ml"
+            },
+            {
+              "id": "id_chs25_62",
+              "text": "2 2/5 ℓ, 2 ℓ 225 ml, 2.25 ℓ"
+            },
+            {
+              "id": "id_chs25_63",
+              "text": "2 ℓ 225 ml, 2.25 ℓ, 2 2/5 ℓ"
+            },
+            {
+              "id": "id_chs25_64",
+              "text": "2.25 ℓ, 2 ℓ 225 ml, 2 2/5 ℓ"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_6d",
+      "elements": [
+        {
+          "id": "id_chs25_66",
+          "type": "text",
+          "text": "The figure is made up of one big semicircle and a small semicircle.  The large semicircle with centre O has a radius of 6 cm.  Find the perimeter of the figure.  Leave your answer in terms of π."
+        },
+        {
+          "id": "id_chs25_67",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Big semicircle (centre O, radius 6 cm) joined to a smaller semicircle of radius 3 cm forming a shaded figure"
+        },
+        {
+          "id": "id_chs25_68",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_69",
+              "text": "6π cm"
+            },
+            {
+              "id": "id_chs25_6a",
+              "text": "9π cm"
+            },
+            {
+              "id": "id_chs25_6b",
+              "text": "(6π + 6) cm"
+            },
+            {
+              "id": "id_chs25_6c",
+              "text": "(9π + 6) cm"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_74",
+      "elements": [
+        {
+          "id": "id_chs25_6e",
+          "type": "text",
+          "text": "Joe baked some chocolate muffins and vanilla muffins.  He sold an equal number of chocolate muffins and vanilla muffins.  He had 3/4 of the vanilla muffins and 3/7 of the chocolate muffins left.  What fraction of the muffins were sold?"
+        },
+        {
+          "id": "id_chs25_6f",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_chs25_70",
+              "text": "5/28"
+            },
+            {
+              "id": "id_chs25_71",
+              "text": "8/23"
+            },
+            {
+              "id": "id_chs25_72",
+              "text": "23/28"
+            },
+            {
+              "id": "id_chs25_73",
+              "text": "15/23"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_76",
+      "elements": [
+        {
+          "id": "id_chs25_75",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_79",
+      "elements": [
+        {
+          "id": "id_chs25_77",
+          "type": "text",
+          "text": "Write three million, six thousand and forty in numerals."
+        },
+        {
+          "id": "id_chs25_78",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_7c",
+      "elements": [
+        {
+          "id": "id_chs25_7a",
+          "type": "text",
+          "text": "Round 39 470 to the nearest thousand."
+        },
+        {
+          "id": "id_chs25_7b",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_7f",
+      "elements": [
+        {
+          "id": "id_chs25_7d",
+          "type": "text",
+          "text": "Find the value of 3/8 ÷ 18.  Give your answer as a fraction in the simplest form."
+        },
+        {
+          "id": "id_chs25_7e",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_82",
+      "elements": [
+        {
+          "id": "id_chs25_80",
+          "type": "text",
+          "text": "Find the value of 3w − 9 + w/4 when w = 8."
+        },
+        {
+          "id": "id_chs25_81",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_85",
+      "elements": [
+        {
+          "id": "id_chs25_83",
+          "type": "text",
+          "text": "Write down all the common factors of 12 and 20."
+        },
+        {
+          "id": "id_chs25_84",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_87",
+      "elements": [
+        {
+          "id": "id_chs25_86",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_8a",
+      "elements": [
+        {
+          "id": "id_chs25_88",
+          "type": "text",
+          "text": "At a fruit stall, there were 320 fruits altogether.  1/4 of them were apples, 5/8 of them were oranges and the rest were mangoes.  The fruit stall sold 3/4 of the mangoes.  How many mangoes did the fruit stall sell?"
+        },
+        {
+          "id": "id_chs25_89",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_8e",
+      "elements": [
+        {
+          "id": "id_chs25_8b",
+          "type": "text",
+          "text": "The table shows the charges to post a parcel.  Mr Yap posted a parcel that weighed 4.8 kg.  How much did Mr Yap pay to post the parcel?"
+        },
+        {
+          "id": "id_chs25_8c",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Postage Rates table — Mass Step | Rate; First 500 g | $2; Every additional 1 kg | $1.50"
+        },
+        {
+          "id": "id_chs25_8d",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_92",
+      "elements": [
+        {
+          "id": "id_chs25_8f",
+          "type": "text",
+          "text": "In the figure below, ABCD is a rectangle with AB = 12 cm and BC = 5 cm.  Point E lies on DC.  DE = 4 cm.  Find the area of the shaded triangle."
+        },
+        {
+          "id": "id_chs25_90",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle ABCD: A (top-left), B (top-right), C (bottom-right), D (bottom-left); AB = 12 cm, BC = 5 cm; E on DC with DE = 4 cm; shaded triangle has vertices A, B and E"
+        },
+        {
+          "id": "id_chs25_91",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_95",
+      "elements": [
+        {
+          "id": "id_chs25_93",
+          "type": "text",
+          "text": "The average mass of some children is 48 kg.  There is an equal number of boys and girls.  The average mass of the boys is 50 kg.  Each statement below is either true, false or not possible to tell from the information given.  For each statement, put a tick (✓) in the correct column."
+        },
+        {
+          "id": "id_chs25_94",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two-row table with columns Statement | True | False | Not possible to tell.  Statements: 'The total mass of the boys is heavier than the total mass of the girls.' and 'The mass of each girl is 46 kg.'"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_98",
+      "elements": [
+        {
+          "id": "id_chs25_96",
+          "type": "text",
+          "text": "Jack wanted to buy 16 chicken wings but found that he needed another $5.  He bought 7 chicken wings and had $5.80 left.  What was the cost of a chicken wing?"
+        },
+        {
+          "id": "id_chs25_97",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_9b",
+      "elements": [
+        {
+          "id": "id_chs25_99",
+          "type": "text",
+          "text": "There are 11 shaded squares in the figure.  Shade 2 more squares to form a symmetric figure with AB as the line of symmetry."
+        },
+        {
+          "id": "id_chs25_9a",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with 11 shaded squares and a diagonal line AB from top-left (A) to bottom-right (B) acting as the line of symmetry"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_a2",
+      "elements": [
+        {
+          "id": "id_chs25_9c",
+          "type": "text",
+          "text": "7 unit cubes are glued together to form the solid shown."
+        },
+        {
+          "id": "id_chs25_9d",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Isometric drawing of a solid made from 7 unit cubes with arrows labelled Top View, Front View and Side View"
+        },
+        {
+          "id": "id_chs25_9e",
+          "type": "part",
+          "label": "(a)",
+          "text": "Draw the side view of the solid on the grid."
+        },
+        {
+          "id": "id_chs25_9f",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "7 × 7 dot grid for drawing the side view"
+        },
+        {
+          "id": "id_chs25_a0",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the least number of unit cubes to be added to the above solid to form a cube?"
+        },
+        {
+          "id": "id_chs25_a1",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_a6",
+      "elements": [
+        {
+          "id": "id_chs25_a3",
+          "type": "text",
+          "text": "The figure below is made up of a square and a rectangle overlapping each other.  The ratio of the shaded area to the area of the square is 1 : 5.  The ratio of shaded area to the area of rectangle is 2 : 9.  What is the ratio of the area of square to the area of the rectangle?"
+        },
+        {
+          "id": "id_chs25_a4",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "A square overlapping a rectangle with the overlapping region shaded"
+        },
+        {
+          "id": "id_chs25_a5",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_a9",
+      "elements": [
+        {
+          "id": "id_chs25_a7",
+          "type": "text",
+          "text": "At a party, 87 blue balloons and green balloons line one side of the wall.  There are at least 3 blue balloons between any 2 green balloons.  What is the greatest possible number of green balloons along the wall?"
+        },
+        {
+          "id": "id_chs25_a8",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_ae",
+      "elements": [
+        {
+          "id": "id_chs25_aa",
+          "type": "text",
+          "text": "In the square grid, AB and AD are straight lines.  Both lines are part of a trapezium ABCD."
+        },
+        {
+          "id": "id_chs25_ab",
+          "type": "part",
+          "label": "(a)",
+          "text": "AB is parallel to CD.  CD is half the length of AB.  Draw trapezium ABCD on the grid below."
+        },
+        {
+          "id": "id_chs25_ac",
+          "type": "part",
+          "label": "(b)",
+          "text": "AD is one side of a rhombus ADEF.  Draw ADEF on the grid such that it does not overlap with trapezium ABCD."
+        },
+        {
+          "id": "id_chs25_ad",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with line AB (A near the centre, B upper-right) and line AD (D to the lower-right of A)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_b0",
+      "elements": [
+        {
+          "id": "id_chs25_af",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly in the space below each question and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_b3",
+      "elements": [
+        {
+          "id": "id_chs25_b1",
+          "type": "text",
+          "text": "Richard took 90 minutes to run 5.4 km.  What was his average speed in km/h?"
+        },
+        {
+          "id": "id_chs25_b2",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_b7",
+      "elements": [
+        {
+          "id": "id_chs25_b4",
+          "type": "text",
+          "text": "During a sale, a laptop was sold for $1072 after a 20 % discount.  How much was the usual price of the laptop?"
+        },
+        {
+          "id": "id_chs25_b5",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Laptop with a tag reading '20% discount'"
+        },
+        {
+          "id": "id_chs25_b6",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_bb",
+      "elements": [
+        {
+          "id": "id_chs25_b8",
+          "type": "text",
+          "text": "A fruit seller packed 860 apples into bags of 4 for sale.  The price of each bag of apples was $7.80.  How much money did the fruit seller collect after selling all the bags of apples?"
+        },
+        {
+          "id": "id_chs25_b9",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Drawing of a bag of apples"
+        },
+        {
+          "id": "id_chs25_ba",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_bf",
+      "elements": [
+        {
+          "id": "id_chs25_bc",
+          "type": "text",
+          "text": "Figure 1 is a triangle with a perimeter of 39 cm.  Each side of the triangle has a different design.  Figure 2 is made up of 5 such triangles.  The perimeter of Figure 2 is 87 cm.  What is the length of ST in Figure 1?"
+        },
+        {
+          "id": "id_chs25_bd",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure 1: triangle STX with each side carrying a different design (moon, hearts, stars).  Figure 2: 5 such triangles joined together"
+        },
+        {
+          "id": "id_chs25_be",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_c6",
+      "elements": [
+        {
+          "id": "id_chs25_c0",
+          "type": "text",
+          "text": "A shop sells only three types of toys.  The table shows the number of each type of toy sold in the shop."
+        },
+        {
+          "id": "id_chs25_c1",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Type of Toy | Number of toys sold; Robot | p; Car | 2p + 8; Doll | 45"
+        },
+        {
+          "id": "id_chs25_c2",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the total number of toys sold by the shop in terms of p."
+        },
+        {
+          "id": "id_chs25_c3",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_c4",
+          "type": "part",
+          "label": "(b)",
+          "text": "The shop sold a total of 140 toys.  How many toy robots did the shop sell?"
+        },
+        {
+          "id": "id_chs25_c5",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_c8",
+      "elements": [
+        {
+          "id": "id_chs25_c7",
+          "type": "text",
+          "text": "For questions 6 to 17, show your working clearly in the space provided for each question and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_cf",
+      "elements": [
+        {
+          "id": "id_chs25_c9",
+          "type": "text",
+          "text": "The table below shows the number of visitors to a zoo from Thursday to Saturday.  The number of visitors to the zoo on Sunday is not shown."
+        },
+        {
+          "id": "id_chs25_ca",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Day | Number of visitors; Thursday | 3100; Friday | 2690; Saturday | 3580; Sunday | ?"
+        },
+        {
+          "id": "id_chs25_cb",
+          "type": "part",
+          "label": "(a)",
+          "text": "The number of visitors to the zoo on Sunday increased by 15 % when compared to Saturday.  What was the number of visitors to the zoo on Sunday?  [1]"
+        },
+        {
+          "id": "id_chs25_cc",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_cd",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was the percentage decrease in the number of visitors to the zoo on Friday compared to Thursday?  Round your answer to 1 decimal place.  [2]"
+        },
+        {
+          "id": "id_chs25_ce",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_d3",
+      "elements": [
+        {
+          "id": "id_chs25_d0",
+          "type": "text",
+          "text": "In the figure, ABC is an isosceles triangle.  AB = BC.  BDEC is a parallelogram.  AFE is a straight line.  ∠CBD = 142°.  Find ∠FED.  [3]"
+        },
+        {
+          "id": "id_chs25_d1",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Isosceles triangle ABC with AB = BC; parallelogram BDEC attached so that AFE is a straight line; given angles 53° at A, 48° at B (∠ABF), 142° at ∠CBD"
+        },
+        {
+          "id": "id_chs25_d2",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_d6",
+      "elements": [
+        {
+          "id": "id_chs25_d4",
+          "type": "text",
+          "text": "A baker sold some boxes of tarts and cookies.  Each box of tarts cost $3.10 and each box of cookies cost $5.50.  The baker sold twice as many boxes of tarts as boxes of cookies.  He earned a total of $1439.10.  How many boxes of tarts did he sell?  [3]"
+        },
+        {
+          "id": "id_chs25_d5",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_de",
+      "elements": [
+        {
+          "id": "id_chs25_d7",
+          "type": "text",
+          "text": "The first four figures of a pattern are shown below.  The table below shows the number of dots and lines used for each figure."
+        },
+        {
+          "id": "id_chs25_d8",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figures 1 to 4 of a pattern made of dots connected by lines (each figure adds an extra unit square)"
+        },
+        {
+          "id": "id_chs25_d9",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Figure Number: 1, 2, 3, 4.  Number of dots: 4, 7, 10, 13.  Number of lines: 4, 8, 12, 16."
+        },
+        {
+          "id": "id_chs25_da",
+          "type": "part",
+          "label": "(a)",
+          "text": "A figure in the pattern has 232 lines.  What is the Figure number?  [1]"
+        },
+        {
+          "id": "id_chs25_db",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_dc",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the total number of dots in Figure 70.  [2]"
+        },
+        {
+          "id": "id_chs25_dd",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_e1",
+      "elements": [
+        {
+          "id": "id_chs25_df",
+          "type": "text",
+          "text": "Walter and Cedric started cycling from the same place in opposite directions along a straight path.  Walter's speed was 40 m/min faster than Cedric's speed.  Both of them did not change their speeds throughout.  They were 23.38 km apart after they finished cycling.  Walter cycled 2.8 km more than Cedric.  What was Cedric's speed in m/min?  [3]"
+        },
+        {
+          "id": "id_chs25_e0",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_e9",
+      "elements": [
+        {
+          "id": "id_chs25_e2",
+          "type": "text",
+          "text": "The figure shows two stacks of identical paper cups.  There are 4 paper cups in the shorter stack and 6 paper cups in the taller stack.  The height of the shorter stack is 21 cm and the height of the taller stack is 25 cm."
+        },
+        {
+          "id": "id_chs25_e3",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two stacks of identical paper cups: 4 cups stacked to a height of 21 cm and 6 cups stacked to a height of 25 cm"
+        },
+        {
+          "id": "id_chs25_e4",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the height of a paper cup.  [2]"
+        },
+        {
+          "id": "id_chs25_e5",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_e6",
+          "type": "part",
+          "label": "(b)",
+          "text": "Mrs Ong wants to pack the paper cups as a single stack into a box of length 50 cm.  What is the most number of paper cups she can pack into the box?  [2]"
+        },
+        {
+          "id": "id_chs25_e7",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangular box of length 50 cm shown lying on its side"
+        },
+        {
+          "id": "id_chs25_e8",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_f0",
+      "elements": [
+        {
+          "id": "id_chs25_ea",
+          "type": "text",
+          "text": "At first, 1/11 of a tank was filled with water.  A tap was turned on at 10 00 for more water to flow into the tank.  It was turned off at 10 20.  The graph shows the volume of water in the tank over the 20 minutes."
+        },
+        {
+          "id": "id_chs25_eb",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph: Volume of water (litres) vs Time from 10 00 to 10 20; starting around 75 ℓ at 10 00 and rising linearly to about 225 ℓ at 10 20"
+        },
+        {
+          "id": "id_chs25_ec",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many litres of water flowed from the tap in 1 minute?  [1]"
+        },
+        {
+          "id": "id_chs25_ed",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_ee",
+          "type": "part",
+          "label": "(b)",
+          "text": "At 10 30, the tap was turned on again to fill the tank to the brim at the same rate as before.  At what time will the tank be filled to the brim with water?  [3]"
+        },
+        {
+          "id": "id_chs25_ef",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_f7",
+      "elements": [
+        {
+          "id": "id_chs25_f1",
+          "type": "text",
+          "text": "Susan designed a logo as shown.  The logo is made up of 3 identical small quarter circles, 3 identical big quarter circles and 2 different squares.  O is the centre of the small and big quarter circles.  The radius of the small quarter circle is 10 cm.  Take π = 3.14."
+        },
+        {
+          "id": "id_chs25_f2",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Shaded logo made up of 3 small quarter circles (radius 10 cm), 3 big quarter circles and 2 squares; overall width 32 cm; centre O marked"
+        },
+        {
+          "id": "id_chs25_f3",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the radius of a big quarter circle?  [1]"
+        },
+        {
+          "id": "id_chs25_f4",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_f5",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the total area of the logo that is shaded?  [3]"
+        },
+        {
+          "id": "id_chs25_f6",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_fe",
+      "elements": [
+        {
+          "id": "id_chs25_f8",
+          "type": "text",
+          "text": "A and B are two rectangular containers.  The base area of container A is twice the base area of container B.  Container A was filled with water to a height of 10 cm and container B was empty."
+        },
+        {
+          "id": "id_chs25_f9",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Container A: 36 cm × 12 cm × (height shown ≥ 10 cm), water height 10 cm.  Container B: square cross-section, height 32 cm, empty."
+        },
+        {
+          "id": "id_chs25_fa",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the volume of the water in container A?  [1]"
+        },
+        {
+          "id": "id_chs25_fb",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_fc",
+          "type": "part",
+          "label": "(b)",
+          "text": "All the water from container A was poured into container B without spilling.  How much more water was needed to fill container B to the brim?  [3]"
+        },
+        {
+          "id": "id_chs25_fd",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_105",
+      "elements": [
+        {
+          "id": "id_chs25_ff",
+          "type": "text",
+          "text": "Mr Lee and Mrs Sim bought muffins at the price as shown below."
+        },
+        {
+          "id": "id_chs25_100",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two-column price table — chocolate muffins (3 muffins drawn): 3 for $5; vanilla muffins (4 muffins drawn): 4 for $6"
+        },
+        {
+          "id": "id_chs25_101",
+          "type": "part",
+          "label": "(a)",
+          "text": "Mr Lee bought an equal number of chocolate muffins and vanilla muffins.  He spent $24 more on the chocolate muffins.  How many muffins did he buy altogether?  [3]"
+        },
+        {
+          "id": "id_chs25_102",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_103",
+          "type": "part",
+          "label": "(b)",
+          "text": "Mrs Sim spent an equal amount of money on the chocolate muffins and vanilla muffins.  What fraction of the muffins she bought were chocolate?  Leave your answer in the simplest form.  [2]"
+        },
+        {
+          "id": "id_chs25_104",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_108",
+      "elements": [
+        {
+          "id": "id_chs25_106",
+          "type": "text",
+          "text": "Chloe spent 5/8 of her money on 3 identical books and 7 identical files.  The cost of each book was 3 times the cost of each file.  She bought some more files with 5/6 of her remaining money and had $4 left.  How much did Chloe spend on the files altogether?  [5]"
+        },
+        {
+          "id": "id_chs25_107",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_chs25_10e",
+      "elements": [
+        {
+          "id": "id_chs25_109",
+          "type": "text",
+          "text": "Three boys Lionel, Michael and Nate had the same number of coins.  Lionel and Michael each had a mix of fifty-cent and ten-cent coins.  Lionel had 10 ten-cent coins, while Michael had 15 ten-cent coins.  Nate had only fifty-cent coins."
+        },
+        {
+          "id": "id_chs25_10a",
+          "type": "part",
+          "label": "(a)",
+          "text": "How much more money did Lionel have than Michael?  [2]"
+        },
+        {
+          "id": "id_chs25_10b",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_chs25_10c",
+          "type": "part",
+          "label": "(b)",
+          "text": "Michael used all his fifty-cent coins to buy some food.  He then had $8 less in coins than Nate.  How many fifty-cent coins did Nate have?  [2]"
+        },
+        {
+          "id": "id_chs25_10d",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
