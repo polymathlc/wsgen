@@ -956,6 +956,8 @@
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
         <button class="btn admin-only" id="newWorksheetBtn">New</button>
+        <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
+        <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
         <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
         <button class="btn admin-only" id="saveJsonBtn">Save JSON</button>
@@ -1102,6 +1104,7 @@ function renderEditorQuestion(q, qIndex) {
   actions.className = 'header-actions';
   actions.appendChild(makeIconBtn('↑', 'Move up', () => moveQuestion(qIndex, -1)));
   actions.appendChild(makeIconBtn('↓', 'Move down', () => moveQuestion(qIndex, 1)));
+  actions.appendChild(makeIconBtn('📋', 'Copy to draft worksheet', () => copyQuestionToDraft(qIndex)));
   actions.appendChild(makeIconBtn('✕', 'Delete question', () => removeQuestion(qIndex), true));
   header.appendChild(actions);
 
@@ -2947,10 +2950,97 @@ function newWorksheet() {
   refreshSavedList();
 }
 
+/* =========================================================================
+   DRAFT WORKSHEET  — collect questions from different worksheets, then
+   open them all together as one new worksheet. Persisted in localStorage
+   so the draft survives navigating between worksheets and page reloads.
+   ========================================================================= */
+const DRAFT_KEY = 'wsgen.draftQuestions';
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_) {
+    return [];
+  }
+}
+function saveDraft(arr) {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(arr));
+  } catch (e) {
+    alert('Could not save to draft (storage may be full): ' + e.message);
+  }
+}
+function reidQuestion(q) {
+  const clone = JSON.parse(JSON.stringify(q));
+  clone.id = newId();
+  (clone.elements || []).forEach(el => {
+    el.id = newId();
+    if (Array.isArray(el.options)) {
+      const remap = {};
+      el.options.forEach(o => {
+        const nid = newId();
+        remap[o.id] = nid;
+        o.id = nid;
+      });
+      if (el.correctId && remap[el.correctId]) el.correctId = remap[el.correctId];
+    }
+  });
+  return clone;
+}
+function copyQuestionToDraft(qIndex) {
+  const q = state.questions[qIndex];
+  if (!q) return;
+  const draft = loadDraft();
+  draft.push(reidQuestion(q));
+  saveDraft(draft);
+  updateDraftBadge();
+}
+function openDraft() {
+  const draft = loadDraft();
+  if (draft.length === 0) {
+    alert('Draft is empty. Click 📋 on any question to copy it into the draft.');
+    return;
+  }
+  if (state.questions.length > 0 &&
+      !confirm(`Replace the current worksheet with the ${draft.length} draft question(s)?`)) {
+    return;
+  }
+  state = {
+    title: 'Draft Worksheet',
+    subtitle: '',
+    questions: draft.map(reidQuestion)
+  };
+  currentSavedId = null;
+  document.getElementById('worksheetTitle').value = state.title;
+  document.getElementById('worksheetSubtitle').value = '';
+  renderEditor();
+  renderPreview();
+}
+function clearDraft() {
+  const n = loadDraft().length;
+  if (n === 0) return;
+  if (!confirm(`Clear ${n} question(s) from the draft?`)) return;
+  saveDraft([]);
+  updateDraftBadge();
+}
+function updateDraftBadge() {
+  const n = loadDraft().length;
+  const openBtn = document.getElementById('openDraftBtn');
+  if (openBtn) openBtn.textContent = `📋 Open Draft (${n})`;
+  const clearBtn = document.getElementById('clearDraftBtn');
+  if (clearBtn) clearBtn.style.display = n > 0 ? '' : 'none';
+}
+
 document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
+document.getElementById('openDraftBtn').addEventListener('click', openDraft);
+document.getElementById('clearDraftBtn').addEventListener('click', clearDraft);
+updateDraftBadge();
 
 async function migrateLegacyWorksheets() {
   if (!isAdmin()) return;
