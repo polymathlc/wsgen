@@ -1,0 +1,1546 @@
+{
+  "title": "ACS(J) 2025 P6 Maths Prelim (Booklets A & B, Paper 2)",
+  "subtitle": "Anglo-Chinese School (Junior) — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_19e4120fd6e_2",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_1",
+          "type": "text",
+          "text": "Booklet A — Paper 1 (MCQ).  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_9",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_3",
+          "type": "text",
+          "text": "Which of the following is fifty thousand and fifty-six in numerals?"
+        },
+        {
+          "id": "id_19e4120fd6e_8",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_4",
+              "text": "5056"
+            },
+            {
+              "id": "id_19e4120fd6e_5",
+              "text": "50 056"
+            },
+            {
+              "id": "id_19e4120fd6e_6",
+              "text": "500 056"
+            },
+            {
+              "id": "id_19e4120fd6e_7",
+              "text": "5 000 056"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_10",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_a",
+          "type": "text",
+          "text": "Which decimal is greater than 0.07 but smaller than 0.19?"
+        },
+        {
+          "id": "id_19e4120fd6e_f",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_b",
+              "text": "0.1"
+            },
+            {
+              "id": "id_19e4120fd6e_c",
+              "text": "0.2"
+            },
+            {
+              "id": "id_19e4120fd6e_d",
+              "text": "0.01"
+            },
+            {
+              "id": "id_19e4120fd6e_e",
+              "text": "0.06"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_18",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_11",
+          "type": "text",
+          "text": "In the number line, what is the mixed number represented by A?"
+        },
+        {
+          "id": "id_19e4120fd6e_12",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Number line from 2 to 3 with arrow A"
+        },
+        {
+          "id": "id_19e4120fd6e_17",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_13",
+              "text": "2 2/3"
+            },
+            {
+              "id": "id_19e4120fd6e_14",
+              "text": "2 5/6"
+            },
+            {
+              "id": "id_19e4120fd6e_15",
+              "text": "2 6/7"
+            },
+            {
+              "id": "id_19e4120fd6e_16",
+              "text": "2 7/8"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_1f",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_19",
+          "type": "text",
+          "text": "What is the value of 18 + (30 − 6) ÷ 3 × 2 ?"
+        },
+        {
+          "id": "id_19e4120fd6e_1e",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_1a",
+              "text": "7"
+            },
+            {
+              "id": "id_19e4120fd6e_1b",
+              "text": "22"
+            },
+            {
+              "id": "id_19e4120fd6e_1c",
+              "text": "34"
+            },
+            {
+              "id": "id_19e4120fd6e_1d",
+              "text": "52"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_27",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_20",
+          "type": "text",
+          "text": "The figure shows part of a weighing scale.  Which of the following is the closest to the reading indicated by the arrow?"
+        },
+        {
+          "id": "id_19e4120fd6e_21",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Weighing scale, arrow between 70 and 80 kg"
+        },
+        {
+          "id": "id_19e4120fd6e_26",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_22",
+              "text": "73"
+            },
+            {
+              "id": "id_19e4120fd6e_23",
+              "text": "75"
+            },
+            {
+              "id": "id_19e4120fd6e_24",
+              "text": "77"
+            },
+            {
+              "id": "id_19e4120fd6e_25",
+              "text": "78"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_2e",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_28",
+          "type": "text",
+          "text": "Which of the following is the same as 6020 ml ?"
+        },
+        {
+          "id": "id_19e4120fd6e_2d",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_29",
+              "text": "60 l 2 ml"
+            },
+            {
+              "id": "id_19e4120fd6e_2a",
+              "text": "60 l 20 ml"
+            },
+            {
+              "id": "id_19e4120fd6e_2b",
+              "text": "6 l 2 ml"
+            },
+            {
+              "id": "id_19e4120fd6e_2c",
+              "text": "6 l 20 ml"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_36",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_2f",
+          "type": "text",
+          "text": "A prism has two right-angled triangular faces and three rectangular faces.  Which of the following will complete the net of the prism?"
+        },
+        {
+          "id": "id_19e4120fd6e_30",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Prism and its incomplete net (sides 3 cm, 4 cm, 5 cm, height 6 cm)"
+        },
+        {
+          "id": "id_19e4120fd6e_35",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_31",
+              "text": "3 cm × 6 cm rectangle"
+            },
+            {
+              "id": "id_19e4120fd6e_32",
+              "text": "4 cm × 6 cm rectangle"
+            },
+            {
+              "id": "id_19e4120fd6e_33",
+              "text": "5 cm × 6 cm rectangle"
+            },
+            {
+              "id": "id_19e4120fd6e_34",
+              "text": "6 cm × 6 cm square"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_3e",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_37",
+          "type": "text",
+          "text": "Five letters are drawn on the square grid.  How many of the letters have both perpendicular and parallel lines?"
+        },
+        {
+          "id": "id_19e4120fd6e_38",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Letters F, X, M, Y, N on a square grid"
+        },
+        {
+          "id": "id_19e4120fd6e_3d",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_39",
+              "text": "5"
+            },
+            {
+              "id": "id_19e4120fd6e_3a",
+              "text": "2"
+            },
+            {
+              "id": "id_19e4120fd6e_3b",
+              "text": "3"
+            },
+            {
+              "id": "id_19e4120fd6e_3c",
+              "text": "4"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_45",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_3f",
+          "type": "text",
+          "text": "The table shows the departure times of buses A, B, C and D at the Bus Terminal.\n\nBus A — 1245\nBus B — 1330\nBus C — 1415\nBus D — 1500\n\nKeith arrived at the Bus Terminal at 1 p.m.  Which is the earliest bus he can take?"
+        },
+        {
+          "id": "id_19e4120fd6e_44",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_40",
+              "text": "A"
+            },
+            {
+              "id": "id_19e4120fd6e_41",
+              "text": "B"
+            },
+            {
+              "id": "id_19e4120fd6e_42",
+              "text": "C"
+            },
+            {
+              "id": "id_19e4120fd6e_43",
+              "text": "D"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_4d",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_46",
+          "type": "text",
+          "text": "The number of pies sold at a bakery decreased by 150 from Wednesday to Thursday and increased by 60 from Thursday to Friday.  Which graph shows the number of pies sold at the bakery from Wednesday to Friday?"
+        },
+        {
+          "id": "id_19e4120fd6e_47",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four line graphs labelled (1)–(4), each plotting Number of pies vs Wed/Thu/Fri"
+        },
+        {
+          "id": "id_19e4120fd6e_4c",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_48",
+              "text": "Graph (1)"
+            },
+            {
+              "id": "id_19e4120fd6e_49",
+              "text": "Graph (2)"
+            },
+            {
+              "id": "id_19e4120fd6e_4a",
+              "text": "Graph (3)"
+            },
+            {
+              "id": "id_19e4120fd6e_4b",
+              "text": "Graph (4)"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_54",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_4e",
+          "type": "text",
+          "text": "A plank of wood was first cut into two pieces in the ratio 2 : 3.  The longer piece was then cut into 2 pieces in the ratio 1 : 3.  The shortest piece of wood among the three pieces was 18 cm long.  What was the length of the original plank of wood?"
+        },
+        {
+          "id": "id_19e4120fd6e_53",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_4f",
+              "text": "72 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_50",
+              "text": "90 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_51",
+              "text": "108 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_52",
+              "text": "120 cm"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_5c",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_55",
+          "type": "text",
+          "text": "The shaded figure is made up of a large semicircle and a square with a small semicircle cut-out from the square.  The diameter of the small semicircle is 10 cm, and the diameter of the large semicircle is twice the length of the diameter of the small semicircle.  What is the perimeter of the shaded figure? (Take π = 3.14)"
+        },
+        {
+          "id": "id_19e4120fd6e_56",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Shaded figure: large semicircle on top of a square with a small semicircle cut from the bottom"
+        },
+        {
+          "id": "id_19e4120fd6e_5b",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_57",
+              "text": "77.1 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_58",
+              "text": "71.4 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_59",
+              "text": "67.1 cm"
+            },
+            {
+              "id": "id_19e4120fd6e_5a",
+              "text": "61.4 cm"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_63",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_5d",
+          "type": "text",
+          "text": "The table below shows the rates for renting a bicycle at a shop.\n\nFirst hour — $6\nEvery additional 30 min or part thereof — $4\n\nDaniel rented a bicycle at 8.20 a.m.  What is the latest time Daniel must return his bicycle if he only has $20 to spend on rental fees?"
+        },
+        {
+          "id": "id_19e4120fd6e_62",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_5e",
+              "text": "10.20 a.m."
+            },
+            {
+              "id": "id_19e4120fd6e_5f",
+              "text": "10.50 a.m."
+            },
+            {
+              "id": "id_19e4120fd6e_60",
+              "text": "11.20 a.m."
+            },
+            {
+              "id": "id_19e4120fd6e_61",
+              "text": "11.50 a.m."
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_6b",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_64",
+          "type": "text",
+          "text": "Two figures PQRS and WXYZ are shown in the square grid below.\n\nWhich of the following statement(s) is/are true?\nA. SR // WX\nB. ∠SPQ = ∠XYZ\nC. Figure PQRS and Figure WXYZ has the same perimeter."
+        },
+        {
+          "id": "id_19e4120fd6e_65",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two quadrilaterals PQRS and WXYZ drawn on a square grid"
+        },
+        {
+          "id": "id_19e4120fd6e_6a",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_66",
+              "text": "A only"
+            },
+            {
+              "id": "id_19e4120fd6e_67",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_19e4120fd6e_68",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_19e4120fd6e_69",
+              "text": "All the above"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_72",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_6c",
+          "type": "text",
+          "text": "Mollie had a container full of flour.  Nellie and Ollie each had 2/5 of what Mollie had.  Mollie gave away some flour to Nellie and Ollie so that all 3 of them have the same amount of flour in the end.  What fraction of flour did Mollie give away?"
+        },
+        {
+          "id": "id_19e4120fd6e_71",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_19e4120fd6e_6d",
+              "text": "6/7"
+            },
+            {
+              "id": "id_19e4120fd6e_6e",
+              "text": "5/14"
+            },
+            {
+              "id": "id_19e4120fd6e_6f",
+              "text": "5/21"
+            },
+            {
+              "id": "id_19e4120fd6e_70",
+              "text": "10/21"
+            }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_74",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_73",
+          "type": "text",
+          "text": "Booklet B — Paper 1 (Short Answer).  Questions 16 to 20 carry 1 mark each.  Questions 21 to 30 carry 2 marks each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated."
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_77",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_75",
+          "type": "text",
+          "text": "Find the value of 4.5 ÷ 300."
+        },
+        {
+          "id": "id_19e4120fd6e_76",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_7a",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_78",
+          "type": "text",
+          "text": "Find the value of 3/8 × 12.  Give your answer in its simplest form."
+        },
+        {
+          "id": "id_19e4120fd6e_79",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_7e",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_7b",
+          "type": "text",
+          "text": "A hairclip is placed next to a ruler.  Find the length of the hairclip."
+        },
+        {
+          "id": "id_19e4120fd6e_7c",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Hairclip placed against a ruler from 0 to 12 cm"
+        },
+        {
+          "id": "id_19e4120fd6e_7d",
+          "type": "answer",
+          "label": "Ans : ____ cm",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_81",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_7f",
+          "type": "text",
+          "text": "Benson took 210 min to complete a race.  He was 25 min slower than Carson.  How long did Carson take to complete the race?  Give your answer in min."
+        },
+        {
+          "id": "id_19e4120fd6e_80",
+          "type": "answer",
+          "label": "Ans : ____ min",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_85",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_82",
+          "type": "text",
+          "text": "The figure shows a cuboid with a square base of area 25 cm².  The area of the shaded face is 60 cm².  What is the height of the cuboid?"
+        },
+        {
+          "id": "id_19e4120fd6e_83",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Cuboid with shaded face labelled 60 cm² and square base 25 cm²"
+        },
+        {
+          "id": "id_19e4120fd6e_84",
+          "type": "answer",
+          "label": "Ans : ____ cm",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_89",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_86",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        },
+        {
+          "id": "id_19e4120fd6e_87",
+          "type": "text",
+          "text": "21.  Find the value of 6 ÷ 7.  Round your answer to 2 decimal places."
+        },
+        {
+          "id": "id_19e4120fd6e_88",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_8c",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_8a",
+          "type": "text",
+          "text": "Jason used a calculator to divide a 4-digit number by a 1-digit number.  For the 1-digit number, he made a mistake by pressing 6 instead of 7.  He obtained an incorrect answer of 210.  What should be the correct answer?"
+        },
+        {
+          "id": "id_19e4120fd6e_8b",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_92",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_8d",
+          "type": "text",
+          "text": "The table shows the number of visitors to Bird Paradise.\n\nMonday to Friday — 3p each day\nSaturday — 6p + 70\nSunday — 9p − 25"
+        },
+        {
+          "id": "id_19e4120fd6e_8e",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the total number of visitors to Bird Paradise in the week?  Express your answer in terms of p in the simplest form."
+        },
+        {
+          "id": "id_19e4120fd6e_8f",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_90",
+          "type": "part",
+          "label": "(b)",
+          "text": "The total number of visitors to Bird Paradise in the week was 7395.  Find the value of p."
+        },
+        {
+          "id": "id_19e4120fd6e_91",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_99",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_93",
+          "type": "text",
+          "text": "The pie chart represents the type of sports the Primary 6 students liked.  The number of students who liked bowling is the same as those who liked cycling."
+        },
+        {
+          "id": "id_19e4120fd6e_94",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart with sectors Basketball 32%, Rugby 28%, Bowling, Cycling"
+        },
+        {
+          "id": "id_19e4120fd6e_95",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the percentage of students who liked bowling?"
+        },
+        {
+          "id": "id_19e4120fd6e_96",
+          "type": "answer",
+          "label": "Ans : (a) ____ %",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_97",
+          "type": "part",
+          "label": "(b)",
+          "text": "There were 10 more students who liked basketball than rugby.  What was the total number of Primary 6 students?"
+        },
+        {
+          "id": "id_19e4120fd6e_98",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_9d",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_9a",
+          "type": "text",
+          "text": "The figure is made up of squares.  Shade two more squares so that the figure has a line of symmetry."
+        },
+        {
+          "id": "id_19e4120fd6e_9b",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Grid of squares, some already shaded — shade 2 more for symmetry"
+        },
+        {
+          "id": "id_19e4120fd6e_9c",
+          "type": "answer",
+          "label": "Ans : See figure",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_a4",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_9e",
+          "type": "text",
+          "text": "The square grid shows the plan of a playground.  The rocking horse is north of the see-saw.\n\nGrid positions (approx.):\n• Swing — top left\n• Rocking horse — top right\n• Slide — centre\n• See-saw — middle right\n• Roundabout — bottom"
+        },
+        {
+          "id": "id_19e4120fd6e_9f",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square-grid plan of the playground with Swing, Slide, Rocking horse, See-saw and Roundabout"
+        },
+        {
+          "id": "id_19e4120fd6e_a0",
+          "type": "part",
+          "label": "(a)",
+          "text": "In which direction is the rocking horse from the swing?"
+        },
+        {
+          "id": "id_19e4120fd6e_a1",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_a2",
+          "type": "part",
+          "label": "(b)",
+          "text": "The playground manager wants to place a bench in the playground.  The bench is to be placed south of the slide and north-west of the roundabout.  Put a cross (X) in the square where the bench should be placed."
+        },
+        {
+          "id": "id_19e4120fd6e_a3",
+          "type": "answer",
+          "label": "Ans : (b) See figure",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_ab",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_a5",
+          "type": "text",
+          "text": "The bar graph shows the amount of rainfall each month from Jul to Dec in 2024."
+        },
+        {
+          "id": "id_19e4120fd6e_a6",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Bar graph: Amount of rainfall (mm) for Jul, Aug, Sep, Oct, Nov, Dec"
+        },
+        {
+          "id": "id_19e4120fd6e_a7",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the difference between the highest amount of rainfall in a month and the lowest amount of rainfall in a month?"
+        },
+        {
+          "id": "id_19e4120fd6e_a8",
+          "type": "answer",
+          "label": "Ans : (a) ____ mm",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_a9",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the percentage decrease in rainfall in Sep as compared to Aug?"
+        },
+        {
+          "id": "id_19e4120fd6e_aa",
+          "type": "answer",
+          "label": "Ans : (b) ____ %",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_af",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_ac",
+          "type": "text",
+          "text": "During a sale, a store gave a storewide discount of 20%.  Darryl signed up as a member and received an additional 10% discount on the discounted price.  He paid $720 for the coffee machine.  What was the total amount of his discount?"
+        },
+        {
+          "id": "id_19e4120fd6e_ad",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Picture of a coffee machine"
+        },
+        {
+          "id": "id_19e4120fd6e_ae",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_b3",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_b0",
+          "type": "text",
+          "text": "Nancy had a rectangular piece of paper.  She folded along the line AB as shown.  ∠x = 124°.  Find ∠y."
+        },
+        {
+          "id": "id_19e4120fd6e_b1",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Before-and-after folding diagram of a rectangular piece of paper, with angles x and y marked"
+        },
+        {
+          "id": "id_19e4120fd6e_b2",
+          "type": "answer",
+          "label": "Ans : ____ °",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_b7",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_b4",
+          "type": "text",
+          "text": "Lisha used 16 identical right-angled triangle tiles to form a rectangle.  The perimeter of the rectangle is 80 cm.  Find the area of one triangle."
+        },
+        {
+          "id": "id_19e4120fd6e_b5",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle formed by 16 identical right-angled triangle tiles"
+        },
+        {
+          "id": "id_19e4120fd6e_b6",
+          "type": "answer",
+          "label": "Ans : ____ cm²",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_b9",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_b8",
+          "type": "text",
+          "text": "Paper 2 — Long Answer.  Questions 1 to 5 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (45 marks total for Paper 2.)"
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_bc",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_ba",
+          "type": "text",
+          "text": "Paper 2, Question 1.  Samad saves $2.50 every day.  For every $15 saved, his father will give him an additional $3.  How much money will Samad save in 50 days?"
+        },
+        {
+          "id": "id_19e4120fd6e_bb",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_bf",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_bd",
+          "type": "text",
+          "text": "Paper 2, Question 2.  Eric gives 1/4 of his income to his parents.  When his income increased by 20%, his parents received $240 more.  What is his income before the increase?"
+        },
+        {
+          "id": "id_19e4120fd6e_be",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_c3",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_c0",
+          "type": "text",
+          "text": "Paper 2, Question 3.  In the figure, PQRS is a rectangle.  RTUV is a rhombus.  ∠RTU = 122° and ∠VRS = 256°.  Find ∠QRT."
+        },
+        {
+          "id": "id_19e4120fd6e_c1",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle PQRS with rhombus RTUV inside; angles 122° at T and 256° at R marked"
+        },
+        {
+          "id": "id_19e4120fd6e_c2",
+          "type": "answer",
+          "label": "Ans : ____ °",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_c6",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_c4",
+          "type": "text",
+          "text": "Paper 2, Question 4.  The average of four different 2-digit numbers is 92.  Of the four numbers, find the smallest possible number."
+        },
+        {
+          "id": "id_19e4120fd6e_c5",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_cd",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_c7",
+          "type": "text",
+          "text": "Paper 2, Question 5.  The solid below is made up of 8 cubes (Top View, Front View and Side View are given)."
+        },
+        {
+          "id": "id_19e4120fd6e_c8",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Isometric drawing of the 8-cube solid with Top, Front and Side views labelled"
+        },
+        {
+          "id": "id_19e4120fd6e_c9",
+          "type": "part",
+          "label": "(a)",
+          "text": "Draw the front view of the solid on the grid."
+        },
+        {
+          "id": "id_19e4120fd6e_ca",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Blank dot grid for drawing the front view"
+        },
+        {
+          "id": "id_19e4120fd6e_cb",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the maximum number of cubes that can be added to the solid without changing the front view and side view?"
+        },
+        {
+          "id": "id_19e4120fd6e_cc",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_d4",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_ce",
+          "type": "text",
+          "text": "Paper 2, Question 6.  The pie chart shows how Isabelle spent her money.  Sectors: Transport 24%, Clothes, Savings, Food.  The amount of money Isabelle spent on transport is 2/5 of the amount she spent on food."
+        },
+        {
+          "id": "id_19e4120fd6e_cf",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart: Clothes, Transport 24%, Savings, Food"
+        },
+        {
+          "id": "id_19e4120fd6e_d0",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the percentage of Isabelle's money spent on food?"
+        },
+        {
+          "id": "id_19e4120fd6e_d1",
+          "type": "answer",
+          "label": "Ans : (a) ____ %",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_d2",
+          "type": "part",
+          "label": "(b)",
+          "text": "The amount of money Isabelle saved was 25% of the amount she spent on transport.  Isabelle saved $90.  How much money did she spend in total?"
+        },
+        {
+          "id": "id_19e4120fd6e_d3",
+          "type": "answer",
+          "label": "Ans : (b) $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_d8",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_d5",
+          "type": "text",
+          "text": "Paper 2, Question 7.  A rectangular tank measuring 80 cm by 60 cm by 50 cm was 2/3 full of water.  Tap A can fill the empty tank in 8 minutes.  How long did it take to fill the tank completely?"
+        },
+        {
+          "id": "id_19e4120fd6e_d6",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangular tank 80 cm × 60 cm × 50 cm with Tap A at the top; water level shown"
+        },
+        {
+          "id": "id_19e4120fd6e_d7",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_de",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_d9",
+          "type": "text",
+          "text": "Paper 2, Question 8.  Frank's mass is y kg.  His mass is 1/3 of Gideon's mass.  Henry is 4 kg lighter than Gideon."
+        },
+        {
+          "id": "id_19e4120fd6e_da",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the total mass of the 3 boys in terms of y?"
+        },
+        {
+          "id": "id_19e4120fd6e_db",
+          "type": "answer",
+          "label": "Ans : (a) ____ kg",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_dc",
+          "type": "part",
+          "label": "(b)",
+          "text": "If Frank's mass is 28 kg, what is the difference between Frank's mass and Henry's mass?"
+        },
+        {
+          "id": "id_19e4120fd6e_dd",
+          "type": "answer",
+          "label": "Ans : (b) ____ kg",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_e5",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_df",
+          "type": "text",
+          "text": "Paper 2, Question 9.  In the square grid below, ABC is a triangle."
+        },
+        {
+          "id": "id_19e4120fd6e_e0",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid showing triangle ABC, with vertex A at top-left and B, C lower"
+        },
+        {
+          "id": "id_19e4120fd6e_e1",
+          "type": "part",
+          "label": "(a)",
+          "text": "Measure ∠ACB."
+        },
+        {
+          "id": "id_19e4120fd6e_e2",
+          "type": "answer",
+          "label": "Ans : (a) ____ °",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_e3",
+          "type": "part",
+          "label": "(b)",
+          "text": "BC form one side of a trapezium BCDE.  BC is parallel to DE and AB = BE.  DE is twice as long as BC.  Complete the drawing of trapezium BCDE."
+        },
+        {
+          "id": "id_19e4120fd6e_e4",
+          "type": "answer",
+          "label": "Ans : (b) See figure",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_ee",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_e6",
+          "type": "text",
+          "text": "Paper 2, Question 10.  A shop offered 120 T-shirts at a 20% discount during a 7-day sale.  The line graph shows the number of T-shirts left unsold at the end of each day."
+        },
+        {
+          "id": "id_19e4120fd6e_e7",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph: Number of T-shirts left unsold vs Start of Sale, Day 1 … Day 7"
+        },
+        {
+          "id": "id_19e4120fd6e_e8",
+          "type": "part",
+          "label": "(a)",
+          "text": "On which day was the most number of T-shirts sold?"
+        },
+        {
+          "id": "id_19e4120fd6e_e9",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_ea",
+          "type": "part",
+          "label": "(b)",
+          "text": "What percentage of 120 T-shirts were sold in the first 5 days of the sale?  Correct your answer to the nearest percent."
+        },
+        {
+          "id": "id_19e4120fd6e_eb",
+          "type": "answer",
+          "label": "Ans : (b) ____ %",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_ec",
+          "type": "part",
+          "label": "(c)",
+          "text": "The shop collected $192 on Day 3 of the sale.  What was the price of each T-shirt before the discount?"
+        },
+        {
+          "id": "id_19e4120fd6e_ed",
+          "type": "answer",
+          "label": "Ans : (c) $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_f4",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_ef",
+          "type": "text",
+          "text": "Paper 2, Question 11.  Ray and Wayne ran in a race around a 400-m track.  Ray ran at a speed of 195 m/min and Wayne at a speed that was 25 m/min slower than Ray throughout the race."
+        },
+        {
+          "id": "id_19e4120fd6e_f0",
+          "type": "part",
+          "label": "(a)",
+          "text": "How long would it take Ray to run a distance of 350 m more than Wayne?"
+        },
+        {
+          "id": "id_19e4120fd6e_f1",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_f2",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many complete rounds would Ray have finished when the above happened?"
+        },
+        {
+          "id": "id_19e4120fd6e_f3",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_fd",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_f5",
+          "type": "text",
+          "text": "Paper 2, Question 12.  In the figure, five squares are drawn within a rectangular piece of paper.  The left-over part of the paper is shaded.  The side of square X measures 4 cm."
+        },
+        {
+          "id": "id_19e4120fd6e_f6",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangle containing 5 squares with the leftover region shaded; small squares X and Y at the bottom right"
+        },
+        {
+          "id": "id_19e4120fd6e_f7",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the length of the side of square Y?"
+        },
+        {
+          "id": "id_19e4120fd6e_f8",
+          "type": "answer",
+          "label": "Ans : (a) ____ cm",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_f9",
+          "type": "part",
+          "label": "(b)",
+          "text": "The breadth of the left-over paper is 1.5 cm.  What is the length of the rectangular piece of paper?"
+        },
+        {
+          "id": "id_19e4120fd6e_fa",
+          "type": "answer",
+          "label": "Ans : (b) ____ cm",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_fb",
+          "type": "part",
+          "label": "(c)",
+          "text": "Paul cut out each of the five squares on the rectangular paper into 2-cm squares.  He then used the 2-cm squares to form cubes.  What is the greatest number of cubes Paul can make?"
+        },
+        {
+          "id": "id_19e4120fd6e_fc",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_104",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_fe",
+          "type": "text",
+          "text": "Paper 2, Question 13.  In the figure, ABCD is a rhombus and ADEF is a trapezium.  AF is parallel to DE.  Angles 21°, 108° and 33° are marked."
+        },
+        {
+          "id": "id_19e4120fd6e_ff",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure with rhombus ABCD and trapezium ADEF; angles x at A, y at E, plus 21°, 108°, 33° marked"
+        },
+        {
+          "id": "id_19e4120fd6e_100",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠x."
+        },
+        {
+          "id": "id_19e4120fd6e_101",
+          "type": "answer",
+          "label": "Ans : (a) ____ °",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_102",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠y."
+        },
+        {
+          "id": "id_19e4120fd6e_103",
+          "type": "answer",
+          "label": "Ans : (b) ____ °",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_10a",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_105",
+          "type": "text",
+          "text": "Paper 2, Question 14.  There were almond and chocolate cookies in a container.  Mrs Tan took out 35 almond cookies and 60% of the chocolate cookies.  After that, the ratio of the number of almond cookies to the number of chocolate cookies in the container was 2 : 5."
+        },
+        {
+          "id": "id_19e4120fd6e_106",
+          "type": "part",
+          "label": "(a)",
+          "text": "What fraction of chocolate cookies did Mrs Tan take out from the container?  Give your answer in the simplest form."
+        },
+        {
+          "id": "id_19e4120fd6e_107",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_108",
+          "type": "part",
+          "label": "(b)",
+          "text": "Mrs Tan had 154 more chocolate cookies than almond cookies at first.  How many almond and chocolate cookies were left in the container in the end?"
+        },
+        {
+          "id": "id_19e4120fd6e_109",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_111",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_10b",
+          "type": "text",
+          "text": "Paper 2, Question 15.  Figure OABCD is formed by overlapping 2 similar quarter circles OAC and OBD.  OA = OB = OC = OD = 10 cm.  The area of the shaded part OBC is 30 cm² and the perimeter of the shaded part OBC is 26 cm."
+        },
+        {
+          "id": "id_19e4120fd6e_10c",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure OABCD: two overlapping quarter circles forming a fan, shaded region OBC in the middle"
+        },
+        {
+          "id": "id_19e4120fd6e_10d",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the area of figure OABCD.  Take π = 3.14."
+        },
+        {
+          "id": "id_19e4120fd6e_10e",
+          "type": "answer",
+          "label": "Ans : (a) ____ cm²",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_10f",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the perimeter of figure OABCD.  Take π = 3.14."
+        },
+        {
+          "id": "id_19e4120fd6e_110",
+          "type": "answer",
+          "label": "Ans : (b) ____ cm",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_115",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_112",
+          "type": "text",
+          "text": "Paper 2, Question 16.  At a bookshop, erasers are sold only in packs of 8 and pencils are sold only in packs of 5.  Erasers: 8 for $2.  Pencils: 5 for $3.  Mr Tan bought erasers and pencils for his company.  He spent 1/3 of his money on erasers and the rest of his money on pencils.  He bought 36 more erasers than pencils.  How much did Mr Tan spend altogether?"
+        },
+        {
+          "id": "id_19e4120fd6e_113",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Picture of erasers (8 for $2) and pencils (5 for $3)"
+        },
+        {
+          "id": "id_19e4120fd6e_114",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_19e4120fd6e_11b",
+      "elements": [
+        {
+          "id": "id_19e4120fd6e_116",
+          "type": "text",
+          "text": "Paper 2, Question 17.  Ann filled some orange juice into large and small bottles.  She filled 1/3 of the orange juice into 4 large bottles and 2/3 of the remaining orange juice into 9 small bottles."
+        },
+        {
+          "id": "id_19e4120fd6e_117",
+          "type": "part",
+          "label": "(a)",
+          "text": "What fraction of the orange juice was filled into the 9 small bottles?"
+        },
+        {
+          "id": "id_19e4120fd6e_118",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_19e4120fd6e_119",
+          "type": "part",
+          "label": "(b)",
+          "text": "After that, she wanted to fill 1 large bottle with the left-over orange juice but was short of 0.6 l.  Instead, she filled another 1 small bottle and had 0.8 l of orange juice left in the end.  How many litres of orange juice did Ann have at first?"
+        },
+        {
+          "id": "id_19e4120fd6e_11a",
+          "type": "answer",
+          "label": "Ans : (b) ____ l",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
