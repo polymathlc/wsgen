@@ -1014,6 +1014,33 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
+  .meta-field-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .meta-add-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border: 1px solid var(--accent-light);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .meta-add-btn:hover { background: var(--accent-base); color: #fff; }
+  .meta-input-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .meta-input-row .text-line { flex: 1; min-width: 0; }
   .filter-row {
     display: flex;
     flex-wrap: wrap;
@@ -1064,6 +1091,21 @@
     letter-spacing: 0.05em;
   }
   .qtag-val { color: var(--text-secondary); min-width: 32px; }
+  .qtag-remove {
+    margin-left: 2px;
+    color: var(--text-tertiary);
+    font-size: 10px;
+    line-height: 1;
+  }
+  .qtag-remove:hover { color: var(--wrong-dark); }
+  .qtag-add {
+    cursor: pointer;
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border-color: var(--accent-light);
+    font-weight: 700;
+  }
+  .qtag-add:hover { background: var(--accent-base); color: #fff; }
 
   /* ============================ LINK STATUS ============================ */
   .link-status {
@@ -1201,8 +1243,26 @@ const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
    QUESTION / ELEMENT FACTORIES
    ========================================================================= */
 function makeQuestion() {
-  return { id: newId(), elements: [], topic: '', concept: '' };
+  return { id: newId(), elements: [], topics: [], concepts: [] };
 }
+
+/* Topic / concept are stored as arrays (a question can have several of each).
+   Older worksheets used single "topic" / "concept" strings — read both. */
+function rawTopics(q) {
+  if (Array.isArray(q.topics)) return q.topics;
+  if (typeof q.topic === 'string' && q.topic.trim()) return [q.topic];
+  return [];
+}
+function rawConcepts(q) {
+  if (Array.isArray(q.concepts)) return q.concepts;
+  if (typeof q.concept === 'string' && q.concept.trim()) return [q.concept];
+  return [];
+}
+function setTopics(q, arr) { q.topics = arr; delete q.topic; }
+function setConcepts(q, arr) { q.concepts = arr; delete q.concept; }
+// Cleaned (trimmed, non-empty) values — for filtering, datalists and display.
+function topicsOf(q) { return rawTopics(q).map(s => (s || '').trim()).filter(Boolean); }
+function conceptsOf(q) { return rawConcepts(q).map(s => (s || '').trim()).filter(Boolean); }
 function makeElement(type) {
   const base = { id: newId(), type };
   switch (type) {
@@ -1292,16 +1352,8 @@ function renderEditorQuestion(q, qIndex) {
   // Optional topic / concept tags used for filtering (admin-only metadata).
   const metaRow = document.createElement('div');
   metaRow.className = 'question-meta-row';
-  metaRow.appendChild(makeMetaField('Topic', q.topic || '', 'topicOptions', (v) => {
-    q.topic = v;
-    refreshFilterDatalists();
-    renderPreview();
-  }));
-  metaRow.appendChild(makeMetaField('Concept', q.concept || '', 'conceptOptions', (v) => {
-    q.concept = v;
-    refreshFilterDatalists();
-    renderPreview();
-  }));
+  metaRow.appendChild(makeMetaGroup('Topic', q, 'topics'));
+  metaRow.appendChild(makeMetaGroup('Concept', q, 'concepts'));
   card.appendChild(metaRow);
 
   const elList = document.createElement('div');
@@ -1579,21 +1631,69 @@ function makeAddBtn(label, onClick) {
   return b;
 }
 
-function makeMetaField(label, value, listId, onInput) {
-  const wrap = document.createElement('label');
+// A labelled group of topic (or concept) inputs with a "+" to add more and
+// a "✕" to remove each one. `kind` is 'topics' or 'concepts'.
+function makeMetaGroup(label, q, kind) {
+  const listId = kind === 'topics' ? 'topicOptions' : 'conceptOptions';
+  const get = () => kind === 'topics' ? rawTopics(q) : rawConcepts(q);
+  const set = (arr) => kind === 'topics' ? setTopics(q, arr) : setConcepts(q, arr);
+
+  const wrap = document.createElement('div');
   wrap.className = 'meta-field';
+
+  const head = document.createElement('div');
+  head.className = 'meta-field-head';
   const span = document.createElement('span');
   span.className = 'meta-field-label';
   span.textContent = label;
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'text-line';
-  input.value = value;
-  input.placeholder = label + ' (optional)';
-  input.setAttribute('list', listId);
-  input.addEventListener('input', () => onInput(input.value));
-  wrap.appendChild(span);
-  wrap.appendChild(input);
+  head.appendChild(span);
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'meta-add-btn';
+  addBtn.textContent = '+';
+  addBtn.title = 'Add another ' + label.toLowerCase();
+  addBtn.addEventListener('click', () => {
+    const arr = get().slice();
+    arr.push('');
+    set(arr);
+    renderEditor();
+    renderPreview();
+  });
+  head.appendChild(addBtn);
+  wrap.appendChild(head);
+
+  const values = get();
+  const display = values.length ? values : [''];
+  display.forEach((val, i) => {
+    const row = document.createElement('div');
+    row.className = 'meta-input-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'text-line';
+    input.value = val;
+    input.placeholder = label + ' (optional)';
+    input.setAttribute('list', listId);
+    input.addEventListener('input', () => {
+      const arr = get().slice();
+      while (arr.length <= i) arr.push('');
+      arr[i] = input.value;
+      set(arr);
+      refreshFilterDatalists();
+      renderPreview();
+    });
+    row.appendChild(input);
+    if (values.length > 1) {
+      row.appendChild(makeIconBtn('✕', 'Remove this ' + label.toLowerCase(), () => {
+        const arr = get().slice();
+        arr.splice(i, 1);
+        set(arr);
+        refreshFilterDatalists();
+        renderEditor();
+        renderPreview();
+      }, true));
+    }
+    wrap.appendChild(row);
+  });
   return wrap;
 }
 
@@ -2040,8 +2140,8 @@ function renderPreviewQuestion(q, qIndex) {
   if (isAdmin()) {
     const tags = document.createElement('div');
     tags.className = 'question-tags';
-    tags.appendChild(makePreviewTag('Topic', () => q.topic || '', (v) => { q.topic = v; }));
-    tags.appendChild(makePreviewTag('Concept', () => q.concept || '', (v) => { q.concept = v; }));
+    buildTagGroup(tags, 'Topic', q, 'topics');
+    buildTagGroup(tags, 'Concept', q, 'concepts');
     card.appendChild(tags);
   }
 
@@ -2218,7 +2318,7 @@ function attachImagePaste(zoneEl, el) {
 }
 
 // A small editable "Topic / Concept" pill shown above each question (admin only).
-function makePreviewTag(key, getRaw, setRaw) {
+function makeTagPill(key, getRaw, setRaw, onRemove) {
   const tag = document.createElement('span');
   tag.className = 'qtag';
   const k = document.createElement('span');
@@ -2230,7 +2330,56 @@ function makePreviewTag(key, getRaw, setRaw) {
   attachInlineText(val, getRaw, setRaw, 'add…');
   tag.appendChild(k);
   tag.appendChild(val);
+  if (onRemove) {
+    const x = document.createElement('button');
+    x.type = 'button';
+    x.className = 'qtag-remove';
+    x.textContent = '✕';
+    x.title = 'Remove';
+    x.addEventListener('click', onRemove);
+    tag.appendChild(x);
+  }
   return tag;
+}
+
+// Build the editable pills for one kind ('topics' / 'concepts') plus a "+" pill.
+function buildTagGroup(container, label, q, kind) {
+  const get = () => kind === 'topics' ? rawTopics(q) : rawConcepts(q);
+  const set = (arr) => kind === 'topics' ? setTopics(q, arr) : setConcepts(q, arr);
+  const values = get();
+  const display = values.length ? values : [''];
+  display.forEach((val, i) => {
+    container.appendChild(makeTagPill(
+      label,
+      () => get()[i] || '',
+      (v) => {
+        const arr = get().slice();
+        while (arr.length <= i) arr.push('');
+        arr[i] = v;
+        set(arr);
+      },
+      values.length > 1 ? () => {
+        const arr = get().slice();
+        arr.splice(i, 1);
+        set(arr);
+        renderEditor();
+        renderPreview();
+      } : null
+    ));
+  });
+  const add = document.createElement('button');
+  add.type = 'button';
+  add.className = 'qtag qtag-add';
+  add.textContent = '+ ' + label;
+  add.title = 'Add another ' + label.toLowerCase();
+  add.addEventListener('click', () => {
+    const arr = get().slice();
+    arr.push('');
+    set(arr);
+    renderEditor();
+    renderPreview();
+  });
+  container.appendChild(add);
 }
 
 function renderPreviewElement(el, ctx = {}) {
@@ -3751,8 +3900,8 @@ updateActivityLogBtn();
 function questionMatchesFilter(q) {
   const t = filterTopic.trim().toLowerCase();
   const c = filterConcept.trim().toLowerCase();
-  if (t && !(q.topic || '').toLowerCase().includes(t)) return false;
-  if (c && !(q.concept || '').toLowerCase().includes(c)) return false;
+  if (t && !topicsOf(q).some(v => v.toLowerCase().includes(t))) return false;
+  if (c && !conceptsOf(q).some(v => v.toLowerCase().includes(c))) return false;
   return true;
 }
 
@@ -3760,8 +3909,8 @@ function refreshFilterDatalists() {
   const topics = new Set();
   const concepts = new Set();
   state.questions.forEach(q => {
-    if (q.topic && q.topic.trim()) topics.add(q.topic.trim());
-    if (q.concept && q.concept.trim()) concepts.add(q.concept.trim());
+    topicsOf(q).forEach(v => topics.add(v));
+    conceptsOf(q).forEach(v => concepts.add(v));
   });
   const fill = (id, values) => {
     const dl = document.getElementById(id);
