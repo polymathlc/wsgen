@@ -1126,6 +1126,7 @@
         <input type="text" id="filterTopic" class="filter-input" placeholder="Topic" list="topicOptions" />
         <input type="text" id="filterConcept" class="filter-input" placeholder="Concept" list="conceptOptions" />
         <button class="btn btn-tiny" id="clearFilterBtn">Clear</button>
+        <button class="btn btn-tiny" id="searchAllBtn" title="Find every question with this topic / concept across all saved worksheets">🔎 Search all worksheets</button>
         <span id="filterCount" class="filter-count"></span>
         <datalist id="topicOptions"></datalist>
         <datalist id="conceptOptions"></datalist>
@@ -3794,6 +3795,68 @@ function applyFilterFromInputs() {
   renderPreview();
 }
 
+/* Gather every question matching the current topic / concept filter from ALL
+   saved worksheets into one combined "search results" worksheet, so the admin
+   can, e.g., find all Volume questions across the whole library and copy the
+   ones they want into the draft. */
+async function searchAllWorksheets() {
+  if (!isAdmin()) {
+    alert('Searching across worksheets requires the admin account.');
+    return;
+  }
+  filterTopic = document.getElementById('filterTopic').value;
+  filterConcept = document.getElementById('filterConcept').value;
+  const t = filterTopic.trim();
+  const c = filterConcept.trim();
+  if (!t && !c) {
+    alert('Type a topic and/or concept in the filter boxes first, then search.');
+    return;
+  }
+  const btn = document.getElementById('searchAllBtn');
+  const original = btn.textContent;
+  btn.textContent = '⏳ Searching…';
+  btn.disabled = true;
+  try {
+    const matches = [];
+    for (const meta of savedItemsCache) {
+      if (!meta || !meta.id) continue;
+      let ws;
+      try {
+        ws = await fetchWorksheetState(meta);
+      } catch (e) {
+        console.warn('Search skipped worksheet', meta.id, e.message || e);
+        continue;
+      }
+      const wsTitle = (ws && ws.title) || meta.title || 'Untitled';
+      (ws && ws.questions || []).forEach(q => {
+        if (questionMatchesFilter(q)) {
+          const copy = reidQuestion(q);
+          if (!copy.source) copy.source = deriveSource(wsTitle);
+          matches.push(copy);
+        }
+      });
+    }
+    logActivity('before topic search');
+    const crit = [t && `topic "${t}"`, c && `concept "${c}"`].filter(Boolean).join(' + ');
+    state = {
+      title: 'Search results — ' + crit,
+      subtitle: matches.length
+        ? `${matches.length} question(s) gathered from all saved worksheets. Use 📋 on any question to copy it into the draft.`
+        : `No questions across your saved worksheets match ${crit}.`,
+      questions: matches
+    };
+    currentSavedId = null;
+    document.getElementById('worksheetTitle').value = state.title;
+    document.getElementById('worksheetSubtitle').value = state.subtitle;
+    renderEditor();
+    renderPreview();
+    updateLinkStatus();
+  } finally {
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
 document.getElementById('filterTopic').addEventListener('input', applyFilterFromInputs);
 document.getElementById('filterConcept').addEventListener('input', applyFilterFromInputs);
 document.getElementById('clearFilterBtn').addEventListener('click', () => {
@@ -3801,6 +3864,7 @@ document.getElementById('clearFilterBtn').addEventListener('click', () => {
   document.getElementById('filterConcept').value = '';
   applyFilterFromInputs();
 });
+document.getElementById('searchAllBtn').addEventListener('click', searchAllWorksheets);
 
 document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
