@@ -90,7 +90,7 @@
           "id": "id_chs25_12",
           "type": "image",
           "dataUrl": "",
-          "caption": "Four shaded-figure options: (1) 5x5 grid with isolated shaded squares, (2) circle with vertical strip shaded, (3) row of 7 squares with some shaded, (4) pentagon split into triangular sectors with some shaded"
+          "caption": ""
         },
         {
           "id": "id_chs25_13",
@@ -129,7 +129,7 @@
           "id": "id_chs25_1a",
           "type": "image",
           "dataUrl": "",
-          "caption": "Drawing of a bicycle with the length labelled '?'"
+          "caption": ""
         },
         {
           "id": "id_chs25_1b",
@@ -168,7 +168,7 @@
           "id": "id_chs25_22",
           "type": "image",
           "dataUrl": "",
-          "caption": "Number line from 1 to 2 divided into 6 equal intervals, with arrow A near 1 5/6"
+          "caption": ""
         },
         {
           "id": "id_chs25_23",
@@ -240,7 +240,7 @@
           "id": "id_chs25_31",
           "type": "image",
           "dataUrl": "",
-          "caption": "Four candidate nets labelled (1) to (4)"
+          "caption": ""
         },
         {
           "id": "id_chs25_32",
@@ -279,7 +279,7 @@
           "id": "id_chs25_39",
           "type": "image",
           "dataUrl": "",
-          "caption": "Square grid with quadrilateral DABC (or similar) drawn; points A (top), B (right), C (bottom), D (left)"
+          "caption": ""
         },
         {
           "id": "id_chs25_3a",
@@ -318,7 +318,7 @@
           "id": "id_chs25_41",
           "type": "image",
           "dataUrl": "",
-          "caption": "Square grid showing landmarks A (left), B (upper middle), C (upper right), D (middle right of centre) and E (lower middle); a compass with North pointing up is at the side"
+          "caption": ""
         },
         {
           "id": "id_chs25_42",
@@ -357,7 +357,7 @@
           "id": "id_chs25_49",
           "type": "image",
           "dataUrl": "",
-          "caption": "Pie chart with sectors: Badminton, Soccer, Hockey, Golf.  Bar graph 'Activities at sports carnival' with four unlabelled bars at approximately 100, 30, 50 and 70"
+          "caption": ""
         },
         {
           "id": "id_chs25_4a",
@@ -396,7 +396,7 @@
           "id": "id_chs25_51",
           "type": "image",
           "dataUrl": "",
-          "caption": "Equilateral triangle ABC with straight lines FCEB (along the base) and DGE crossing it; ∠CFD = 70° at vertex F outside the triangle"
+          "caption": ""
         },
         {
           "id": "id_chs25_52",
@@ -501,7 +501,7 @@
           "id": "id_chs25_67",
           "type": "image",
           "dataUrl": "",
-          "caption": "Big semicircle (centre O, radius 6 cm) joined to a smaller semicircle of radius 3 cm forming a shaded figure"
+          "caption": ""
         },
         {
           "id": "id_chs25_68",
@@ -695,7 +695,7 @@
           "id": "id_chs25_8c",
           "type": "image",
           "dataUrl": "",
-          "caption": "Postage Rates table — Mass Step | Rate; First 500 g | $2; Every additional 1 kg | $1.50"
+          "caption": ""
         },
         {
           "id": "id_chs25_8d",
@@ -718,7 +718,7 @@
           "id": "id_chs25_90",
           "type": "image",
           "dataUrl": "",
-          "caption": "Rectangle ABCD: A (top-left), B (top-right), C (bottom-right), D (bottom-left); AB = 12 cm, BC = 5 cm; E on DC with DE = 4 cm; shaded triangle has vertices A, B and E"
+          "caption": ""
         },
         {
           "id": "id_chs25_91",
@@ -741,7 +741,7 @@
           "id": "id_chs25_94",
           "type": "image",
           "dataUrl": "",
-          "caption": "Two-row table with columns Statement | True | False | Not possible to tell.  Statements: 'The total mass of the boys is heavier than the total mass of the girls.' and 'The mass of each girl is 46 kg.'"
+          "caption": ""
         }
       ]
     },
@@ -774,7 +774,7 @@
           "id": "id_chs25_9a",
           "type": "image",
           "dataUrl": "",
-          "caption": "Square grid with 11 shaded squares and a diagonal line AB from top-left (A) to bottom-right (B) acting as the line of symmetry"
+          "caption": ""
         }
       ]
     },
@@ -790,7 +790,7 @@
           "id": "id_chs25_9d",
           "type": "image",
           "dataUrl": "",
-          "caption": "Isometric drawing of a solid made from 7 unit cubes with arrows labelled Top View, Front View and Side View"
+          "caption": ""
         },
         {
           "id": "id_chs25_9e",
@@ -802,7 +802,7 @@
           "id": "id_chs25_9f",
           "type": "image",
           "dataUrl": "",
-          "caption": "7 × 7 dot grid for drawing the side view"
+          "caption": ""
         },
         {
           "id": "id_chs25_a0",
@@ -831,7 +831,7 @@
           "id": "id_chs25_a4",
           "type": "image",
           "dataUrl": "",
-          "caption": "A square overlapping a rectangle with the overlapping region shaded"
+          "caption": ""
         },
         {
           "id": "id_chs25_a5",
@@ -883,7 +883,7 @@
           "id": "id_chs25_ad",
           "type": "image",
           "dataUrl": "",
-          "caption": "Square grid with line AB (A near the centre, B upper-right) and line AD (D to the lower-right of A)"
+          "caption": ""
         }
       ]
     },
@@ -926,7 +926,7 @@
           "id": "id_chs25_b5",
           "type": "image",
           "dataUrl": "",
-          "caption": "Laptop with a tag reading '20% discount'"
+          "caption": ""
         },
         {
           "id": "id_chs25_b6",
@@ -949,7 +949,7 @@
           "id": "id_chs25_b9",
           "type": "image",
           "dataUrl": "",
-          "caption": "Drawing of a bag of apples"
+          "caption": ""
         },
         {
           "id": "id_chs25_ba",
@@ -972,7 +972,7 @@
           "id": "id_chs25_bd",
           "type": "image",
           "dataUrl": "",
-          "caption": "Figure 1: triangle STX with each side carrying a different design (moon, hearts, stars).  Figure 2: 5 such triangles joined together"
+          "caption": ""
         },
         {
           "id": "id_chs25_be",
@@ -995,7 +995,7 @@
           "id": "id_chs25_c1",
           "type": "image",
           "dataUrl": "",
-          "caption": "Table — Type of Toy | Number of toys sold; Robot | p; Car | 2p + 8; Doll | 45"
+          "caption": ""
         },
         {
           "id": "id_chs25_c2",
@@ -1047,7 +1047,7 @@
           "id": "id_chs25_ca",
           "type": "image",
           "dataUrl": "",
-          "caption": "Table — Day | Number of visitors; Thursday | 3100; Friday | 2690; Saturday | 3580; Sunday | ?"
+          "caption": ""
         },
         {
           "id": "id_chs25_cb",
@@ -1089,7 +1089,7 @@
           "id": "id_chs25_d1",
           "type": "image",
           "dataUrl": "",
-          "caption": "Isosceles triangle ABC with AB = BC; parallelogram BDEC attached so that AFE is a straight line; given angles 53° at A, 48° at B (∠ABF), 142° at ∠CBD"
+          "caption": ""
         },
         {
           "id": "id_chs25_d2",
@@ -1129,13 +1129,13 @@
           "id": "id_chs25_d8",
           "type": "image",
           "dataUrl": "",
-          "caption": "Figures 1 to 4 of a pattern made of dots connected by lines (each figure adds an extra unit square)"
+          "caption": ""
         },
         {
           "id": "id_chs25_d9",
           "type": "image",
           "dataUrl": "",
-          "caption": "Table — Figure Number: 1, 2, 3, 4.  Number of dots: 4, 7, 10, 13.  Number of lines: 4, 8, 12, 16."
+          "caption": ""
         },
         {
           "id": "id_chs25_da",
@@ -1194,7 +1194,7 @@
           "id": "id_chs25_e3",
           "type": "image",
           "dataUrl": "",
-          "caption": "Two stacks of identical paper cups: 4 cups stacked to a height of 21 cm and 6 cups stacked to a height of 25 cm"
+          "caption": ""
         },
         {
           "id": "id_chs25_e4",
@@ -1219,7 +1219,7 @@
           "id": "id_chs25_e7",
           "type": "image",
           "dataUrl": "",
-          "caption": "Rectangular box of length 50 cm shown lying on its side"
+          "caption": ""
         },
         {
           "id": "id_chs25_e8",
@@ -1242,7 +1242,7 @@
           "id": "id_chs25_eb",
           "type": "image",
           "dataUrl": "",
-          "caption": "Line graph: Volume of water (litres) vs Time from 10 00 to 10 20; starting around 75 ℓ at 10 00 and rising linearly to about 225 ℓ at 10 20"
+          "caption": ""
         },
         {
           "id": "id_chs25_ec",
@@ -1284,7 +1284,7 @@
           "id": "id_chs25_f2",
           "type": "image",
           "dataUrl": "",
-          "caption": "Shaded logo made up of 3 small quarter circles (radius 10 cm), 3 big quarter circles and 2 squares; overall width 32 cm; centre O marked"
+          "caption": ""
         },
         {
           "id": "id_chs25_f3",
@@ -1326,7 +1326,7 @@
           "id": "id_chs25_f9",
           "type": "image",
           "dataUrl": "",
-          "caption": "Container A: 36 cm × 12 cm × (height shown ≥ 10 cm), water height 10 cm.  Container B: square cross-section, height 32 cm, empty."
+          "caption": ""
         },
         {
           "id": "id_chs25_fa",
@@ -1368,7 +1368,7 @@
           "id": "id_chs25_100",
           "type": "image",
           "dataUrl": "",
-          "caption": "Two-column price table — chocolate muffins (3 muffins drawn): 3 for $5; vanilla muffins (4 muffins drawn): 4 for $6"
+          "caption": ""
         },
         {
           "id": "id_chs25_101",
