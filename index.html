@@ -832,9 +832,11 @@
     background: var(--bg-primary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    max-height: 180px;
     overflow-y: auto;
   }
+  /* The worksheet list fills the left pane now that the question editor is gone. */
+  #savedList { max-height: none; }
+  #activityLog { max-height: 320px; }
   .saved-list:empty { display: none; }
   .saved-item {
     display: flex;
@@ -1206,6 +1208,40 @@
     color: var(--accent-deep);
     border-color: var(--accent-light);
   }
+
+  /* ============================ PREVIEW QUESTION / ELEMENT CONTROLS ============================ */
+  .pv-q-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-bottom: var(--space-sm);
+  }
+  .pv-el { position: relative; }
+  .pv-el-controls {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: 2;
+  }
+  .pv-el:hover .pv-el-controls,
+  .pv-el:focus-within .pv-el-controls { opacity: 1; }
+  .pv-el-btn {
+    padding: 2px 8px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-medium);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-xs);
+  }
+  .pv-el-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+  .pv-el-btn-danger { color: var(--wrong-dark); border-color: var(--wrong-light); }
+  .pv-el-btn-danger:hover { background: var(--wrong-bg); color: var(--wrong-dark); }
   .saved-item-restore {
     font-size: var(--font-size-xs);
     color: var(--accent-deep);
@@ -1261,8 +1297,6 @@
       <div id="savedList" class="saved-list"></div>
       <div class="anon-banner">Sign in with Google to access worksheets.</div>
     </div>
-
-    <div id="editorQuestions"></div>
   </aside>
 
   <!-- =============== PREVIEW =============== -->
@@ -1382,33 +1416,10 @@ function nextPartLabel() {
 /* =========================================================================
    EDITOR RENDER
    ========================================================================= */
-const editorRoot = document.getElementById('editorQuestions');
-
+/* The right-hand preview pane is now the editor. The old left-hand question
+   editor was removed; renderEditor() only keeps the filter datalists fresh. */
 function renderEditor() {
-  editorRoot.innerHTML = '';
   refreshFilterDatalists();
-  if (state.questions.length === 0) {
-    const hint = document.createElement('div');
-    hint.className = 'empty-state';
-    hint.style.background = 'transparent';
-    hint.style.border = '2px dashed var(--border-medium)';
-    hint.innerHTML = 'No questions yet.<br/>Click <strong>+ Add Question</strong> to start.';
-    editorRoot.appendChild(hint);
-    return;
-  }
-  let shown = 0;
-  state.questions.forEach((q, qIndex) => {
-    if (!questionMatchesFilter(q)) return;
-    shown++;
-    editorRoot.appendChild(renderEditorQuestion(q, qIndex));
-  });
-  if (shown === 0) {
-    const hint = document.createElement('div');
-    hint.className = 'empty-state';
-    hint.style.cssText = 'background:transparent; border:2px dashed var(--border-medium);';
-    hint.textContent = 'No questions match the current topic / concept filter.';
-    editorRoot.appendChild(hint);
-  }
 }
 
 function renderEditorQuestion(q, qIndex) {
@@ -2220,6 +2231,19 @@ function renderPreviewQuestion(q, qIndex) {
   const card = document.createElement('article');
   card.className = 'question-card';
 
+  // Per-question controls — admin only: move, copy to draft, delete.
+  if (isAdmin()) {
+    const qc = document.createElement('div');
+    qc.className = 'pv-q-controls';
+    qc.appendChild(makeIconBtn('↑', 'Move question up', () => moveQuestion(qIndex, -1)));
+    qc.appendChild(makeIconBtn('↓', 'Move question down', () => moveQuestion(qIndex, 1)));
+    qc.appendChild(makeIconBtn('📋', 'Copy this question to the draft worksheet', () => copyQuestionToDraft(qIndex)));
+    qc.appendChild(makeIconBtn('✕', 'Delete this question', () => {
+      if (confirm('Delete this entire question?')) removeQuestion(qIndex);
+    }, true));
+    card.appendChild(qc);
+  }
+
   // Topic / concept tags — admin only. Never rendered for students or exports.
   if (isAdmin()) {
     const tags = document.createElement('div');
@@ -2307,9 +2331,19 @@ function renderPreviewQuestion(q, qIndex) {
       stemConsumed = true;
       return;
     }
-    card.appendChild(renderPreviewElement(el, { showAnswerFor, showVideoFor }));
-    // Insert bar after each element, to add a new element right below it.
-    if (canEdit) card.appendChild(buildInsertBar(q, idx));
+    const rendered = renderPreviewElement(el, { showAnswerFor, showVideoFor });
+    if (canEdit) {
+      // Wrap so each element gets hover controls (remove image / remove element).
+      const wrap = document.createElement('div');
+      wrap.className = 'pv-el';
+      wrap.appendChild(rendered);
+      wrap.appendChild(buildElementControls(q, idx, el));
+      card.appendChild(wrap);
+      // Insert bar after each element, to add a new element right below it.
+      card.appendChild(buildInsertBar(q, idx));
+    } else {
+      card.appendChild(rendered);
+    }
   });
 
   // Caption showing which school / year the question came from.
@@ -2509,6 +2543,38 @@ function buildInsertBar(q, afterIndex) {
     menu.appendChild(b);
   });
   bar.appendChild(menu);
+  return bar;
+}
+
+// Hover controls for a preview element: remove its pasted image (if any) and
+// remove the whole element block.
+function buildElementControls(q, idx, el) {
+  const bar = document.createElement('div');
+  bar.className = 'pv-el-controls';
+  if ((el.type === 'image' || el.type === 'answerKey') && el.dataUrl) {
+    const rmImg = document.createElement('button');
+    rmImg.type = 'button';
+    rmImg.className = 'pv-el-btn';
+    rmImg.textContent = '✕ Image';
+    rmImg.title = 'Remove the pasted image (keeps the empty paste-zone)';
+    rmImg.addEventListener('click', () => {
+      el.dataUrl = '';
+      renderPreview();
+    });
+    bar.appendChild(rmImg);
+  }
+  const rmEl = document.createElement('button');
+  rmEl.type = 'button';
+  rmEl.className = 'pv-el-btn pv-el-btn-danger';
+  rmEl.textContent = '🗑 Remove';
+  rmEl.title = 'Remove this whole element';
+  rmEl.addEventListener('click', () => {
+    if (confirm('Remove this whole element from the question?')) {
+      q.elements.splice(idx, 1);
+      renderPreview();
+    }
+  });
+  bar.appendChild(rmEl);
   return bar;
 }
 
