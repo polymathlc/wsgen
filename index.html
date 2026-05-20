@@ -1242,6 +1242,45 @@
   .pv-el-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
   .pv-el-btn-danger { color: var(--wrong-dark); border-color: var(--wrong-light); }
   .pv-el-btn-danger:hover { background: var(--wrong-bg); color: var(--wrong-dark); }
+
+  /* ============================ QUESTION INSERT BAR ============================ */
+  .q-insert-bar {
+    display: flex;
+    justify-content: center;
+    margin: calc(-1 * var(--space-sm)) 0;
+  }
+  .q-insert-btn {
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    border: 1px dashed var(--border-medium);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    opacity: 0.35;
+    transition: opacity var(--transition-fast), background var(--transition-fast);
+  }
+  .q-insert-bar:hover .q-insert-btn { opacity: 1; }
+  .q-insert-btn:hover {
+    background: var(--accent-deep);
+    color: #fff;
+    border-style: solid;
+    border-color: var(--accent-deep);
+  }
+
+  /* ============================ COLLAPSIBLE PANEL ============================ */
+  .panel-expand-btn {
+    position: fixed;
+    top: 10px;
+    left: 8px;
+    z-index: 100;
+    display: none;
+  }
+  body.panel-collapsed .panel-expand-btn { display: inline-flex; }
+  body.panel-collapsed .editor-pane { display: none; }
+  body.panel-collapsed .app { grid-template-columns: 1fr; }
+  /* Clear the fixed expand button so it doesn't overlap the worksheet title. */
+  body.panel-collapsed .preview-pane { padding-top: 56px; }
   .saved-item-restore {
     font-size: var(--font-size-xs);
     color: var(--accent-deep);
@@ -1257,6 +1296,7 @@
     <div class="toolbar">
       <h1><span class="admin-only">Worksheet Creator</span><span class="student-only">Worksheets</span></h1>
       <div class="auth-row">
+        <button class="btn btn-tiny" id="panelCollapseBtn" title="Hide this panel">« Hide panel</button>
         <span id="authChip" class="auth-chip guest">Not signed in</span>
         <button class="btn btn-tiny" id="googleSignInBtn">Sign in with Google</button>
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
@@ -1308,6 +1348,7 @@
     <div id="previewContainer" class="questions-container"></div>
   </main>
 </div>
+<button class="btn btn-primary panel-expand-btn" id="panelExpandBtn" title="Show the worksheet panel">» Worksheets</button>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
@@ -2202,14 +2243,20 @@ function renderPreview() {
     empty.className = 'empty-state';
     empty.textContent = 'Your worksheet preview will appear here.';
     previewContainer.appendChild(empty);
+    if (isAdmin()) previewContainer.appendChild(buildQuestionInsertBar(-1));
     return;
   }
 
+  // "Add question here" bars between cards — admin only, and only when no
+  // filter is active (with a filter, blank new questions would be hidden).
+  const showQIns = isAdmin() && !filterTopic.trim() && !filterConcept.trim();
   let shown = 0;
+  if (showQIns) previewContainer.appendChild(buildQuestionInsertBar(-1));
   state.questions.forEach((q, qIndex) => {
     if (!questionMatchesFilter(q)) return;
     shown++;
     previewContainer.appendChild(renderPreviewQuestion(q, qIndex));
+    if (showQIns) previewContainer.appendChild(buildQuestionInsertBar(qIndex));
   });
   if (shown === 0) {
     const empty = document.createElement('div');
@@ -2218,6 +2265,24 @@ function renderPreview() {
     previewContainer.appendChild(empty);
   }
   updateFilterCount(shown);
+}
+
+// A bar between question cards: inserts a new blank question after `afterIndex`
+// (use -1 to insert at the very top). Question numbers re-flow automatically.
+function buildQuestionInsertBar(afterIndex) {
+  const bar = document.createElement('div');
+  bar.className = 'q-insert-bar';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'q-insert-btn';
+  btn.textContent = '+ Add question here';
+  btn.addEventListener('click', () => {
+    state.questions.splice(afterIndex + 1, 0, makeQuestion());
+    renderEditor();
+    renderPreview();
+  });
+  bar.appendChild(btn);
+  return bar;
 }
 
 function questionHasAnswerKey(q) {
@@ -4348,6 +4413,20 @@ onAuthStateChanged(fbAuth, async (user) => {
 });
 
 refreshAuthUi();
+
+/* =========================================================================
+   COLLAPSIBLE LEFT PANEL
+   ========================================================================= */
+const PANEL_KEY = 'wsgen.panelCollapsed';
+function setPanelCollapsed(collapsed) {
+  document.body.classList.toggle('panel-collapsed', collapsed);
+  try { localStorage.setItem(PANEL_KEY, collapsed ? '1' : '0'); } catch (_) {}
+}
+document.getElementById('panelCollapseBtn').addEventListener('click', () => setPanelCollapsed(true));
+document.getElementById('panelExpandBtn').addEventListener('click', () => setPanelCollapsed(false));
+try {
+  if (localStorage.getItem(PANEL_KEY) === '1') document.body.classList.add('panel-collapsed');
+} catch (_) {}
 
 // Restore the last auto-saved worksheet if there is one; otherwise seed a
 // single empty question so the workflow is obvious. (Students get reset to an
