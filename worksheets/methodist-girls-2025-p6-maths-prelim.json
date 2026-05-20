@@ -1,0 +1,1270 @@
+{
+  "title": "Methodist Girls' School (Primary) 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Methodist Girls' School (Primary) — End of Year Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_mgp25_q_a",
+      "elements": [
+        {
+          "id": "id_mgp25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q1",
+      "elements": [
+        {
+          "id": "id_mgp25_2",
+          "type": "text",
+          "text": "In 8 532 194, the digit 3 stands for ________."
+        },
+        {
+          "id": "id_mgp25_3",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_4", "text": "300" },
+            { "id": "id_mgp25_5", "text": "3000" },
+            { "id": "id_mgp25_6", "text": "30 000" },
+            { "id": "id_mgp25_7", "text": "300 000" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q2",
+      "elements": [
+        {
+          "id": "id_mgp25_8",
+          "type": "text",
+          "text": "Which one of the following numbers is the smallest?"
+        },
+        {
+          "id": "id_mgp25_9",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_10", "text": "0.301" },
+            { "id": "id_mgp25_11", "text": "0.031" },
+            { "id": "id_mgp25_12", "text": "0.103" },
+            { "id": "id_mgp25_13", "text": "0.013" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q3",
+      "elements": [
+        {
+          "id": "id_mgp25_14",
+          "type": "text",
+          "text": "Express 2 2/8 as a decimal."
+        },
+        {
+          "id": "id_mgp25_15",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_16", "text": "2.28" },
+            { "id": "id_mgp25_17", "text": "2.25" },
+            { "id": "id_mgp25_18", "text": "2.14" },
+            { "id": "id_mgp25_19", "text": "2.2" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q4",
+      "elements": [
+        {
+          "id": "id_mgp25_20",
+          "type": "text",
+          "text": "The graph shows the height of a plant from June to October.  In which month did the plant's height increase the most?"
+        },
+        {
+          "id": "id_mgp25_21",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph of plant Height (cm) against months Jun, Jul, Aug, Sep, Oct"
+        },
+        {
+          "id": "id_mgp25_22",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_23", "text": "June to July" },
+            { "id": "id_mgp25_24", "text": "July to August" },
+            { "id": "id_mgp25_25", "text": "August to September" },
+            { "id": "id_mgp25_26", "text": "September to October" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q5",
+      "elements": [
+        {
+          "id": "id_mgp25_27",
+          "type": "text",
+          "text": "The figure below is made up of 8 identical squares.  Find the perimeter of the figure."
+        },
+        {
+          "id": "id_mgp25_28",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure made up of 8 identical squares; overall width labelled 25 cm"
+        },
+        {
+          "id": "id_mgp25_29",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_30", "text": "40 cm" },
+            { "id": "id_mgp25_31", "text": "70 cm" },
+            { "id": "id_mgp25_32", "text": "90 cm" },
+            { "id": "id_mgp25_33", "text": "105 cm" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q6",
+      "elements": [
+        {
+          "id": "id_mgp25_34",
+          "type": "text",
+          "text": "In the number line below, which point represents 5/6?"
+        },
+        {
+          "id": "id_mgp25_35",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Number line marked in sixths with 1/6 and 2/3 labelled; arrows A and B near the lower middle and C and D near the right"
+        },
+        {
+          "id": "id_mgp25_36",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_37", "text": "A" },
+            { "id": "id_mgp25_38", "text": "B" },
+            { "id": "id_mgp25_39", "text": "C" },
+            { "id": "id_mgp25_40", "text": "D" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q7",
+      "elements": [
+        {
+          "id": "id_mgp25_41",
+          "type": "text",
+          "text": "Express 20¢ as a percentage of $5."
+        },
+        {
+          "id": "id_mgp25_42",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_43", "text": "4%" },
+            { "id": "id_mgp25_44", "text": "25%" },
+            { "id": "id_mgp25_45", "text": "400%" },
+            { "id": "id_mgp25_46", "text": "2500%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q8",
+      "elements": [
+        {
+          "id": "id_mgp25_47",
+          "type": "text",
+          "text": "The figure below is made up of a big circle and a small circle.  O is the centre of the big circle which has a diameter of 28 cm.  Find the area of the small circle.  (Take π = 22/7)"
+        },
+        {
+          "id": "id_mgp25_48",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Big circle with centre O (diameter 28 cm) containing a small circle that touches the top of the big circle"
+        },
+        {
+          "id": "id_mgp25_49",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_50", "text": "22 cm²" },
+            { "id": "id_mgp25_51", "text": "44 cm²" },
+            { "id": "id_mgp25_52", "text": "154 cm²" },
+            { "id": "id_mgp25_53", "text": "616 cm²" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q9",
+      "elements": [
+        {
+          "id": "id_mgp25_54",
+          "type": "text",
+          "text": "The pie chart below represents the number of fruits at a fruit stall.  There are 300 fruits at the fruit stall.  There are twice as many apples as oranges.  How many pears are there?"
+        },
+        {
+          "id": "id_mgp25_55",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart with sectors Apples, Orange, Pears and Mangoes; the Mangoes sector is labelled 1/12"
+        },
+        {
+          "id": "id_mgp25_56",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_57", "text": "25" },
+            { "id": "id_mgp25_58", "text": "50" },
+            { "id": "id_mgp25_59", "text": "75" },
+            { "id": "id_mgp25_60", "text": "100" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q10",
+      "elements": [
+        {
+          "id": "id_mgp25_61",
+          "type": "text",
+          "text": "The figure below shows an 8-point compass.  James was facing north-west (NW) at first.  He turned 225° clockwise.  Which direction is he facing now?"
+        },
+        {
+          "id": "id_mgp25_62",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "8-point compass showing N, NE, E, SE, S, SW, W and NW"
+        },
+        {
+          "id": "id_mgp25_63",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_64", "text": "North (N)" },
+            { "id": "id_mgp25_65", "text": "South (S)" },
+            { "id": "id_mgp25_66", "text": "East (E)" },
+            { "id": "id_mgp25_67", "text": "West (W)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q11",
+      "elements": [
+        {
+          "id": "id_mgp25_68",
+          "type": "text",
+          "text": "Calvin had 20 more stamps than Devi at first.  After Devi gave 16 of her stamps to Calvin, Calvin now has 3 times as many stamps as Devi.  How many stamps did Devi have at first?"
+        },
+        {
+          "id": "id_mgp25_69",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_70", "text": "18" },
+            { "id": "id_mgp25_71", "text": "26" },
+            { "id": "id_mgp25_72", "text": "34" },
+            { "id": "id_mgp25_73", "text": "42" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q12",
+      "elements": [
+        {
+          "id": "id_mgp25_74",
+          "type": "text",
+          "text": "The table below shows the number of books read by a class of P6 pupils.  They read a total of 56 books.  How many pupils read 3 books?"
+        },
+        {
+          "id": "id_mgp25_75",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Number of books read per pupil: 0, 1, 2, 3, 4; Number of pupils: 3, 14, 11, ?, 2"
+        },
+        {
+          "id": "id_mgp25_76",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_77", "text": "26" },
+            { "id": "id_mgp25_78", "text": "12" },
+            { "id": "id_mgp25_79", "text": "3" },
+            { "id": "id_mgp25_80", "text": "4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q13",
+      "elements": [
+        {
+          "id": "id_mgp25_81",
+          "type": "text",
+          "text": "A toy car cost $8 after a discount of 20%.  Kenny was given a further discount of $2 because of the SG60 promotion at the toy store.  What is the total percentage discount for the toy car?"
+        },
+        {
+          "id": "id_mgp25_82",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_83", "text": "20 %" },
+            { "id": "id_mgp25_84", "text": "25 %" },
+            { "id": "id_mgp25_85", "text": "40 %" },
+            { "id": "id_mgp25_86", "text": "60 %" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q14",
+      "elements": [
+        {
+          "id": "id_mgp25_87",
+          "type": "text",
+          "text": "A cuboid measuring 12 cm by 7 cm by 7 cm was dipped into some red paint.  The cuboid was then cut into 1-cm cubes.  How many of the cubes would have none of their surfaces painted red?"
+        },
+        {
+          "id": "id_mgp25_88",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Cuboid with dimensions 12 cm by 7 cm by 7 cm"
+        },
+        {
+          "id": "id_mgp25_89",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_90", "text": "588" },
+            { "id": "id_mgp25_91", "text": "539" },
+            { "id": "id_mgp25_92", "text": "396" },
+            { "id": "id_mgp25_93", "text": "250" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q15",
+      "elements": [
+        {
+          "id": "id_mgp25_94",
+          "type": "text",
+          "text": "In the figure, ABCD is a square.  AC and BD are straight lines.  BE = BF.  Find ∠CEF."
+        },
+        {
+          "id": "id_mgp25_95",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square ABCD with diagonals AC and BD meeting at E; point F lies on BC extended/side with BE = BF"
+        },
+        {
+          "id": "id_mgp25_96",
+          "type": "mcq",
+          "options": [
+            { "id": "id_mgp25_97", "text": "67.5°" },
+            { "id": "id_mgp25_98", "text": "45°" },
+            { "id": "id_mgp25_99", "text": "30°" },
+            { "id": "id_mgp25_100", "text": "22.5°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q_b",
+      "elements": [
+        {
+          "id": "id_mgp25_101",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q16",
+      "elements": [
+        {
+          "id": "id_mgp25_102",
+          "type": "text",
+          "text": "Write down all the common factors of 9 and 18."
+        },
+        {
+          "id": "id_mgp25_103",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q17",
+      "elements": [
+        {
+          "id": "id_mgp25_104",
+          "type": "text",
+          "text": "Find the value of 3402 ÷ 20."
+        },
+        {
+          "id": "id_mgp25_105",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q18",
+      "elements": [
+        {
+          "id": "id_mgp25_106",
+          "type": "text",
+          "text": "Find the value of 63 ÷ (9 − 6) + 4 × 12."
+        },
+        {
+          "id": "id_mgp25_107",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q19",
+      "elements": [
+        {
+          "id": "id_mgp25_108",
+          "type": "text",
+          "text": "Find the value of 3/8 ÷ 12.  Give your answer as a fraction in the simplest form."
+        },
+        {
+          "id": "id_mgp25_109",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q20",
+      "elements": [
+        {
+          "id": "id_mgp25_110",
+          "type": "text",
+          "text": "All the members from a school club chose one colour for their club t-shirt.  The pie chart shows their choices.  7 members chose White.  How many members were there in the club?"
+        },
+        {
+          "id": "id_mgp25_111",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart with sectors Black (1/2), Blue (3/8) and White"
+        },
+        {
+          "id": "id_mgp25_112",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q_b2",
+      "elements": [
+        {
+          "id": "id_mgp25_113",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q21",
+      "elements": [
+        {
+          "id": "id_mgp25_114",
+          "type": "text",
+          "text": "The table shows the hourly rate of work done at a call center.  Leonard works at the call center for 10 hours daily on weekdays and 5 hours on Saturdays.  How much does he earn in a week?"
+        },
+        {
+          "id": "id_mgp25_115",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Day | Hourly rate; Weekdays (Monday to Friday) | $8; Weekend (Saturday and Sunday) | $10"
+        },
+        {
+          "id": "id_mgp25_116",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q22",
+      "elements": [
+        {
+          "id": "id_mgp25_117",
+          "type": "text",
+          "text": "PR and QS are straight lines.  Find ∠y."
+        },
+        {
+          "id": "id_mgp25_118",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Straight lines PR and QS crossing with other lines; marked angles 98° and 20°, with angle y near their intersection"
+        },
+        {
+          "id": "id_mgp25_119",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q23",
+      "elements": [
+        {
+          "id": "id_mgp25_120",
+          "type": "text",
+          "text": "12 identical cubes are joined together to form a cuboid shown below.  The shaded face of the cuboid is 16 cm².  Find the volume of the cuboid."
+        },
+        {
+          "id": "id_mgp25_121",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Cuboid built from 12 identical cubes (3 by 2 by 2), with one end face shaded"
+        },
+        {
+          "id": "id_mgp25_122",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q24",
+      "elements": [
+        {
+          "id": "id_mgp25_123",
+          "type": "text",
+          "text": "The figure below is made up of a circle and a parallelogram.  O is the centre of the circle and ∠QPS = 54°.  Find ∠PQR."
+        },
+        {
+          "id": "id_mgp25_124",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Circle with centre O overlapping parallelogram PQRS; point S on the circle, marked angle ∠QPS = 54°"
+        },
+        {
+          "id": "id_mgp25_125",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q25",
+      "elements": [
+        {
+          "id": "id_mgp25_126",
+          "type": "text",
+          "text": "A bag contains marbles of three different colours.  1/3 of the marbles are blue.  The ratio of the number of red marbles to green marbles is 2 : 3.  Find the ratio of the number of blue marbles to that of the green marbles."
+        },
+        {
+          "id": "id_mgp25_127",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q26",
+      "elements": [
+        {
+          "id": "id_mgp25_128",
+          "type": "text",
+          "text": "A total of 93 Lego bricks are used to build a tower.  There are at least 5 red bricks between any 2 blue bricks.  What is the greatest number of blue bricks used?"
+        },
+        {
+          "id": "id_mgp25_129",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Tower of 93 Lego bricks stacked vertically"
+        },
+        {
+          "id": "id_mgp25_130",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q27",
+      "elements": [
+        {
+          "id": "id_mgp25_131",
+          "type": "text",
+          "text": "June had $5a.  After buying some cakes at $5 each, she had $2a left.  How many cakes did she buy?  Give your answer in terms of a."
+        },
+        {
+          "id": "id_mgp25_132",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q28",
+      "elements": [
+        {
+          "id": "id_mgp25_133",
+          "type": "text",
+          "text": "In the figure below, QRUV and PRST are rectangles.  U is the midpoint of PT.  RS = 16 cm, ST = 6 cm and UR = 10 cm.  Find the length of QR."
+        },
+        {
+          "id": "id_mgp25_134",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangles QRUV and PRST overlapping; RS = 16 cm, ST = 6 cm, UR = 10 cm, U the midpoint of PT, QR marked '?'"
+        },
+        {
+          "id": "id_mgp25_135",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q29",
+      "elements": [
+        {
+          "id": "id_mgp25_136",
+          "type": "text",
+          "text": "A table with 4 columns is filled with numbers in a pattern as shown below.  In which column will the number 272 appear?"
+        },
+        {
+          "id": "id_mgp25_137",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Column A, B, C, D; Row 1: 3, 4, 5, 6; Row 2: 10, 9, 8, 7; Row 3: 11, 12, 13, 14; Row 4: 18, 17, 16, 15; pattern continues"
+        },
+        {
+          "id": "id_mgp25_138",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q30",
+      "elements": [
+        {
+          "id": "id_mgp25_139",
+          "type": "text",
+          "text": "The dot grid below shows a trapezium ABCD and a right-angled triangle CDE.  By joining the dots on the grid with straight lines:"
+        },
+        {
+          "id": "id_mgp25_140",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Dot grid showing trapezium ABCD and right-angled triangle CDE"
+        },
+        {
+          "id": "id_mgp25_141",
+          "type": "part",
+          "label": "(a)",
+          "text": "Draw and label another trapezium BCDX, such that DX is twice as long as BC."
+        },
+        {
+          "id": "id_mgp25_142",
+          "type": "part",
+          "label": "(b)",
+          "text": "Draw and label another triangle CDY, such that it has the same area as triangle CDE.  Triangle CDY must not overlap with trapezium ABCD."
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q_p2",
+      "elements": [
+        {
+          "id": "id_mgp25_143",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q1",
+      "elements": [
+        {
+          "id": "id_mgp25_144",
+          "type": "text",
+          "text": "The usual price of a tennis racket is $120.  During a sale, Joe bought the racket at a discount of 20%.  How much did Joe pay for the racket?"
+        },
+        {
+          "id": "id_mgp25_145",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Tennis racket with a tag 'Usual price $120' and a 'Sale 20% Discount' label"
+        },
+        {
+          "id": "id_mgp25_146",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q2",
+      "elements": [
+        {
+          "id": "id_mgp25_147",
+          "type": "text",
+          "text": "Judy had a 1-m long metal wire.  She used some of it to form a square of sides (4s + 3) cm and had 32 cm of wire left.  What is the value of s?"
+        },
+        {
+          "id": "id_mgp25_148",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square with each side labelled (4s + 3) cm"
+        },
+        {
+          "id": "id_mgp25_149",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q3",
+      "elements": [
+        {
+          "id": "id_mgp25_150",
+          "type": "text",
+          "text": "The sum of three different 3-digit numbers is 405.  Of the three numbers, find the largest possible number."
+        },
+        {
+          "id": "id_mgp25_151",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q4",
+      "elements": [
+        {
+          "id": "id_mgp25_152",
+          "type": "text",
+          "text": "Participants of a shooting contest must obtain at least a certain score in the first round to qualify for the second round.  There were 150 participants in the first round and the table below shows the number of participants for each score.  60% of the participants did not qualify for the second round.  From the table, what was the lowest score of a participant who qualified for the second round?"
+        },
+        {
+          "id": "id_mgp25_153",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Score | Number of participants; 0 | 28; 1 | 32; 2 | 30; 3 | 23; 4 | 25; 5 or more | 12"
+        },
+        {
+          "id": "id_mgp25_154",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q5",
+      "elements": [
+        {
+          "id": "id_mgp25_155",
+          "type": "text",
+          "text": "The figure below is made up of squares.  Shade 3 more squares so that the figure has a line of symmetry."
+        },
+        {
+          "id": "id_mgp25_156",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with several squares already shaded; 3 more to be shaded for a line of symmetry"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_q_p2b",
+      "elements": [
+        {
+          "id": "id_mgp25_157",
+          "type": "text",
+          "text": "For questions 6 to 17, show your workings clearly and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q6",
+      "elements": [
+        {
+          "id": "id_mgp25_158",
+          "type": "text",
+          "text": "Mrs Tan needs 21 pieces of ribbon, each of length 70 cm, to tie some presents.  Ribbon is sold in rolls of 4.5 m each.  What is the least number of rolls of ribbons that Mrs Tan needs to buy?  [3]"
+        },
+        {
+          "id": "id_mgp25_159",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "A roll of ribbon labelled 'Ribbons $3.50 per roll'"
+        },
+        {
+          "id": "id_mgp25_160",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q7",
+      "elements": [
+        {
+          "id": "id_mgp25_161",
+          "type": "text",
+          "text": "The figure is made up of 5 identical rectangles.  Find the area of the figure.  [3]"
+        },
+        {
+          "id": "id_mgp25_162",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure made up of 5 identical rectangles; overall height labelled 17 cm and one rectangle's shorter side labelled 4 cm"
+        },
+        {
+          "id": "id_mgp25_163",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q8",
+      "elements": [
+        {
+          "id": "id_mgp25_164",
+          "type": "text",
+          "text": "The graph below shows the number of books borrowed by the pupils in a school from January to May."
+        },
+        {
+          "id": "id_mgp25_165",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph of Number of books (0 to 900) against months Jan, Feb, Mar, Apr, May"
+        },
+        {
+          "id": "id_mgp25_166",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the average number of books borrowed per month from January to May?  [2]"
+        },
+        {
+          "id": "id_mgp25_167",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_168",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was the percentage increase in the number of books borrowed from February to March?  [2]"
+        },
+        {
+          "id": "id_mgp25_169",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q9",
+      "elements": [
+        {
+          "id": "id_mgp25_170",
+          "type": "text",
+          "text": "In the figure, ACDE is a trapezium and AC // ED.  AC and FD are straight lines.  BG = FG, ∠GDE = 68°, ∠ABD = 71° and ∠BCD = 36°."
+        },
+        {
+          "id": "id_mgp25_171",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Trapezium ACDE with AC // ED; straight lines AC and FD; BG = FG; marked angles ∠GDE = 68°, ∠ABD = 71° and ∠BCD = 36°"
+        },
+        {
+          "id": "id_mgp25_172",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠BDC.  [2]"
+        },
+        {
+          "id": "id_mgp25_173",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_174",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠BFD.  [2]"
+        },
+        {
+          "id": "id_mgp25_175",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q10",
+      "elements": [
+        {
+          "id": "id_mgp25_176",
+          "type": "text",
+          "text": "The bar graph shows the number of four different brands of pens sold at a shop.  560 pens were sold altogether.  Part of the graph was torn off.  The number of pens sold from Brand C was 3/5 the number of pens sold from Brand D.  The total amount collected from the sales of pens from Brand C and Brand D was $620."
+        },
+        {
+          "id": "id_mgp25_177",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Bar graph of Number of Pens for Brand A, Brand B, Brand C and Brand D, with part of the graph torn off"
+        },
+        {
+          "id": "id_mgp25_178",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Brand | Price per pen; A | $2.80; B | $2.20; C | $2.50; D | $1.60"
+        },
+        {
+          "id": "id_mgp25_179",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many Brand C pens were sold?  [3]"
+        },
+        {
+          "id": "id_mgp25_180",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_181",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many Brand B pens were sold?  [2]"
+        },
+        {
+          "id": "id_mgp25_182",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q11",
+      "elements": [
+        {
+          "id": "id_mgp25_183",
+          "type": "text",
+          "text": "The figure below is made up of 2 identical squares and 3 triangles.  EH is parallel to FG.  ∠EHG = 128° and ∠EFG = 78°."
+        },
+        {
+          "id": "id_mgp25_184",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure of 2 identical squares and 3 triangles with vertices A, B, C, D, E, F, G, H; EH parallel to FG; marked angles 128° at H and 78° at F"
+        },
+        {
+          "id": "id_mgp25_185",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠CBH.  [2]"
+        },
+        {
+          "id": "id_mgp25_186",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_187",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠GEF.  [2]"
+        },
+        {
+          "id": "id_mgp25_188",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q12",
+      "elements": [
+        {
+          "id": "id_mgp25_189",
+          "type": "text",
+          "text": "Rae and Jane took part in a 14 km race.  Both of them started running at the same time.  Rae arrived at the finishing point 10 minutes before Jane who was 1.75 km behind her.  Jane did not change her speed throughout the race and she completed the race at 1015."
+        },
+        {
+          "id": "id_mgp25_190",
+          "type": "part",
+          "label": "(a)",
+          "text": "What time did both of them start running?  [2]"
+        },
+        {
+          "id": "id_mgp25_191",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_192",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was Rae's average speed for the race in m/min?  [2]"
+        },
+        {
+          "id": "id_mgp25_193",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q13",
+      "elements": [
+        {
+          "id": "id_mgp25_194",
+          "type": "text",
+          "text": "The graphs below show the cost of sending packages to Indonesia for the first 10 kg by 2 courier companies."
+        },
+        {
+          "id": "id_mgp25_195",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Two line graphs of Cost ($) against Mass (kg) for Company A and Company B"
+        },
+        {
+          "id": "id_mgp25_196",
+          "type": "part",
+          "label": "(a)",
+          "text": "How much does it cost to courier a package for the first 2 kg when using Company A's service?  [1]"
+        },
+        {
+          "id": "id_mgp25_197",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_198",
+          "type": "part",
+          "label": "(b)",
+          "text": "Adele used Company B's service and paid $9 for her package.  What was the mass of her package?  [1]"
+        },
+        {
+          "id": "id_mgp25_199",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_200",
+          "type": "part",
+          "label": "(c)",
+          "text": "Yanti and Dewi each sent a 8.7-kg package to Indonesia.  Yanti used Company A's service while Dewi used Company B's service.  What is the difference in the amounts they paid?  [2]"
+        },
+        {
+          "id": "id_mgp25_201",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q14",
+      "elements": [
+        {
+          "id": "id_mgp25_202",
+          "type": "text",
+          "text": "At a talent show, 23 participants invited either 1, 2 or 3 guests.  The number of participants who invited 1 guest to those who invited 2 guests was 2 : 1.  There were 44 guests altogether.  Find the number of participants who invited 3 guests.  [3]"
+        },
+        {
+          "id": "id_mgp25_203",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q15",
+      "elements": [
+        {
+          "id": "id_mgp25_204",
+          "type": "text",
+          "text": "Bala had 120 more stamps than Charles at first.  Each of them gave Ali some of their stamps.  The number of stamps Charles gave Ali was 30% of the stamps Bala had at first.  The number of stamps Bala gave to Ali was 3/5 of the number of stamps Charles had at first.  Both Bala and Charles had an equal number of stamps left.  How many stamps did Bala have at first?  [3]"
+        },
+        {
+          "id": "id_mgp25_205",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q16",
+      "elements": [
+        {
+          "id": "id_mgp25_206",
+          "type": "text",
+          "text": "The water tank below is made up of 3 rectangular cuboids joined together.  At first, the tank was filled with 1800 ml of water.  Both taps were turned on for 2 minutes.  Tap A flowed at 1.2 litres per minute while Tap B flowed at 2 litres per minute."
+        },
+        {
+          "id": "id_mgp25_207",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Water tank made of 3 rectangular cuboids; Tap A above the left column, Tap B above the right column; dimensions 12 cm and 5 cm for the columns, base 50 cm long, 13 cm and 10 cm marked"
+        },
+        {
+          "id": "id_mgp25_208",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the total volume of water in the tank at the end of the 2 minutes?  [1]"
+        },
+        {
+          "id": "id_mgp25_209",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_210",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was the height of the water in the tank in the end?  [3]"
+        },
+        {
+          "id": "id_mgp25_211",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_mgp25_p2q17",
+      "elements": [
+        {
+          "id": "id_mgp25_212",
+          "type": "text",
+          "text": "Ken built a racetrack for toy cars by using 3 different rectangular pieces and 10 identical curved pieces.  A curved piece is as shown in Figure 1.  The width of the racetrack is 7 cm."
+        },
+        {
+          "id": "id_mgp25_213",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure 1: a quarter-ring curved piece of width 7 cm.  Racetrack: closed loop of rectangular and curved pieces with measurements 15 cm, 14 cm, 7 cm and length x marked"
+        },
+        {
+          "id": "id_mgp25_214",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the length of x.  [1]"
+        },
+        {
+          "id": "id_mgp25_215",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_mgp25_216",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the area of the entire track.  (Take π = 22/7)  [3]"
+        },
+        {
+          "id": "id_mgp25_217",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
