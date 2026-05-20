@@ -947,6 +947,40 @@
     text-align: right;
   }
 
+  /* ============================ INLINE PREVIEW EDITING ============================ */
+  .pv-editable {
+    cursor: text;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .pv-editable:hover {
+    background: var(--accent-bg);
+    box-shadow: 0 0 0 4px var(--accent-bg);
+  }
+  .pv-editable:focus {
+    outline: 2px solid var(--accent-base);
+    outline-offset: 3px;
+    background: var(--bg-primary);
+    box-shadow: none;
+  }
+  .pv-editable:empty::before {
+    content: attr(data-placeholder);
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+  .pv-image-zone { cursor: pointer; outline: none; }
+  .pv-image-zone:hover {
+    box-shadow: 0 0 0 3px var(--accent-bg);
+    border-radius: var(--radius-md);
+  }
+  .pv-image-zone:focus {
+    outline: 2px solid var(--accent-base);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+  .option-radio.pv-radio { cursor: pointer; }
+  .option-radio.pv-radio:hover { border-color: var(--correct-base); }
+
   /* ============================ AUTOSAVE STATUS ============================ */
   .autosave-status {
     font-size: var(--font-size-xs);
@@ -1850,6 +1884,23 @@ function renderPreviewQuestion(q, qIndex) {
   const stem = document.createElement('div');
   stem.className = 'question-stem';
   stem.innerHTML = formatTextWithFractions(firstText ? firstText.text : '');
+  if (previewEditingEnabled()) {
+    attachInlineText(stem,
+      () => {
+        const t = q.elements.find(e => e.type === 'text');
+        return t ? t.text : '';
+      },
+      (v) => {
+        let t = q.elements.find(e => e.type === 'text');
+        if (!t) {
+          if (!v) return;
+          t = makeElement('text');
+          q.elements.unshift(t);
+        }
+        t.text = v;
+      },
+      'Question text — click to edit');
+  }
   header.appendChild(stem);
 
   card.appendChild(header);
@@ -1911,14 +1962,97 @@ function renderPreviewQuestion(q, qIndex) {
   return card;
 }
 
+/* =========================================================================
+   INLINE PREVIEW EDITING
+   The right-hand preview is fully editable for the admin (same gate as the
+   left-hand editor). Text nodes become contenteditable; image areas accept
+   paste / drop just like the editor's paste zones.
+   ========================================================================= */
+function previewEditingEnabled() {
+  // Matches the left-hand editor: only the admin can author worksheets.
+  return isAdmin();
+}
+
+function applyImageFile(file, onDone) {
+  if (!file || !file.type || !file.type.startsWith('image/')) return false;
+  const reader = new FileReader();
+  reader.onload = () => onDone(reader.result);
+  reader.readAsDataURL(file);
+  return true;
+}
+
+// Make a rendered text node editable in place. While focused it shows the raw
+// text (so a typed "3/4" stays editable); on blur it re-renders with fractions
+// and syncs the left-hand editor.
+function attachInlineText(displayEl, getRaw, setRaw, placeholder) {
+  displayEl.classList.add('pv-editable');
+  displayEl.setAttribute('contenteditable', 'true');
+  displayEl.setAttribute('spellcheck', 'false');
+  if (placeholder) displayEl.dataset.placeholder = placeholder;
+  const readBack = () => displayEl.innerText.replace(/\n$/, '');
+  displayEl.addEventListener('focus', () => {
+    displayEl.textContent = getRaw() || '';
+  });
+  displayEl.addEventListener('input', () => {
+    setRaw(readBack());
+    scheduleAutoSave();
+  });
+  displayEl.addEventListener('blur', () => {
+    // Re-render only this node (with fractions) so other editable fields in
+    // the preview aren't destroyed — that would swallow a click moving
+    // straight from one field to another. The left editor is rebuilt so it
+    // stays in sync with the model.
+    const raw = readBack();
+    setRaw(raw);
+    displayEl.innerHTML = formatTextWithFractions(raw);
+    renderEditor();
+    scheduleAutoSave();
+  });
+  displayEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); displayEl.blur(); }
+  });
+  return displayEl;
+}
+
+// Turn an element into an image paste / drop target writing to el.dataUrl.
+function attachImagePaste(zoneEl, el) {
+  zoneEl.classList.add('pv-image-zone');
+  zoneEl.tabIndex = 0;
+  zoneEl.title = 'Click here, then paste an image (Ctrl+V / ⌘+V) — or drop one';
+  const commit = (url) => { el.dataUrl = url; renderEditor(); renderPreview(); };
+  zoneEl.addEventListener('click', (e) => {
+    // Don't steal focus from an editable child (e.g. the caption).
+    if (e.target !== zoneEl && e.target.isContentEditable) return;
+    zoneEl.focus();
+  });
+  zoneEl.addEventListener('paste', (e) => {
+    const items = (e.clipboardData && e.clipboardData.items) || [];
+    for (const it of items) {
+      if (it.type && it.type.startsWith('image/')) {
+        e.preventDefault();
+        applyImageFile(it.getAsFile(), commit);
+        return;
+      }
+    }
+  });
+  zoneEl.addEventListener('dragover', (e) => { e.preventDefault(); });
+  zoneEl.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    applyImageFile(file, commit);
+  });
+}
+
 function renderPreviewElement(el, ctx = {}) {
   const showAnswerFor = ctx.showAnswerFor ?? showAnswers;
   const showVideoFor = ctx.showVideoFor ?? showAnswers;
+  const editable = previewEditingEnabled();
   switch (el.type) {
     case 'text': {
       const d = document.createElement('div');
       d.className = 'question-sub';
       d.innerHTML = formatTextWithFractions(el.text);
+      if (editable) attachInlineText(d, () => el.text || '', (v) => { el.text = v; }, 'Empty text — click to edit');
       return d;
     }
     case 'image': {
@@ -1932,13 +2066,17 @@ function renderPreviewElement(el, ctx = {}) {
       } else {
         const placeholder = document.createElement('div');
         placeholder.style.cssText = 'padding:24px; border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); font-size:var(--font-size-sm);';
-        placeholder.textContent = '(image not yet pasted)';
+        placeholder.textContent = editable
+          ? 'Click here, then paste an image (Ctrl+V / ⌘+V)'
+          : '(image not yet pasted)';
         wrap.appendChild(placeholder);
       }
-      if (el.caption) {
+      if (editable) attachImagePaste(wrap, el);
+      if (el.caption || editable) {
         const cap = document.createElement('div');
         cap.style.cssText = 'margin-top:8px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;';
-        cap.textContent = el.caption;
+        cap.textContent = el.caption || '';
+        if (editable) attachInlineText(cap, () => el.caption || '', (v) => { el.caption = v; }, 'Add a caption…');
         wrap.appendChild(cap);
       }
       return wrap;
@@ -1952,6 +2090,10 @@ function renderPreviewElement(el, ctx = {}) {
       const text = document.createElement('span');
       text.className = 'part-text';
       text.innerHTML = formatTextWithFractions(el.text || '');
+      if (editable) {
+        attachInlineText(marker, () => el.label || '', (v) => { el.label = v; }, '(a)');
+        attachInlineText(text, () => el.text || '', (v) => { el.text = v; }, 'Part text — click to edit');
+      }
       row.appendChild(marker);
       row.appendChild(text);
       return row;
@@ -1967,6 +2109,15 @@ function renderPreviewElement(el, ctx = {}) {
         }
         const radio = document.createElement('div');
         radio.className = 'option-radio';
+        if (editable) {
+          radio.classList.add('pv-radio');
+          radio.title = 'Mark this option as the correct answer';
+          radio.addEventListener('click', () => {
+            el.correctId = opt.id;
+            renderEditor();
+            renderPreview();
+          });
+        }
         item.appendChild(radio);
 
         const label = document.createElement('div');
@@ -1977,6 +2128,7 @@ function renderPreviewElement(el, ctx = {}) {
         label.appendChild(marker);
         const optText = document.createElement('span');
         optText.innerHTML = formatTextWithFractions(opt.text || '');
+        if (editable) attachInlineText(optText, () => opt.text || '', (v) => { opt.text = v; }, 'Option text');
         label.appendChild(optText);
         item.appendChild(label);
 
@@ -1990,6 +2142,7 @@ function renderPreviewElement(el, ctx = {}) {
       const prefix = document.createElement('span');
       prefix.className = 'answer-field-prefix';
       prefix.textContent = el.label || 'Ans :';
+      if (editable) attachInlineText(prefix, () => el.label || '', (v) => { el.label = v; }, 'Ans :');
       const line = document.createElement('span');
       line.className = 'answer-field-line';
       if (showAnswers && el.answer) {
@@ -2017,10 +2170,11 @@ function renderPreviewElement(el, ctx = {}) {
       t.className = 'answer-key-title';
       t.textContent = 'Answer key';
       block.appendChild(t);
-      if (el.text && el.text.trim()) {
+      if ((el.text && el.text.trim()) || editable) {
         const body = document.createElement('div');
         body.className = 'answer-key-body';
-        body.innerHTML = formatTextWithFractions(el.text);
+        body.innerHTML = formatTextWithFractions(el.text || '');
+        if (editable) attachInlineText(body, () => el.text || '', (v) => { el.text = v; }, 'Answer key text — click to edit');
         block.appendChild(body);
       }
       if (el.dataUrl) {
@@ -2028,7 +2182,14 @@ function renderPreviewElement(el, ctx = {}) {
         img.className = 'answer-key-image';
         img.src = el.dataUrl;
         img.alt = 'Answer key screenshot';
+        if (editable) attachImagePaste(img, el);
         block.appendChild(img);
+      } else if (editable) {
+        const zone = document.createElement('div');
+        zone.style.cssText = 'margin-top:8px; padding:14px; border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); font-size:var(--font-size-sm); text-align:center; background:var(--bg-primary);';
+        zone.textContent = 'Click here, then paste an answer-key screenshot';
+        attachImagePaste(zone, el);
+        block.appendChild(zone);
       }
       return block;
     }
@@ -2061,10 +2222,11 @@ function renderPreviewElement(el, ctx = {}) {
         ifr.allowFullscreen = true;
         wrap.appendChild(ifr);
       }
-      if (el.caption) {
+      if (el.caption || editable) {
         const cap = document.createElement('div');
         cap.className = 'video-caption';
-        cap.textContent = el.caption;
+        cap.textContent = el.caption || '';
+        if (editable) attachInlineText(cap, () => el.caption || '', (v) => { el.caption = v; }, 'Add a caption…');
         wrap.appendChild(cap);
       }
       return wrap;
@@ -3251,10 +3413,12 @@ onAuthStateChanged(fbAuth, async (user) => {
     state = { title: '', subtitle: '', questions: [] };
     document.getElementById('worksheetTitle').value = '';
     document.getElementById('worksheetSubtitle').value = '';
-    renderEditor();
-    renderPreview();
   }
   refreshAuthUi();
+  // Re-render so the preview reflects the current edit permissions
+  // (inline editing turns on once the admin is signed in).
+  renderEditor();
+  renderPreview();
   await refreshSavedList();
   // If admin, one-shot migrate any worksheets saved before the shared collection was introduced.
   if (currentUser && isAdmin()) migrateLegacyWorksheets();
