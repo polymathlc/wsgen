@@ -991,6 +991,79 @@
   .autosave-status.saving { color: var(--accent-deep); }
   .autosave-status.saved { color: var(--correct-dark); }
   .autosave-status.error { color: var(--wrong-dark); }
+
+  /* ============================ TOPIC / CONCEPT ============================ */
+  .question-meta-row {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+  .meta-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .meta-field-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-sm);
+  }
+  .filter-label {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+  .filter-input {
+    padding: 6px 10px;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    width: 150px;
+  }
+  .filter-input:focus { outline: none; border-color: var(--accent-base); }
+  .filter-count {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 600;
+  }
+  .question-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+  .qtag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    font-size: var(--font-size-xs);
+  }
+  .qtag-key {
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .qtag-val { color: var(--text-secondary); min-width: 32px; }
 </style>
 </head>
 <body>
@@ -1023,6 +1096,15 @@
         <label class="btn preview-toggle admin-only" style="cursor:pointer;">
           <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
         </label>
+      </div>
+      <div class="filter-row admin-only">
+        <span class="filter-label">Filter:</span>
+        <input type="text" id="filterTopic" class="filter-input" placeholder="Topic" list="topicOptions" />
+        <input type="text" id="filterConcept" class="filter-input" placeholder="Concept" list="conceptOptions" />
+        <button class="btn btn-tiny" id="clearFilterBtn">Clear</button>
+        <span id="filterCount" class="filter-count"></span>
+        <datalist id="topicOptions"></datalist>
+        <datalist id="conceptOptions"></datalist>
       </div>
       <div id="savedList" class="saved-list"></div>
       <div class="anon-banner">Sign in with Google to access worksheets.</div>
@@ -1083,6 +1165,8 @@ let state = {
 let showAnswers = false;
 let revealedAnswers = new Set();
 let revealedVideos = new Set();
+let filterTopic = '';
+let filterConcept = '';
 let uid = 0;
 const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
 
@@ -1090,7 +1174,7 @@ const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
    QUESTION / ELEMENT FACTORIES
    ========================================================================= */
 function makeQuestion() {
-  return { id: newId(), elements: [] };
+  return { id: newId(), elements: [], topic: '', concept: '' };
 }
 function makeElement(type) {
   const base = { id: newId(), type };
@@ -1131,6 +1215,7 @@ const editorRoot = document.getElementById('editorQuestions');
 
 function renderEditor() {
   editorRoot.innerHTML = '';
+  refreshFilterDatalists();
   if (state.questions.length === 0) {
     const hint = document.createElement('div');
     hint.className = 'empty-state';
@@ -1140,9 +1225,19 @@ function renderEditor() {
     editorRoot.appendChild(hint);
     return;
   }
+  let shown = 0;
   state.questions.forEach((q, qIndex) => {
+    if (!questionMatchesFilter(q)) return;
+    shown++;
     editorRoot.appendChild(renderEditorQuestion(q, qIndex));
   });
+  if (shown === 0) {
+    const hint = document.createElement('div');
+    hint.className = 'empty-state';
+    hint.style.cssText = 'background:transparent; border:2px dashed var(--border-medium);';
+    hint.textContent = 'No questions match the current topic / concept filter.';
+    editorRoot.appendChild(hint);
+  }
 }
 
 function renderEditorQuestion(q, qIndex) {
@@ -1166,6 +1261,21 @@ function renderEditorQuestion(q, qIndex) {
   header.appendChild(actions);
 
   card.appendChild(header);
+
+  // Optional topic / concept tags used for filtering (admin-only metadata).
+  const metaRow = document.createElement('div');
+  metaRow.className = 'question-meta-row';
+  metaRow.appendChild(makeMetaField('Topic', q.topic || '', 'topicOptions', (v) => {
+    q.topic = v;
+    refreshFilterDatalists();
+    renderPreview();
+  }));
+  metaRow.appendChild(makeMetaField('Concept', q.concept || '', 'conceptOptions', (v) => {
+    q.concept = v;
+    refreshFilterDatalists();
+    renderPreview();
+  }));
+  card.appendChild(metaRow);
 
   const elList = document.createElement('div');
   elList.className = 'element-list';
@@ -1440,6 +1550,24 @@ function makeAddBtn(label, onClick) {
   b.textContent = label;
   b.addEventListener('click', onClick);
   return b;
+}
+
+function makeMetaField(label, value, listId, onInput) {
+  const wrap = document.createElement('label');
+  wrap.className = 'meta-field';
+  const span = document.createElement('span');
+  span.className = 'meta-field-label';
+  span.textContent = label;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'text-line';
+  input.value = value;
+  input.placeholder = label + ' (optional)';
+  input.setAttribute('list', listId);
+  input.addEventListener('input', () => onInput(input.value));
+  wrap.appendChild(span);
+  wrap.appendChild(input);
+  return wrap;
 }
 
 function renderElementEditor(q, el, elIndex) {
@@ -1855,9 +1983,19 @@ function renderPreview() {
     return;
   }
 
+  let shown = 0;
   state.questions.forEach((q, qIndex) => {
+    if (!questionMatchesFilter(q)) return;
+    shown++;
     previewContainer.appendChild(renderPreviewQuestion(q, qIndex));
   });
+  if (shown === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.textContent = 'No questions match the current topic / concept filter.';
+    previewContainer.appendChild(empty);
+  }
+  updateFilterCount(shown);
 }
 
 function questionHasAnswerKey(q) {
@@ -1870,6 +2008,15 @@ function questionHasVideo(q) {
 function renderPreviewQuestion(q, qIndex) {
   const card = document.createElement('article');
   card.className = 'question-card';
+
+  // Topic / concept tags — admin only. Never rendered for students or exports.
+  if (isAdmin()) {
+    const tags = document.createElement('div');
+    tags.className = 'question-tags';
+    tags.appendChild(makePreviewTag('Topic', () => q.topic || '', (v) => { q.topic = v; }));
+    tags.appendChild(makePreviewTag('Concept', () => q.concept || '', (v) => { q.concept = v; }));
+    card.appendChild(tags);
+  }
 
   const header = document.createElement('div');
   header.className = 'question-header';
@@ -2041,6 +2188,22 @@ function attachImagePaste(zoneEl, el) {
     const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
     applyImageFile(file, commit);
   });
+}
+
+// A small editable "Topic / Concept" pill shown above each question (admin only).
+function makePreviewTag(key, getRaw, setRaw) {
+  const tag = document.createElement('span');
+  tag.className = 'qtag';
+  const k = document.createElement('span');
+  k.className = 'qtag-key';
+  k.textContent = key;
+  const val = document.createElement('span');
+  val.className = 'qtag-val';
+  val.textContent = getRaw();
+  attachInlineText(val, getRaw, setRaw, 'add…');
+  tag.appendChild(k);
+  tag.appendChild(val);
+  return tag;
 }
 
 function renderPreviewElement(el, ctx = {}) {
@@ -3365,6 +3528,67 @@ function restoreAutoSave() {
   } catch (_) {}
   return false;
 }
+
+/* =========================================================================
+   TOPIC / CONCEPT FILTER
+   Each question carries an optional topic and concept. The admin can filter
+   the editor + preview by them. These fields are admin-only — they never
+   appear in exports or in a student's preview.
+   ========================================================================= */
+function questionMatchesFilter(q) {
+  const t = filterTopic.trim().toLowerCase();
+  const c = filterConcept.trim().toLowerCase();
+  if (t && !(q.topic || '').toLowerCase().includes(t)) return false;
+  if (c && !(q.concept || '').toLowerCase().includes(c)) return false;
+  return true;
+}
+
+function refreshFilterDatalists() {
+  const topics = new Set();
+  const concepts = new Set();
+  state.questions.forEach(q => {
+    if (q.topic && q.topic.trim()) topics.add(q.topic.trim());
+    if (q.concept && q.concept.trim()) concepts.add(q.concept.trim());
+  });
+  const fill = (id, values) => {
+    const dl = document.getElementById(id);
+    if (!dl) return;
+    dl.innerHTML = '';
+    [...values].sort().forEach(v => {
+      const o = document.createElement('option');
+      o.value = v;
+      dl.appendChild(o);
+    });
+  };
+  fill('topicOptions', topics);
+  fill('conceptOptions', concepts);
+}
+
+function updateFilterCount(shown) {
+  const el = document.getElementById('filterCount');
+  if (!el) return;
+  const total = state.questions.length;
+  if ((filterTopic.trim() || filterConcept.trim()) && total > 0) {
+    el.textContent = `Showing ${shown} of ${total}`;
+  } else {
+    el.textContent = '';
+  }
+}
+
+function applyFilterFromInputs() {
+  filterTopic = document.getElementById('filterTopic').value;
+  filterConcept = document.getElementById('filterConcept').value;
+  renderEditor();
+  renderPreview();
+}
+
+document.getElementById('filterTopic').addEventListener('input', applyFilterFromInputs);
+document.getElementById('filterConcept').addEventListener('input', applyFilterFromInputs);
+document.getElementById('clearFilterBtn').addEventListener('click', () => {
+  document.getElementById('filterTopic').value = '';
+  document.getElementById('filterConcept').value = '';
+  applyFilterFromInputs();
+});
 
 document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
