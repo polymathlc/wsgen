@@ -1123,6 +1123,67 @@
     background: var(--accent-bg);
     border-color: var(--accent-light);
   }
+  .link-status.warn {
+    color: #6D4C41;
+    background: #FFF8E1;
+    border-color: #FFE082;
+  }
+
+  /* ============================ PREVIEW INSERT BAR ============================ */
+  .insert-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px 0;
+  }
+  .insert-toggle {
+    min-width: 26px;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    border: 1px solid var(--border-subtle);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.3;
+    transition: opacity var(--transition-fast), background var(--transition-fast);
+  }
+  .insert-bar:hover .insert-toggle { opacity: 1; }
+  .insert-toggle:hover {
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border-color: var(--accent-light);
+  }
+  .insert-bar.open .insert-toggle {
+    opacity: 1;
+    background: var(--accent-deep);
+    color: #fff;
+    border-color: var(--accent-deep);
+  }
+  .insert-menu {
+    display: none;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .insert-bar.open .insert-menu { display: flex; }
+  .insert-menu-btn {
+    padding: 3px 9px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+  .insert-menu-btn:hover {
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border-color: var(--accent-light);
+  }
   .saved-item-restore {
     font-size: var(--font-size-xs);
     color: var(--accent-deep);
@@ -1148,7 +1209,8 @@
       <input type="text" id="worksheetSubtitle" class="title-input admin-only" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
-        <button class="btn admin-only" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
+        <button class="btn admin-only" id="saveSystemBtn" title="Save to your account — updates the linked worksheet, or creates a new one if none is linked">☁ Save to System</button>
+        <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
         <button class="btn admin-only" id="newWorksheetBtn">New</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
@@ -2213,13 +2275,19 @@ function renderPreviewQuestion(q, qIndex) {
   });
   actions.appendChild(vidBtn);
 
+  const canEdit = previewEditingEnabled();
+  // Insert bar right after the stem, so an element can be added at the top.
+  if (canEdit) card.appendChild(buildInsertBar(q, q.elements.indexOf(firstText)));
+
   let stemConsumed = false;
-  q.elements.forEach((el) => {
+  q.elements.forEach((el, idx) => {
     if (el.type === 'text' && !stemConsumed) {
       stemConsumed = true;
       return;
     }
     card.appendChild(renderPreviewElement(el, { showAnswerFor, showVideoFor }));
+    // Insert bar after each element, to add a new element right below it.
+    if (canEdit) card.appendChild(buildInsertBar(q, idx));
   });
 
   // Caption showing which school / year the question came from.
@@ -2380,6 +2448,40 @@ function buildTagGroup(container, label, q, kind) {
     renderPreview();
   });
   container.appendChild(add);
+}
+
+// A slim bar between preview segments. Clicking "+" reveals element-type
+// buttons that insert a new element right after position `afterIndex`.
+const INSERT_TYPES = [
+  ['Text', 'text'], ['Image', 'image'], ['Part', 'part'], ['MCQ', 'mcq'],
+  ['Answer field', 'answer'], ['Answer key', 'answerKey'], ['Video', 'video']
+];
+function buildInsertBar(q, afterIndex) {
+  const bar = document.createElement('div');
+  bar.className = 'insert-bar';
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'insert-toggle';
+  toggle.textContent = '+';
+  toggle.title = 'Add an element here';
+  toggle.addEventListener('click', () => bar.classList.toggle('open'));
+  bar.appendChild(toggle);
+  const menu = document.createElement('div');
+  menu.className = 'insert-menu';
+  INSERT_TYPES.forEach(([label, type]) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'insert-menu-btn';
+    b.textContent = '+ ' + label;
+    b.addEventListener('click', () => {
+      q.elements.splice(afterIndex + 1, 0, makeElement(type));
+      renderEditor();
+      renderPreview();
+    });
+    menu.appendChild(b);
+  });
+  bar.appendChild(menu);
+  return bar;
 }
 
 function renderPreviewElement(el, ctx = {}) {
@@ -3107,6 +3209,7 @@ function loadJson(file) {
       // A file load is a brand-new worksheet — never silently overwrite the
       // cloud worksheet that happened to be open before.
       currentSavedId = null;
+      currentSavedTitle = null;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
       renderEditor();
@@ -3160,6 +3263,7 @@ const ALLOWED_EMAIL = 'chungzhikai@gmail.com';
 
 let currentUser = null; // Firebase User object (or null)
 let currentSavedId = null; // id of the worksheet currently loaded from cloud, if any
+let currentSavedTitle = null; // title of that worksheet AS LOADED — guards against overwriting the wrong one
 let savedItemsCache = []; // cached list for re-render
 
 function showAuthHint(html, kind = 'info') {
@@ -3320,15 +3424,36 @@ async function persistToSystem() {
   }
 
   currentSavedId = id;
+  currentSavedTitle = state.title || 'Untitled';
 }
 
-async function saveToSystem() {
+/* Save to the system.
+   - forceNew: always create a brand-new worksheet (never touch the linked one).
+   - Otherwise, if linked to a worksheet whose title no longer matches, the
+     worksheet was probably swapped — confirm before overwriting, and default
+     to saving as a new worksheet so a different paper can't clobber it. */
+async function saveToSystem(forceNew = false) {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
     alert(`Cloud saving is restricted to ${ALLOWED_EMAIL}.`);
     return;
   }
-  const btn = document.getElementById('saveSystemBtn');
+  if (forceNew) {
+    currentSavedId = null;
+    currentSavedTitle = null;
+  } else if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
+    const overwrite = confirm(
+      `This worksheet is linked to the saved worksheet:\n` +
+      `    "${currentSavedTitle}"\n\n` +
+      `but it is now titled:\n    "${state.title || 'Untitled'}"\n\n` +
+      `OK  = overwrite "${currentSavedTitle}" with the current content\n` +
+      `Cancel = save as a NEW, separate worksheet (recommended)`);
+    if (!overwrite) {
+      currentSavedId = null;
+      currentSavedTitle = null;
+    }
+  }
+  const btn = document.getElementById(forceNew ? 'saveAsNewBtn' : 'saveSystemBtn');
   const original = btn.textContent;
   btn.textContent = '⏳ Saving…';
   btn.disabled = true;
@@ -3360,6 +3485,13 @@ async function saveToSystem() {
 let cloudAutoSaveInFlight = false;
 async function autoCloudSave() {
   if (!isAdmin() || !currentSavedId) return;
+  // Safety: never silently overwrite a saved worksheet whose title no longer
+  // matches the one that was opened — it may have been replaced by a
+  // different worksheet. Pause cloud auto-save until the admin saves manually.
+  if ((state.title || '') !== (currentSavedTitle || '')) {
+    updateLinkStatus();
+    return;
+  }
   if (cloudAutoSaveInFlight) { scheduleCloudAutoSave(); return; }
   cloudAutoSaveInFlight = true;
   setAutoSaveStatus('saving');
@@ -3419,6 +3551,7 @@ async function loadFromSystem(id) {
     if (isAdmin()) logActivity('before opening: ' + (data.title || 'worksheet'));
     state = parsed;
     currentSavedId = id;
+    currentSavedTitle = state.title || 'Untitled';
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
     if (isAdmin()) renderEditor();
@@ -3460,7 +3593,7 @@ async function deleteFromSystem(id) {
       }
     }
     await deleteDoc(doc(fbDb, 'worksheets', id));
-    if (currentSavedId === id) currentSavedId = null;
+    if (currentSavedId === id) { currentSavedId = null; currentSavedTitle = null; }
     await refreshSavedList();
   } catch (e) {
     alert('Delete failed: ' + (e.message || e));
@@ -3535,6 +3668,7 @@ function newWorksheet() {
   logActivity('before new worksheet');
   state = { title: 'New Worksheet', subtitle: '', questions: [] };
   currentSavedId = null;
+  currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   addQuestion();
@@ -3640,6 +3774,7 @@ function openDraft() {
     questions: draft.map(reidQuestion)
   };
   currentSavedId = null;
+  currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   renderEditor();
@@ -3864,6 +3999,7 @@ function restoreActivityEntry(index) {
   state = restored;
   // Never auto-relink — the admin decides where the restored copy is saved.
   currentSavedId = null;
+  currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title || '';
   document.getElementById('worksheetSubtitle').value = state.subtitle || '';
   renderEditor();
@@ -3874,10 +4010,13 @@ function restoreActivityEntry(index) {
 function updateLinkStatus() {
   const el = document.getElementById('linkStatus');
   if (!el) return;
-  if (currentSavedId) {
-    const item = (savedItemsCache || []).find(it => it.id === currentSavedId);
-    const name = item ? item.title : 'a saved worksheet';
-    el.textContent = '🔗 Editing saved worksheet: ' + name + ' — changes auto-save to it.';
+  if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
+    el.textContent = '⚠ Title changed since opening "' + currentSavedTitle + '". ' +
+      'Auto cloud-save is PAUSED so it cannot overwrite that worksheet. ' +
+      'Use "Save to System" (overwrite) or "Save as New".';
+    el.className = 'link-status warn admin-only';
+  } else if (currentSavedId) {
+    el.textContent = '🔗 Editing saved worksheet: "' + currentSavedTitle + '" — changes auto-save to it.';
     el.className = 'link-status linked admin-only';
   } else {
     el.textContent = '🆕 New / unlinked worksheet — "Save to System" creates a new entry.';
@@ -3995,6 +4134,7 @@ async function searchAllWorksheets() {
       questions: matches
     };
     currentSavedId = null;
+    currentSavedTitle = null;
     document.getElementById('worksheetTitle').value = state.title;
     document.getElementById('worksheetSubtitle').value = state.subtitle;
     renderEditor();
@@ -4015,7 +4155,8 @@ document.getElementById('clearFilterBtn').addEventListener('click', () => {
 });
 document.getElementById('searchAllBtn').addEventListener('click', searchAllWorksheets);
 
-document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
+document.getElementById('saveSystemBtn').addEventListener('click', () => saveToSystem(false));
+document.getElementById('saveAsNewBtn').addEventListener('click', () => saveToSystem(true));
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
@@ -4057,6 +4198,7 @@ async function migrateLegacyWorksheets() {
 onAuthStateChanged(fbAuth, async (user) => {
   currentUser = user || null;
   currentSavedId = null;
+  currentSavedTitle = null;
   // For students, clear any in-progress editor state and let them pick from the library.
   if (currentUser && !isAdmin()) {
     state = { title: '', subtitle: '', questions: [] };
