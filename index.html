@@ -2362,6 +2362,9 @@ function attachImagePaste(zoneEl, el) {
   zoneEl.tabIndex = 0;
   zoneEl.title = 'Click here, then paste an image (Ctrl+V / ⌘+V) — or drop one';
   const commit = (url) => { el.dataUrl = url; renderEditor(); renderPreview(); };
+  // When a diagram already has an image, confirm before replacing it.
+  const okToReplace = () =>
+    !el.dataUrl || confirm('This diagram already has an image.\n\nReplace it with the image you just pasted?');
   zoneEl.addEventListener('click', (e) => {
     // Don't steal focus from an editable child (e.g. the caption).
     if (e.target !== zoneEl && e.target.isContentEditable) return;
@@ -2372,6 +2375,7 @@ function attachImagePaste(zoneEl, el) {
     for (const it of items) {
       if (it.type && it.type.startsWith('image/')) {
         e.preventDefault();
+        if (!okToReplace()) return;
         applyImageFile(it.getAsFile(), commit);
         return;
       }
@@ -2381,6 +2385,8 @@ function attachImagePaste(zoneEl, el) {
   zoneEl.addEventListener('drop', (e) => {
     e.preventDefault();
     const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!file || !file.type || !file.type.startsWith('image/')) return;
+    if (!okToReplace()) return;
     applyImageFile(file, commit);
   });
 }
