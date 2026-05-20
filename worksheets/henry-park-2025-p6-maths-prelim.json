@@ -1,0 +1,1340 @@
+{
+  "title": "Henry Park Primary School 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Henry Park Primary School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_hpp25_q_a",
+      "elements": [
+        {
+          "id": "id_hpp25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer in the Optical Answer Sheet.  All diagrams are not drawn to scale.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q1",
+      "elements": [
+        {
+          "id": "id_hpp25_2",
+          "type": "text",
+          "text": "Round 309 499 to the nearest thousand."
+        },
+        {
+          "id": "id_hpp25_3",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_4", "text": "300 000" },
+            { "id": "id_hpp25_5", "text": "309 000" },
+            { "id": "id_hpp25_6", "text": "309 500" },
+            { "id": "id_hpp25_7", "text": "310 000" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q2",
+      "elements": [
+        {
+          "id": "id_hpp25_8",
+          "type": "text",
+          "text": "70 + 7/10 + 7/100 = [ ? ].  What is the missing number in the box?"
+        },
+        {
+          "id": "id_hpp25_9",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_10", "text": "70.077" },
+            { "id": "id_hpp25_11", "text": "70.77" },
+            { "id": "id_hpp25_12", "text": "77.07" },
+            { "id": "id_hpp25_13", "text": "77.7" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q3",
+      "elements": [
+        {
+          "id": "id_hpp25_14",
+          "type": "text",
+          "text": "Find the value of 72 − 4 × 3 + 24."
+        },
+        {
+          "id": "id_hpp25_15",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_16", "text": "1836" },
+            { "id": "id_hpp25_17", "text": "228" },
+            { "id": "id_hpp25_18", "text": "84" },
+            { "id": "id_hpp25_19", "text": "36" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q4",
+      "elements": [
+        {
+          "id": "id_hpp25_20",
+          "type": "text",
+          "text": "A musical started at 18 35 and ended at 20 20.  What was the duration of the musical?"
+        },
+        {
+          "id": "id_hpp25_21",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_22", "text": "105 min" },
+            { "id": "id_hpp25_23", "text": "115 min" },
+            { "id": "id_hpp25_24", "text": "145 min" },
+            { "id": "id_hpp25_25", "text": "185 min" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q5",
+      "elements": [
+        {
+          "id": "id_hpp25_26",
+          "type": "text",
+          "text": "The table shows the number of students who wear and do not wear spectacles.  What percentage of the students do not wear spectacles?"
+        },
+        {
+          "id": "id_hpp25_27",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — rows Boys and Girls, columns 'Wear spectacles' and 'Do not wear spectacles'; Boys: 5 and 2; Girls: 15 and 3"
+        },
+        {
+          "id": "id_hpp25_28",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_29", "text": "60%" },
+            { "id": "id_hpp25_30", "text": "25%" },
+            { "id": "id_hpp25_31", "text": "20%" },
+            { "id": "id_hpp25_32", "text": "5%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q6",
+      "elements": [
+        {
+          "id": "id_hpp25_33",
+          "type": "text",
+          "text": "The net of a cube is shown.  Which 2 faces are opposite each other?"
+        },
+        {
+          "id": "id_hpp25_34",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Net of a cube with six faces labelled A, D, B, E, C and F arranged in a staircase shape"
+        },
+        {
+          "id": "id_hpp25_35",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_36", "text": "A and B" },
+            { "id": "id_hpp25_37", "text": "B and E" },
+            { "id": "id_hpp25_38", "text": "D and F" },
+            { "id": "id_hpp25_39", "text": "C and D" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q7",
+      "elements": [
+        {
+          "id": "id_hpp25_40",
+          "type": "text",
+          "text": "SX, TW, ZU and YV are straight lines.  Which pair of angles does not add up to 180°?"
+        },
+        {
+          "id": "id_hpp25_41",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four straight lines SX, TW, ZU and YV crossing one another, with marked angles a, b, c and d at the intersection points"
+        },
+        {
+          "id": "id_hpp25_42",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_43", "text": "∠a + ∠b" },
+            { "id": "id_hpp25_44", "text": "∠a + ∠c" },
+            { "id": "id_hpp25_45", "text": "∠b + ∠c" },
+            { "id": "id_hpp25_46", "text": "∠b + ∠d" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q8",
+      "elements": [
+        {
+          "id": "id_hpp25_47",
+          "type": "text",
+          "text": "Which of the following shows 1/4 of the figure shaded?"
+        },
+        {
+          "id": "id_hpp25_48",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Four square figures (1) to (4), each divided into triangles/quarters with different parts shaded"
+        },
+        {
+          "id": "id_hpp25_49",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_50", "text": "Figure (1)" },
+            { "id": "id_hpp25_51", "text": "Figure (2)" },
+            { "id": "id_hpp25_52", "text": "Figure (3)" },
+            { "id": "id_hpp25_53", "text": "Figure (4)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q9",
+      "elements": [
+        {
+          "id": "id_hpp25_54",
+          "type": "text",
+          "text": "Find the area of triangle ABC."
+        },
+        {
+          "id": "id_hpp25_55",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Triangle ABC with A at top-left, C at the bottom and B at the bottom-right; AC has height 8 cm, base segment 6 cm, vertical segment 4 cm at C, slant 17 cm to B, base AB span 15 cm"
+        },
+        {
+          "id": "id_hpp25_56",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_57", "text": "60 cm²" },
+            { "id": "id_hpp25_58", "text": "36 cm²" },
+            { "id": "id_hpp25_59", "text": "34 cm²" },
+            { "id": "id_hpp25_60", "text": "30 cm²" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q10",
+      "elements": [
+        {
+          "id": "id_hpp25_61",
+          "type": "text",
+          "text": "Use the information below to answer Questions 10 and 11.  The bar graph shows the number of muffins sold over 5 days.  60 muffins were sold on Thursday."
+        },
+        {
+          "id": "id_hpp25_62",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Bar graph 'Number of muffins sold' for Mon, Tue, Wed, Thu and Fri; Thursday bar represents 60 muffins"
+        },
+        {
+          "id": "id_hpp25_63",
+          "type": "text",
+          "text": "What was the total number of muffins sold from Monday to Wednesday?"
+        },
+        {
+          "id": "id_hpp25_64",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_65", "text": "12" },
+            { "id": "id_hpp25_66", "text": "36" },
+            { "id": "id_hpp25_67", "text": "72" },
+            { "id": "id_hpp25_68", "text": "108" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q11",
+      "elements": [
+        {
+          "id": "id_hpp25_69",
+          "type": "text",
+          "text": "The ratio of the number of muffins sold on Friday to the number of muffins sold on Saturday was 4 : 5.  How many muffins were sold over the 6 days?"
+        },
+        {
+          "id": "id_hpp25_70",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_71", "text": "60" },
+            { "id": "id_hpp25_72", "text": "72" },
+            { "id": "id_hpp25_73", "text": "108" },
+            { "id": "id_hpp25_74", "text": "240" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q12",
+      "elements": [
+        {
+          "id": "id_hpp25_75",
+          "type": "text",
+          "text": "At a clearance sale, all items are sold at 40% discount.  A customer gets 50% discount when he pays by cash.  What is the percentage increase in the discount given when a customer pays by cash?"
+        },
+        {
+          "id": "id_hpp25_76",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_77", "text": "10%" },
+            { "id": "id_hpp25_78", "text": "20%" },
+            { "id": "id_hpp25_79", "text": "25%" },
+            { "id": "id_hpp25_80", "text": "50%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q13",
+      "elements": [
+        {
+          "id": "id_hpp25_81",
+          "type": "text",
+          "text": "The clock shows 6 o'clock.  At what time will the two hands of the clock form an angle of 150°?"
+        },
+        {
+          "id": "id_hpp25_82",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Clock face showing 6 o'clock (minute hand on 12, hour hand on 6)"
+        },
+        {
+          "id": "id_hpp25_83",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_84", "text": "7 o'clock" },
+            { "id": "id_hpp25_85", "text": "10 o'clock" },
+            { "id": "id_hpp25_86", "text": "3 o'clock" },
+            { "id": "id_hpp25_87", "text": "4 o'clock" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q14",
+      "elements": [
+        {
+          "id": "id_hpp25_88",
+          "type": "text",
+          "text": "ABC and CDE are right-angled triangles and GHFC is a square.  ∠DCG = 41° and ∠BCF = 27°.  Find ∠ACE."
+        },
+        {
+          "id": "id_hpp25_89",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Right-angled triangles ABC and CDE meeting at C with square GHFC; marked angles ∠DCG = 41° and ∠BCF = 27°"
+        },
+        {
+          "id": "id_hpp25_90",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_91", "text": "22°" },
+            { "id": "id_hpp25_92", "text": "18°" },
+            { "id": "id_hpp25_93", "text": "14°" },
+            { "id": "id_hpp25_94", "text": "4°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q15",
+      "elements": [
+        {
+          "id": "id_hpp25_95",
+          "type": "text",
+          "text": "A pattern is formed using the letters A and H.  The first 20 letters are shown:  A H A H A A A H A H A A A H A H A A A H …  How many times does the letter A appear in the first 80 letters of the pattern?"
+        },
+        {
+          "id": "id_hpp25_96",
+          "type": "mcq",
+          "options": [
+            { "id": "id_hpp25_97", "text": "50" },
+            { "id": "id_hpp25_98", "text": "52" },
+            { "id": "id_hpp25_99", "text": "53" },
+            { "id": "id_hpp25_100", "text": "57" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q_b",
+      "elements": [
+        {
+          "id": "id_hpp25_101",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q16",
+      "elements": [
+        {
+          "id": "id_hpp25_102",
+          "type": "text",
+          "text": "Express 5 3/20 as a decimal."
+        },
+        {
+          "id": "id_hpp25_103",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q17",
+      "elements": [
+        {
+          "id": "id_hpp25_104",
+          "type": "text",
+          "text": "Find the value of 12.3 − 8.76."
+        },
+        {
+          "id": "id_hpp25_105",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q18",
+      "elements": [
+        {
+          "id": "id_hpp25_106",
+          "type": "text",
+          "text": "Express 1.2% as a fraction."
+        },
+        {
+          "id": "id_hpp25_107",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q19",
+      "elements": [
+        {
+          "id": "id_hpp25_108",
+          "type": "text",
+          "text": "A rectangular container is partly filled with 1-cm cubes as shown.  How many more 1-cm cubes are needed to fill the container completely?"
+        },
+        {
+          "id": "id_hpp25_109",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rectangular container partly filled with a layer of 1-cm cubes; remaining space shown empty"
+        },
+        {
+          "id": "id_hpp25_110",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q20",
+      "elements": [
+        {
+          "id": "id_hpp25_111",
+          "type": "text",
+          "text": "The square grid shows the plan of a garden where 5 types of trees A, B, C, D and E are planted.  Tree A is north-east of one of the trees.  Which tree is it?"
+        },
+        {
+          "id": "id_hpp25_112",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid plan of a garden with Tree D (top), Tree A (centre), Tree B (left), Tree C (bottom-left) and Tree E (bottom-right); a compass with North pointing up at the side"
+        },
+        {
+          "id": "id_hpp25_113",
+          "type": "answer",
+          "label": "Ans : Tree ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q_b2",
+      "elements": [
+        {
+          "id": "id_hpp25_114",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q21",
+      "elements": [
+        {
+          "id": "id_hpp25_115",
+          "type": "text",
+          "text": "The diagram shows a solid."
+        },
+        {
+          "id": "id_hpp25_116",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "A solid with a square base and four triangular faces meeting at an apex"
+        },
+        {
+          "id": "id_hpp25_117",
+          "type": "part",
+          "label": "(a)",
+          "text": "Name the solid."
+        },
+        {
+          "id": "id_hpp25_118",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_119",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many faces does the solid have?"
+        },
+        {
+          "id": "id_hpp25_120",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q22",
+      "elements": [
+        {
+          "id": "id_hpp25_121",
+          "type": "text",
+          "text": "The figure is formed using 2 identical semicircles, each of radius 5 cm.  Find the perimeter of the figure.  Give your answer in terms of π."
+        },
+        {
+          "id": "id_hpp25_122",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure formed from two identical semicircles of radius 5 cm joined by short 2 cm segments"
+        },
+        {
+          "id": "id_hpp25_123",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q23",
+      "elements": [
+        {
+          "id": "id_hpp25_124",
+          "type": "text",
+          "text": "Sue is m years old.  Ted is 3 times as old as Sue.  Uma is 2 years younger than Ted."
+        },
+        {
+          "id": "id_hpp25_125",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the total age of the three people in terms of m?"
+        },
+        {
+          "id": "id_hpp25_126",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_127",
+          "type": "part",
+          "label": "(b)",
+          "text": "If m = 5, what is the total age of the three people?"
+        },
+        {
+          "id": "id_hpp25_128",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q24",
+      "elements": [
+        {
+          "id": "id_hpp25_129",
+          "type": "text",
+          "text": "A group of 10 adults and 11 children went to FunWorld Amusement Park.  What was the least amount of money the group could have paid?"
+        },
+        {
+          "id": "id_hpp25_130",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "FunWorld Amusement Park notice — Child ticket price: $12.10; Adult ticket price: $22.50; Promotion: For every 3 paying adults, 2 children enter free!"
+        },
+        {
+          "id": "id_hpp25_131",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q25",
+      "elements": [
+        {
+          "id": "id_hpp25_132",
+          "type": "text",
+          "text": "PQRS is a straight line.  The lengths of PS and PR are in the ratio 3 : 2 and the lengths of PR and QS are in ratio 6 : 5.  What is the ratio of length PQ to length RS?"
+        },
+        {
+          "id": "id_hpp25_133",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Straight line with points P, Q, R and S marked in order"
+        },
+        {
+          "id": "id_hpp25_134",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q26",
+      "elements": [
+        {
+          "id": "id_hpp25_135",
+          "type": "text",
+          "text": "ABCD is a rhombus.  BAE and ADF are straight lines."
+        },
+        {
+          "id": "id_hpp25_136",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Rhombus ABCD with straight lines BAE and ADF; marked angle 31° at E, 58° at D, angle g at B and angle h at D"
+        },
+        {
+          "id": "id_hpp25_137",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠g."
+        },
+        {
+          "id": "id_hpp25_138",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_139",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠h."
+        },
+        {
+          "id": "id_hpp25_140",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q27",
+      "elements": [
+        {
+          "id": "id_hpp25_141",
+          "type": "text",
+          "text": "A plot of land is divided into seven identical rectangular fields.  The length of each field is 20 m.  Find the perimeter of the plot of land."
+        },
+        {
+          "id": "id_hpp25_142",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Plot of land divided into seven identical rectangular fields; one field has its length labelled 20 m"
+        },
+        {
+          "id": "id_hpp25_143",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q28",
+      "elements": [
+        {
+          "id": "id_hpp25_144",
+          "type": "text",
+          "text": "A machine started labelling containers at 9 a.m. at the rate of 600 containers per hour.  For every 3 hours, the machine stops for 15 minutes.  How many containers can it label by 1.45 p.m. on the same day?"
+        },
+        {
+          "id": "id_hpp25_145",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q29",
+      "elements": [
+        {
+          "id": "id_hpp25_146",
+          "type": "text",
+          "text": "Students were asked to choose one of the following items; a pouch, a keychain or a badge.  1/5 of them chose keychain.  The number of students who chose pouch was 1/2 of those who chose badge."
+        },
+        {
+          "id": "id_hpp25_147",
+          "type": "part",
+          "label": "(a)",
+          "text": "The pie chart represents the number of students who chose each item.  Label the pie chart by writing P for pouch, K for keychain and B for badge in the boxes."
+        },
+        {
+          "id": "id_hpp25_148",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Pie chart divided into three sectors, each with an empty box to be labelled P, K or B"
+        },
+        {
+          "id": "id_hpp25_149",
+          "type": "part",
+          "label": "(b)",
+          "text": "What fraction of the students chose badge?"
+        },
+        {
+          "id": "id_hpp25_150",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q30",
+      "elements": [
+        {
+          "id": "id_hpp25_151",
+          "type": "text",
+          "text": "7 similar cubes were stacked to make a solid figure such that it has the following front and side views.  Draw the top view of the figure on the grid."
+        },
+        {
+          "id": "id_hpp25_152",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Front View and Side View of a solid made from 7 cubes, followed by a blank dot grid for drawing the top view"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q_p2",
+      "elements": [
+        {
+          "id": "id_hpp25_153",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams are not drawn to scale.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q1",
+      "elements": [
+        {
+          "id": "id_hpp25_154",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many factors are there in 36?"
+        },
+        {
+          "id": "id_hpp25_155",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_156",
+          "type": "part",
+          "label": "(b)",
+          "text": "Write down the first common multiple of 4 and 10."
+        },
+        {
+          "id": "id_hpp25_157",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q2",
+      "elements": [
+        {
+          "id": "id_hpp25_158",
+          "type": "text",
+          "text": "The table shows the time taken by 4 swimmers to complete a race.  The time taken by Bala to complete the race is not shown.  The average time taken by the 4 swimmers was 48.2 s.  What was the time taken by Bala to complete the race?"
+        },
+        {
+          "id": "id_hpp25_159",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Swimmer | Time in seconds (s); Afiq | 50.78; Bala | ?; Cayden | 48.12; Dai Ming | 46.9"
+        },
+        {
+          "id": "id_hpp25_160",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q3",
+      "elements": [
+        {
+          "id": "id_hpp25_161",
+          "type": "text",
+          "text": "The figure is made up of a square and a 3/4-circle.  The 3/4-circle with centre O has a diameter of 8 cm.  What is the area of the figure?  (Take π = 3.14)"
+        },
+        {
+          "id": "id_hpp25_162",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figure made up of a square joined to a 3/4-circle with centre O and diameter 8 cm"
+        },
+        {
+          "id": "id_hpp25_163",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q4",
+      "elements": [
+        {
+          "id": "id_hpp25_164",
+          "type": "text",
+          "text": "Jack wanted to create a figure using white squares and grey squares, with PQ as the line of symmetry.  He still had more squares to add."
+        },
+        {
+          "id": "id_hpp25_165",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Partly completed figure on a square grid with line PQ marked, some squares shaded grey and some left white"
+        },
+        {
+          "id": "id_hpp25_166",
+          "type": "part",
+          "label": "(a)",
+          "text": "Measure and write down the length of PQ."
+        },
+        {
+          "id": "id_hpp25_167",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_168",
+          "type": "part",
+          "label": "(b)",
+          "text": "What are the smallest numbers of white squares and grey squares Jack needs to add to the figure so that PQ remains as the line of symmetry?"
+        },
+        {
+          "id": "id_hpp25_169",
+          "type": "answer",
+          "label": "Ans : (b) white squares ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_170",
+          "type": "answer",
+          "label": "grey squares ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q5",
+      "elements": [
+        {
+          "id": "id_hpp25_171",
+          "type": "text",
+          "text": "ABC and FEH are triangles and CFGD is a trapezium.  BCD, EFG and ACFH are straight lines.  Find the sum of ∠x, ∠y and ∠z."
+        },
+        {
+          "id": "id_hpp25_172",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Triangles ABC and FEH with trapezium CFGD; straight lines BCD, EFG and ACFH; marked angles 23° at B, 81° at G, 88° at H, with angles x at A, y at D and z at E"
+        },
+        {
+          "id": "id_hpp25_173",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_q_p2b",
+      "elements": [
+        {
+          "id": "id_hpp25_174",
+          "type": "text",
+          "text": "For questions 6 to 17, show your working clearly and write your answers in the spaces provided.  The number of marks available is shown in the brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q6",
+      "elements": [
+        {
+          "id": "id_hpp25_175",
+          "type": "text",
+          "text": "The table shows the number of boys and girls, and teachers in Schools A and B.  Some of the information is missing."
+        },
+        {
+          "id": "id_hpp25_176",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — columns Boys, Girls, Teachers, Total; School A: 845, —, —, —; School B: —, —, 154, —; Total: —, 2460, 251, 4642"
+        },
+        {
+          "id": "id_hpp25_177",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the total number of boys in both schools?  [1]"
+        },
+        {
+          "id": "id_hpp25_178",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_179",
+          "type": "part",
+          "label": "(b)",
+          "text": "The number of girls in School A is 2/3 of the number of girls in School B.  Find the total number of students in School A.  [2]"
+        },
+        {
+          "id": "id_hpp25_180",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q7",
+      "elements": [
+        {
+          "id": "id_hpp25_181",
+          "type": "text",
+          "text": "For every mobile phone that Susan sells, she earns a sum of money as shown:  10% of the first $160 of the selling price, and 12% of the remaining selling price.  Susan sold a mobile phone and earned $76.90.  What was the selling price of the mobile phone?  [3]"
+        },
+        {
+          "id": "id_hpp25_182",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q8",
+      "elements": [
+        {
+          "id": "id_hpp25_183",
+          "type": "text",
+          "text": "At 9 a.m., a truck left Town S for Town M at an average speed of 48 km/h.  30 minutes later, a car left Town M for Town S.  The average speed of the car was twice the average speed of the truck.  The truck and the car passed each other at 11.30 a.m.  What is the distance between Town S and Town M?  [3]"
+        },
+        {
+          "id": "id_hpp25_184",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q9",
+      "elements": [
+        {
+          "id": "id_hpp25_185",
+          "type": "text",
+          "text": "At a shop, erasers were sold in packets of 3 and pens were sold in packets of 5.  Bella paid with a $50-note for 9 erasers and 20 pens.  How much change did Bella receive?  Give your answer in terms of q."
+        },
+        {
+          "id": "id_hpp25_186",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Cost per packet; Erasers | $q; Pens | $2q"
+        },
+        {
+          "id": "id_hpp25_187",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q10",
+      "elements": [
+        {
+          "id": "id_hpp25_188",
+          "type": "text",
+          "text": "Julie's coin box contained 20-cent and 50-cent coins.  In the coin box, there were 7 more 50-cent coins than 20-cent coins.  The total amount of money in the coin box was $18.90."
+        },
+        {
+          "id": "id_hpp25_189",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many coins were in the coin box?  [3]"
+        },
+        {
+          "id": "id_hpp25_190",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_191",
+          "type": "part",
+          "label": "(b)",
+          "text": "How much money does Julie have left in the coin box after spending all her 20-cent coins on food?  [1]"
+        },
+        {
+          "id": "id_hpp25_192",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q11",
+      "elements": [
+        {
+          "id": "id_hpp25_193",
+          "type": "text",
+          "text": "Adam cut a rope into 3 pieces.  The first piece was 4.5 m longer than 1/4 the original length of the rope.  The second piece was 3.3 m longer than 3/5 of the remaining rope after the first cut.  The third piece was 8.7 m.  What was the original length of the rope?  [4]"
+        },
+        {
+          "id": "id_hpp25_194",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q12",
+      "elements": [
+        {
+          "id": "id_hpp25_195",
+          "type": "text",
+          "text": "Mrs Brown bought 2/5 as many cupcakes as pies for a party.  She spent 3/4 as much on each cupcake as each pie.  Each cupcake cost $4.50.  She paid $504 more on the pies than the cupcakes."
+        },
+        {
+          "id": "id_hpp25_196",
+          "type": "part",
+          "label": "(a)",
+          "text": "How much did she pay for each pie?  [1]"
+        },
+        {
+          "id": "id_hpp25_197",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_198",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many pies did she buy?  [4]"
+        },
+        {
+          "id": "id_hpp25_199",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q13",
+      "elements": [
+        {
+          "id": "id_hpp25_200",
+          "type": "text",
+          "text": "There were some apples and oranges in a box.  In the morning, when 24 apples were added to the box, the ratio of the number of apples to the number of oranges in the box was 6 : 5.  Then 35 oranges were removed from the box and the ratio became 4 : 1."
+        },
+        {
+          "id": "id_hpp25_201",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many apples were there in the box at first?  [3]"
+        },
+        {
+          "id": "id_hpp25_202",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_203",
+          "type": "part",
+          "label": "(b)",
+          "text": "In the afternoon, more apples and oranges were added into the box.  The number of apples increased by 65% and the number of oranges increased by 120%.  Find the total number of apples and oranges added to the box in the afternoon.  [2]"
+        },
+        {
+          "id": "id_hpp25_204",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q14",
+      "elements": [
+        {
+          "id": "id_hpp25_205",
+          "type": "text",
+          "text": "The figure shows taps A and B, a rectangular tank X and a cubical tank Y.  Both tanks were empty.  At 08 20, tap A was turned on.  Water flowed into the tank from tap A at a rate of 4.8 litres per minute.  After 5 minutes, tap B was turned on.  At 08 35, both taps were turned off.  Tank X was half-filled with water and Tank Y was 25% filled with water.  Find the length of tank Y.  [3]"
+        },
+        {
+          "id": "id_hpp25_206",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Tap A above rectangular tank X (20 cm × 30 cm × 60 cm); Tap B drains from tank X into cubical tank Y beside it"
+        },
+        {
+          "id": "id_hpp25_207",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q15",
+      "elements": [
+        {
+          "id": "id_hpp25_208",
+          "type": "text",
+          "text": "A florist sold roses from Monday to Sunday.  The line graph shows the number of roses left unsold at the end of each day."
+        },
+        {
+          "id": "id_hpp25_209",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Line graph: number of roses left unsold (0 to 1200) against days from Start of sale through Mon to Sun"
+        },
+        {
+          "id": "id_hpp25_210",
+          "type": "part",
+          "label": "(a)",
+          "text": "On which day had the florist sold half the total number of roses for the week?  [1]"
+        },
+        {
+          "id": "id_hpp25_211",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_212",
+          "type": "part",
+          "label": "(b)",
+          "text": "On which two days did the florist sell the same number of roses?  [1]"
+        },
+        {
+          "id": "id_hpp25_213",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_hpp25_214",
+          "type": "part",
+          "label": "(c)",
+          "text": "The usual price of a stalk of rose was $9.  On Saturday, after selling 52 stalks of roses, the remaining roses were sold at a discount of 25%.  What was the total amount collected on Saturday?  [2]"
+        },
+        {
+          "id": "id_hpp25_215",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q16",
+      "elements": [
+        {
+          "id": "id_hpp25_216",
+          "type": "text",
+          "text": "A trapezium ABCD is drawn in a square grid."
+        },
+        {
+          "id": "id_hpp25_217",
+          "type": "part",
+          "label": "(a)",
+          "text": "Using the line DM, draw an isosceles triangle DMX such that ∠DMX is less than 90° and DM = MX.  [1]"
+        },
+        {
+          "id": "id_hpp25_218",
+          "type": "part",
+          "label": "(b)",
+          "text": "Using point E, draw a parallelogram EFGH such that it has the same perimeter as ABCD.  Point H is south-east of E while point F is east of E.  [2]"
+        },
+        {
+          "id": "id_hpp25_219",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square grid with trapezium ABCD, line DM and point E drawn for parts (a) and (b)"
+        },
+        {
+          "id": "id_hpp25_220",
+          "type": "part",
+          "label": "(c)",
+          "text": "LMNO is a square and ONP is an isosceles triangle where ON = OP.  Given that ∠LNP = 103°, find ∠OPL.  [2]"
+        },
+        {
+          "id": "id_hpp25_221",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Square LMNO with isosceles triangle ONP (ON = OP) attached; marked angle ∠LNP = 103°"
+        },
+        {
+          "id": "id_hpp25_222",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_hpp25_p2q17",
+      "elements": [
+        {
+          "id": "id_hpp25_223",
+          "type": "text",
+          "text": "The first four figures of a pattern are shown below.  The table shows the number of white and grey circles used for the first four figures."
+        },
+        {
+          "id": "id_hpp25_224",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Figures 1 to 4 of a pattern made of white and grey circles joined into rings"
+        },
+        {
+          "id": "id_hpp25_225",
+          "type": "image",
+          "dataUrl": "",
+          "caption": "Table — Figure Number: 1, 2, 3, 4, 5; Number of white circles: 0, 5, 5, 18, 18; Number of grey circles: 1, 1, 10, 10, ?"
+        },
+        {
+          "id": "id_hpp25_226",
+          "type": "part",
+          "label": "(a)",
+          "text": "Fill in the table for Figure 5.  [1]"
+        },
+        {
+          "id": "id_hpp25_227",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many white and grey circles are there altogether in Figure 28?  [2]"
+        },
+        {
+          "id": "id_hpp25_228",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
