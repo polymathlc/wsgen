@@ -935,6 +935,28 @@
     text-align: center;
     font-size: var(--font-size-sm);
   }
+
+  /* ============================ SOURCE CAPTION ============================ */
+  .question-source {
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--border-subtle);
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-style: italic;
+    text-align: right;
+  }
+
+  /* ============================ AUTOSAVE STATUS ============================ */
+  .autosave-status {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .autosave-status.saving { color: var(--accent-deep); }
+  .autosave-status.saved { color: var(--correct-dark); }
+  .autosave-status.error { color: var(--wrong-dark); }
 </style>
 </head>
 <body>
@@ -948,6 +970,7 @@
         <span id="authChip" class="auth-chip guest">Not signed in</span>
         <button class="btn btn-tiny" id="googleSignInBtn">Sign in with Google</button>
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
+        <span id="autoSaveStatus" class="autosave-status admin-only"></span>
       </div>
       <div id="authHint" class="auth-hint" style="display:none;"></div>
       <input type="text" id="worksheetTitle" class="title-input admin-only" placeholder="Worksheet title" value="New Worksheet" />
@@ -1783,6 +1806,7 @@ const previewTitleEl = document.getElementById('previewTitle');
 const previewSubtitleEl = document.getElementById('previewSubtitle');
 
 function renderPreview() {
+  scheduleAutoSave();
   previewTitleEl.textContent = state.title || 'Untitled Worksheet';
   previewSubtitleEl.textContent = state.subtitle || '';
   previewSubtitleEl.style.display = state.subtitle ? 'block' : 'none';
@@ -1864,8 +1888,6 @@ function renderPreviewQuestion(q, qIndex) {
   });
   actions.appendChild(vidBtn);
 
-  card.appendChild(actions);
-
   let stemConsumed = false;
   q.elements.forEach((el) => {
     if (el.type === 'text' && !stemConsumed) {
@@ -1874,6 +1896,17 @@ function renderPreviewQuestion(q, qIndex) {
     }
     card.appendChild(renderPreviewElement(el, { showAnswerFor, showVideoFor }));
   });
+
+  // Caption showing which school / year the question came from.
+  if (q.source) {
+    const src = document.createElement('div');
+    src.className = 'question-source';
+    src.textContent = 'From: ' + q.source;
+    card.appendChild(src);
+  }
+
+  // Reveal controls sit at the very bottom of the question.
+  card.appendChild(actions);
 
   return card;
 }
@@ -2152,6 +2185,7 @@ function questionToPrintHtml(q, qIndex) {
       <div class="question-stem">${formatTextWithFractions(stemText)}</div>
     </div>
     ${bodyParts}
+    ${q.source ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>` : ''}
   </article>
   <div class="working-space">
     <div class="working-space-label">Working</div>
@@ -2312,6 +2346,15 @@ body { background: #fff !important; padding: 0 !important; }
   border: 1px solid #E8E8E4;
   background: #fff;
 }
+.question-source {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #D4D4CF;
+  font-size: 0.75rem;
+  color: #5C5C5C;
+  font-style: italic;
+  text-align: right;
+}
 
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -2408,6 +2451,7 @@ function questionToHtml(q, qIndex) {
     <div class="question-stem">${formatTextWithFractions(stemText)}</div>
   </div>
   ${bodyParts}
+  ${q.source ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>` : ''}
 </article>`;
 }
 
@@ -2523,6 +2567,7 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .video-block iframe, .video-block video{width:100%; aspect-ratio:16/9; border:none; border-radius:var(--radius-md); background:#000;}
 .video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
 .video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
+.question-source{margin-top:var(--space-md); padding-top:var(--space-sm); border-top:1px dashed var(--border-subtle); font-size:0.75rem; color:var(--text-tertiary); font-style:italic; text-align:right;}
 .frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.85em; line-height:1; margin:0 0.18em; position:relative; top:-0.05em;}
 .frac > .frac-num{border-bottom:1.2px solid currentColor; padding:0 0.3em 1px; display:block;}
 .frac > .frac-den{padding:1px 0.3em 0; display:block;}
@@ -2715,6 +2760,54 @@ const CHUNK_SUFFIX = '__chunk__';
 const chunkDocId = (id, i) => `${id}${CHUNK_SUFFIX}${i}`;
 const isChunkDocId = (docId) => typeof docId === 'string' && docId.includes(CHUNK_SUFFIX);
 
+// Core cloud-save routine, shared by the manual button and the auto-saver.
+async function persistToSystem() {
+  const id = currentSavedId || `ws_${Date.now().toString(36)}`;
+  const json = JSON.stringify(state);
+  const chunks = [];
+  for (let i = 0; i < json.length; i += CHUNK_CHARS) {
+    chunks.push(json.slice(i, i + CHUNK_CHARS));
+  }
+  if (chunks.length === 0) chunks.push('');
+
+  // 1. Find out how many chunks the previous version had so we can clear
+  //    any orphans if the new version is shorter.
+  let prevChunkCount = 0;
+  try {
+    const prevSnap = await getDoc(doc(fbDb, 'worksheets', id));
+    if (prevSnap.exists()) prevChunkCount = prevSnap.data().chunkCount || 0;
+  } catch (_) { /* best-effort */ }
+
+  // 2. Write every chunk doc.
+  for (let i = 0; i < chunks.length; i++) {
+    await setDoc(doc(fbDb, 'worksheets', chunkDocId(id, i)), {
+      parentId: id,
+      index: i,
+      data: chunks[i]
+    });
+  }
+
+  // 3. Write the metadata doc last so a partial save can't be discovered.
+  await setDoc(doc(fbDb, 'worksheets', id), {
+    id,
+    title: state.title || 'Untitled',
+    subtitle: state.subtitle || '',
+    chunkCount: chunks.length,
+    ownerEmail: currentUser.email,
+    ownerUid: currentUser.uid,
+    savedAt: serverTimestamp(),
+    savedAtClient: new Date().toISOString(),
+    sizeBytes: json.length
+  });
+
+  // 4. Drop any leftover chunk docs from a longer previous save.
+  for (let i = chunks.length; i < prevChunkCount; i++) {
+    try { await deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, i))); } catch (_) {}
+  }
+
+  currentSavedId = id;
+}
+
 async function saveToSystem() {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
@@ -2726,50 +2819,7 @@ async function saveToSystem() {
   btn.textContent = '⏳ Saving…';
   btn.disabled = true;
   try {
-    const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-    const json = JSON.stringify(state);
-    const chunks = [];
-    for (let i = 0; i < json.length; i += CHUNK_CHARS) {
-      chunks.push(json.slice(i, i + CHUNK_CHARS));
-    }
-    if (chunks.length === 0) chunks.push('');
-
-    // 1. Find out how many chunks the previous version had so we can clear
-    //    any orphans if the new version is shorter.
-    let prevChunkCount = 0;
-    try {
-      const prevSnap = await getDoc(doc(fbDb, 'worksheets', id));
-      if (prevSnap.exists()) prevChunkCount = prevSnap.data().chunkCount || 0;
-    } catch (_) { /* best-effort */ }
-
-    // 2. Write every chunk doc.
-    for (let i = 0; i < chunks.length; i++) {
-      await setDoc(doc(fbDb, 'worksheets', chunkDocId(id, i)), {
-        parentId: id,
-        index: i,
-        data: chunks[i]
-      });
-    }
-
-    // 3. Write the metadata doc last so a partial save can't be discovered.
-    await setDoc(doc(fbDb, 'worksheets', id), {
-      id,
-      title: state.title || 'Untitled',
-      subtitle: state.subtitle || '',
-      chunkCount: chunks.length,
-      ownerEmail: currentUser.email,
-      ownerUid: currentUser.uid,
-      savedAt: serverTimestamp(),
-      savedAtClient: new Date().toISOString(),
-      sizeBytes: json.length
-    });
-
-    // 4. Drop any leftover chunk docs from a longer previous save.
-    for (let i = chunks.length; i < prevChunkCount; i++) {
-      try { await deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, i))); } catch (_) {}
-    }
-
-    currentSavedId = id;
+    await persistToSystem();
     btn.textContent = '✓ Saved';
     await refreshSavedList();
   } catch (e) {
@@ -2786,6 +2836,26 @@ async function saveToSystem() {
     setTimeout(() => {
       if (btn.textContent === '✓ Saved') btn.textContent = original;
     }, 1400);
+  }
+}
+
+// Silent cloud save triggered by the auto-saver. Only syncs worksheets that
+// have already been saved to the system at least once (so a doc exists).
+let cloudAutoSaveInFlight = false;
+async function autoCloudSave() {
+  if (!isAdmin() || !currentSavedId) return;
+  if (cloudAutoSaveInFlight) { scheduleCloudAutoSave(); return; }
+  cloudAutoSaveInFlight = true;
+  setAutoSaveStatus('saving');
+  try {
+    await persistToSystem();
+    setAutoSaveStatus('saved');
+    await refreshSavedList();
+  } catch (e) {
+    console.warn('Auto cloud-save failed:', e.message || e);
+    setAutoSaveStatus('error');
+  } finally {
+    cloudAutoSaveInFlight = false;
   }
 }
 
@@ -2990,11 +3060,44 @@ function reidQuestion(q) {
   });
   return clone;
 }
+/* Build a short "school + year" label from a worksheet title, e.g.
+   "Catholic High School 2025 P6 Maths Prelim (...)" → "Catholic High 2025 Prelims". */
+function deriveSource(rawTitle) {
+  let t = (rawTitle || '').trim();
+  if (!t) return '';
+  t = t.replace(/\([^)]*\)/g, ' '); // drop parentheticals
+  const yearMatch = t.match(/\b(?:19|20)\d{2}\b/);
+  const year = yearMatch ? yearMatch[0] : '';
+  const isPrelim = /prelim/i.test(t);
+  // The school name is whatever comes before the year.
+  let name = year ? t.slice(0, t.indexOf(year)) : t;
+  name = name
+    .replace(/\bprimary\s*school\b/ig, '')
+    .replace(/\bschool\b/ig, '')
+    .replace(/\bprimary\b/ig, '')
+    .replace(/\bP[1-6]\b/ig, '')
+    .replace(/\bmathematics\b/ig, '')
+    .replace(/\bmaths?\b/ig, '')
+    .replace(/\bexamination\b/ig, '')
+    .replace(/\bend of year\b/ig, '')
+    .replace(/[—–-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const parts = [];
+  if (name) parts.push(name);
+  if (year) parts.push(year);
+  parts.push(isPrelim ? 'Prelims' : 'Exam');
+  return parts.join(' ').trim();
+}
+
 function copyQuestionToDraft(qIndex) {
   const q = state.questions[qIndex];
   if (!q) return;
   const draft = loadDraft();
-  draft.push(reidQuestion(q));
+  const clone = reidQuestion(q);
+  // Tag the question with where it came from so the draft worksheet shows it.
+  if (!clone.source) clone.source = deriveSource(state.title);
+  draft.push(clone);
   saveDraft(draft);
   updateDraftBadge();
 }
@@ -3032,6 +3135,73 @@ function updateDraftBadge() {
   if (openBtn) openBtn.textContent = `📋 Open Draft (${n})`;
   const clearBtn = document.getElementById('clearDraftBtn');
   if (clearBtn) clearBtn.style.display = n > 0 ? '' : 'none';
+}
+
+/* =========================================================================
+   AUTO-SAVE — persist work after every action (typing, pasting an image,
+   adding a question, …).
+   - localStorage: an immediate safety net that survives page reloads.
+   - Cloud: once a worksheet has been saved to the system at least once,
+     later edits sync automatically (admin only).
+   ========================================================================= */
+const AUTOSAVE_KEY = 'wsgen.autosaveState';
+let localAutoSaveTimer = null;
+let cloudAutoSaveTimer = null;
+
+function setAutoSaveStatus(kind) {
+  const el = document.getElementById('autoSaveStatus');
+  if (!el) return;
+  el.classList.remove('saving', 'saved', 'error');
+  if (kind === 'saving') { el.classList.add('saving'); el.textContent = '⏳ Saving…'; }
+  else if (kind === 'saved') { el.classList.add('saved'); el.textContent = '✓ Auto-saved'; }
+  else if (kind === 'error') { el.classList.add('error'); el.textContent = '⚠ Autosave failed'; }
+  else el.textContent = '';
+}
+
+function autoSaveLocal() {
+  try {
+    localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(state));
+    return true;
+  } catch (e) {
+    console.warn('Local autosave failed:', e.message || e);
+    return false;
+  }
+}
+
+function scheduleAutoSave() {
+  clearTimeout(localAutoSaveTimer);
+  localAutoSaveTimer = setTimeout(runAutoSave, 700);
+}
+
+function runAutoSave() {
+  // Students view read-only worksheets — nothing of theirs to persist.
+  if (currentUser && !isAdmin()) return;
+  if (autoSaveLocal()) setAutoSaveStatus('saved');
+  scheduleCloudAutoSave();
+}
+
+function scheduleCloudAutoSave() {
+  if (!isAdmin() || !currentSavedId) return;
+  clearTimeout(cloudAutoSaveTimer);
+  cloudAutoSaveTimer = setTimeout(autoCloudSave, 1800);
+}
+
+function restoreAutoSave() {
+  let raw = null;
+  try { raw = localStorage.getItem(AUTOSAVE_KEY); } catch (_) { return false; }
+  if (!raw) return false;
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed && Array.isArray(parsed.questions) && parsed.questions.length > 0) {
+      state = parsed;
+      document.getElementById('worksheetTitle').value = state.title || '';
+      document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+      renderEditor();
+      renderPreview();
+      return true;
+    }
+  } catch (_) {}
+  return false;
 }
 
 document.getElementById('saveSystemBtn').addEventListener('click', saveToSystem);
@@ -3092,9 +3262,10 @@ onAuthStateChanged(fbAuth, async (user) => {
 
 refreshAuthUi();
 
-// Seed with one empty question so the workflow is obvious (admin only —
-// students should start at an empty preview and pick a worksheet to view).
-addQuestion();
+// Restore the last auto-saved worksheet if there is one; otherwise seed a
+// single empty question so the workflow is obvious. (Students get reset to an
+// empty preview by onAuthStateChanged once their sign-in resolves.)
+if (!restoreAutoSave()) addQuestion();
 </script>
 </body>
 </html>
