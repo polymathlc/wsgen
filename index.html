@@ -1064,6 +1064,28 @@
     letter-spacing: 0.05em;
   }
   .qtag-val { color: var(--text-secondary); min-width: 32px; }
+
+  /* ============================ LINK STATUS ============================ */
+  .link-status {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+  }
+  .link-status.linked {
+    color: var(--accent-deep);
+    background: var(--accent-bg);
+    border-color: var(--accent-light);
+  }
+  .saved-item-restore {
+    font-size: var(--font-size-xs);
+    color: var(--accent-deep);
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
@@ -1085,6 +1107,7 @@
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account (Gmail required)">☁ Save to System</button>
+        <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
         <button class="btn admin-only" id="newWorksheetBtn">New</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
@@ -1097,6 +1120,7 @@
           <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
         </label>
       </div>
+      <div class="link-status admin-only" id="linkStatus"></div>
       <div class="filter-row admin-only">
         <span class="filter-label">Filter:</span>
         <input type="text" id="filterTopic" class="filter-input" placeholder="Topic" list="topicOptions" />
@@ -1106,6 +1130,7 @@
         <datalist id="topicOptions"></datalist>
         <datalist id="conceptOptions"></datalist>
       </div>
+      <div id="activityLog" class="saved-list" style="display:none;"></div>
       <div id="savedList" class="saved-list"></div>
       <div class="anon-banner">Sign in with Google to access worksheets.</div>
     </div>
@@ -1167,6 +1192,7 @@ let revealedAnswers = new Set();
 let revealedVideos = new Set();
 let filterTopic = '';
 let filterConcept = '';
+let activityLogOpen = false;
 let uid = 0;
 const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
 
@@ -2914,16 +2940,29 @@ function saveJson() {
   URL.revokeObjectURL(url);
 }
 function loadJson(file) {
+  if (state.questions.length > 0 &&
+      !confirm('Load this file? It replaces the current worksheet.\n\n' +
+               'A snapshot is saved to the Activity Log first, and the loaded ' +
+               'file starts as a NEW worksheet (it will not overwrite any ' +
+               'worksheet already saved in the system).')) {
+    return;
+  }
   const reader = new FileReader();
   reader.onload = () => {
     try {
       const parsed = JSON.parse(reader.result);
       if (!parsed || !Array.isArray(parsed.questions)) throw new Error('Invalid file.');
+      logActivity('before loading a file');
       state = parsed;
+      // A file load is a brand-new worksheet — never silently overwrite the
+      // cloud worksheet that happened to be open before.
+      currentSavedId = null;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
       renderEditor();
       renderPreview();
+      updateLinkStatus();
+      logActivity('loaded file: ' + (state.title || 'Untitled'));
     } catch (e) {
       alert('Could not load JSON: ' + e.message);
     }
@@ -3146,6 +3185,8 @@ async function saveToSystem() {
   try {
     await persistToSystem();
     btn.textContent = '✓ Saved';
+    logActivity('saved to system: ' + (state.title || 'Untitled'));
+    updateLinkStatus();
     await refreshSavedList();
   } catch (e) {
     console.error(e);
@@ -3225,12 +3266,14 @@ async function loadFromSystem(id) {
     }
     const data = snap.data();
     const parsed = await fetchWorksheetState(data);
+    if (isAdmin()) logActivity('before opening: ' + (data.title || 'worksheet'));
     state = parsed;
     currentSavedId = id;
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
     if (isAdmin()) renderEditor();
     renderPreview();
+    updateLinkStatus();
     await refreshSavedList();
   } catch (e) {
     console.error(e);
@@ -3298,6 +3341,8 @@ async function refreshSavedList() {
       savedItemsCache = [];
     }
   }
+  // The link indicator needs the cache to resolve the linked worksheet's name.
+  updateLinkStatus();
   if (savedItemsCache.length === 0) {
     if (!isAdmin()) {
       const empty = document.createElement('div');
@@ -3337,11 +3382,13 @@ async function refreshSavedList() {
 
 function newWorksheet() {
   if (state.questions.length > 0 && !confirm('Discard the current worksheet and start fresh?')) return;
+  logActivity('before new worksheet');
   state = { title: 'New Worksheet', subtitle: '', questions: [] };
   currentSavedId = null;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   addQuestion();
+  updateLinkStatus();
   refreshSavedList();
 }
 
@@ -3436,6 +3483,7 @@ function openDraft() {
       !confirm(`Replace the current worksheet with the ${draft.length} draft question(s)?`)) {
     return;
   }
+  logActivity('before opening draft');
   state = {
     title: 'Draft Worksheet',
     subtitle: '',
@@ -3446,6 +3494,7 @@ function openDraft() {
   document.getElementById('worksheetSubtitle').value = '';
   renderEditor();
   renderPreview();
+  updateLinkStatus();
 }
 function clearDraft() {
   const n = loadDraft().length;
@@ -3502,6 +3551,7 @@ function runAutoSave() {
   // Students view read-only worksheets — nothing of theirs to persist.
   if (currentUser && !isAdmin()) return;
   if (autoSaveLocal()) setAutoSaveStatus('saved');
+  maybePeriodicSnapshot();
   scheduleCloudAutoSave();
 }
 
@@ -3528,6 +3578,168 @@ function restoreAutoSave() {
   } catch (_) {}
   return false;
 }
+
+/* =========================================================================
+   ACTIVITY LOG — a per-browser history of worksheet snapshots so an
+   accidental overwrite can be undone. A snapshot is taken before every
+   action that replaces the worksheet (loading a file / cloud worksheet,
+   starting fresh, opening the draft), after each save to the system, and
+   periodically while editing.
+   ========================================================================= */
+const ACTIVITY_KEY = 'wsgen.activityLog';
+const MAX_ACTIVITY = 25;
+
+function loadActivityLog() {
+  try {
+    const raw = localStorage.getItem(ACTIVITY_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+function saveActivityLog(log) {
+  // Snapshots can be large (embedded images); if the storage quota is hit,
+  // drop the oldest entries until it fits.
+  const copy = log.slice();
+  while (copy.length) {
+    try {
+      localStorage.setItem(ACTIVITY_KEY, JSON.stringify(copy));
+      return;
+    } catch (_) {
+      copy.pop();
+    }
+  }
+  try { localStorage.setItem(ACTIVITY_KEY, '[]'); } catch (_) {}
+}
+
+function logActivity(label) {
+  let json;
+  try { json = JSON.stringify(state); } catch (_) { return; }
+  const log = loadActivityLog();
+  // Skip if nothing has changed since the most recent snapshot.
+  if (log.length && log[0].state === json) return;
+  log.unshift({
+    ts: new Date().toISOString(),
+    label: label || 'snapshot',
+    title: state.title || 'Untitled',
+    questionCount: (state.questions || []).length,
+    state: json
+  });
+  while (log.length > MAX_ACTIVITY) log.pop();
+  saveActivityLog(log);
+  updateActivityLogBtn();
+  renderActivityLog();
+}
+
+function maybePeriodicSnapshot() {
+  const log = loadActivityLog();
+  const lastTs = log.length ? Date.parse(log[0].ts) : 0;
+  if (Date.now() - lastTs > 5 * 60 * 1000) logActivity('auto-snapshot');
+}
+
+function updateActivityLogBtn() {
+  const btn = document.getElementById('activityLogBtn');
+  if (btn) btn.textContent = `📜 Activity Log (${loadActivityLog().length})`;
+}
+
+function renderActivityLog() {
+  const panel = document.getElementById('activityLog');
+  if (!panel) return;
+  if (!activityLogOpen) { panel.style.display = 'none'; return; }
+  panel.style.display = '';
+  panel.innerHTML = '';
+  const log = loadActivityLog();
+
+  const header = document.createElement('div');
+  header.className = 'saved-item';
+  header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">Activity log — click a row to restore (${log.length})</div>`;
+  if (log.length) {
+    header.appendChild(makeIconBtn('🗑', 'Clear the activity log', () => {
+      if (confirm('Clear the entire activity log?')) {
+        saveActivityLog([]);
+        updateActivityLogBtn();
+        renderActivityLog();
+      }
+    }, true));
+  }
+  panel.appendChild(header);
+
+  if (!log.length) {
+    const empty = document.createElement('div');
+    empty.className = 'saved-item';
+    empty.innerHTML = '<div class="saved-item-name" style="cursor:default; color:var(--text-tertiary);">No history yet.</div>';
+    panel.appendChild(empty);
+    return;
+  }
+
+  log.forEach((entry, i) => {
+    const row = document.createElement('div');
+    row.className = 'saved-item';
+    const name = document.createElement('div');
+    name.className = 'saved-item-name';
+    name.innerHTML = `${escapeHtml(entry.title)} <span style="color:var(--text-tertiary);">· ${escapeHtml(entry.label)} · ${entry.questionCount} q</span>`;
+    name.title = 'Restore this version';
+    name.addEventListener('click', () => restoreActivityEntry(i));
+    const meta = document.createElement('span');
+    meta.className = 'saved-item-meta';
+    meta.textContent = entry.ts ? new Date(entry.ts).toLocaleString() : '';
+    const restore = document.createElement('span');
+    restore.className = 'saved-item-restore';
+    restore.textContent = '↩ Restore';
+    restore.style.cursor = 'pointer';
+    restore.addEventListener('click', () => restoreActivityEntry(i));
+    row.appendChild(name);
+    row.appendChild(meta);
+    row.appendChild(restore);
+    panel.appendChild(row);
+  });
+}
+
+function restoreActivityEntry(index) {
+  const log = loadActivityLog();
+  const entry = log[index];
+  if (!entry) return;
+  const when = entry.ts ? new Date(entry.ts).toLocaleString() : 'this snapshot';
+  if (!confirm(`Restore "${entry.title}" (${entry.questionCount} questions) from ${when}?\n\n` +
+               'The current worksheet is snapshotted to the log first. The restored ' +
+               'worksheet is unlinked — use "Save to System" to save it where you want.')) {
+    return;
+  }
+  logActivity('before restore');
+  let restored;
+  try { restored = JSON.parse(entry.state); }
+  catch (e) { alert('Could not restore this snapshot: ' + e.message); return; }
+  state = restored;
+  // Never auto-relink — the admin decides where the restored copy is saved.
+  currentSavedId = null;
+  document.getElementById('worksheetTitle').value = state.title || '';
+  document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+  renderEditor();
+  renderPreview();
+  updateLinkStatus();
+}
+
+function updateLinkStatus() {
+  const el = document.getElementById('linkStatus');
+  if (!el) return;
+  if (currentSavedId) {
+    const item = (savedItemsCache || []).find(it => it.id === currentSavedId);
+    const name = item ? item.title : 'a saved worksheet';
+    el.textContent = '🔗 Editing saved worksheet: ' + name + ' — changes auto-save to it.';
+    el.className = 'link-status linked admin-only';
+  } else {
+    el.textContent = '🆕 New / unlinked worksheet — "Save to System" creates a new entry.';
+    el.className = 'link-status admin-only';
+  }
+}
+
+document.getElementById('activityLogBtn').addEventListener('click', () => {
+  activityLogOpen = !activityLogOpen;
+  renderActivityLog();
+});
+updateActivityLogBtn();
 
 /* =========================================================================
    TOPIC / CONCEPT FILTER
@@ -3654,6 +3866,7 @@ refreshAuthUi();
 // single empty question so the workflow is obvious. (Students get reset to an
 // empty preview by onAuthStateChanged once their sign-in resolves.)
 if (!restoreAutoSave()) addQuestion();
+updateLinkStatus();
 </script>
 </body>
 </html>
