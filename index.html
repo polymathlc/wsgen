@@ -837,6 +837,9 @@
   .saved-item-name { flex: 1; color: var(--text-primary); cursor: pointer; }
   .saved-item-name:hover { color: var(--accent-deep); }
   .saved-item-meta { color: var(--text-tertiary); font-size: var(--font-size-xs); }
+  .saved-item.worksheet-hidden .saved-item-name { color: var(--text-tertiary); }
+  .icon-btn.eye-off { opacity: 0.35; }
+  .icon-btn.eye-off:hover { opacity: 0.7; }
 
   /* ============================ ANSWER FIELD / KEY / VIDEO ============================ */
   .answer-field {
@@ -3632,7 +3635,11 @@ async function refreshSavedList() {
   }
   // The link indicator needs the cache to resolve the linked worksheet's name.
   updateLinkStatus();
-  if (savedItemsCache.length === 0) {
+  // Students only see worksheets the admin has chosen to show.
+  const visibleItems = isAdmin()
+    ? savedItemsCache
+    : savedItemsCache.filter(it => !it.hidden);
+  if (visibleItems.length === 0) {
     if (!isAdmin()) {
       const empty = document.createElement('div');
       empty.className = 'saved-item';
@@ -3643,15 +3650,15 @@ async function refreshSavedList() {
   }
   const header = document.createElement('div');
   header.className = 'saved-item';
-  const headerLabel = isAdmin() ? `My saved worksheets (${savedItemsCache.length})` : `Available worksheets (${savedItemsCache.length})`;
+  const headerLabel = isAdmin() ? `My saved worksheets (${visibleItems.length})` : `Available worksheets (${visibleItems.length})`;
   header.innerHTML = `<div class="saved-item-name" style="cursor:default; font-weight:700; color:var(--text-secondary);">${headerLabel}</div>`;
   list.appendChild(header);
-  savedItemsCache.forEach((it) => {
+  visibleItems.forEach((it) => {
     const row = document.createElement('div');
-    row.className = 'saved-item';
+    row.className = 'saved-item' + (it.hidden ? ' worksheet-hidden' : '');
     const name = document.createElement('div');
     name.className = 'saved-item-name';
-    name.textContent = it.title || '(untitled)';
+    name.textContent = (it.title || '(untitled)') + (it.hidden ? '  (hidden)' : '');
     if (it.id === currentSavedId) name.style.fontWeight = '700';
     name.addEventListener('click', () => loadFromSystem(it.id));
     const meta = document.createElement('span');
@@ -3662,11 +3669,29 @@ async function refreshSavedList() {
     row.appendChild(name);
     row.appendChild(meta);
     if (isAdmin()) {
+      const eye = makeIconBtn('👁',
+        it.hidden
+          ? 'Hidden from students — click to show'
+          : 'Visible to students — click to hide',
+        () => toggleWorksheetHidden(it.id, !!it.hidden));
+      if (it.hidden) eye.classList.add('eye-off');
+      row.appendChild(eye);
       const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
       row.appendChild(del);
     }
     list.appendChild(row);
   });
+}
+
+// Toggle whether a saved worksheet appears in a student's worksheet list.
+async function toggleWorksheetHidden(id, currentlyHidden) {
+  if (!isAdmin()) return;
+  try {
+    await setDoc(doc(fbDb, 'worksheets', id), { hidden: !currentlyHidden }, { merge: true });
+    await refreshSavedList();
+  } catch (e) {
+    alert('Could not change worksheet visibility: ' + (e.message || e));
+  }
 }
 
 function newWorksheet() {
