@@ -1,0 +1,1365 @@
+{
+  "title": "Paya Lebar Methodist Girls' School (Primary) 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Paya Lebar Methodist Girls' School (Primary) — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_plm25_q_a",
+      "elements": [
+        {
+          "id": "id_plm25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4).  Shade the correct oval (1, 2, 3 or 4) on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q1",
+      "elements": [
+        {
+          "id": "id_plm25_2",
+          "type": "text",
+          "text": "3 710 562 = 3 000 000 + 700 000 + ________ + 500 + 60 + 2"
+        },
+        {
+          "id": "id_plm25_3",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_4", "text": "100" },
+            { "id": "id_plm25_5", "text": "1000" },
+            { "id": "id_plm25_6", "text": "10 000" },
+            { "id": "id_plm25_7", "text": "100 000" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q2",
+      "elements": [
+        {
+          "id": "id_plm25_8",
+          "type": "text",
+          "text": "Which of the following is the same as 40 km 70 m?"
+        },
+        {
+          "id": "id_plm25_9",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_10", "text": "40 700 m" },
+            { "id": "id_plm25_11", "text": "40 070 m" },
+            { "id": "id_plm25_12", "text": "4700 m" },
+            { "id": "id_plm25_13", "text": "4070 m" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q3",
+      "elements": [
+        {
+          "id": "id_plm25_14",
+          "type": "text",
+          "text": "The total mass of 3 students is 162 kg.  Another student, Megan, joins the group.  She has a mass of 42 kg.  What is the average mass of the 4 students?"
+        },
+        {
+          "id": "id_plm25_15",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_16", "text": "55 kg" },
+            { "id": "id_plm25_17", "text": "51 kg" },
+            { "id": "id_plm25_18", "text": "32 kg" },
+            { "id": "id_plm25_19", "text": "24 kg" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q4",
+      "elements": [
+        {
+          "id": "id_plm25_20",
+          "type": "text",
+          "text": "The figure below is a parallelogram.  Which of the following is true?"
+        },
+        {
+          "id": "id_plm25_21",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_22",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_23", "text": "∠a + ∠c = 180°" },
+            { "id": "id_plm25_24", "text": "∠b + ∠d = 180°" },
+            { "id": "id_plm25_25", "text": "∠a = ∠c" },
+            { "id": "id_plm25_26", "text": "∠b = ∠c" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q5",
+      "elements": [
+        {
+          "id": "id_plm25_27",
+          "type": "text",
+          "text": "Simplify 8b + 15 − 3b − 9."
+        },
+        {
+          "id": "id_plm25_28",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_29", "text": "5b + 6" },
+            { "id": "id_plm25_30", "text": "5b + 24" },
+            { "id": "id_plm25_31", "text": "11b + 6" },
+            { "id": "id_plm25_32", "text": "11b + 24" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q6",
+      "elements": [
+        {
+          "id": "id_plm25_33",
+          "type": "text",
+          "text": "In the number line, what is the mixed number represented by X?"
+        },
+        {
+          "id": "id_plm25_34",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_35",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_36", "text": "3 4/9" },
+            { "id": "id_plm25_37", "text": "3 3/8" },
+            { "id": "id_plm25_38", "text": "3 3/7" },
+            { "id": "id_plm25_39", "text": "3 3/4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q7",
+      "elements": [
+        {
+          "id": "id_plm25_40",
+          "type": "text",
+          "text": "Shay took a ferry from 8.25 a.m. to 1.00 p.m.  How long was the ferry ride?"
+        },
+        {
+          "id": "id_plm25_41",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_42", "text": "4 h 25 min" },
+            { "id": "id_plm25_43", "text": "4 h 35 min" },
+            { "id": "id_plm25_44", "text": "5 h 25 min" },
+            { "id": "id_plm25_45", "text": "5 h 35 min" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q8",
+      "elements": [
+        {
+          "id": "id_plm25_46",
+          "type": "text",
+          "text": "The table below shows the number of vouchers some participants won in a contest.  How many participants won at least 2 vouchers?"
+        },
+        {
+          "id": "id_plm25_47",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_48",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_49", "text": "11" },
+            { "id": "id_plm25_50", "text": "19" },
+            { "id": "id_plm25_51", "text": "24" },
+            { "id": "id_plm25_52", "text": "26" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q9",
+      "elements": [
+        {
+          "id": "id_plm25_53",
+          "type": "text",
+          "text": "The shaded figure is a quarter circle of radius 21 cm.  Find the perimeter of the shaded figure.  (Take π = 22/7)"
+        },
+        {
+          "id": "id_plm25_54",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_55",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_56", "text": "33 cm" },
+            { "id": "id_plm25_57", "text": "54 cm" },
+            { "id": "id_plm25_58", "text": "66 cm" },
+            { "id": "id_plm25_59", "text": "75 cm" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q10",
+      "elements": [
+        {
+          "id": "id_plm25_60",
+          "type": "text",
+          "text": "Which of the following is not the net of a pyramid?"
+        },
+        {
+          "id": "id_plm25_61",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_62",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_63", "text": "Net (1)" },
+            { "id": "id_plm25_64", "text": "Net (2)" },
+            { "id": "id_plm25_65", "text": "Net (3)" },
+            { "id": "id_plm25_66", "text": "Net (4)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q11",
+      "elements": [
+        {
+          "id": "id_plm25_67",
+          "type": "text",
+          "text": "Ariana had $28.  After buying 7 identical cups, she had $y left.  Express the cost of 1 cup in terms of y."
+        },
+        {
+          "id": "id_plm25_68",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_69", "text": "$(28 − 7y)" },
+            { "id": "id_plm25_70", "text": "$(28 − y/7)" },
+            { "id": "id_plm25_71", "text": "$(28y/7)" },
+            { "id": "id_plm25_72", "text": "$((28 − y)/7)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q12",
+      "elements": [
+        {
+          "id": "id_plm25_73",
+          "type": "text",
+          "text": "Ryan uses 4 different shapes to form a pattern.  The first 17 shapes are shown below.  What fraction of the first 27 shapes are triangles?"
+        },
+        {
+          "id": "id_plm25_74",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_75",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_76", "text": "4/9" },
+            { "id": "id_plm25_77", "text": "5/9" },
+            { "id": "id_plm25_78", "text": "8/27" },
+            { "id": "id_plm25_79", "text": "14/27" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q13",
+      "elements": [
+        {
+          "id": "id_plm25_80",
+          "type": "text",
+          "text": "A group of children was asked to name their favourite sports.  45% of the children chose floorball and table tennis.  How many more children chose badminton than volleyball as their favourite sport?"
+        },
+        {
+          "id": "id_plm25_81",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_82",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_83", "text": "35" },
+            { "id": "id_plm25_84", "text": "45" },
+            { "id": "id_plm25_85", "text": "105" },
+            { "id": "id_plm25_86", "text": "135" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q14",
+      "elements": [
+        {
+          "id": "id_plm25_87",
+          "type": "text",
+          "text": "Alyssa baked some muffins for sale.  She sold a total of 480 muffins in the morning.  In the afternoon, she sold 1/8 of the remaining muffins.  In the end, she had 35% of the muffins left.  How many muffins did she bake?"
+        },
+        {
+          "id": "id_plm25_88",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_89", "text": "520" },
+            { "id": "id_plm25_90", "text": "648" },
+            { "id": "id_plm25_91", "text": "792" },
+            { "id": "id_plm25_92", "text": "800" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q15",
+      "elements": [
+        {
+          "id": "id_plm25_93",
+          "type": "text",
+          "text": "In a park, there were two identical circular running tracks with centres at R and T.  QRST is a square with a perimeter of 56 m.  Benny started running from Q.  He ran round each circular track once.  Find the distance Benny ran.  (Take π = 22/7)"
+        },
+        {
+          "id": "id_plm25_94",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_95",
+          "type": "mcq",
+          "options": [
+            { "id": "id_plm25_96", "text": "28 m" },
+            { "id": "id_plm25_97", "text": "88 m" },
+            { "id": "id_plm25_98", "text": "176 m" },
+            { "id": "id_plm25_99", "text": "616 m" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q_b",
+      "elements": [
+        {
+          "id": "id_plm25_100",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q16",
+      "elements": [
+        {
+          "id": "id_plm25_101",
+          "type": "text",
+          "text": "Express 3/8 as a decimal."
+        },
+        {
+          "id": "id_plm25_102",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q17",
+      "elements": [
+        {
+          "id": "id_plm25_103",
+          "type": "text",
+          "text": "The volume of the cube is 125 m³.  Find the length of one side of the cube."
+        },
+        {
+          "id": "id_plm25_104",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_105",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q18",
+      "elements": [
+        {
+          "id": "id_plm25_106",
+          "type": "text",
+          "text": "XYZ, VY and YW are straight lines.  Find ∠a."
+        },
+        {
+          "id": "id_plm25_107",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_108",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q19",
+      "elements": [
+        {
+          "id": "id_plm25_109",
+          "type": "text",
+          "text": "Find the missing number in the box.  6 : 8 = [ ? ] : 36"
+        },
+        {
+          "id": "id_plm25_110",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q20",
+      "elements": [
+        {
+          "id": "id_plm25_111",
+          "type": "text",
+          "text": "Find the value of 3/4 − 2/5."
+        },
+        {
+          "id": "id_plm25_112",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q_b2",
+      "elements": [
+        {
+          "id": "id_plm25_113",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q21",
+      "elements": [
+        {
+          "id": "id_plm25_114",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the value of 18 ÷ 3/5."
+        },
+        {
+          "id": "id_plm25_115",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_116",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the value of (60 − 24) ÷ 9 + 3."
+        },
+        {
+          "id": "id_plm25_117",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q22",
+      "elements": [
+        {
+          "id": "id_plm25_118",
+          "type": "text",
+          "text": "Find the area of the shaded triangle."
+        },
+        {
+          "id": "id_plm25_119",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_120",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q23",
+      "elements": [
+        {
+          "id": "id_plm25_121",
+          "type": "text",
+          "text": "Shade 2 more unit squares so that AB is the line of symmetry for the figure."
+        },
+        {
+          "id": "id_plm25_122",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q24",
+      "elements": [
+        {
+          "id": "id_plm25_123",
+          "type": "text",
+          "text": "A tank with a square base has a capacity of 1280 mℓ.  The height of the tank is 80 cm.  Find one side of the square base."
+        },
+        {
+          "id": "id_plm25_124",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_125",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q25",
+      "elements": [
+        {
+          "id": "id_plm25_126",
+          "type": "text",
+          "text": "Aiden's scores for 5 games are shown in the table below."
+        },
+        {
+          "id": "id_plm25_127",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_128",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find his average score."
+        },
+        {
+          "id": "id_plm25_129",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_130",
+          "type": "part",
+          "label": "(b)",
+          "text": "After Aiden played his 6th game, his average score becomes 12.  What was his score for his 6th game?"
+        },
+        {
+          "id": "id_plm25_131",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q26",
+      "elements": [
+        {
+          "id": "id_plm25_132",
+          "type": "text",
+          "text": "Kate builds a solid using 8 identical unit cubes."
+        },
+        {
+          "id": "id_plm25_133",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_134",
+          "type": "part",
+          "label": "(a)",
+          "text": "Draw the top view of the solid in the square grid below."
+        },
+        {
+          "id": "id_plm25_135",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_136",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the greatest number of cubes that Kate can add to the above solid without changing the front view and side view."
+        },
+        {
+          "id": "id_plm25_137",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q27",
+      "elements": [
+        {
+          "id": "id_plm25_138",
+          "type": "text",
+          "text": "At 12 00, Helen and Thomas travelled in opposite directions from a shopping mall.  Helen cycled at a constant speed of 24 km/h and Thomas drove at a constant speed of 57 km/h.  How far apart were they at 14 00?"
+        },
+        {
+          "id": "id_plm25_139",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q28",
+      "elements": [
+        {
+          "id": "id_plm25_140",
+          "type": "text",
+          "text": "A rectangular container with a base area of 4800 cm² is 1/5 filled with water.  Water flows into the container from a tap at a rate of 8 litres per minute.  It takes 6 minutes to fill the container to its brim.  Find the height of the container."
+        },
+        {
+          "id": "id_plm25_141",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_142",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q29",
+      "elements": [
+        {
+          "id": "id_plm25_143",
+          "type": "text",
+          "text": "The pie chart represents the number of bottled drinks sold at a stall.  Half of the bottled drinks sold were Chocolate Milk.  The number of bottled drinks sold at the stall is also represented by a bar graph.  Part of the graph had been stained by ink.  How many bottles of Chocolate Milk were sold?"
+        },
+        {
+          "id": "id_plm25_144",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_145",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q30",
+      "elements": [
+        {
+          "id": "id_plm25_146",
+          "type": "text",
+          "text": "The figure below is not drawn to scale.  AGDJ, FCG and CDH are straight lines.  BCFE is a trapezium.  BC is parallel to EF.  Each of the statements below is either true, false or not possible to tell from the information given.  Put a tick (✓) to indicate your answer."
+        },
+        {
+          "id": "id_plm25_147",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q_p2",
+      "elements": [
+        {
+          "id": "id_plm25_148",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q1",
+      "elements": [
+        {
+          "id": "id_plm25_149",
+          "type": "text",
+          "text": "The area of the shaded face is 49 cm².  What is the volume of the solid?"
+        },
+        {
+          "id": "id_plm25_150",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_151",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q2",
+      "elements": [
+        {
+          "id": "id_plm25_152",
+          "type": "text",
+          "text": "Measure and write down the lengths and angle of the triangle shown."
+        },
+        {
+          "id": "id_plm25_153",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_154",
+          "type": "part",
+          "label": "(a)",
+          "text": "the length of PR"
+        },
+        {
+          "id": "id_plm25_155",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_156",
+          "type": "part",
+          "label": "(b)",
+          "text": "the size of ∠PQR"
+        },
+        {
+          "id": "id_plm25_157",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q3",
+      "elements": [
+        {
+          "id": "id_plm25_158",
+          "type": "text",
+          "text": "A triangle is formed by bending a piece of wire.  What is the length of the piece of wire?  Express your answer in terms of x in its simplest form."
+        },
+        {
+          "id": "id_plm25_159",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_160",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q4",
+      "elements": [
+        {
+          "id": "id_plm25_161",
+          "type": "text",
+          "text": "A fruit seller stored oranges in crates A and B.  Crate A contained twice as many oranges as crate B.  In crate A, 1/2 of the oranges were ripe.  In crate B, 5/6 of the oranges were ripe.  What fraction of all the oranges were ripe?"
+        },
+        {
+          "id": "id_plm25_162",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q5",
+      "elements": [
+        {
+          "id": "id_plm25_163",
+          "type": "text",
+          "text": "Mei had 18 more stickers than Aisha at first.  After Mei gave some stickers to Aisha, she had 24 fewer stickers than Aisha.  How many stickers did Mei give to Aisha?"
+        },
+        {
+          "id": "id_plm25_164",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_q_p2b",
+      "elements": [
+        {
+          "id": "id_plm25_165",
+          "type": "text",
+          "text": "For questions 6 to 17, show your working clearly and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q6",
+      "elements": [
+        {
+          "id": "id_plm25_166",
+          "type": "text",
+          "text": "Mr Tan drove 57 km from Point A to Point B at an average speed of 76 km/h.  From Point B, he drove another 60 km for 1 1/2 hours to reach Point C.  What was his average speed for the entire journey?  Express your answer in km/h.  [3]"
+        },
+        {
+          "id": "id_plm25_167",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_168",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q7",
+      "elements": [
+        {
+          "id": "id_plm25_169",
+          "type": "text",
+          "text": "Figure X below shows a square tile ABCD.  It is made up of a triangle BCD, a quarter circle AFE and a shaded part BDEF.  AF = FB."
+        },
+        {
+          "id": "id_plm25_170",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_171",
+          "type": "part",
+          "label": "(a)",
+          "text": "The area of triangle BCD is 32 cm².  What is the radius of the quarter circle AFE?  [1]"
+        },
+        {
+          "id": "id_plm25_172",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_173",
+          "type": "part",
+          "label": "(b)",
+          "text": "Figure Y is made up of four such square tiles as shown in Figure X.  Find the total shaded area in Figure Y.  (Take π = 3.14)  [2]"
+        },
+        {
+          "id": "id_plm25_174",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_175",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q8",
+      "elements": [
+        {
+          "id": "id_plm25_176",
+          "type": "text",
+          "text": "Callys always spends 70% of her salary.  Her salary for December was 40% more than that for November.  As a result, she spent $560 more in December than in November.  How much was her salary in December?  [3]"
+        },
+        {
+          "id": "id_plm25_177",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q9",
+      "elements": [
+        {
+          "id": "id_plm25_178",
+          "type": "text",
+          "text": "The line graph shows the number of visitors who took the tram in the zoo from Monday to Friday in a particular week."
+        },
+        {
+          "id": "id_plm25_179",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_180",
+          "type": "part",
+          "label": "(a)",
+          "text": "On which day was the tram service in the zoo closed for maintenance?  [1]"
+        },
+        {
+          "id": "id_plm25_181",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_182",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the percentage increase in the number of visitors who took the tram from Thursday to Friday.  [2]"
+        },
+        {
+          "id": "id_plm25_183",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q10",
+      "elements": [
+        {
+          "id": "id_plm25_184",
+          "type": "text",
+          "text": "Winnie and Sophie were paid a total of $3620 for a job.  Winnie was paid $1960 more than Sophie."
+        },
+        {
+          "id": "id_plm25_185",
+          "type": "part",
+          "label": "(a)",
+          "text": "How much was Winnie paid for the job?  [1]"
+        },
+        {
+          "id": "id_plm25_186",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_187",
+          "type": "part",
+          "label": "(b)",
+          "text": "Winnie and Sophie were paid based on the number of days they worked.  Winnie worked 3 times as many days as Sophie.  Winnie was paid $5 more than Sophie per day.  How many days did Sophie work?  [3]"
+        },
+        {
+          "id": "id_plm25_188",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q11",
+      "elements": [
+        {
+          "id": "id_plm25_189",
+          "type": "text",
+          "text": "At first, 1/5 of a rectangular container was filled with water.  More water was collected into the container from a leaking tap for 30 minutes.  The line graph shows the volume of water in the tank over 30 minutes."
+        },
+        {
+          "id": "id_plm25_190",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_191",
+          "type": "part",
+          "label": "(a)",
+          "text": "How much water flowed into the container in one minute?  [1]"
+        },
+        {
+          "id": "id_plm25_192",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_193",
+          "type": "part",
+          "label": "(b)",
+          "text": "At the end of 30 minutes, what fraction of the container was filled with water?  [1]"
+        },
+        {
+          "id": "id_plm25_194",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_195",
+          "type": "part",
+          "label": "(c)",
+          "text": "At the end of 30 minutes, the container was filled with water to a height of 3 cm as shown in Figure Z.  Find the possible pair of length and breadth of the container, given that both dimensions are whole numbers greater than 1 cm.  [2]"
+        },
+        {
+          "id": "id_plm25_196",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_197",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q12",
+      "elements": [
+        {
+          "id": "id_plm25_198",
+          "type": "text",
+          "text": "In the figure, ABFG is a parallelogram and BCDE is a rhombus.  ABC is a straight line.  ∠AGF = 67°, ∠BFE = 11° and ∠CED = 38°."
+        },
+        {
+          "id": "id_plm25_199",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_200",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠FBE.  [2]"
+        },
+        {
+          "id": "id_plm25_201",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_202",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠DEF.  [2]"
+        },
+        {
+          "id": "id_plm25_203",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q13",
+      "elements": [
+        {
+          "id": "id_plm25_204",
+          "type": "text",
+          "text": "The table shows the prices of entry tickets for a theme park.  The number of adult tickets sold was 6 times the number of child tickets sold.  4/5 of the adult tickets sold were for adults aged below 65 years old.  A total of $9464 was collected from the sale of tickets."
+        },
+        {
+          "id": "id_plm25_205",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_206",
+          "type": "part",
+          "label": "(a)",
+          "text": "What fraction of the tickets sold were for adults aged 65 years and above?  Give your answer in the simplest form.  [2]"
+        },
+        {
+          "id": "id_plm25_207",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_208",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was the total number of tickets sold?  [3]"
+        },
+        {
+          "id": "id_plm25_209",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q14",
+      "elements": [
+        {
+          "id": "id_plm25_210",
+          "type": "text",
+          "text": "Ben baked three types of muffins for sale.  The number of each type of muffins Ben baked is represented by the bar graph below.  The bars for the number of chocolate muffins and vanilla muffins have not been drawn."
+        },
+        {
+          "id": "id_plm25_211",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_212",
+          "type": "part",
+          "label": "(a)",
+          "text": "The ratio of the number of chocolate muffins to strawberry muffins to vanilla muffins is 7 : 5 : 9.  Draw the bars that represent the number of chocolate muffins and vanilla muffins Ben baked in the graph above.  [1]"
+        },
+        {
+          "id": "id_plm25_213",
+          "type": "part",
+          "label": "(b)",
+          "text": "Ben sold all his strawberry muffins at $3.20 each.  He collected a total of $192 from the sale of the strawberry muffins.  How many muffins did he bake altogether?  [3]"
+        },
+        {
+          "id": "id_plm25_214",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q15",
+      "elements": [
+        {
+          "id": "id_plm25_215",
+          "type": "text",
+          "text": "In the 1-cm square grid below, line CB forms one side of an isosceles triangle CBE in which CB = BE."
+        },
+        {
+          "id": "id_plm25_216",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_217",
+          "type": "part",
+          "label": "(a)",
+          "text": "Complete the drawing of triangle CBE on the grid such that Point E is east of Point C.  Label your figure clearly.  [1]"
+        },
+        {
+          "id": "id_plm25_218",
+          "type": "part",
+          "label": "(b)",
+          "text": "Draw a right-angled triangle CEF on the grid such that EF is twice the length of BC.  Triangle CEF must not overlap with triangle CBE.  Label your figure clearly.  [1]"
+        },
+        {
+          "id": "id_plm25_219",
+          "type": "part",
+          "label": "(c)",
+          "text": "Find the area of figure CBEF.  [2]"
+        },
+        {
+          "id": "id_plm25_220",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q16",
+      "elements": [
+        {
+          "id": "id_plm25_221",
+          "type": "text",
+          "text": "There were some books on Shelf A and Shelf B.  Emily took out 1/7 of the books from Shelf A and placed them onto Shelf B.  As a result, the ratio of the number of books on Shelf A to the number of books on Shelf B became 3 : 5.  There were then 156 more books on Shelf B than on Shelf A."
+        },
+        {
+          "id": "id_plm25_222",
+          "type": "part",
+          "label": "(a)",
+          "text": "What was the ratio of the number of books on Shelf A to the number of books on Shelf B at first?  [1]"
+        },
+        {
+          "id": "id_plm25_223",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_224",
+          "type": "part",
+          "label": "(b)",
+          "text": "How many books were there on Shelf B at first?  [3]"
+        },
+        {
+          "id": "id_plm25_225",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_plm25_p2q17",
+      "elements": [
+        {
+          "id": "id_plm25_226",
+          "type": "text",
+          "text": "Stall A and Stall B sold the same total number of burgers and sandwiches at a school carnival.  The prices for both items are shown in the poster below.  Stall A sold some burgers and 64 sandwiches.  Stall B sold some burgers and 96 sandwiches."
+        },
+        {
+          "id": "id_plm25_227",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_plm25_228",
+          "type": "part",
+          "label": "(a)",
+          "text": "Which stall collected more money?  How much more?  [2]"
+        },
+        {
+          "id": "id_plm25_229",
+          "type": "answer",
+          "label": "Ans : (a) Stall ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_230",
+          "type": "answer",
+          "label": "Amount : ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "id_plm25_231",
+          "type": "part",
+          "label": "(b)",
+          "text": "The total mass of burgers and sandwiches sold at Stall A was 8.32 kg.  Each burger is 60 g heavier than each sandwich.  What is the total mass of burgers and sandwiches sold by Stall B in kg?  [2]"
+        },
+        {
+          "id": "id_plm25_232",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
