@@ -212,6 +212,17 @@
     color: var(--wrong-dark);
   }
 
+  .btn-newws {
+    background: var(--correct-dark);
+    color: #fff;
+    border-color: var(--correct-dark);
+  }
+  .btn-newws:hover {
+    background: var(--correct-base);
+    border-color: var(--correct-base);
+    color: #fff;
+  }
+
   .btn-tiny {
     padding: 4px 10px;
     font-size: var(--font-size-xs);
@@ -837,6 +848,14 @@
   .saved-item-name { flex: 1; color: var(--text-primary); cursor: pointer; }
   .saved-item-name:hover { color: var(--accent-deep); }
   .saved-item-meta { color: var(--text-tertiary); font-size: var(--font-size-xs); }
+  .saved-item.saved-item-current {
+    background: var(--accent-bg);
+    box-shadow: inset 3px 0 0 var(--accent-deep);
+  }
+  .saved-item.saved-item-current .saved-item-name {
+    font-weight: 700;
+    color: var(--accent-deep);
+  }
   .saved-item.worksheet-hidden .saved-item-name { color: var(--text-tertiary); }
   .icon-btn.eye-off { opacity: 0.35; }
   .icon-btn.eye-off:hover { opacity: 0.7; }
@@ -1215,7 +1234,7 @@
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account — updates the linked worksheet, or creates a new one if none is linked">☁ Save to System</button>
         <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
-        <button class="btn admin-only" id="newWorksheetBtn">New</button>
+        <button class="btn btn-newws admin-only" id="newWorksheetBtn" title="Start a brand-new blank worksheet — then use Load JSON to import a file into it">＋ New Worksheet</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
@@ -3274,6 +3293,7 @@ let currentUser = null; // Firebase User object (or null)
 let currentSavedId = null; // id of the worksheet currently loaded from cloud, if any
 let currentSavedTitle = null; // title of that worksheet AS LOADED — guards against overwriting the wrong one
 let savedItemsCache = []; // cached list for re-render
+let savedOrder = []; // stable display order of worksheet ids — editing a worksheet must not reshuffle the list
 
 function showAuthHint(html, kind = 'info') {
   const hint = document.getElementById('authHint');
@@ -3633,6 +3653,20 @@ async function refreshSavedList() {
       savedItemsCache = [];
     }
   }
+  // Keep a stable display order: a worksheet that already appears in the list
+  // keeps its position even after it is edited / re-saved (so it doesn't jump
+  // to the top mid-edit). Worksheets seen for the first time go to the top,
+  // newest first.
+  {
+    const byId = new Map(savedItemsCache.map(it => [it.id, it]));
+    const kept = savedOrder.filter(id => byId.has(id));
+    const fresh = savedItemsCache
+      .filter(it => !savedOrder.includes(it.id))
+      .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''))
+      .map(it => it.id);
+    savedOrder = [...fresh, ...kept];
+    savedItemsCache = savedOrder.map(id => byId.get(id));
+  }
   // The link indicator needs the cache to resolve the linked worksheet's name.
   updateLinkStatus();
   // Students only see worksheets the admin has chosen to show.
@@ -3655,11 +3689,12 @@ async function refreshSavedList() {
   list.appendChild(header);
   visibleItems.forEach((it) => {
     const row = document.createElement('div');
-    row.className = 'saved-item' + (it.hidden ? ' worksheet-hidden' : '');
+    row.className = 'saved-item'
+      + (it.hidden ? ' worksheet-hidden' : '')
+      + (it.id === currentSavedId ? ' saved-item-current' : '');
     const name = document.createElement('div');
     name.className = 'saved-item-name';
     name.textContent = (it.title || '(untitled)') + (it.hidden ? '  (hidden)' : '');
-    if (it.id === currentSavedId) name.style.fontWeight = '700';
     name.addEventListener('click', () => loadFromSystem(it.id));
     const meta = document.createElement('span');
     meta.className = 'saved-item-meta';
