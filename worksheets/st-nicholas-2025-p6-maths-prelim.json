@@ -35,7 +35,7 @@
     },
     {
       "id": "stn_q2",
-      "topics": [],
+      "topics": ["Fractions"],
       "concepts": [],
       "elements": [
         { "id": "stn_q2_t", "type": "text", "text": "Which one of the following fractions is smaller than 3/8 ?" },
@@ -54,7 +54,7 @@
     },
     {
       "id": "stn_q3",
-      "topics": [],
+      "topics": ["Percentage"],
       "concepts": [],
       "elements": [
         { "id": "stn_q3_t", "type": "text", "text": "Rosy had 300 buttons.  She used 45 buttons for her project.  What percentage of her buttons did she use for her project?" },
@@ -209,7 +209,7 @@
     },
     {
       "id": "stn_q11",
-      "topics": [],
+      "topics": ["Percentage"],
       "concepts": [],
       "elements": [
         { "id": "stn_q11_t", "type": "text", "text": "The pie chart shows the number of children at a drama workshop over 4 days.  50 children were there on Saturday.  How many children were at the drama workshop on Thursday?" },
@@ -269,7 +269,7 @@
     },
     {
       "id": "stn_q14",
-      "topics": [],
+      "topics": ["Fractions", "Ratio"],
       "concepts": [],
       "elements": [
         { "id": "stn_q14_t", "type": "text", "text": "Freddy had $250 and Karina had $100 at first.  After both of them spent an equal amount of money on a present, the amount of Freddy's money left was 7/2 of the amount of Karina's money left.  How much money did Freddy have left?" },
@@ -328,7 +328,7 @@
     },
     {
       "id": "stn_q17",
-      "topics": [],
+      "topics": ["Fractions"],
       "concepts": [],
       "elements": [
         { "id": "stn_q17_t", "type": "text", "text": "Find the value of 6/7 ÷ 15.  Give your answer as a fraction in the simplest form." },
@@ -337,7 +337,7 @@
     },
     {
       "id": "stn_q18",
-      "topics": [],
+      "topics": ["Ratio"],
       "concepts": [],
       "elements": [
         { "id": "stn_q18_t", "type": "text", "text": "Desmond used pink stars and green stars to decorate a photo frame for his mother.  For every 5 pink stars Desmond used, he used 4 green stars.  Desmond used a total of 72 stars.  How many green stars did Desmond use for the photo frame?" },
@@ -377,7 +377,7 @@
     },
     {
       "id": "stn_q21",
-      "topics": [],
+      "topics": ["Average"],
       "concepts": [],
       "elements": [
         { "id": "stn_q21_t", "type": "text", "text": "The line graph shows the number of vases sold in a shop over three months (June, July and August).  The average number of vases sold from June to September was 190.  How many vases were sold in September?" },
@@ -387,7 +387,7 @@
     },
     {
       "id": "stn_q22",
-      "topics": [],
+      "topics": ["Average"],
       "concepts": [],
       "elements": [
         { "id": "stn_q22_t", "type": "text", "text": "The average number of vases sold in October and November was 18 more than the average number of vases sold from June to September.  Find the total number of vases sold in October and November.  (Use the line graph from Question 21.)" },
@@ -454,7 +454,7 @@
     },
     {
       "id": "stn_q28",
-      "topics": [],
+      "topics": ["Volume"],
       "concepts": [],
       "elements": [
         { "id": "stn_q28_t", "type": "text", "text": "A cuboid and a cube are joined together to form a rectangular block as shown.  The length of the cube is 3 cm.  The volume of the cuboid is 5 times the volume of the cube.  What is the volume of the rectangular block?" },
@@ -474,7 +474,7 @@
     },
     {
       "id": "stn_q30",
-      "topics": [],
+      "topics": ["Fractions"],
       "concepts": [],
       "elements": [
         { "id": "stn_q30_t", "type": "text", "text": "Alizah baked some cupcakes.  She gave 1/6 of the cupcakes to her siblings and 1/4 of the cupcakes to her classmates.  She sold 4/5 of the remaining cupcakes.  At the end of the day, she was left with 49 cupcakes.  How many cupcakes did Alizah give to her siblings?" },
