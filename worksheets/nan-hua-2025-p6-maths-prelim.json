@@ -1,0 +1,1176 @@
+{
+  "title": "Nan Hua 2025 P6 Maths Prelim (Booklets A & B, Paper 2)",
+  "subtitle": "Nan Hua Primary School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "nh_q1",
+      "elements": [
+        {
+          "id": "nh_e1",
+          "type": "text",
+          "text": "Paper 1 — Booklet A (MCQ).  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "nh_q2",
+      "elements": [
+        {
+          "id": "nh_e2",
+          "type": "text",
+          "text": "Eight hundred thousand and fourteen in numerals is __________."
+        },
+        {
+          "id": "nh_e3",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e4", "text": "80 014" },
+            { "id": "nh_e5", "text": "80 040" },
+            { "id": "nh_e6", "text": "800 014" },
+            { "id": "nh_e7", "text": "800 040" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q3",
+      "elements": [
+        {
+          "id": "nh_e8",
+          "type": "text",
+          "text": "In the number line, what is the value represented by A?"
+        },
+        { "id": "nh_e9", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e10",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e11", "text": "1.125" },
+            { "id": "nh_e12", "text": "1.250" },
+            { "id": "nh_e13", "text": "1.600" },
+            { "id": "nh_e14", "text": "1.750" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q4",
+      "elements": [
+        {
+          "id": "nh_e15",
+          "type": "text",
+          "text": "12 + 6 ÷ 2 × 3 = __________"
+        },
+        {
+          "id": "nh_e16",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e17", "text": "13" },
+            { "id": "nh_e18", "text": "21" },
+            { "id": "nh_e19", "text": "27" },
+            { "id": "nh_e20", "text": "45" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q5",
+      "elements": [
+        {
+          "id": "nh_e21",
+          "type": "text",
+          "text": "Which pair of lines in the square grid is parallel?"
+        },
+        { "id": "nh_e22", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e23",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e24", "text": "AF and FE" },
+            { "id": "nh_e25", "text": "AB and DC" },
+            { "id": "nh_e26", "text": "AF and BC" },
+            { "id": "nh_e27", "text": "BC and CD" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q6",
+      "elements": [
+        {
+          "id": "nh_e28",
+          "type": "text",
+          "text": "AOB, POQ and XOY are straight lines.  Which of the following is true?"
+        },
+        { "id": "nh_e29", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e30",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e31", "text": "∠AOY = ∠XOQ" },
+            { "id": "nh_e32", "text": "∠XOB = ∠YOQ" },
+            { "id": "nh_e33", "text": "∠AOX = ∠YOQ" },
+            { "id": "nh_e34", "text": "∠POY = ∠XOQ" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q7",
+      "elements": [
+        {
+          "id": "nh_e35",
+          "type": "text",
+          "text": "The figure is made up of four identical right-angled triangles and a square.  What percentage of the figure is shaded?"
+        },
+        { "id": "nh_e36", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e37",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e38", "text": "25%" },
+            { "id": "nh_e39", "text": "37.5%" },
+            { "id": "nh_e40", "text": "60%" },
+            { "id": "nh_e41", "text": "75%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q8",
+      "elements": [
+        {
+          "id": "nh_e42",
+          "type": "text",
+          "text": "The duration of a movie is 1 h 40 min.  The movie ended at 5.30 p.m.  What time did the movie begin?"
+        },
+        {
+          "id": "nh_e43",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e44", "text": "03 50" },
+            { "id": "nh_e45", "text": "07 10" },
+            { "id": "nh_e46", "text": "15 50" },
+            { "id": "nh_e47", "text": "19 10" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q9",
+      "elements": [
+        {
+          "id": "nh_e48",
+          "type": "text",
+          "text": "Arrange these distances from the longest to the shortest:  1 1/4 km,  1 km 40 m,  1.3 km."
+        },
+        { "id": "nh_e49", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e50",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e51", "text": "Longest → Shortest:  1 km 40 m,  1.3 km,  1 1/4 km" },
+            { "id": "nh_e52", "text": "Longest → Shortest:  1.3 km,  1 1/4 km,  1 km 40 m" },
+            { "id": "nh_e53", "text": "Longest → Shortest:  1 1/4 km,  1.3 km,  1 km 40 m" },
+            { "id": "nh_e54", "text": "Longest → Shortest:  1 1/4 km,  1 km 40 m,  1.3 km" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q10",
+      "elements": [
+        {
+          "id": "nh_e55",
+          "type": "text",
+          "text": "The pie chart shows how Xueli spent her weekly allowance from Monday to Friday in a particular week.  Which of the following bar graphs represent the data shown in the pie chart?"
+        },
+        { "id": "nh_e56", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e57",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e58", "text": "Graph (1)" },
+            { "id": "nh_e59", "text": "Graph (2)" },
+            { "id": "nh_e60", "text": "Graph (3)" },
+            { "id": "nh_e61", "text": "Graph (4)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q11",
+      "elements": [
+        {
+          "id": "nh_e62",
+          "type": "text",
+          "text": "A book costs $b more than a pen.  The total cost of a book and 3 pens is $20.  Find the cost of a pen."
+        },
+        {
+          "id": "nh_e63",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e64", "text": "$( (20 − b) / 3 )" },
+            { "id": "nh_e65", "text": "$( 20/4 − b )" },
+            { "id": "nh_e66", "text": "$( 20 − 3b )" },
+            { "id": "nh_e67", "text": "$( (20 − b) / 4 )" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q12",
+      "elements": [
+        {
+          "id": "nh_e68",
+          "type": "text",
+          "text": "The postage rates to two different countries are shown below.\n\nMass — Malaysia — Japan\nFirst 20 g — $0.85 — $1.50\nEvery additional 10 g or less — $0.20 — $0.35\n\nKim sent a letter weighing 35 g to Malaysia and a letter weighing 10 g to Japan.  How much did she pay altogether?"
+        },
+        {
+          "id": "nh_e69",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e70", "text": "$1.60" },
+            { "id": "nh_e71", "text": "$1.90" },
+            { "id": "nh_e72", "text": "$2.75" },
+            { "id": "nh_e73", "text": "$3.60" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q13",
+      "elements": [
+        {
+          "id": "nh_e74",
+          "type": "text",
+          "text": "In the figure, BCD is an equilateral triangle.  ABD is an isosceles triangle with AD = BD and ∠ABD = 46°.  Find ∠DCA."
+        },
+        { "id": "nh_e75", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e76",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e77", "text": "16°" },
+            { "id": "nh_e78", "text": "37°" },
+            { "id": "nh_e79", "text": "44°" },
+            { "id": "nh_e80", "text": "46°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q14",
+      "elements": [
+        {
+          "id": "nh_e81",
+          "type": "text",
+          "text": "Roy and Jaya finished eating a jar of cookies over 2 days.  On the first day, Roy ate 3 more cookies than Jaya.  On the second day, Roy ate 12 cookies and Jaya ate 8 cookies.  Jaya ate 2/5 of the total number of cookies.  How many cookies did Roy eat?"
+        },
+        {
+          "id": "nh_e82",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e83", "text": "15" },
+            { "id": "nh_e84", "text": "21" },
+            { "id": "nh_e85", "text": "23" },
+            { "id": "nh_e86", "text": "35" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q15",
+      "elements": [
+        {
+          "id": "nh_e87",
+          "type": "text",
+          "text": "The ratio of the number of girls in Team A to the number of girls in Team B is 2 : 3.  The ratio of the number of boys in Team A to the number of boys in Team B is 5 : 3.  In Team A, the ratio of the number of girls to the number of boys is 4 : 3.  What is the ratio of the number of girls to the number of boys in Team B?"
+        },
+        {
+          "id": "nh_e88",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e89", "text": "1 : 1" },
+            { "id": "nh_e90", "text": "2 : 1" },
+            { "id": "nh_e91", "text": "2 : 3" },
+            { "id": "nh_e92", "text": "10 : 3" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q16",
+      "elements": [
+        {
+          "id": "nh_e93",
+          "type": "text",
+          "text": "A sheet of paper in the shape of an isosceles triangle where AB = AC.  It is folded along the dotted line BD as shown below.  Find ∠x."
+        },
+        { "id": "nh_e94", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e95",
+          "type": "mcq",
+          "options": [
+            { "id": "nh_e96", "text": "58°" },
+            { "id": "nh_e97", "text": "64°" },
+            { "id": "nh_e98", "text": "96°" },
+            { "id": "nh_e99", "text": "100°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "nh_q17",
+      "elements": [
+        {
+          "id": "nh_e100",
+          "type": "text",
+          "text": "Paper 1 — Booklet B (Short Answer).  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "nh_q18",
+      "elements": [
+        {
+          "id": "nh_e101",
+          "type": "text",
+          "text": "16.  Find the value of 35.4 − 9.72"
+        },
+        {
+          "id": "nh_e102",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q19",
+      "elements": [
+        {
+          "id": "nh_e103",
+          "type": "text",
+          "text": "17.  Round 9652 to the nearest hundred."
+        },
+        {
+          "id": "nh_e104",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q20",
+      "elements": [
+        {
+          "id": "nh_e105",
+          "type": "text",
+          "text": "18.  Find the value of 4/5 ÷ 20.  Give your answer as a fraction in the simplest form."
+        },
+        {
+          "id": "nh_e106",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q21",
+      "elements": [
+        {
+          "id": "nh_e107",
+          "type": "text",
+          "text": "19.  After Jenny made a 135° clockwise turn, she ended up facing North.  Which direction was she facing at first?"
+        },
+        { "id": "nh_e108", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e109",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q22",
+      "elements": [
+        {
+          "id": "nh_e110",
+          "type": "text",
+          "text": "20.  The figure shows a right-angled triangle.  Find the area of the triangle."
+        },
+        { "id": "nh_e111", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e112",
+          "type": "answer",
+          "label": "Ans : ____ cm²",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q23",
+      "elements": [
+        {
+          "id": "nh_e113",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        },
+        {
+          "id": "nh_e114",
+          "type": "text",
+          "text": "21.  Measure and write down:"
+        },
+        { "id": "nh_e115", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e116",
+          "type": "part",
+          "label": "(a)",
+          "text": "the length of BC."
+        },
+        {
+          "id": "nh_e117",
+          "type": "answer",
+          "label": "Ans : (a) ____ cm",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e118",
+          "type": "part",
+          "label": "(b)",
+          "text": "the size of ∠BAC."
+        },
+        {
+          "id": "nh_e119",
+          "type": "answer",
+          "label": "Ans : (b) ____ °",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q24",
+      "elements": [
+        {
+          "id": "nh_e120",
+          "type": "text",
+          "text": "22.  The first 6 numbers of a number pattern are given below.\n\n2,  5,  8,  11,  14,  17,  … …\n(1st term … 6th term)\n\nWhat is the 7th and 20th number in the pattern?"
+        },
+        {
+          "id": "nh_e121",
+          "type": "answer",
+          "label": "Ans : 7th number ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e122",
+          "type": "answer",
+          "label": "Ans : 20th number ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q25",
+      "elements": [
+        {
+          "id": "nh_e123",
+          "type": "text",
+          "text": "Use the information below to answer questions 23 and 24.\n\nSiti received a monthly allowance of $120 at the beginning of July.  The line graph shows the amount of pocket money she had left at the end of each week of July."
+        },
+        { "id": "nh_e124", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e125",
+          "type": "text",
+          "text": "23.  How much did Siti spend in July in total?"
+        },
+        {
+          "id": "nh_e126",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q26",
+      "elements": [
+        {
+          "id": "nh_e127",
+          "type": "text",
+          "text": "24.  (Refer to the line graph above.)"
+        },
+        {
+          "id": "nh_e128",
+          "type": "part",
+          "label": "(a)",
+          "text": "In which week did Siti spend the most?"
+        },
+        {
+          "id": "nh_e129",
+          "type": "answer",
+          "label": "Ans : (a) Week ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e130",
+          "type": "part",
+          "label": "(b)",
+          "text": "How much did she spend in that week?"
+        },
+        {
+          "id": "nh_e131",
+          "type": "answer",
+          "label": "Ans : (b) $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q27",
+      "elements": [
+        {
+          "id": "nh_e132",
+          "type": "text",
+          "text": "25.  A right-angled triangle ABC is drawn on a square grid inside a box.  By joining dots on the grid with straight lines, draw a parallelogram PQRS with perimeter twice that of triangle ABC.  Parallelogram PQRS must not overlap with triangle ABC."
+        },
+        { "id": "nh_e133", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e134",
+          "type": "answer",
+          "label": "Ans : See figure",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q28",
+      "elements": [
+        {
+          "id": "nh_e135",
+          "type": "text",
+          "text": "26.  36 is a common multiple of A and B.  B is 7 more than A.  What is the value of B?"
+        },
+        {
+          "id": "nh_e136",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q29",
+      "elements": [
+        {
+          "id": "nh_e137",
+          "type": "text",
+          "text": "27.  The figure shows a cube.  Which two nets are the correct nets of the cube?"
+        },
+        { "id": "nh_e138", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e139",
+          "type": "answer",
+          "label": "Ans : ____ and ____",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q30",
+      "elements": [
+        {
+          "id": "nh_e140",
+          "type": "text",
+          "text": "28.  Mr Ang and Mr Lee were 120 km apart.  They drove towards each other starting from the same time.  Mr Lee's average speed was 10 km/h slower than Mr Ang's average speed.  45 minutes later, they passed each other.  What was Mr Ang's average speed?"
+        },
+        {
+          "id": "nh_e141",
+          "type": "answer",
+          "label": "Ans : ____ km/h",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q31",
+      "elements": [
+        {
+          "id": "nh_e142",
+          "type": "text",
+          "text": "29.  ABCD is a rectangle.  AFC and GFE are straight lines.  ADEF is a trapezium with AF parallel to DE.  ∠GFB-region marked 43° and the angle at E marked 112°.  Find the following angles."
+        },
+        { "id": "nh_e143", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e144",
+          "type": "part",
+          "label": "(a)",
+          "text": "∠AFG"
+        },
+        {
+          "id": "nh_e145",
+          "type": "answer",
+          "label": "Ans : (a) ____ °",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e146",
+          "type": "part",
+          "label": "(b)",
+          "text": "∠DAC"
+        },
+        {
+          "id": "nh_e147",
+          "type": "answer",
+          "label": "Ans : (b) ____ °",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q32",
+      "elements": [
+        {
+          "id": "nh_e148",
+          "type": "text",
+          "text": "30.  Find the perimeter of the figure below."
+        },
+        { "id": "nh_e149", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e150",
+          "type": "answer",
+          "label": "Ans : ____ cm",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q33",
+      "elements": [
+        {
+          "id": "nh_e151",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly and write your answers in the space provided.  For questions which require units, give your answers in the units stated.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "nh_q34",
+      "elements": [
+        {
+          "id": "nh_e152",
+          "type": "text",
+          "text": "Paper 2, Question 1.  The full mark for each test is 100.  In the first 4 tests, Ali scored an average of 68 marks.  He wants to increase his average test score to 74 marks.  How many marks must he score for the 5th test?"
+        },
+        {
+          "id": "nh_e153",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q35",
+      "elements": [
+        {
+          "id": "nh_e154",
+          "type": "text",
+          "text": "Paper 2, Question 2.  Jane spent 3/5 of her money on a pair of shoes.  She then spent $5 more than 1/4 of the remainder on a dress.  The dress cost $35.  How much money did she have at first?"
+        },
+        {
+          "id": "nh_e155",
+          "type": "answer",
+          "label": "Ans : $",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q36",
+      "elements": [
+        {
+          "id": "nh_e156",
+          "type": "text",
+          "text": "Paper 2, Question 3.  The dotted line is the line of symmetry.  Complete the figure to make it symmetric by shading the least number of squares."
+        },
+        { "id": "nh_e157", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e158",
+          "type": "answer",
+          "label": "Ans : See figure",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q37",
+      "elements": [
+        {
+          "id": "nh_e159",
+          "type": "text",
+          "text": "Paper 2, Question 4.  The figure shows a cuboid container which is partially filled to a height of 5 cm.  To fill it completely, 1386 cm³ of water must be added.  What is the height of the container?"
+        },
+        { "id": "nh_e160", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e161",
+          "type": "answer",
+          "label": "Ans : ____ cm",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q38",
+      "elements": [
+        {
+          "id": "nh_e162",
+          "type": "text",
+          "text": "Paper 2, Question 5.  Alice took 60 minutes to walk from Point A to Point B, which was 3500 m apart.  In the same amount of time, she could run 7500 m from Point B to Point C.  What is her average speed from Point A to Point C, in km/h?"
+        },
+        { "id": "nh_e163", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e164",
+          "type": "answer",
+          "label": "Ans : ____ km/h",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q39",
+      "elements": [
+        {
+          "id": "nh_e165",
+          "type": "text",
+          "text": "For questions 6 to 17, show your working clearly and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "nh_q40",
+      "elements": [
+        {
+          "id": "nh_e166",
+          "type": "text",
+          "text": "Paper 2, Question 6.  Marbles were packed into three bags.  Bag A contained 15n marbles.  Bag A had three times as many marbles as Bag B.  Bag C had 5 more marbles than Bag B.  There were 75 marbles in Bag C.  Find the value of n.  [3]"
+        },
+        {
+          "id": "nh_e167",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q41",
+      "elements": [
+        {
+          "id": "nh_e168",
+          "type": "text",
+          "text": "Paper 2, Question 7.  At an event, there was a total of 1446 boys and girls at first.  During the break, 20 boys and 3/8 of the girls went home.  The number of girls remaining was 1/3 the number of boys remaining.  What was the difference in the number of boys and girls at first?  [3]"
+        },
+        {
+          "id": "nh_e169",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q42",
+      "elements": [
+        {
+          "id": "nh_e170",
+          "type": "text",
+          "text": "Paper 2, Question 8.  The amount of money Bala had was 60% that of Alan's."
+        },
+        {
+          "id": "nh_e171",
+          "type": "part",
+          "label": "(a)",
+          "text": "Alan had $52.  How much did Bala have?  [1]"
+        },
+        {
+          "id": "nh_e172",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e173",
+          "type": "part",
+          "label": "(b)",
+          "text": "After receiving some money from his mother, Bala's amount of money increased by 20%.  By what percentage must Alan's money decrease so that they have the same amount of money?  [2]"
+        },
+        {
+          "id": "nh_e174",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q43",
+      "elements": [
+        {
+          "id": "nh_e175",
+          "type": "text",
+          "text": "Paper 2, Question 9.  The bar graph shows the number of cars sold at 4 different shops, A, B, C and D respectively.  The bar for Shop C is not drawn."
+        },
+        { "id": "nh_e176", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e177",
+          "type": "part",
+          "label": "(a)",
+          "text": "The number of cars sold at Shop C was twice the number of cars sold at Shop A.  How many cars were sold at Shop C?  [1]"
+        },
+        {
+          "id": "nh_e178",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e179",
+          "type": "part",
+          "label": "(b)",
+          "text": "Shop E sold 175 fewer cars than the total number of cars sold by Shops A, B and D.  How many cars did Shop E sell?  [2]"
+        },
+        {
+          "id": "nh_e180",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q44",
+      "elements": [
+        {
+          "id": "nh_e181",
+          "type": "text",
+          "text": "Paper 2, Question 10.  Tracy had five more 50-cent coins than 20-cent coins.  After she used eight 50-cent coins, the value of the 50-cent coins is $6.30 more than the value of 20-cent coins.  How many coins did she have at first?  [4]"
+        },
+        {
+          "id": "nh_e182",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q45",
+      "elements": [
+        {
+          "id": "nh_e183",
+          "type": "text",
+          "text": "Paper 2, Question 11.  In the figure, a square, a right-angled triangle, and a circle with centre O overlap one another.  The ratio of the area of the square to the area of the circle to the area of the triangle is 10 : 8 : 7."
+        },
+        { "id": "nh_e184", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e185",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the ratio of the shaded area of the figure to the unshaded area of the figure.  Give your answer in the simplest form.  [3]"
+        },
+        {
+          "id": "nh_e186",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e187",
+          "type": "part",
+          "label": "(b)",
+          "text": "Given that the unshaded area of the figure is 86.4 cm², find the area of the triangle.  [1]"
+        },
+        {
+          "id": "nh_e188",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q46",
+      "elements": [
+        {
+          "id": "nh_e189",
+          "type": "text",
+          "text": "Paper 2, Question 12.  The figure is made up of two identical parallelograms, ABCD and CFGH.  ∠ABD is twice the size of ∠DBC.  (∠BAC = 54° and ∠BCD-region marked 60°.)"
+        },
+        { "id": "nh_e190", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e191",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find ∠BDC.  [2]"
+        },
+        {
+          "id": "nh_e192",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e193",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find ∠CDF.  [2]"
+        },
+        {
+          "id": "nh_e194",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q47",
+      "elements": [
+        {
+          "id": "nh_e195",
+          "type": "text",
+          "text": "Paper 2, Question 13.  The following pie charts show the sales of four different flavours of ice-cream (Lemon, Mint, Nutella, Orange) in two shops, Shop A and Shop B.\n\nEach of the statements below is either true, false or not possible to tell from the information given.  For each statement, put a tick (✓) to indicate your answer (True / False / Not Possible to Tell).\n\n(a) Shop B sold more Orange-flavoured ice-cream than Shop A.\n(b) Given that both shops sold the same number of Lemon-flavoured ice-cream, Shop A sold more ice-cream in total compared to Shop B.\n(c) Given that Shop A sold 40 Lemon-flavoured ice-cream, Shop A sold a total of 120 ice-cream.\n(d) Given that Shop A sold 8 more Mint-flavoured ice-cream than Shop B, the ratio of the number of Mint-flavoured ice-cream sold to the number of Nutella-flavoured ice-cream sold is 2 : 9.  [3]"
+        },
+        { "id": "nh_e196", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e197",
+          "type": "answer",
+          "label": "Ans : See table",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q48",
+      "elements": [
+        {
+          "id": "nh_e198",
+          "type": "text",
+          "text": "Paper 2, Question 14.  Bowls are arranged neatly into 20 stacks of the same height on a shelf in a restaurant.  The number of bowls in each stack is the same, and the height of each stack of bowls is 21 cm.  An example of how 8 bowls pile up to form one stack is shown."
+        },
+        { "id": "nh_e199", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e200",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many bowls were there on the shelf?  [1]"
+        },
+        {
+          "id": "nh_e201",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e202",
+          "type": "text",
+          "text": "3 bowls from each stack were removed to form another 12 new stacks.  The new height of each stack is now 15 cm tall."
+        },
+        {
+          "id": "nh_e203",
+          "type": "part",
+          "label": "(b)",
+          "text": "What was the height of each bowl?  [3]"
+        },
+        {
+          "id": "nh_e204",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q49",
+      "elements": [
+        {
+          "id": "nh_e205",
+          "type": "text",
+          "text": "Paper 2, Question 15.  The solid below is made up of ten cubes.  (Top view, Front view and Side view directions are indicated.)"
+        },
+        { "id": "nh_e206", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e207",
+          "type": "part",
+          "label": "(a)",
+          "text": "Draw the top view on the grid.  [1]"
+        },
+        { "id": "nh_e208", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e209",
+          "type": "part",
+          "label": "(b)",
+          "text": "Jane painted the whole solid including the base.  How many cubes had exactly 4 faces painted?  [1]"
+        },
+        {
+          "id": "nh_e210",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e211",
+          "type": "part",
+          "label": "(c)",
+          "text": "What is the minimum number of unit cubes that must be added such that the structure becomes a cube?  [2]"
+        },
+        {
+          "id": "nh_e212",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q50",
+      "elements": [
+        {
+          "id": "nh_e213",
+          "type": "text",
+          "text": "Paper 2, Question 16.  A shop produces square tiles in two designs (Tile A and Tile B) as shown below.  Each tile is made up of 4 quarter-circles.  The length of the side of each tile is 20 cm.  (Take π = 3.14)"
+        },
+        { "id": "nh_e214", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e215",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the perimeter of the shaded part of Tile B.  [2]"
+        },
+        {
+          "id": "nh_e216",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e217",
+          "type": "text",
+          "text": "Some tiles were laid out on a surface measuring 180 cm by 140 cm, in an alternating manner.  An example is shown below."
+        },
+        { "id": "nh_e218", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e219",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the smallest possible shaded area of all the tiles?  [3]"
+        },
+        {
+          "id": "nh_e220",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "nh_q51",
+      "elements": [
+        {
+          "id": "nh_e221",
+          "type": "text",
+          "text": "Paper 2, Question 17.  The figure is made up of two rectangles, ABFG and BCEF.  HXF and BDX are triangles.  The perimeter of rectangle ACEG is 90 cm.  The ratio of AG : AC = 4 : 5 and X is the midpoint of BF."
+        },
+        { "id": "nh_e222", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "nh_e223",
+          "type": "part",
+          "label": "(a)",
+          "text": "Find the length of AG.  [2]"
+        },
+        {
+          "id": "nh_e224",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "",
+          "lineLength": 30
+        },
+        {
+          "id": "nh_e225",
+          "type": "part",
+          "label": "(b)",
+          "text": "Find the area of the shaded part.  [3]"
+        },
+        {
+          "id": "nh_e226",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
