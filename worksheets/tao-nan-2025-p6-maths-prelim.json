@@ -1,0 +1,674 @@
+{
+  "title": "Tao Nan School 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Tao Nan School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.  Fraction, percentage and ratio questions are tagged under Topic.",
+  "questions": [
+    {
+      "id": "tn_p1a_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "tn_p1a_intro_t",
+          "type": "text",
+          "text": "Booklet A — Paper 1 (MCQ).  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "tn_q1",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q1_t", "type": "text", "text": "In 165.324, which digit is in the hundredths place?" },
+        {
+          "id": "tn_q1_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q1_o1", "text": "1" },
+            { "id": "tn_q1_o2", "text": "2" },
+            { "id": "tn_q1_o3", "text": "3" },
+            { "id": "tn_q1_o4", "text": "4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q2_t", "type": "text", "text": "Which two lines are perpendicular to each other?" },
+        { "id": "tn_q2_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q2_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q2_o1", "text": "AB and BC" },
+            { "id": "tn_q2_o2", "text": "AB and AE" },
+            { "id": "tn_q2_o3", "text": "AE and BC" },
+            { "id": "tn_q2_o4", "text": "AE and CD" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q3",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q3_t", "type": "text", "text": "What is the total volume of water in the two containers?" },
+        { "id": "tn_q3_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q3_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q3_o1", "text": "450 ml" },
+            { "id": "tn_q3_o2", "text": "550 ml" },
+            { "id": "tn_q3_o3", "text": "800 ml" },
+            { "id": "tn_q3_o4", "text": "900 ml" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q4",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q4_t", "type": "text", "text": "In the number line, what is the value represented by A?" },
+        { "id": "tn_q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q4_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q4_o1", "text": "7.30" },
+            { "id": "tn_q4_o2", "text": "7.60" },
+            { "id": "tn_q4_o3", "text": "7.75" },
+            { "id": "tn_q4_o4", "text": "8.25" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q5",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q5_t", "type": "text", "text": "A machine prints 15 postcards in 5 minutes.  At this rate, how many postcards can it print in 50 minutes?" },
+        {
+          "id": "tn_q5_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q5_o1", "text": "75" },
+            { "id": "tn_q5_o2", "text": "150" },
+            { "id": "tn_q5_o3", "text": "250" },
+            { "id": "tn_q5_o4", "text": "750" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q6",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q6_t", "type": "text", "text": "Arrange these masses from the lightest to the heaviest.\n\n2.35 kg     2 kg 50 g     2 3/10 kg" },
+        {
+          "id": "tn_q6_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q6_o1", "text": "2.35 kg, 2 3/10 kg, 2 kg 50 g" },
+            { "id": "tn_q6_o2", "text": "2 3/10 kg, 2.35 kg, 2 kg 50 g" },
+            { "id": "tn_q6_o3", "text": "2 kg 50 g, 2.35 kg, 2 3/10 kg" },
+            { "id": "tn_q6_o4", "text": "2 kg 50 g, 2 3/10 kg, 2.35 kg" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q7",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q7_t", "type": "text", "text": "How many eighths are there in 3 5/8 ?" },
+        {
+          "id": "tn_q7_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q7_o1", "text": "35" },
+            { "id": "tn_q7_o2", "text": "29" },
+            { "id": "tn_q7_o3", "text": "23" },
+            { "id": "tn_q7_o4", "text": "16" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q8",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q8_t", "type": "text", "text": "Round 47 458 to the nearest thousand." },
+        {
+          "id": "tn_q8_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q8_o1", "text": "47 000" },
+            { "id": "tn_q8_o2", "text": "47 460" },
+            { "id": "tn_q8_o3", "text": "47 500" },
+            { "id": "tn_q8_o4", "text": "48 000" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q9",
+      "topics": ["Ratio"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q9_t", "type": "text", "text": "There are 48 chocolates in a box.  36 of them are milk chocolates while the rest are dark chocolates.  What is the ratio of the number of dark chocolates to the number of milk chocolates?" },
+        {
+          "id": "tn_q9_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q9_o1", "text": "1 : 3" },
+            { "id": "tn_q9_o2", "text": "1 : 4" },
+            { "id": "tn_q9_o3", "text": "3 : 1" },
+            { "id": "tn_q9_o4", "text": "3 : 4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q10",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q10_t", "type": "text", "text": "AB and CD are straight lines.  Find ∠m." },
+        { "id": "tn_q10_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q10_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q10_o1", "text": "25°" },
+            { "id": "tn_q10_o2", "text": "35°" },
+            { "id": "tn_q10_o3", "text": "60°" },
+            { "id": "tn_q10_o4", "text": "65°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q11",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q11_t", "type": "text", "text": "Some students were asked to choose their favourite hobby.  The pie chart represents their choices.  Which hobby was chosen by 1/5 of the students?" },
+        { "id": "tn_q11_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q11_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q11_o1", "text": "Dancing" },
+            { "id": "tn_q11_o2", "text": "Gaming" },
+            { "id": "tn_q11_o3", "text": "Jogging" },
+            { "id": "tn_q11_o4", "text": "Reading" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q12",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q12_t", "type": "text", "text": "Ali had y marbles.  Bala had 5 more marbles than Ali.  Charles had 3 times as many marbles as Ali.  They had 45 marbles altogether.  How many more marbles did Charles have than Bala?" },
+        {
+          "id": "tn_q12_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q12_o1", "text": "8" },
+            { "id": "tn_q12_o2", "text": "10" },
+            { "id": "tn_q12_o3", "text": "11" },
+            { "id": "tn_q12_o4", "text": "15" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q13",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q13_t", "type": "text", "text": "Farah glued 64 cubes of side 1 cm to form the solid shown.  She painted the whole solid red, including the base.  How many cubes of side 1 cm have only 2 faces painted red?" },
+        { "id": "tn_q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q13_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q13_o1", "text": "16" },
+            { "id": "tn_q13_o2", "text": "18" },
+            { "id": "tn_q13_o3", "text": "24" },
+            { "id": "tn_q13_o4", "text": "32" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q14",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q14_t", "type": "text", "text": "Lisa packed 60 cream cookies and 75 mint cookies into as many boxes as possible.  She packed the same number of each type of cookies in each box.  How many mint cookies were there in each box?" },
+        {
+          "id": "tn_q14_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q14_o1", "text": "5" },
+            { "id": "tn_q14_o2", "text": "9" },
+            { "id": "tn_q14_o3", "text": "15" },
+            { "id": "tn_q14_o4", "text": "4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_q15",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q15_t", "type": "text", "text": "The figure is made up of three identical right-angled triangles.  The perimeter of the figure is 72 cm.  Find the area of the figure." },
+        { "id": "tn_q15_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "tn_q15_m",
+          "type": "mcq",
+          "options": [
+            { "id": "tn_q15_o1", "text": "96 cm²" },
+            { "id": "tn_q15_o2", "text": "192 cm²" },
+            { "id": "tn_q15_o3", "text": "288 cm²" },
+            { "id": "tn_q15_o4", "text": "360 cm²" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "tn_p1b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "tn_p1b_intro_t",
+          "type": "text",
+          "text": "Booklet B — Paper 1 (Short Answer).  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "tn_q16",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q16_t", "type": "text", "text": "Find the value of 11.1 − 0.77" },
+        { "id": "tn_q16_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q17",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q17_t", "type": "text", "text": "Ted completed his 1.6 km walk/run in 11 min 40 s.  Veronica was faster than Ted by 55 s.  What was Veronica's timing?" },
+        { "id": "tn_q17_a", "type": "answer", "label": "Ans : ____ min ____ s", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q18",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q18_t", "type": "text", "text": "Find the perimeter of a quarter circle of radius 7 cm.  (Take π = 22/7)" },
+        { "id": "tn_q18_a", "type": "answer", "label": "Ans : ____ cm", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q19",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q19_t", "type": "text", "text": "Johann took 15 minutes to walk from home to school at an average speed of 70 m/min.  How far was school from home?" },
+        { "id": "tn_q19_a", "type": "answer", "label": "Ans : ____ km", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q20",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q20_t", "type": "text", "text": "The line graph shows the height of a plant measured from March to August.  What was the height of the plant in May?" },
+        { "id": "tn_q20_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_q20_a", "type": "answer", "label": "Ans : ____ cm", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p1b_intro2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "tn_p1b_intro2_t",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "tn_q21",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q21_t", "type": "text", "text": "Find the value of" },
+        { "id": "tn_q21_pa", "type": "part", "label": "(a)", "text": "32 − 4 × 5 + (18 − 6 ÷ 3)" },
+        { "id": "tn_q21_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "tn_q21_pb", "type": "part", "label": "(b)", "text": "5m − 6 + 2m  when m = 4." },
+        { "id": "tn_q21_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q22",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q22_t", "type": "text", "text": "The square grid shows the positions of eight points." },
+        { "id": "tn_q22_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_q22_pa", "type": "part", "label": "(a)", "text": "Fill in the blanks with north, south, east or west.  F is ____ of D and ____ of G." },
+        { "id": "tn_q22_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "tn_q22_pb", "type": "part", "label": "(b)", "text": "Write down all possible points that are south-west of B." },
+        { "id": "tn_q22_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q23",
+      "topics": ["Ratio"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q23_t", "type": "text", "text": "The ratio of the length of a rectangle to its breadth is 7 : 3.  The length of the rectangle is 12 cm longer than its breadth.  Find the length of the rectangle." },
+        { "id": "tn_q23_a", "type": "answer", "label": "Ans : ____ cm", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q24",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q24_t", "type": "text", "text": "Find the average of the following numbers:\n\n101, 0, 125, 74" },
+        { "id": "tn_q24_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q25",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q25_t", "type": "text", "text": "The square grid shows lines ST and TU, which are two sides of a trapezium.  ∠TSV = 90°.  Draw trapezium STUV and label the vertices clearly.  Ensure precision in your drawing." },
+        { "id": "tn_q25_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_q25_a", "type": "answer", "label": "Ans : See figure", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q26",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q26_t", "type": "text", "text": "Pamela builds a solid using 8 cubes of side 1 cm.  The side view is shown." },
+        { "id": "tn_q26_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_q26_pa", "type": "part", "label": "(a)", "text": "Draw the top view on the grid." },
+        { "id": "tn_q26_imgb", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_q26_pb", "type": "part", "label": "(b)", "text": "Pamela wants to build a cuboid of sides 3 cm by 3 cm by 4 cm.  How many more cubes does she need?" },
+        { "id": "tn_q26_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q27",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q27_t", "type": "text", "text": "Mrs Chong has 2 rolls of ribbon each 9/10 m long.  She cuts the ribbon into equal pieces to make bows.  Each piece is 1/5 m long.  How many bows can she make?" },
+        { "id": "tn_q27_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q28",
+      "topics": ["Percentage"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q28_t", "type": "text", "text": "After a 10% discount, the price of an admission ticket to the amusement park is $45.  Children are given a further discount of $3.  What is the percentage discount for one child ticket?" },
+        { "id": "tn_q28_a", "type": "answer", "label": "Ans : ____ %", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q29",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q29_t", "type": "text", "text": "At a movie marathon, John watched movies one after another without any break in between.  He started to watch the first movie at 18 30.  At what time did he start to watch the 4th movie?  (Give your answer in 24-hour clock)\n\n1st movie — 1 h 20 min\n2nd movie — 50 min\n3rd movie — 1 h 30 min\n4th movie — 2 h 5 min" },
+        { "id": "tn_q29_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_q30",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_q30_t", "type": "text", "text": "The table shows the first 3 rows of a number pattern.\n\n          Column A   Column B   Column C   Column D\nRow 1         3          4          5          6\nRow 2        10          9          8          7\nRow 3        11         12         13         14\n\nIn which column and which row will number 498 appear?" },
+        { "id": "tn_q30_a", "type": "answer", "label": "Ans : Column ____  Row ____", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "tn_p2_intro_t",
+          "type": "text",
+          "text": "Mathematics Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (10 marks).  For questions 6 to 17, the number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "tn_p2q1",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q1_t", "type": "text", "text": "Paper 2, Question 1.  A baker had 300 eggs at first.  In the morning, he used some eggs.  In the afternoon, he used 1/3 of the remaining eggs.  After that, there were 60 eggs left.  How many eggs did the baker use in the morning?" },
+        { "id": "tn_p2q1_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q2_t", "type": "text", "text": "Paper 2, Question 2.  There are 7 shaded squares in the figure.  Shade 5 more squares to form a symmetric figure with AB as the line of symmetry." },
+        { "id": "tn_p2q2_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q2_a", "type": "answer", "label": "Ans : See figure", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q3",
+      "topics": ["Ratio"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q3_t", "type": "text", "text": "Paper 2, Question 3.  There were 50 red pens and 230 blue pens.  After an equal number of red and blue pens were added, the ratio of the number of red pens to the number of blue pens became 1 : 3.  How many red pens were there in the end?" },
+        { "id": "tn_p2q3_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q4",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q4_t", "type": "text", "text": "Paper 2, Question 4.  Siti had 35 marbles and Ted had more marbles than her.  After giving Siti m marbles, Ted had 20 more marbles than Siti.  How many marbles did Ted have at first?  Give your answer in terms of m in the simplest form." },
+        { "id": "tn_p2q4_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q5",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q5_t", "type": "text", "text": "Paper 2, Question 5.  A cyclist and a motorist started travelling at the same time from point A to point B.  The motorist's average speed was 16 km/h faster than the cyclist.  When the motorist reached point B in 12 minutes, the cyclist had only travelled 3/5 of the distance.  What was the cyclist's average speed in km/h?" },
+        { "id": "tn_p2q5_a", "type": "answer", "label": "Ans : ____ km/h", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q6",
+      "topics": ["Percentage"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q6_t", "type": "text", "text": "Paper 2, Question 6.  A box contained some yellow cubes and 72 blue cubes.  40% of the cubes were yellow.  After some red cubes were added into the box, 32% of the cubes were yellow.  How many red cubes were there?" },
+        { "id": "tn_p2q6_a", "type": "answer", "label": "Ans : ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q7",
+      "topics": ["Ratio"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q7_t", "type": "text", "text": "Paper 2, Question 7.  The figure shows the net of a cuboid with 2 square faces.  The ratio of the length to the breadth is 3 : 2.  The perimeter of the figure is 128 cm.  Find the volume of the cuboid." },
+        { "id": "tn_p2q7_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q7_a", "type": "answer", "label": "Ans : ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q8",
+      "topics": ["Fractions"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q8_t", "type": "text", "text": "Paper 2, Question 8.  After Aini gave 1/6 of her stickers away and Bala gave 1/4 of his stickers away, both of them had the same number of stickers left.  The total number of stickers Aini and Bala gave away was 2280.  How many stickers did Bala have at first?" },
+        { "id": "tn_p2q8_a", "type": "answer", "label": "Ans : ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q9",
+      "topics": ["Percentage"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q9_t", "type": "text", "text": "Paper 2, Question 9.  At a concert, there were 30% more women than men and 25% more boys than girls.  There were 250 people at the concert with as many males as females.  How many girls were there at the concert?" },
+        { "id": "tn_p2q9_a", "type": "answer", "label": "Ans : ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q10",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q10_t", "type": "text", "text": "Paper 2, Question 10.  The figure shows two rectangular tanks X and Y at first.  Tank X contained 432 cm³ of water and tank Y was empty.  Water dripped at a rate of 3 cm³ per second from a leaking tap at the bottom of tank X into tank Y.  How long did it take for the height of the water level in tank Y to be 3 cm above that of tank X?" },
+        { "id": "tn_p2q10_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q10_a", "type": "answer", "label": "Ans : ____ [4]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q11",
+      "topics": ["Percentage"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q11_t", "type": "text", "text": "Paper 2, Question 11.  The line graph shows the volume of water the Tan family used from January to June." },
+        { "id": "tn_p2q11_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q11_pa", "type": "part", "label": "(a)", "text": "What was the percentage increase in the water used from April to May?" },
+        { "id": "tn_p2q11_aa", "type": "answer", "label": "Ans : (a) ____ [1]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q11_pb", "type": "part", "label": "(b)", "text": "The table shows the charges for water usage.  First 40 m³ — $3.50 per m³.  Every additional m³ — $4.50 per m³.  How much did the Tan family pay for their water bill in May?" },
+        { "id": "tn_p2q11_ab", "type": "answer", "label": "Ans : (b) ____ [2]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q12",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q12_t", "type": "text", "text": "Paper 2, Question 12.  ABCD is a parallelogram and CFDE is a rhombus.  ∠ADG = 12°." },
+        { "id": "tn_p2q12_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q12_pa", "type": "part", "label": "(a)", "text": "Find ∠w." },
+        { "id": "tn_p2q12_aa", "type": "answer", "label": "Ans : (a) ____ [2]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q12_pb", "type": "part", "label": "(b)", "text": "Find ∠y." },
+        { "id": "tn_p2q12_ab", "type": "answer", "label": "Ans : (b) ____ [2]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q13",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q13_t", "type": "text", "text": "Paper 2, Question 13.  1 m white lines are painted on roads as lane markings.  The 7 white lines before a traffic light crossing are 1 m apart while the other white lines are 3 m apart.  The distance between two traffic light crossings along a straight stretch of two-lane road is 493 m." },
+        { "id": "tn_p2q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q13_pa", "type": "part", "label": "(a)", "text": "How many 1 m white lines are there between the two traffic light crossings?" },
+        { "id": "tn_p2q13_aa", "type": "answer", "label": "Ans : (a) ____ [3]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q13_pb", "type": "part", "label": "(b)", "text": "George and Hariz started jogging at the same time but in opposite directions on a sidewalk from one traffic light crossing to the other traffic light crossing.  George's speed was 5 m/s and Hariz's speed was 4 m/s.  Both of them did not change their speeds throughout.  After jogging for 1 minute, how far apart were George and Hariz from each other?" },
+        { "id": "tn_p2q13_ab", "type": "answer", "label": "Ans : (b) ____ [2]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q14",
+      "topics": ["Percentage"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q14_t", "type": "text", "text": "Paper 2, Question 14.  The bar graph shows the number of books borrowed from the school library over five days.  The bar for Friday is not shown." },
+        { "id": "tn_p2q14_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q14_pa", "type": "part", "label": "(a)", "text": "The books borrowed were fiction and non-fiction books.  30% of the books borrowed from Monday to Thursday were non-fiction books.  The table shows the number of fiction books borrowed from Monday to Thursday.  The number of fiction books borrowed on Wednesday is not shown.  (Mon 45, Tue 57, Wed ?, Thu 28)  How many fiction books were borrowed on Wednesday?" },
+        { "id": "tn_p2q14_aa", "type": "answer", "label": "Ans : (a) ____ [2]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q14_pb", "type": "part", "label": "(b)", "text": "The number of books borrowed from Monday to Wednesday is 4 times as many as the number of books borrowed on Thursday and Friday.  Find the number of books borrowed on Friday." },
+        { "id": "tn_p2q14_ab", "type": "answer", "label": "Ans : (b) ____ [2]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q15",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q15_t", "type": "text", "text": "Paper 2, Question 15.  The average height of a group of 3 girls and 5 boys was 160 cm.  The average height of the 3 girls was 12 cm less than the average height of the 5 boys.  Find the average height of the 5 boys." },
+        { "id": "tn_p2q15_a", "type": "answer", "label": "Ans : ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q16",
+      "topics": ["Ratio"],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q16_t", "type": "text", "text": "Paper 2, Question 16.  Mr Abdul received some Majulah Singapura vouchers in denominations of $2, $5 and $10.  There were as many $10 vouchers as $5 vouchers.  The ratio of the number of $2 vouchers to the number of $10 vouchers was 3 : 2.  The value of all the vouchers was $1260." },
+        { "id": "tn_p2q16_pa", "type": "part", "label": "(a)", "text": "What was the total value of the $2 vouchers he received?" },
+        { "id": "tn_p2q16_aa", "type": "answer", "label": "Ans : (a) ____ [3]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q16_pb", "type": "part", "label": "(b)", "text": "After a month, Mr Abdul had 4 $2 vouchers, 2 $5 vouchers and 1 $10 voucher left.  He bought some food from 3 different stalls.  Payment was made at each stall using vouchers, cash or a combination of both.  The value of the vouchers used at each stall cannot be more than the cost of the food.  (Stall A $8, Stall B $9, Stall C $11)  What was the least amount he could have paid in cash?" },
+        { "id": "tn_p2q16_ab", "type": "answer", "label": "Ans : (b) ____ [2]", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "tn_p2q17",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "tn_p2q17_t", "type": "text", "text": "Paper 2, Question 17." },
+        { "id": "tn_p2q17_pa", "type": "part", "label": "(a)", "text": "Figure 1 shows three identical rectangles.  The area of the shaded triangle is 256 cm².  Find the difference in area between the shaded and unshaded parts." },
+        { "id": "tn_p2q17_imga", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q17_aa", "type": "answer", "label": "Ans : (a) ____ [2]", "answer": "", "lineLength": 30 },
+        { "id": "tn_p2q17_pb", "type": "part", "label": "(b)", "text": "Figure 2 is formed by three similar-sized circles and three similar-sized squares.  Line AB passes through the centre of the three circles.  The area of each square is 256 cm².  Find the difference in area between the shaded and unshaded parts.  (Take π = 3.14)" },
+        { "id": "tn_p2q17_imgb", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "tn_p2q17_ab", "type": "answer", "label": "Ans : (b) ____ [3]", "answer": "", "lineLength": 30 }
+      ]
+    }
+  ]
+}
