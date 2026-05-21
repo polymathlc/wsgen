@@ -1,0 +1,485 @@
+{
+  "title": "CHIJ St Nicholas Girls' 2025 P6 Maths Prelim (Paper 1, Booklets A & B)",
+  "subtitle": "CHIJ St Nicholas Girls' School (Primary) — Preliminary Examination 2025 — Primary 6 Mathematics, Paper 1.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "stn_a_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "stn_a_intro_t",
+          "type": "text",
+          "text": "Booklet A — Paper 1 (MCQ).  15 questions, 20 marks.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade the correct oval on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "stn_q1",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q1_t", "type": "text", "text": "What is fifty-two thousand and forty-three in numerals?" },
+        {
+          "id": "stn_q1_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q1_o1", "text": "5243" },
+            { "id": "stn_q1_o2", "text": "52 043" },
+            { "id": "stn_q1_o3", "text": "520 043" },
+            { "id": "stn_q1_o4", "text": "520 430" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q2_t", "type": "text", "text": "Which one of the following fractions is smaller than 3/8 ?" },
+        {
+          "id": "stn_q2_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q2_o1", "text": "1/2" },
+            { "id": "stn_q2_o2", "text": "2/7" },
+            { "id": "stn_q2_o3", "text": "5/9" },
+            { "id": "stn_q2_o4", "text": "5/12" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q3",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q3_t", "type": "text", "text": "Rosy had 300 buttons.  She used 45 buttons for her project.  What percentage of her buttons did she use for her project?" },
+        {
+          "id": "stn_q3_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q3_o1", "text": "85%" },
+            { "id": "stn_q3_o2", "text": "55%" },
+            { "id": "stn_q3_o3", "text": "45%" },
+            { "id": "stn_q3_o4", "text": "15%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q4",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q4_t", "type": "text", "text": "STUV is a square.  Find ∠WTU." },
+        { "id": "stn_q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q4_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q4_o1", "text": "11°" },
+            { "id": "stn_q4_o2", "text": "28°" },
+            { "id": "stn_q4_o3", "text": "45°" },
+            { "id": "stn_q4_o4", "text": "56°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q5",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q5_t", "type": "text", "text": "ABCD is a rectangle.  Find ∠x." },
+        { "id": "stn_q5_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q5_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q5_o1", "text": "30°" },
+            { "id": "stn_q5_o2", "text": "32°" },
+            { "id": "stn_q5_o3", "text": "62°" },
+            { "id": "stn_q5_o4", "text": "86°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q6",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q6_t", "type": "text", "text": "Arrange these distances from the shortest to the longest.\n\n4.05 km     4 km 25 m     4 2/5 km" },
+        {
+          "id": "stn_q6_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q6_o1", "text": "4.05 km, 4 2/5 km, 4 km 25 m" },
+            { "id": "stn_q6_o2", "text": "4 km 25 m, 4.05 km, 4 2/5 km" },
+            { "id": "stn_q6_o3", "text": "4 km 25 m, 4 2/5 km, 4.05 km" },
+            { "id": "stn_q6_o4", "text": "4 2/5 km, 4 km 25 m, 4.05 km" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q7",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q7_t", "type": "text", "text": "Clifford went trekking from 6.55 a.m. to 4.10 p.m. yesterday.  How long did he trek?" },
+        {
+          "id": "stn_q7_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q7_o1", "text": "8 h 15 min" },
+            { "id": "stn_q7_o2", "text": "9 h 15 min" },
+            { "id": "stn_q7_o3", "text": "9 h 45 min" },
+            { "id": "stn_q7_o4", "text": "10 h 15 min" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q8",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q8_t", "type": "text", "text": "Which two shapes shown in the grid have the same area?" },
+        { "id": "stn_q8_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q8_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q8_o1", "text": "A and C" },
+            { "id": "stn_q8_o2", "text": "A and D" },
+            { "id": "stn_q8_o3", "text": "B and C" },
+            { "id": "stn_q8_o4", "text": "B and D" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q9",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q9_t", "type": "text", "text": "The table shows the number of green and orange beads packed into 4 boxes by Cassie.\n\nBox — Green — Orange — Total\nA — 11 — 15 — 26\nB — 21 — 21 — 42\nC — 21 — 23 — 44\nD — 18 — 14 — 32\n\nWhich box has more green beads than orange beads?" },
+        {
+          "id": "stn_q9_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q9_o1", "text": "A" },
+            { "id": "stn_q9_o2", "text": "B" },
+            { "id": "stn_q9_o3", "text": "C" },
+            { "id": "stn_q9_o4", "text": "D" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q10",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q10_t", "type": "text", "text": "The table shows the number of green and orange beads packed into 4 boxes by Cassie.\n\nBox — Green — Orange — Total\nA — 11 — 15 — 26\nB — 21 — 21 — 42\nC — 21 — 23 — 44\nD — 18 — 14 — 32\n\nHow many more green beads does Cassie need to pack into Box C so that the number of green beads in Box C is 17 more than the total number of beads in Box D?" },
+        {
+          "id": "stn_q10_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q10_o1", "text": "21" },
+            { "id": "stn_q10_o2", "text": "28" },
+            { "id": "stn_q10_o3", "text": "49" },
+            { "id": "stn_q10_o4", "text": "53" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q11",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q11_t", "type": "text", "text": "The pie chart shows the number of children at a drama workshop over 4 days.  50 children were there on Saturday.  How many children were at the drama workshop on Thursday?" },
+        { "id": "stn_q11_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q11_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q11_o1", "text": "82" },
+            { "id": "stn_q11_o2", "text": "40" },
+            { "id": "stn_q11_o3", "text": "36" },
+            { "id": "stn_q11_o4", "text": "18" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q12",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q12_t", "type": "text", "text": "The outline of the shaded figure is formed by 2 identical small semicircles and 2 identical large semicircles.  The radius of the small semicircle is 3 cm.  Find the perimeter of the shaded parts.  (Take π = 3.14)" },
+        { "id": "stn_q12_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q12_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q12_o1", "text": "43.96 cm" },
+            { "id": "stn_q12_o2", "text": "47.96 cm" },
+            { "id": "stn_q12_o3", "text": "55.96 cm" },
+            { "id": "stn_q12_o4", "text": "59.96 cm" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q13",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q13_t", "type": "text", "text": "In the figure, ADEG is a parallelogram and FHJ is a triangle.  GJ is a straight line.  AG is parallel to BF.  Find ∠m." },
+        { "id": "stn_q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "stn_q13_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q13_o1", "text": "120°" },
+            { "id": "stn_q13_o2", "text": "123°" },
+            { "id": "stn_q13_o3", "text": "126°" },
+            { "id": "stn_q13_o4", "text": "127°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q14",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q14_t", "type": "text", "text": "Freddy had $250 and Karina had $100 at first.  After both of them spent an equal amount of money on a present, the amount of Freddy's money left was 7/2 of the amount of Karina's money left.  How much money did Freddy have left?" },
+        {
+          "id": "stn_q14_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q14_o1", "text": "$220" },
+            { "id": "stn_q14_o2", "text": "$210" },
+            { "id": "stn_q14_o3", "text": "$80" },
+            { "id": "stn_q14_o4", "text": "$60" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_q15",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q15_t", "type": "text", "text": "George packed 84 pears and 96 mangoes into as many bags as possible with no fruits left unpacked.  He packed the same number of fruits in each bag.  The number of each type of fruit in each bag was the same.  How many bags of fruits did George pack?" },
+        {
+          "id": "stn_q15_m",
+          "type": "mcq",
+          "options": [
+            { "id": "stn_q15_o1", "text": "7" },
+            { "id": "stn_q15_o2", "text": "8" },
+            { "id": "stn_q15_o3", "text": "12" },
+            { "id": "stn_q15_o4", "text": "15" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "stn_b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "stn_b_intro_t",
+          "type": "text",
+          "text": "Booklet B — Paper 1 (Short Answer).  15 questions, 25 marks.  Questions 16 to 20 carry 1 mark each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "stn_q16",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q16_t", "type": "text", "text": "Round 17.445 to the nearest tenth." },
+        { "id": "stn_q16_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q17",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q17_t", "type": "text", "text": "Find the value of 6/7 ÷ 15.  Give your answer as a fraction in the simplest form." },
+        { "id": "stn_q17_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q18",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q18_t", "type": "text", "text": "Desmond used pink stars and green stars to decorate a photo frame for his mother.  For every 5 pink stars Desmond used, he used 4 green stars.  Desmond used a total of 72 stars.  How many green stars did Desmond use for the photo frame?" },
+        { "id": "stn_q18_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q19",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q19_t", "type": "text", "text": "The total mass of 6 pails is 6.54 kg.  Each pail has the same mass.  What is the mass of 9 such pails?" },
+        { "id": "stn_q19_a", "type": "answer", "label": "Ans : ____ g", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q20",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q20_t", "type": "text", "text": "The graph shows the number of children in the families living in Happy Estate.  How many families have at least 2 children?" },
+        { "id": "stn_q20_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q20_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_b_intro2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "stn_b_intro2_t",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your working clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "stn_q21",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q21_t", "type": "text", "text": "The line graph shows the number of vases sold in a shop over three months (June, July and August).  The average number of vases sold from June to September was 190.  How many vases were sold in September?" },
+        { "id": "stn_q21_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q21_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q22",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q22_t", "type": "text", "text": "The average number of vases sold in October and November was 18 more than the average number of vases sold from June to September.  Find the total number of vases sold in October and November.  (Use the line graph from Question 21.)" },
+        { "id": "stn_q22_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q23",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q23_t", "type": "text", "text": "Lina bought 3 packets of stickers.  Each packet contained y stickers.  She kept 3 stickers for herself and gave the rest of the stickers equally to her 6 friends." },
+        { "id": "stn_q23_pa", "type": "part", "label": "(a)", "text": "How many stickers did each friend receive in terms of y?" },
+        { "id": "stn_q23_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "stn_q23_pb", "type": "part", "label": "(b)", "text": "Each friend received 8 stickers from Lina.  Find the value of y." },
+        { "id": "stn_q23_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q24",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q24_t", "type": "text", "text": "The square grid shows the positions of Points A, B, C, D, E and F." },
+        { "id": "stn_q24_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q24_pa", "type": "part", "label": "(a)", "text": "Ramsy walked directly from point E to point D in a straight line.  In which direction did Ramsy walk?" },
+        { "id": "stn_q24_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "stn_q24_pb", "type": "part", "label": "(b)", "text": "Pan Ling stood at point B at first.  After she turned 90° anti-clockwise, she faced F.  Which point was Pan Ling facing at first?" },
+        { "id": "stn_q24_ab", "type": "answer", "label": "Ans : (b) Point ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q25",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q25_t", "type": "text", "text": "In the figure, AOB is a straight line.  ∠AOC = 201° and ∠COD = 264°.  Find ∠AOD." },
+        { "id": "stn_q25_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q25_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q26",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q26_t", "type": "text", "text": "Question 26." },
+        { "id": "stn_q26_pa", "type": "part", "label": "(a)", "text": "Which 2 views of the solid are the same?" },
+        { "id": "stn_q26_imga", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q26_aa", "type": "answer", "label": "Ans : (a) ____ view and ____ view", "answer": "", "lineLength": 30 },
+        { "id": "stn_q26_pb", "type": "part", "label": "(b)", "text": "The four shaded squares form part of the net of a cube.  Draw 2 more squares to complete the net of a cube." },
+        { "id": "stn_q26_imgb", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q26_ab", "type": "answer", "label": "Ans : (b) See figure", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q27",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q27_t", "type": "text", "text": "Aloysius travelled from Town J to Town K.  He travelled at an average speed of 60 km/h for a total distance of 150 km.  He reached Town K at 6 p.m.  What time did Aloysius leave Town J?" },
+        { "id": "stn_q27_a", "type": "answer", "label": "Ans : ____ p.m.", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q28",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q28_t", "type": "text", "text": "A cuboid and a cube are joined together to form a rectangular block as shown.  The length of the cube is 3 cm.  The volume of the cuboid is 5 times the volume of the cube.  What is the volume of the rectangular block?" },
+        { "id": "stn_q28_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q28_a", "type": "answer", "label": "Ans : ____ cm³", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q29",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q29_t", "type": "text", "text": "This figure is made up of 6 identical squares, a semicircle and an equilateral triangle.  Find the perimeter of the figure.  Leave your answer in terms of π." },
+        { "id": "stn_q29_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "stn_q29_a", "type": "answer", "label": "Ans : ____ cm", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "stn_q30",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        { "id": "stn_q30_t", "type": "text", "text": "Alizah baked some cupcakes.  She gave 1/6 of the cupcakes to her siblings and 1/4 of the cupcakes to her classmates.  She sold 4/5 of the remaining cupcakes.  At the end of the day, she was left with 49 cupcakes.  How many cupcakes did Alizah give to her siblings?" },
+        { "id": "stn_q30_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    }
+  ]
+}
