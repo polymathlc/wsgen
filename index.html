@@ -1247,6 +1247,7 @@
   .q-insert-bar {
     display: flex;
     justify-content: center;
+    gap: var(--space-sm);
     margin: calc(-1 * var(--space-sm)) 0;
   }
   .q-insert-btn {
@@ -1266,6 +1267,19 @@
     color: #fff;
     border-style: solid;
     border-color: var(--accent-deep);
+  }
+
+  /* ============================ INSTRUCTION BLOCK ============================ */
+  .instruction-block {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--accent-deep);
+  }
+  .instruction-text {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: pre-wrap;
   }
 
   /* ============================ COLLAPSIBLE PANEL ============================ */
@@ -1403,6 +1417,25 @@ const newId = () => `id_${Date.now().toString(36)}_${(++uid).toString(36)}`;
    ========================================================================= */
 function makeQuestion() {
   return { id: newId(), elements: [], topics: [], concepts: [] };
+}
+
+/* An instruction block: a non-numbered text banner that sits between
+   questions (e.g. "Section B — answer all questions"). Stored in the same
+   state.questions array but flagged with kind:'instruction' so it is skipped
+   by question numbering and rendered without a number / reveal controls. */
+function makeInstruction() {
+  return { id: newId(), kind: 'instruction', elements: [makeElement('text')], topics: [], concepts: [] };
+}
+function isInstruction(q) { return !!q && q.kind === 'instruction'; }
+
+// The number shown for the question at state.questions[qIndex], counting only
+// real questions (instruction blocks are not numbered).
+function questionDisplayNumber(qIndex) {
+  let n = 0;
+  for (let i = 0; i <= qIndex && i < state.questions.length; i++) {
+    if (!isInstruction(state.questions[i])) n++;
+  }
+  return n;
 }
 
 /* Topic / concept are stored as arrays (a question can have several of each).
@@ -2217,7 +2250,12 @@ function removeElement(q, i) {
   renderEditor(); renderPreview();
 }
 function moveElement(q, i, dir) {
-  const j = i + dir;
+  // The first text element is rendered as the question stem (in the header),
+  // not as a body block — step over it so an up/down move always lands on
+  // another visible block instead of silently swapping with the stem.
+  const stemIdx = q.elements.findIndex(e => e.type === 'text');
+  let j = i + dir;
+  if (j === stemIdx) j += dir;
   if (j < 0 || j >= q.elements.length) return;
   [q.elements[i], q.elements[j]] = [q.elements[j], q.elements[i]];
   renderEditor(); renderPreview();
@@ -2267,21 +2305,26 @@ function renderPreview() {
   updateFilterCount(shown);
 }
 
-// A bar between question cards: inserts a new blank question after `afterIndex`
-// (use -1 to insert at the very top). Question numbers re-flow automatically.
+// A bar between question cards: inserts a new block after `afterIndex`
+// (use -1 to insert at the very top). A block can be a blank question or an
+// instruction banner. Question numbers re-flow automatically.
 function buildQuestionInsertBar(afterIndex) {
   const bar = document.createElement('div');
   bar.className = 'q-insert-bar';
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'q-insert-btn';
-  btn.textContent = '+ Add question here';
-  btn.addEventListener('click', () => {
-    state.questions.splice(afterIndex + 1, 0, makeQuestion());
-    renderEditor();
-    renderPreview();
-  });
-  bar.appendChild(btn);
+  const mkBtn = (label, make) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'q-insert-btn';
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      state.questions.splice(afterIndex + 1, 0, make());
+      renderEditor();
+      renderPreview();
+    });
+    return btn;
+  };
+  bar.appendChild(mkBtn('+ Add question here', makeQuestion));
+  bar.appendChild(mkBtn('+ Add instruction here', makeInstruction));
   return bar;
 }
 
@@ -2293,6 +2336,8 @@ function questionHasVideo(q) {
 }
 
 function renderPreviewQuestion(q, qIndex) {
+  if (isInstruction(q)) return renderInstructionBlock(q, qIndex);
+
   const card = document.createElement('article');
   card.className = 'question-card';
 
@@ -2323,7 +2368,7 @@ function renderPreviewQuestion(q, qIndex) {
 
   const num = document.createElement('div');
   num.className = 'question-number';
-  num.textContent = qIndex + 1;
+  num.textContent = questionDisplayNumber(qIndex);
   header.appendChild(num);
 
   // First text element acts as the stem; otherwise use a blank placeholder
@@ -2421,6 +2466,40 @@ function renderPreviewQuestion(q, qIndex) {
 
   // Reveal controls sit at the very bottom of the question.
   card.appendChild(actions);
+
+  return card;
+}
+
+// An instruction banner between questions: editable text, no number, no
+// reveal controls. Can be moved up / down and deleted like a question.
+function renderInstructionBlock(q, qIndex) {
+  const card = document.createElement('article');
+  card.className = 'question-card instruction-block';
+
+  if (isAdmin()) {
+    const qc = document.createElement('div');
+    qc.className = 'pv-q-controls';
+    qc.appendChild(makeIconBtn('↑', 'Move instruction up', () => moveQuestion(qIndex, -1)));
+    qc.appendChild(makeIconBtn('↓', 'Move instruction down', () => moveQuestion(qIndex, 1)));
+    qc.appendChild(makeIconBtn('✕', 'Delete this instruction', () => {
+      if (confirm('Delete this instruction block?')) removeQuestion(qIndex);
+    }, true));
+    card.appendChild(qc);
+  }
+
+  let textEl = q.elements.find(e => e.type === 'text');
+  if (!textEl) { textEl = makeElement('text'); q.elements.unshift(textEl); }
+
+  const body = document.createElement('div');
+  body.className = 'instruction-text';
+  body.innerHTML = formatTextWithFractions(textEl.text || '');
+  if (previewEditingEnabled()) {
+    attachInlineText(body,
+      () => textEl.text || '',
+      (v) => { textEl.text = v; },
+      'Instruction text — click to edit');
+  }
+  card.appendChild(body);
 
   return card;
 }
@@ -2616,6 +2695,20 @@ function buildInsertBar(q, afterIndex) {
 function buildElementControls(q, idx, el) {
   const bar = document.createElement('div');
   bar.className = 'pv-el-controls';
+
+  // Move this block up / down within the question.
+  const mkMove = (glyph, title, dir) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pv-el-btn';
+    b.textContent = glyph;
+    b.title = title;
+    b.addEventListener('click', () => moveElement(q, idx, dir));
+    return b;
+  };
+  bar.appendChild(mkMove('↑', 'Move this block up', -1));
+  bar.appendChild(mkMove('↓', 'Move this block down', 1));
+
   if ((el.type === 'image' || el.type === 'answerKey') && el.dataUrl) {
     const rmImg = document.createElement('button');
     rmImg.type = 'button';
@@ -2932,6 +3025,16 @@ ${'<\/script>'}
 }
 
 function questionToPrintHtml(q, qIndex) {
+  if (isInstruction(q)) {
+    const t = q.elements.find(e => e.type === 'text');
+    return `
+<section class="print-instruction">
+  <article class="question-card instruction-block">
+    <div class="instruction-text">${formatTextWithFractions(t ? t.text : '')}</div>
+  </article>
+</section>`;
+  }
+
   const firstTextIdx = q.elements.findIndex(e => e.type === 'text');
   const stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
   const bodyParts = q.elements.map((el, j) => {
@@ -2943,7 +3046,7 @@ function questionToPrintHtml(q, qIndex) {
 <section class="print-question">
   <article class="question-card">
     <div class="question-header">
-      <div class="question-number">${qIndex + 1}</div>
+      <div class="question-number">${questionDisplayNumber(qIndex)}</div>
       <div class="question-stem">${formatTextWithFractions(stemText)}</div>
     </div>
     ${bodyParts}
@@ -3199,6 +3302,14 @@ ${'<\/script>'}
 }
 
 function questionToHtml(q, qIndex) {
+  if (isInstruction(q)) {
+    const t = q.elements.find(e => e.type === 'text');
+    return `
+<article class="question-card instruction-block">
+  <div class="instruction-text">${formatTextWithFractions(t ? t.text : '')}</div>
+</article>`;
+  }
+
   const firstTextIdx = q.elements.findIndex(e => e.type === 'text');
   const stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
   const bodyParts = q.elements.map((el, j) => {
@@ -3209,7 +3320,7 @@ function questionToHtml(q, qIndex) {
   return `
 <article class="question-card">
   <div class="question-header">
-    <div class="question-number">${qIndex + 1}</div>
+    <div class="question-number">${questionDisplayNumber(qIndex)}</div>
     <div class="question-stem">${formatTextWithFractions(stemText)}</div>
   </div>
   ${bodyParts}
@@ -3293,6 +3404,8 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .questions-container{display:flex; flex-direction:column; gap:var(--space-lg);}
 .question-card{background:var(--bg-primary); border-radius:var(--radius-xl); padding:var(--space-xl); box-shadow:var(--shadow-sm); transition:box-shadow var(--transition-base);}
 .question-card:hover{box-shadow:var(--shadow-md);}
+.instruction-block{background:var(--accent-bg); border-left:4px solid var(--accent-deep);}
+.instruction-text{font-size:var(--font-size-base); line-height:var(--line-height-relaxed); font-weight:600; color:var(--text-primary); white-space:pre-wrap;}
 .question-header{display:flex; align-items:flex-start; gap:var(--space-md); margin-bottom:var(--space-lg);}
 .question-number{flex-shrink:0; width:44px; height:44px; border-radius:var(--radius-full); background:var(--accent-bg); color:var(--accent-deep); font-weight:700; font-size:var(--font-size-md); display:flex; align-items:center; justify-content:center;}
 .question-stem{flex:1; font-size:var(--font-size-base); line-height:var(--line-height-relaxed); padding-top:8px; white-space:pre-wrap;}
