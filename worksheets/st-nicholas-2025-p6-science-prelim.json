@@ -1,0 +1,1783 @@
+{
+  "title": "CHIJ St Nicholas Girls' School 2025 P6 Science Prelim (Booklets A & B)",
+  "subtitle": "CHIJ St Nicholas Girls' School — Preliminary Examination 2025 — Primary 6 Science.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_stnsci25_1",
+      "elements": [
+        {
+          "id": "id_stnsci25_2",
+          "type": "text",
+          "text": "Section A (28 x 2 marks = 56 marks).  For each question from 1 to 28, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4).  Shade the correct oval (1, 2, 3 or 4) on the Optical Answer Sheet provided."
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_10",
+      "elements": [
+        {
+          "id": "id_stnsci25_3",
+          "type": "text",
+          "text": "The characteristics of four flowers W, X, Y and Z are shown in the following classification chart (Blooms only at night? — yes leads to 'Has a sweet smell?': yes → W, no → X; no leads to 'Is brightly coloured?': yes → Y, no → Z).  Pollinator P flies in the day and is attracted to brightly coloured flowers.  Which flower W, X, Y or Z is most likely pollinated by pollinator P?"
+        },
+        {
+          "id": "id_stnsci25_4",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_9",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_5",
+              "text": "W"
+            },
+            {
+              "id": "id_stnsci25_6",
+              "text": "X"
+            },
+            {
+              "id": "id_stnsci25_7",
+              "text": "Y"
+            },
+            {
+              "id": "id_stnsci25_8",
+              "text": "Z"
+            }
+          ],
+          "correctId": "id_stnsci25_7"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_18",
+      "elements": [
+        {
+          "id": "id_stnsci25_11",
+          "type": "text",
+          "text": "Some parts of flowers A, B and C have been removed as shown below.  Which of the following flower(s) is / are able to develop into a fruit?"
+        },
+        {
+          "id": "id_stnsci25_12",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_17",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_13",
+              "text": "A only"
+            },
+            {
+              "id": "id_stnsci25_14",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_stnsci25_15",
+              "text": "B and C only"
+            },
+            {
+              "id": "id_stnsci25_16",
+              "text": "A, B and C"
+            }
+          ],
+          "correctId": "id_stnsci25_14"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_25",
+      "elements": [
+        {
+          "id": "id_stnsci25_19",
+          "type": "text",
+          "text": "Which of the following statement(s) about fungi and bacteria is / are correct?\nA  They are all harmful to humans.\nB  They can cause food to turn bad.\nC  They can only be seen under a microscope.\nD  They usually depend on other living things for food."
+        },
+        {
+          "id": "id_stnsci25_24",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_20",
+              "text": "C only"
+            },
+            {
+              "id": "id_stnsci25_21",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_stnsci25_22",
+              "text": "B and D only"
+            },
+            {
+              "id": "id_stnsci25_23",
+              "text": "A, B and D only"
+            }
+          ],
+          "correctId": "id_stnsci25_22"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_33",
+      "elements": [
+        {
+          "id": "id_stnsci25_26",
+          "type": "text",
+          "text": "Study the set-up below.  The set-up was placed in a dark room.  A table lamp was placed at a distance of 15 cm from the glass jar.  After one hour, it was observed that the syringe had collected 8 cm³ of gas.  Which of the following shows a possible result when the distance between the lamp and the glass jar was changed?"
+        },
+        {
+          "id": "id_stnsci25_27",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_32",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_28",
+              "text": "Distance: 10 cm, Gas collected: More than 8 cm³"
+            },
+            {
+              "id": "id_stnsci25_29",
+              "text": "Distance: 20 cm, Gas collected: Equal to 8 cm³"
+            },
+            {
+              "id": "id_stnsci25_30",
+              "text": "Distance: 10 cm, Gas collected: Less than 8 cm³"
+            },
+            {
+              "id": "id_stnsci25_31",
+              "text": "Distance: 20 cm, Gas collected: More than 8 cm³"
+            }
+          ],
+          "correctId": "id_stnsci25_28"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_41",
+      "elements": [
+        {
+          "id": "id_stnsci25_34",
+          "type": "text",
+          "text": "The table below shows three organisms being grouped (hydrilla: physical factor A high, physical factor B high; millipede: A low, B high; T: A high, B low).  Which of the following best represents physical factors A and B and the habitat that organism T can be most likely found in?"
+        },
+        {
+          "id": "id_stnsci25_35",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_40",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_36",
+              "text": "Physical factor A: light, Physical factor B: moisture, Habitat: pond"
+            },
+            {
+              "id": "id_stnsci25_37",
+              "text": "Physical factor A: moisture, Physical factor B: light, Habitat: pond"
+            },
+            {
+              "id": "id_stnsci25_38",
+              "text": "Physical factor A: light, Physical factor B: moisture, Habitat: desert"
+            },
+            {
+              "id": "id_stnsci25_39",
+              "text": "Physical factor A: moisture, Physical factor B: light, Habitat: desert"
+            }
+          ],
+          "correctId": "id_stnsci25_38"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_49",
+      "elements": [
+        {
+          "id": "id_stnsci25_42",
+          "type": "text",
+          "text": "Study the diagram below (showing the sun, a plant, caterpillars and a bird).  Based on the diagram above, what is the main source of energy for the food chain?"
+        },
+        {
+          "id": "id_stnsci25_43",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_48",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_44",
+              "text": "Bird"
+            },
+            {
+              "id": "id_stnsci25_45",
+              "text": "Sun"
+            },
+            {
+              "id": "id_stnsci25_46",
+              "text": "Plant"
+            },
+            {
+              "id": "id_stnsci25_47",
+              "text": "Caterpillar"
+            }
+          ],
+          "correctId": "id_stnsci25_45"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_57",
+      "elements": [
+        {
+          "id": "id_stnsci25_50",
+          "type": "text",
+          "text": "Study the food web below.  Which of the following statements is true?"
+        },
+        {
+          "id": "id_stnsci25_51",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_56",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_52",
+              "text": "There is only one predator."
+            },
+            {
+              "id": "id_stnsci25_53",
+              "text": "There is only one producer."
+            },
+            {
+              "id": "id_stnsci25_54",
+              "text": "There is only one plant eater."
+            },
+            {
+              "id": "id_stnsci25_55",
+              "text": "There is only one plant-and-animal eater."
+            }
+          ],
+          "correctId": "id_stnsci25_54"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_65",
+      "elements": [
+        {
+          "id": "id_stnsci25_58",
+          "type": "text",
+          "text": "Study the classification chart below (adaptations split into 'escaping from predators' — behavioural A, structural B — and 'obtaining food' — behavioural C, structural D).  Based on the chart above, which one of the following groups below is correct?"
+        },
+        {
+          "id": "id_stnsci25_59",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_64",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_60",
+              "text": "A — change body colour, long beaks"
+            },
+            {
+              "id": "id_stnsci25_61",
+              "text": "B — mating calls, fighting to show strength"
+            },
+            {
+              "id": "id_stnsci25_62",
+              "text": "C — hard shells, hunting in groups"
+            },
+            {
+              "id": "id_stnsci25_63",
+              "text": "D — long and sticky tongue, sharp claws"
+            }
+          ],
+          "correctId": "id_stnsci25_63"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_73",
+      "elements": [
+        {
+          "id": "id_stnsci25_66",
+          "type": "text",
+          "text": "The diagram below shows feet P and Q belonging to two different birds, W and X.  Which of the following statement(s) is / are correct?\nA  Foot P, used for swimming, belongs to bird X.\nB  Foot Q, used for tearing food, belongs to bird W.\nC  Foot Q, used for catching prey, belongs to bird W.\nD  Foot P, used for protection from predators, belongs to bird X."
+        },
+        {
+          "id": "id_stnsci25_67",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_72",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_68",
+              "text": "D only"
+            },
+            {
+              "id": "id_stnsci25_69",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_stnsci25_70",
+              "text": "B and D only"
+            },
+            {
+              "id": "id_stnsci25_71",
+              "text": "A, B and C only"
+            }
+          ],
+          "correctId": "id_stnsci25_69"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_80",
+      "elements": [
+        {
+          "id": "id_stnsci25_74",
+          "type": "text",
+          "text": "Which of the following statements about ozone layer depletion is false?"
+        },
+        {
+          "id": "id_stnsci25_79",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_75",
+              "text": "It is a result of air pollution."
+            },
+            {
+              "id": "id_stnsci25_76",
+              "text": "It can result in more occurrences of acid rain."
+            },
+            {
+              "id": "id_stnsci25_77",
+              "text": "It can lead to more ultraviolet radiation reaching the Earth."
+            },
+            {
+              "id": "id_stnsci25_78",
+              "text": "The use of chlorofluorocarbons (CFCs) can lead to ozone layer depletion."
+            }
+          ],
+          "correctId": "id_stnsci25_76"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_88",
+      "elements": [
+        {
+          "id": "id_stnsci25_81",
+          "type": "text",
+          "text": "The graph below shows how the population of two different organisms, E and F, are affected by the rise in Earth's temperature.  Based on the graph above, which of these statements is true?"
+        },
+        {
+          "id": "id_stnsci25_82",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_87",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_83",
+              "text": "Both organisms E and F can survive at 40 °C."
+            },
+            {
+              "id": "id_stnsci25_84",
+              "text": "Both organisms E and F cannot survive at 0 °C."
+            },
+            {
+              "id": "id_stnsci25_85",
+              "text": "Organism E prefers to live in a warmer environment."
+            },
+            {
+              "id": "id_stnsci25_86",
+              "text": "The population of organism F increases with increasing temperature."
+            }
+          ],
+          "correctId": "id_stnsci25_85"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_96",
+      "elements": [
+        {
+          "id": "id_stnsci25_89",
+          "type": "text",
+          "text": "The diagram below shows a slide at an outdoor playground.  Which of the following materials would be the most suitable to be used to make part Z of the slide?"
+        },
+        {
+          "id": "id_stnsci25_90",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_95",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_91",
+              "text": "Flexible? no; Waterproof? yes; Good heat conductor? no; Surface: smooth"
+            },
+            {
+              "id": "id_stnsci25_92",
+              "text": "Flexible? yes; Waterproof? no; Good heat conductor? yes; Surface: rough"
+            },
+            {
+              "id": "id_stnsci25_93",
+              "text": "Flexible? no; Waterproof? yes; Good heat conductor? no; Surface: rough"
+            },
+            {
+              "id": "id_stnsci25_94",
+              "text": "Flexible? yes; Waterproof? no; Good heat conductor? yes; Surface: smooth"
+            }
+          ],
+          "correctId": "id_stnsci25_91"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_104",
+      "elements": [
+        {
+          "id": "id_stnsci25_97",
+          "type": "text",
+          "text": "Study the flow chart below (Materials → Question A: yes → glass, no → Question B: yes → 'Is it flexible?': yes → rubber; no → S).  Based on the flow chart above, which of the following is correct?"
+        },
+        {
+          "id": "id_stnsci25_98",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_103",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_99",
+              "text": "Question A: Is it waterproof?; Question B: Does it float on water?; S: styrofoam"
+            },
+            {
+              "id": "id_stnsci25_100",
+              "text": "Question A: Does it allow light to pass through?; Question B: Does it break easily?; S: ceramic"
+            },
+            {
+              "id": "id_stnsci25_101",
+              "text": "Question A: Does it float on water?; Question B: Does it allow light to pass through?; S: metal"
+            },
+            {
+              "id": "id_stnsci25_102",
+              "text": "Question A: Does it allow light to pass through?; Question B: Is it waterproof?; S: cardboard"
+            }
+          ],
+          "correctId": "id_stnsci25_102"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_112",
+      "elements": [
+        {
+          "id": "id_stnsci25_105",
+          "type": "text",
+          "text": "The picture below shows a boy holding a bow and an arrow.  Which of the following shows the main form(s) of energy that the string in the bow possess(es) when held in this position?\nA  heat energy\nB  kinetic energy\nC  elastic potential energy\nD  chemical potential energy"
+        },
+        {
+          "id": "id_stnsci25_106",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_111",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_107",
+              "text": "C only"
+            },
+            {
+              "id": "id_stnsci25_108",
+              "text": "D only"
+            },
+            {
+              "id": "id_stnsci25_109",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_stnsci25_110",
+              "text": "C and D only"
+            }
+          ],
+          "correctId": "id_stnsci25_107"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_120",
+      "elements": [
+        {
+          "id": "id_stnsci25_113",
+          "type": "text",
+          "text": "Thomas held onto a ball that has been hung from the ceiling as shown in the diagram below.  Which position would the ball most likely reach after he released his grip on the ball?"
+        },
+        {
+          "id": "id_stnsci25_114",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_119",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_115",
+              "text": "K"
+            },
+            {
+              "id": "id_stnsci25_116",
+              "text": "L"
+            },
+            {
+              "id": "id_stnsci25_117",
+              "text": "M"
+            },
+            {
+              "id": "id_stnsci25_118",
+              "text": "N"
+            }
+          ],
+          "correctId": "id_stnsci25_118"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_127",
+      "elements": [
+        {
+          "id": "id_stnsci25_121",
+          "type": "text",
+          "text": "Which of the following statements about weight is true?\nA  It is the amount of matter in an object.\nB  It can be measured using a spring balance.\nC  The weight of an object remains unchanged on Earth and on the moon.\nD  Weight changes with gravitational force even if mass remains the same."
+        },
+        {
+          "id": "id_stnsci25_126",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_122",
+              "text": "A only"
+            },
+            {
+              "id": "id_stnsci25_123",
+              "text": "D only"
+            },
+            {
+              "id": "id_stnsci25_124",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_stnsci25_125",
+              "text": "B and D only"
+            }
+          ],
+          "correctId": "id_stnsci25_125"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_135",
+      "elements": [
+        {
+          "id": "id_stnsci25_128",
+          "type": "text",
+          "text": "Diagram 1 shows a kitchen scale.  Diagram 2 shows how the spring inside the kitchen scale looks like.  Which of the following graphs shows how the length of spring will change with mass added?"
+        },
+        {
+          "id": "id_stnsci25_129",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_134",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_130",
+              "text": "Graph 1"
+            },
+            {
+              "id": "id_stnsci25_131",
+              "text": "Graph 2"
+            },
+            {
+              "id": "id_stnsci25_132",
+              "text": "Graph 3"
+            },
+            {
+              "id": "id_stnsci25_133",
+              "text": "Graph 4"
+            }
+          ],
+          "correctId": "id_stnsci25_131"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_143",
+      "elements": [
+        {
+          "id": "id_stnsci25_136",
+          "type": "text",
+          "text": "A cat walked from P to R with the same speed as shown below.  At Q, it was directly under the lamp.  The distance between P and Q is the same as the distance between Q and R.  Which of the following graphs best represent the change in the length of shadow of the cat as it walks from P to R?"
+        },
+        {
+          "id": "id_stnsci25_137",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_142",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_138",
+              "text": "Graph 1"
+            },
+            {
+              "id": "id_stnsci25_139",
+              "text": "Graph 2"
+            },
+            {
+              "id": "id_stnsci25_140",
+              "text": "Graph 3"
+            },
+            {
+              "id": "id_stnsci25_141",
+              "text": "Graph 4"
+            }
+          ],
+          "correctId": "id_stnsci25_141"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_151",
+      "elements": [
+        {
+          "id": "id_stnsci25_144",
+          "type": "text",
+          "text": "Aileen made a star-shaped cut-out on sheet F and arranged the four sheets E, F, G and H made of different materials in front of a torch as shown in the diagram below.  She observed that a bright patch of star-shaped light can be seen on sheet G only.  Which of the following correctly describes the transparency of the four sheets of materials?"
+        },
+        {
+          "id": "id_stnsci25_145",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_150",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_146",
+              "text": "Transparent: E and F; Opaque: G; Not possible to tell: H"
+            },
+            {
+              "id": "id_stnsci25_147",
+              "text": "Transparent: G and H; Opaque: F; Not possible to tell: E"
+            },
+            {
+              "id": "id_stnsci25_148",
+              "text": "Transparent: E; Opaque: F and G; Not possible to tell: H"
+            },
+            {
+              "id": "id_stnsci25_149",
+              "text": "Transparent: F and G; Opaque: H; Not possible to tell: E"
+            }
+          ],
+          "correctId": "id_stnsci25_148"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_159",
+      "elements": [
+        {
+          "id": "id_stnsci25_152",
+          "type": "text",
+          "text": "Two syringes containing some substances are shown below (syringe A contains W and X; syringe B contains Y and y).  Which of the following best explains why only the plunger in syringe A could be pushed down?"
+        },
+        {
+          "id": "id_stnsci25_153",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_158",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_154",
+              "text": "Only X has a definite volume."
+            },
+            {
+              "id": "id_stnsci25_155",
+              "text": "X and Y have a definite shape."
+            },
+            {
+              "id": "id_stnsci25_156",
+              "text": "Only W has no definite volume."
+            },
+            {
+              "id": "id_stnsci25_157",
+              "text": "W and X have no definite shape."
+            }
+          ],
+          "correctId": "id_stnsci25_156"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_166",
+      "elements": [
+        {
+          "id": "id_stnsci25_160",
+          "type": "text",
+          "text": "Which of the following is not a matter?"
+        },
+        {
+          "id": "id_stnsci25_165",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_161",
+              "text": "Dust"
+            },
+            {
+              "id": "id_stnsci25_162",
+              "text": "Light"
+            },
+            {
+              "id": "id_stnsci25_163",
+              "text": "Cloud"
+            },
+            {
+              "id": "id_stnsci25_164",
+              "text": "Steam"
+            }
+          ],
+          "correctId": "id_stnsci25_162"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_174",
+      "elements": [
+        {
+          "id": "id_stnsci25_167",
+          "type": "text",
+          "text": "Alden placed some beads on the conveyer belt of a sorting machine as shown in the diagram below (containers C and D placed below the magnet roller end).  Which of the following correctly shows which containers C and / or D the beads will fall into?"
+        },
+        {
+          "id": "id_stnsci25_168",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_173",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_169",
+              "text": "Non-magnetic beads: C; Magnetic beads: C"
+            },
+            {
+              "id": "id_stnsci25_170",
+              "text": "Non-magnetic beads: C; Magnetic beads: D"
+            },
+            {
+              "id": "id_stnsci25_171",
+              "text": "Non-magnetic beads: D; Magnetic beads: C"
+            },
+            {
+              "id": "id_stnsci25_172",
+              "text": "Non-magnetic beads: D; Magnetic beads: D"
+            }
+          ],
+          "correctId": "id_stnsci25_171"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_182",
+      "elements": [
+        {
+          "id": "id_stnsci25_175",
+          "type": "text",
+          "text": "Four bar magnets J, K, L and M were hung on a support and slowly lowered into a tray of iron nails (J at 10 cm, K at 12 cm, L at 10 cm, M at 12 cm above the nails).  The diagram shows the number of iron nails that were attracted by each bar magnet.  Based on the results, which of the following is correct?"
+        },
+        {
+          "id": "id_stnsci25_176",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_181",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_177",
+              "text": "Strongest magnetism: J; Weakest magnetism: K"
+            },
+            {
+              "id": "id_stnsci25_178",
+              "text": "Strongest magnetism: J; Weakest magnetism: L"
+            },
+            {
+              "id": "id_stnsci25_179",
+              "text": "Strongest magnetism: M; Weakest magnetism: K"
+            },
+            {
+              "id": "id_stnsci25_180",
+              "text": "Strongest magnetism: M; Weakest magnetism: L"
+            }
+          ],
+          "correctId": "id_stnsci25_177"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_190",
+      "elements": [
+        {
+          "id": "id_stnsci25_183",
+          "type": "text",
+          "text": "Zach wanted to find out which material is the best conductor of heat.  He placed the same amount of wax on each end of four rods made of materials P, Q, R and S as shown below.  Then he placed the other end in a basin of boiling water.  The time taken for the drop of wax to melt completely was recorded (P: 120 s, Q: 98 s, R: 250 s, S: 58 s).  Which of the following statements are correct?\nA  Material S is the poorest conductor of heat.\nB  Materials P, Q, R and S conduct heat at different rates.\nC  Material R is the best material to make the handle of a frying pan."
+        },
+        {
+          "id": "id_stnsci25_184",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_189",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_185",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_stnsci25_186",
+              "text": "B and C only"
+            },
+            {
+              "id": "id_stnsci25_187",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_stnsci25_188",
+              "text": "A, B and C"
+            }
+          ],
+          "correctId": "id_stnsci25_186"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_198",
+      "elements": [
+        {
+          "id": "id_stnsci25_191",
+          "type": "text",
+          "text": "Study the set-up below carefully (a flask with a hot towel, glass tube leading into a beaker of water).  Which of the following observations and reasons are correct?"
+        },
+        {
+          "id": "id_stnsci25_192",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_197",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_193",
+              "text": "Observation: Air bubbles escaped from the glass tube. Reason: Air lost heat to the hot towel and expanded."
+            },
+            {
+              "id": "id_stnsci25_194",
+              "text": "Observation: Air bubbles escaped from the glass tube. Reason: Air gained heat from the hot towel and expanded."
+            },
+            {
+              "id": "id_stnsci25_195",
+              "text": "Observation: Some water entered the flask through the glass tube. Reason: Water gained heat from the hot towel and expanded."
+            },
+            {
+              "id": "id_stnsci25_196",
+              "text": "Observation: Some water entered the flask through the glass tube. Reason: Air lost heat to the hot towel and contracted."
+            }
+          ],
+          "correctId": "id_stnsci25_194"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_206",
+      "elements": [
+        {
+          "id": "id_stnsci25_199",
+          "type": "text",
+          "text": "The diagram below represents the water cycle (water vapour → Process X → clouds → Process Y → rain → pond → Process W → water vapour).  Based on the above diagram, which of the following statements are true?\nA  Only process X involves heat loss.\nB  Only process W involves change in state.\nC  Process W takes place during day time only.\nD  There is no change in state during process Y."
+        },
+        {
+          "id": "id_stnsci25_200",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_205",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_201",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_stnsci25_202",
+              "text": "A and D only"
+            },
+            {
+              "id": "id_stnsci25_203",
+              "text": "B and C only"
+            },
+            {
+              "id": "id_stnsci25_204",
+              "text": "C and D only"
+            }
+          ],
+          "correctId": "id_stnsci25_202"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_214",
+      "elements": [
+        {
+          "id": "id_stnsci25_207",
+          "type": "text",
+          "text": "Rayann set up four experiments A, B, C and D with containers made of the same material.  The table shows the different conditions at the start of the experiment (Room temperature °C — A:31, B:25, C:31, D:25; Exposed surface area of water cm² — A:120, B:50, C:50, D:50; Volume of water cm³ — A:500, B:500, C:500, D:400).  Rayann wanted to find out how the rate of evaporation of water was affected by the room temperature.  Which of the above experiments should Rayann compare?"
+        },
+        {
+          "id": "id_stnsci25_208",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_213",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_209",
+              "text": "A and B"
+            },
+            {
+              "id": "id_stnsci25_210",
+              "text": "A and D"
+            },
+            {
+              "id": "id_stnsci25_211",
+              "text": "B and C"
+            },
+            {
+              "id": "id_stnsci25_212",
+              "text": "C and D"
+            }
+          ],
+          "correctId": "id_stnsci25_211"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_222",
+      "elements": [
+        {
+          "id": "id_stnsci25_215",
+          "type": "text",
+          "text": "Study the diagram below.  All the bulbs are lit.  When one switch was opened, most number of bulbs remain lit.  Which switch was opened?"
+        },
+        {
+          "id": "id_stnsci25_216",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_221",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_stnsci25_217",
+              "text": "S1"
+            },
+            {
+              "id": "id_stnsci25_218",
+              "text": "S2"
+            },
+            {
+              "id": "id_stnsci25_219",
+              "text": "S3"
+            },
+            {
+              "id": "id_stnsci25_220",
+              "text": "S4"
+            }
+          ],
+          "correctId": "id_stnsci25_218"
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_223",
+      "elements": [
+        {
+          "id": "id_stnsci25_224",
+          "type": "text",
+          "text": "Section B (44 marks).  For questions 29 to 41, write your answers in this booklet.  The number of marks available is shown in the brackets at the end of each question or part question."
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_233",
+      "elements": [
+        {
+          "id": "id_stnsci25_225",
+          "type": "text",
+          "text": "Xiaoming wanted to find out if the type of soil affects how fast some seeds germinate.  He placed three similar pots of seeds in a room as shown in the diagram (Set-up A: garden soil; Set-up B: sandy soil; Set-up C: clayey soil).  The pots were watered daily with the same amount of water."
+        },
+        {
+          "id": "id_stnsci25_226",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_227",
+          "type": "part",
+          "label": "(a)",
+          "text": "State all the conditions required for germination. [1]"
+        },
+        {
+          "id": "id_stnsci25_228",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Oxygen, water and warmth.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_229",
+          "type": "part",
+          "label": "(b)",
+          "text": "Is his experiment fair?  Explain your answer. [1]"
+        },
+        {
+          "id": "id_stnsci25_230",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Yes, it is a fair experiment as there is only one variable changed, which is the type of soil.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_231",
+          "type": "part",
+          "label": "(c)",
+          "text": "Without repeating the experiment, how can Xiaoming ensure that his results are reliable? [1]"
+        },
+        {
+          "id": "id_stnsci25_232",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Increase the number of seeds in each set-up.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_244",
+      "elements": [
+        {
+          "id": "id_stnsci25_234",
+          "type": "text",
+          "text": "Kelly set up an experiment as shown below to measure the rate of photosynthesis of the potted plant over a period of time.  Set-up R used a container covered with tracing paper, with an oxygen sensor connected to a datalogger.  She then repeated her experiment with the same plant but using set-up S, with a container covered with black paper."
+        },
+        {
+          "id": "id_stnsci25_235",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_236",
+          "type": "part",
+          "label": "(a)",
+          "text": "Describe the process of photosynthesis. [1]"
+        },
+        {
+          "id": "id_stnsci25_237",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Photosynthesis is a process whereby carbon dioxide and water are converted into sugar and oxygen in the presence of light and chlorophyll.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_238",
+          "type": "part",
+          "label": "(b)",
+          "text": "What variable did she change in the experiment? [1]"
+        },
+        {
+          "id": "id_stnsci25_239",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The amount of light the plant received.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_240",
+          "type": "part",
+          "label": "(c)",
+          "text": "State a possible hypothesis for her experiment. [1]"
+        },
+        {
+          "id": "id_stnsci25_241",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "The lesser the amount of light given to the plant, the lower the rate of photosynthesis.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_242",
+          "type": "part",
+          "label": "(d)",
+          "text": "The amount of oxygen in set-up S is lower than that in set-up R.  Give two reasons why this is so. [1]"
+        },
+        {
+          "id": "id_stnsci25_243",
+          "type": "answer",
+          "label": "Ans : (d) ",
+          "answer": "Reason 1: The plant was not able to photosynthesise.  Reason 2: The plant will continue to take in oxygen for respiration.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_251",
+      "elements": [
+        {
+          "id": "id_stnsci25_245",
+          "type": "text",
+          "text": "The diagram below shows some organisms living in a tree habitat (a tree with fruits, monkeys, ants, and a pile of dead leaves at the base)."
+        },
+        {
+          "id": "id_stnsci25_246",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_247",
+          "type": "part",
+          "label": "(a)",
+          "text": "How many populations of organisms can be found in the above habitat? [1]"
+        },
+        {
+          "id": "id_stnsci25_248",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "4",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_249",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain how the pile of dead leaves can be useful to the tree's survival. [1]"
+        },
+        {
+          "id": "id_stnsci25_250",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The pile of dead leaves can be broken down by decomposers into simpler substances which can be used as fertilisers for the tree to grow better.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_260",
+      "elements": [
+        {
+          "id": "id_stnsci25_252",
+          "type": "text",
+          "text": "The food web below shows the food relationships between organisms E, F and G (E → G, E → F, G → F).  When organism H was introduced into the habitat, the number of organism F changed (the updated food web shows E → G, E → F, G → F, F → H, G → H).  The graph below shows how the number of organism F changed."
+        },
+        {
+          "id": "id_stnsci25_253",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_254",
+          "type": "part",
+          "label": "(a)",
+          "text": "Other than food relationships between organisms, what does a food web show? [1]"
+        },
+        {
+          "id": "id_stnsci25_255",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "The transfer of energy between organisms.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_256",
+          "type": "part",
+          "label": "(b)",
+          "text": "Write the letter 'H' in one of the boxes below to indicate when organism H was introduced into the habitat. [1]"
+        },
+        {
+          "id": "id_stnsci25_257",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Place 'H' in the box at the point where the number of organism F starts to decrease (just after the peak).",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_258",
+          "type": "part",
+          "label": "(c)",
+          "text": "Other than having a prey-predator relationship, state another relationship between organism F and H. [1]"
+        },
+        {
+          "id": "id_stnsci25_259",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "They are competitors for the same food.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_271",
+      "elements": [
+        {
+          "id": "id_stnsci25_261",
+          "type": "text",
+          "text": "Study the food chain below: plant A → organism B → organism C.  The young of organism B produces drops of sweet, sticky substance from its body.  Organism X feeds on this substance but does not feed on organism B.  When organism X is present, organism C does not go near organism B.  When the young of B grows larger, it drops to the ground and produces a special smell to trick organism X into carrying it into X's nest.  Organism B then feeds on the young of organism X.  The young of organism B only feeds on plant A and the young of organism X.  Recent habitat loss has led to a decrease in the populations of plant A and organism X."
+        },
+        {
+          "id": "id_stnsci25_262",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_263",
+          "type": "part",
+          "label": "(a)",
+          "text": "The adult of organism B lays many eggs.  Explain why. [1]"
+        },
+        {
+          "id": "id_stnsci25_264",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "To increase the chances for some eggs to hatch and develop into adults, to continue the life cycle.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_265",
+          "type": "part",
+          "label": "(b)",
+          "text": "Suggest possible benefits to both organisms B and X in the above relationship. [2]"
+        },
+        {
+          "id": "id_stnsci25_266",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Benefit to organism B: protection from organism C.  Benefit to organism X: the sweet, sticky substance is a source of food for X.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_267",
+          "type": "part",
+          "label": "(c)",
+          "text": "Explain how this behaviour allows organism B to survive better. [1]"
+        },
+        {
+          "id": "id_stnsci25_268",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "The young of B will not be easily spotted by C inside the nest, and it is easier for B to find food.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_269",
+          "type": "part",
+          "label": "(d)",
+          "text": "Other than having less food to eat, state one other effect of habitat loss on organism B. [1]"
+        },
+        {
+          "id": "id_stnsci25_270",
+          "type": "answer",
+          "label": "Ans : (d) ",
+          "answer": "There will be less organism X to provide protection for the young of B.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_278",
+      "elements": [
+        {
+          "id": "id_stnsci25_272",
+          "type": "text",
+          "text": "The diagram below shows pieces of sorbent pads being used to absorb and remove oil from oil spills.  The table below shows two different materials A and B that can be used to make sorbent pads (Material A: biodegradable? No, absorbs water? No, absorbs oil? Yes; Material B: biodegradable? Yes, absorbs water? Yes, absorbs oil? Yes)."
+        },
+        {
+          "id": "id_stnsci25_273",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_274",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is one disadvantage of using material B to make sorbent pads? [1]"
+        },
+        {
+          "id": "id_stnsci25_275",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Material B will absorb water, which will cause it to sink after some time, causing water pollution.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_276",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain how oil from such oil spills may harm birds trying to find food in water. [2]"
+        },
+        {
+          "id": "id_stnsci25_277",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The oil may stick to the feathers of the bird, causing it to be unable to fly.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_287",
+      "elements": [
+        {
+          "id": "id_stnsci25_279",
+          "type": "text",
+          "text": "The diagram below shows a performance.  When performer A pushes the sandbag off the tower at point W, it lands on the seesaw causing performer B to be pushed upwards.  Performer B then does a somersault in the air before she lands on the ground."
+        },
+        {
+          "id": "id_stnsci25_280",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_281",
+          "type": "part",
+          "label": "(a)",
+          "text": "Complete the energy conversion below to show the main energy conversion happening from point W to point X. [1]"
+        },
+        {
+          "id": "id_stnsci25_282",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Gravitational potential energy → sound energy + heat energy",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_283",
+          "type": "part",
+          "label": "(b)",
+          "text": "When the height of the tower increased, the height of performer B's somersault also increased.  Explain this observation in terms of energy conversion. [1]"
+        },
+        {
+          "id": "id_stnsci25_284",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "There is more gravitational potential energy in the sandbag at a higher tower, which is converted to more kinetic energy as the sandbag falls.  This is converted to more kinetic energy when the sandbag pushes the seesaw, converting to more gravitational potential energy that pushes performer B higher.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_285",
+          "type": "part",
+          "label": "(c)",
+          "text": "Suggest a change that can be made to the sandbag that will result in a similar outcome to that in part (b). [1]"
+        },
+        {
+          "id": "id_stnsci25_286",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Make the sandbag heavier.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_296",
+      "elements": [
+        {
+          "id": "id_stnsci25_288",
+          "type": "text",
+          "text": "Raju conducted an experiment using a toy rocket as shown below.  When air was released from the balloon, the toy rocket moved upwards.  After reaching a maximum height, the toy rocket started to fall towards the ground.  Raju recorded the maximum height the toy rocket could reach.  He repeated his experiment with two other toy rockets of different masses (100 g → 245 cm; 200 g → 126 cm; 300 g → 85 cm)."
+        },
+        {
+          "id": "id_stnsci25_289",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_290",
+          "type": "part",
+          "label": "(a)",
+          "text": "State the force(s) acting on the toy rocket as it fell to the ground. [1]"
+        },
+        {
+          "id": "id_stnsci25_291",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Gravitational force and frictional force.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_292",
+          "type": "part",
+          "label": "(b)",
+          "text": "State two effects of forces that Raju can observe from the experiment. [2]"
+        },
+        {
+          "id": "id_stnsci25_293",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Effect 1: Forces can make a stationary object move.  Effect 2: Forces can change the direction of a moving object.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_294",
+          "type": "part",
+          "label": "(c)",
+          "text": "What is the relationship between the mass of the toy rocket and the maximum height reached by the toy rocket? [1]"
+        },
+        {
+          "id": "id_stnsci25_295",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "When the mass of the toy rocket increases, the maximum height reached by the toy rocket decreases.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_305",
+      "elements": [
+        {
+          "id": "id_stnsci25_297",
+          "type": "text",
+          "text": "Sam prepared two set-ups A and B as shown below.  He recorded the temperature of water in each flask at 5-minute intervals.  Set-up A used a metal flask and set-up B used a plastic flask, each placed in a styrofoam box with water at 90 °C, with water at 20 °C inside the flask.  Sam plotted his results in a graph showing two lines, X and Y."
+        },
+        {
+          "id": "id_stnsci25_298",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_299",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the aim of the experiment? [1]"
+        },
+        {
+          "id": "id_stnsci25_300",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "To find out how the metal and plastic flask affects the temperature of the water in the flask at 5-minute intervals.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_301",
+          "type": "part",
+          "label": "(b)",
+          "text": "Which line X or Y best represents the result for set-up B?  Explain your answer. [2]"
+        },
+        {
+          "id": "id_stnsci25_302",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Y.  Plastic is a poorer conductor of heat than metal.  The plastic flask conducts heat from the water at 90 °C to the water in the flask more slowly, so the temperature of the water in the plastic flask increases more slowly, like line Y.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_303",
+          "type": "part",
+          "label": "(c)",
+          "text": "Why did Sam use styrofoam boxes for his experiment? [1]"
+        },
+        {
+          "id": "id_stnsci25_304",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Styrofoam is a poor conductor of heat.  It will conduct heat from the water at 90 °C to the surroundings more slowly so that the experiment is more reliable.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_312",
+      "elements": [
+        {
+          "id": "id_stnsci25_306",
+          "type": "text",
+          "text": "The device shown in the diagram below is used to check if parcels are too heavy.  The parcel is first placed on the metal stage and if its weight is more than 800 g, the bulb will light up."
+        },
+        {
+          "id": "id_stnsci25_307",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_308",
+          "type": "part",
+          "label": "(a)",
+          "text": "Explain how a parcel which is more than 800 g can cause the bulb to light up. [2]"
+        },
+        {
+          "id": "id_stnsci25_309",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "The spring will be compressed.  The metal stage will come into contact with the two metal contacts and form a closed circuit.  Electric current will flow through the circuit and the bulb lights up.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_310",
+          "type": "part",
+          "label": "(b)",
+          "text": "A sound box was added in parallel to the existing bulb.  When a parcel which is more than 800 g is placed on the metal stage, the sound box also produces a warning sound.  How does this help to better detect overweight parcels? [1]"
+        },
+        {
+          "id": "id_stnsci25_311",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Just in case the bulb is fused, the sound box will still work as the circuit is arranged in parallel.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_321",
+      "elements": [
+        {
+          "id": "id_stnsci25_313",
+          "type": "text",
+          "text": "Deena wanted to find out if the presence of wind affects how fast a wet t-shirt dries.  She poured some water on two similar t-shirts W and X and recorded their mass before hanging them up as shown below (t-shirt W with a fan, t-shirt X without a fan).  She continued to record the mass of each t-shirt at regular intervals until they dried completely.  Her results are shown in the graph below.  During the experiment, she noticed some water droplets forming on the inner surfaces of the containers."
+        },
+        {
+          "id": "id_stnsci25_314",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_315",
+          "type": "part",
+          "label": "(a)",
+          "text": "State a difference between evaporation and boiling. [1]"
+        },
+        {
+          "id": "id_stnsci25_316",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Evaporation happens at any temperature but boiling happens only at the liquid's boiling point.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_317",
+          "type": "part",
+          "label": "(b)",
+          "text": "From the graph, explain why both t-shirts took the same amount of time to dry completely. [2]"
+        },
+        {
+          "id": "id_stnsci25_318",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The mass of the t-shirts at the start was not the same — X had less water on it than W.  However, the fan increased the rate of evaporation on W, so more water droplets in W gained heat from the surroundings and evaporated into water vapour, allowing W to dry in the same time.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_319",
+          "type": "part",
+          "label": "(c)",
+          "text": "During the experiment, she noticed some water droplets forming on the inner surfaces of the containers.  Explain how these water droplets are formed. [2]"
+        },
+        {
+          "id": "id_stnsci25_320",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "The warm water vapour which evaporated from the shirt touched the cooler inner surface of the container, lost heat and condensed into tiny water droplets.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_328",
+      "elements": [
+        {
+          "id": "id_stnsci25_322",
+          "type": "text",
+          "text": "The mass of object X is measured and shown in diagram 1 (electronic balance reads 50.0 g).  Object Q was then placed above object X as shown in diagram 2 (electronic balance reads 55.0 g)."
+        },
+        {
+          "id": "id_stnsci25_323",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_324",
+          "type": "part",
+          "label": "(a)",
+          "text": "Explain the increase in mass as shown in diagram 2. [1]"
+        },
+        {
+          "id": "id_stnsci25_325",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "The like poles of X and Q are facing each other, so they repel.  The magnetic force pushes X down, causing the balance to show a greater reading.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_326",
+          "type": "part",
+          "label": "(b)",
+          "text": "Without adding or removing any apparatus, suggest one way the reading on the electronic balance can be reduced. [1]"
+        },
+        {
+          "id": "id_stnsci25_327",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Turn object Q around so that unlike poles face each other.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_stnsci25_337",
+      "elements": [
+        {
+          "id": "id_stnsci25_329",
+          "type": "text",
+          "text": "Jerome filled containers X and Y with 100 cm³ of water each.  When he placed objects L and M into container X and Y respectively, the water level in each container rose by 2 cm.  Jerome wanted to compare the mass of objects L and M.  He placed them on a balance, which showed the side with M lower than the side with L."
+        },
+        {
+          "id": "id_stnsci25_330",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_stnsci25_331",
+          "type": "part",
+          "label": "(a)",
+          "text": "Explain why the water level in container X rose. [1]"
+        },
+        {
+          "id": "id_stnsci25_332",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Object L occupies space and takes up the space previously occupied by water, pushing the water level up.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_333",
+          "type": "part",
+          "label": "(b)",
+          "text": "Jerome concluded that objects L and M are of the same volume.  Do you agree?  Give a reason why. [1]"
+        },
+        {
+          "id": "id_stnsci25_334",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "No, I do not agree.  The base area of containers X and Y is different even though the height the water rose is the same, so the volumes of L and M are different.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_stnsci25_335",
+          "type": "part",
+          "label": "(c)",
+          "text": "What can Jerome conclude from the diagram? [1]"
+        },
+        {
+          "id": "id_stnsci25_336",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Object M is heavier and has more mass than object L.",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
