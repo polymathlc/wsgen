@@ -1,0 +1,1714 @@
+{
+  "title": "Rosyth School 2025 P6 Science Prelim (Booklets A & B)",
+  "subtitle": "Rosyth School — Preliminary Examination 2025 — Primary 6 Science.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_rosyth25_1",
+      "elements": [
+        {
+          "id": "id_rosyth25_2",
+          "type": "text",
+          "text": "Booklet A [28 x 2 marks].  For each question from 1 to 28, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet (OAS)."
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_9",
+      "elements": [
+        {
+          "id": "id_rosyth25_3",
+          "type": "text",
+          "text": "Ali made the following observations about animal K.\n- lives on land\n- gives birth to young alive\n- has hair as outer covering\n- feeds on the mother's milk when young\nBased on his observations, which animal group does K belong to?"
+        },
+        {
+          "id": "id_rosyth25_8",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_4",
+              "text": "bird"
+            },
+            {
+              "id": "id_rosyth25_5",
+              "text": "fish"
+            },
+            {
+              "id": "id_rosyth25_6",
+              "text": "reptile"
+            },
+            {
+              "id": "id_rosyth25_7",
+              "text": "mammal"
+            }
+          ],
+          "correctId": "id_rosyth25_7"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_17",
+      "elements": [
+        {
+          "id": "id_rosyth25_10",
+          "type": "text",
+          "text": "Organism Z is found at the surface of water on a sunny day.  The picture below shows how it looks like under the microscope.  Devi concluded that it is a plant cell.  Which parts of the organism led her to that conclusion?"
+        },
+        {
+          "id": "id_rosyth25_11",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_16",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_12",
+              "text": "A and D"
+            },
+            {
+              "id": "id_rosyth25_13",
+              "text": "B and F"
+            },
+            {
+              "id": "id_rosyth25_14",
+              "text": "B and D"
+            },
+            {
+              "id": "id_rosyth25_15",
+              "text": "C and F"
+            }
+          ],
+          "correctId": "id_rosyth25_13"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_25",
+      "elements": [
+        {
+          "id": "id_rosyth25_18",
+          "type": "text",
+          "text": "A plant is shown in the diagram below.  X, Y and Z represent different parts of the plant.  Which of the following is correct?"
+        },
+        {
+          "id": "id_rosyth25_19",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_24",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_20",
+              "text": "X — transports food and water for the plant"
+            },
+            {
+              "id": "id_rosyth25_21",
+              "text": "Y — absorbs water for the plant"
+            },
+            {
+              "id": "id_rosyth25_22",
+              "text": "Z — holds the plant firmly into the soil"
+            },
+            {
+              "id": "id_rosyth25_23",
+              "text": "Z — makes food for the plant"
+            }
+          ],
+          "correctId": "id_rosyth25_22"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_33",
+      "elements": [
+        {
+          "id": "id_rosyth25_26",
+          "type": "text",
+          "text": "The diagram below shows the human digestive system.  Identify the function of part Y of the human digestive system."
+        },
+        {
+          "id": "id_rosyth25_27",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_32",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_28",
+              "text": "absorbs digested food into the bloodstream"
+            },
+            {
+              "id": "id_rosyth25_29",
+              "text": "breaks down food into smaller pieces by grinding"
+            },
+            {
+              "id": "id_rosyth25_30",
+              "text": "absorbs water and mineral salts from undigested food"
+            },
+            {
+              "id": "id_rosyth25_31",
+              "text": "breaks down food into simpler substances using digestive juices"
+            }
+          ],
+          "correctId": "id_rosyth25_30"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_41",
+      "elements": [
+        {
+          "id": "id_rosyth25_34",
+          "type": "text",
+          "text": "Mr Foo wanted to grow a new plant by using different parts from plants A and B.  He cut out the upper part of A and the lower part of B.  Then, he put the two parts together and bound them with cloth as shown in the diagram below.  Mr Foo watered the soil every day.  After two weeks, he observed:\n- new plant was growing upright\n- new leaves growing on the upper part of A\n- longer roots growing on the lower part of B\nBased on Mr Foo's observations, which of the following statements is true?"
+        },
+        {
+          "id": "id_rosyth25_35",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_40",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_36",
+              "text": "The leaves on A absorbed water through its leaves to make food."
+            },
+            {
+              "id": "id_rosyth25_37",
+              "text": "The roots on B absorbed water and mineral salts for the new plant."
+            },
+            {
+              "id": "id_rosyth25_38",
+              "text": "The cloth transported water and food between the upper and lower parts."
+            },
+            {
+              "id": "id_rosyth25_39",
+              "text": "The leaves made food for A only while the roots absorbed water for B only."
+            }
+          ],
+          "correctId": "id_rosyth25_37"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_49",
+      "elements": [
+        {
+          "id": "id_rosyth25_42",
+          "type": "text",
+          "text": "The diagram below shows the flow of blood in humans and fish.  Which blood vessels, A, B, C, D, E, F and G, carry blood rich in oxygen and blood rich in carbon dioxide?"
+        },
+        {
+          "id": "id_rosyth25_43",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_48",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_44",
+              "text": "Blood rich in oxygen: A, B, E, F; Blood rich in carbon dioxide: C, D, G"
+            },
+            {
+              "id": "id_rosyth25_45",
+              "text": "Blood rich in oxygen: A, B, G; Blood rich in carbon dioxide: C, D, E, F"
+            },
+            {
+              "id": "id_rosyth25_46",
+              "text": "Blood rich in oxygen: C, D, G; Blood rich in carbon dioxide: A, B, E, F"
+            },
+            {
+              "id": "id_rosyth25_47",
+              "text": "Blood rich in oxygen: C, D, E, F; Blood rich in carbon dioxide: A, B, G"
+            }
+          ],
+          "correctId": "id_rosyth25_46"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_57",
+      "elements": [
+        {
+          "id": "id_rosyth25_50",
+          "type": "text",
+          "text": "The diagram below shows the life cycles of two organisms, P and Q.  Based on the information provided, which of the following statements below is true about the two organisms above?\nA  Both have a three-stage life cycle.\nB  Both of their young look like their adults.\nC  Organism P develops into an adult faster than organism Q."
+        },
+        {
+          "id": "id_rosyth25_51",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_56",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_52",
+              "text": "A only"
+            },
+            {
+              "id": "id_rosyth25_53",
+              "text": "B only"
+            },
+            {
+              "id": "id_rosyth25_54",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_rosyth25_55",
+              "text": "B and C only"
+            }
+          ],
+          "correctId": "id_rosyth25_54"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_65",
+      "elements": [
+        {
+          "id": "id_rosyth25_58",
+          "type": "text",
+          "text": "The diagram below shows the different stages of germination in a seed.  Which of the following stage(s), A, B, C, D, would the plant be able to make its own food?"
+        },
+        {
+          "id": "id_rosyth25_59",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_64",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_60",
+              "text": "C only"
+            },
+            {
+              "id": "id_rosyth25_61",
+              "text": "A and B only"
+            },
+            {
+              "id": "id_rosyth25_62",
+              "text": "C and D only"
+            },
+            {
+              "id": "id_rosyth25_63",
+              "text": "A, C and D only"
+            }
+          ],
+          "correctId": "id_rosyth25_62"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_73",
+      "elements": [
+        {
+          "id": "id_rosyth25_66",
+          "type": "text",
+          "text": "The chart below shows the process of fertilisation when cell A from the ovary fuses with cell B from the testis in the human reproductive system.  Which one of the following correctly identifies cells A and B?"
+        },
+        {
+          "id": "id_rosyth25_67",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_72",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_68",
+              "text": "A: pollen, B: sperm"
+            },
+            {
+              "id": "id_rosyth25_69",
+              "text": "A: egg, B: sperm"
+            },
+            {
+              "id": "id_rosyth25_70",
+              "text": "A: pollen, B: egg"
+            },
+            {
+              "id": "id_rosyth25_71",
+              "text": "A: sperm, B: egg"
+            }
+          ],
+          "correctId": "id_rosyth25_69"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_81",
+      "elements": [
+        {
+          "id": "id_rosyth25_74",
+          "type": "text",
+          "text": "Under different conditions, plant R opens and closes its leaves as shown in the pictures below.  Fandi recorded his observations of how the leaves responded to different environmental conditions as shown in the table below.  Based on the information above, which of the following most likely explains why the leaves responded to the different environmental conditions?"
+        },
+        {
+          "id": "id_rosyth25_75",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_80",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_76",
+              "text": "Response: open — to trap more light"
+            },
+            {
+              "id": "id_rosyth25_77",
+              "text": "Response: open — to allow more carbon dioxide to be taken in"
+            },
+            {
+              "id": "id_rosyth25_78",
+              "text": "Response: close — to reduce water loss"
+            },
+            {
+              "id": "id_rosyth25_79",
+              "text": "Response: close — to allow less carbon dioxide to enter"
+            }
+          ],
+          "correctId": "id_rosyth25_76"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_89",
+      "elements": [
+        {
+          "id": "id_rosyth25_82",
+          "type": "text",
+          "text": "Trees A and B are of the same type.  The flowers behave differently throughout the day as shown in the pictures below.  The flowers are visited by pollinators throughout the day.  A farmer grew trees A and/or B on three similar plots of land, L, M and N (Plot L: tree A — 20; Plot M: tree B — 20; Plot N: tree A — 10 and tree B — 10).  Based on the information above, which option shows the correct order of plots, starting with the one having the most number of flowers pollinated between 7 am and 7 pm?"
+        },
+        {
+          "id": "id_rosyth25_83",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_88",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_84",
+              "text": "L, N, M"
+            },
+            {
+              "id": "id_rosyth25_85",
+              "text": "L, M, N"
+            },
+            {
+              "id": "id_rosyth25_86",
+              "text": "M, L, N"
+            },
+            {
+              "id": "id_rosyth25_87",
+              "text": "N, M, L"
+            }
+          ],
+          "correctId": "id_rosyth25_87"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_97",
+      "elements": [
+        {
+          "id": "id_rosyth25_90",
+          "type": "text",
+          "text": "The picture below shows Bird W.  Bird W has the following adaptations:\n- rides air currents to conserve energy while flying over the sea\n- has special glands at eyes to remove salt\n- has sharp and hooked beak to catch prey\n- follows boats to get food\nWhich of the following identifies the structural and behavioural adaptations correctly?"
+        },
+        {
+          "id": "id_rosyth25_91",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_96",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_92",
+              "text": "Structural: follows boats, rides air currents; Behavioural: has special glands at eyes, has sharp and hooked beak"
+            },
+            {
+              "id": "id_rosyth25_93",
+              "text": "Structural: has special glands at eyes, follows boats; Behavioural: has sharp and hooked beak, rides air currents"
+            },
+            {
+              "id": "id_rosyth25_94",
+              "text": "Structural: has sharp and hooked beak, rides air currents; Behavioural: has special glands at eyes, follows boats"
+            },
+            {
+              "id": "id_rosyth25_95",
+              "text": "Structural: has special glands at eyes, has sharp and hooked beak; Behavioural: follows boats, rides air currents"
+            }
+          ],
+          "correctId": "id_rosyth25_95"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_105",
+      "elements": [
+        {
+          "id": "id_rosyth25_98",
+          "type": "text",
+          "text": "Habitat Z only had organisms, P, Q and S, at first.  Organism R was introduced later.  The food web below shows the relationship among organisms P, Q, R and S.  The graph below shows the number of organism S over a period of time.  At which point, A, B, C or D, was organism R likely to be first introduced?"
+        },
+        {
+          "id": "id_rosyth25_99",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_104",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_100",
+              "text": "A"
+            },
+            {
+              "id": "id_rosyth25_101",
+              "text": "B"
+            },
+            {
+              "id": "id_rosyth25_102",
+              "text": "C"
+            },
+            {
+              "id": "id_rosyth25_103",
+              "text": "D"
+            }
+          ],
+          "correctId": "id_rosyth25_100"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_113",
+      "elements": [
+        {
+          "id": "id_rosyth25_106",
+          "type": "text",
+          "text": "Organism Q lives at the gills of the fish and can only be seen under a microscope.  Organism Q causes the fish to develop larger gills.  Such fish are often found near the surface of the water.  Based on the information above, which of the following best explains why organism Q caused the fish to develop larger gills?"
+        },
+        {
+          "id": "id_rosyth25_107",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_112",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_108",
+              "text": "The fish produces more carbon dioxide to be removed at the gills."
+            },
+            {
+              "id": "id_rosyth25_109",
+              "text": "The fish has a reduced rate of gaseous exchange with the air above water."
+            },
+            {
+              "id": "id_rosyth25_110",
+              "text": "The fish has more blood vessels at the gills to transport more digested food to Q."
+            },
+            {
+              "id": "id_rosyth25_111",
+              "text": "The fish has more blood vessels at the gills to absorb more water rich in oxygen."
+            }
+          ],
+          "correctId": "id_rosyth25_109"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_121",
+      "elements": [
+        {
+          "id": "id_rosyth25_114",
+          "type": "text",
+          "text": "The diagram below shows a circuit containing three rods, X, Y or Z.  There are two metal rods and a plastic rod.  Which of the following identifies the material of the rods correctly to light up the bulb in the circuit?"
+        },
+        {
+          "id": "id_rosyth25_115",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_120",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_116",
+              "text": "Rod X: metal, Rod Y: metal, Rod Z: plastic"
+            },
+            {
+              "id": "id_rosyth25_117",
+              "text": "Rod X: plastic, Rod Y: metal, Rod Z: metal"
+            },
+            {
+              "id": "id_rosyth25_118",
+              "text": "Rod X: metal, Rod Y: plastic, Rod Z: metal"
+            },
+            {
+              "id": "id_rosyth25_119",
+              "text": "Rod X: metal, Rod Y: metal, Rod Z: plastic"
+            }
+          ],
+          "correctId": "id_rosyth25_118"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_129",
+      "elements": [
+        {
+          "id": "id_rosyth25_122",
+          "type": "text",
+          "text": "Jason placed a glass of tap water on a hot plate and measured its temperature for 10 minutes.  The graph below shows his results.  Which of the following is true about the water at PQ?"
+        },
+        {
+          "id": "id_rosyth25_123",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_128",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_124",
+              "text": "It is a gas."
+            },
+            {
+              "id": "id_rosyth25_125",
+              "text": "It is boiling."
+            },
+            {
+              "id": "id_rosyth25_126",
+              "text": "It has reached room temperature."
+            },
+            {
+              "id": "id_rosyth25_127",
+              "text": "It is a liquid at a constant temperature."
+            }
+          ],
+          "correctId": "id_rosyth25_127"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_137",
+      "elements": [
+        {
+          "id": "id_rosyth25_130",
+          "type": "text",
+          "text": "The diagram shows the water cycle.  Which of the following statements is correct?"
+        },
+        {
+          "id": "id_rosyth25_131",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_136",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_132",
+              "text": "Process Y occurs above 28°C only."
+            },
+            {
+              "id": "id_rosyth25_133",
+              "text": "Process Y occurs at a fixed temperature."
+            },
+            {
+              "id": "id_rosyth25_134",
+              "text": "Process X involves a gas becoming a liquid."
+            },
+            {
+              "id": "id_rosyth25_135",
+              "text": "Heat energy is involved during process X only."
+            }
+          ],
+          "correctId": "id_rosyth25_134"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_145",
+      "elements": [
+        {
+          "id": "id_rosyth25_138",
+          "type": "text",
+          "text": "James filled a measuring cylinder with 30 cm³ of plasticine.  Next, he added water until it reached the 300 cm³ mark.  He left the set-up in the classroom.  After a few days, the water level decreased to the 290 cm³ mark.  Which of the following is most likely the final volume of the plasticine and water?"
+        },
+        {
+          "id": "id_rosyth25_139",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_144",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_140",
+              "text": "Volume of plasticine: 30 cm³, Volume of water: exactly 260 cm³"
+            },
+            {
+              "id": "id_rosyth25_141",
+              "text": "Volume of plasticine: 30 cm³, Volume of water: less than 260 cm³"
+            },
+            {
+              "id": "id_rosyth25_142",
+              "text": "Volume of plasticine: 20 cm³, Volume of water: exactly 270 cm³"
+            },
+            {
+              "id": "id_rosyth25_143",
+              "text": "Volume of plasticine: 20 cm³, Volume of water: less than 270 cm³"
+            }
+          ],
+          "correctId": "id_rosyth25_140"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_153",
+      "elements": [
+        {
+          "id": "id_rosyth25_146",
+          "type": "text",
+          "text": "Susan lowered an inverted glass over a small floating object in a basin of water until the glass touched the bottom of the basin as shown below.  Which of the following explains why the water level inside the glass was lower from the water level in the basin?"
+        },
+        {
+          "id": "id_rosyth25_147",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_152",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_148",
+              "text": "The air trapped in the glass occupied space."
+            },
+            {
+              "id": "id_rosyth25_149",
+              "text": "The small object in the glass occupied space."
+            },
+            {
+              "id": "id_rosyth25_150",
+              "text": "The water in the basin is compressed in the glass."
+            },
+            {
+              "id": "id_rosyth25_151",
+              "text": "The small object pushed the water out from the glass."
+            }
+          ],
+          "correctId": "id_rosyth25_148"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_161",
+      "elements": [
+        {
+          "id": "id_rosyth25_154",
+          "type": "text",
+          "text": "Ryan has a can containing 150 ml of juice.  He crushed the can without spilling any juice as shown below.  Which of the following about the can of juice is correct?"
+        },
+        {
+          "id": "id_rosyth25_155",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_160",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_156",
+              "text": "Both the mass and the volume of the juice changed."
+            },
+            {
+              "id": "id_rosyth25_157",
+              "text": "The volume of the juice changed but the mass did not."
+            },
+            {
+              "id": "id_rosyth25_158",
+              "text": "The mass of the juice changed but the volume did not."
+            },
+            {
+              "id": "id_rosyth25_159",
+              "text": "Both the mass and the volume of the juice did not change."
+            }
+          ],
+          "correctId": "id_rosyth25_159"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_169",
+      "elements": [
+        {
+          "id": "id_rosyth25_162",
+          "type": "text",
+          "text": "Jerry has two soup containers, L and M, made of different materials.  He poured an equal volume of hot soup into each container.  Container L felt hot to his touch but not container M.  In which container should he put hot food to keep it warm and cold drinks to keep them cool?"
+        },
+        {
+          "id": "id_rosyth25_163",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_168",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_164",
+              "text": "To keep hot food warm: M; To keep cold drinks cool: M"
+            },
+            {
+              "id": "id_rosyth25_165",
+              "text": "To keep hot food warm: M; To keep cold drinks cool: L"
+            },
+            {
+              "id": "id_rosyth25_166",
+              "text": "To keep hot food warm: L; To keep cold drinks cool: M"
+            },
+            {
+              "id": "id_rosyth25_167",
+              "text": "To keep hot food warm: L; To keep cold drinks cool: L"
+            }
+          ],
+          "correctId": "id_rosyth25_164"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_177",
+      "elements": [
+        {
+          "id": "id_rosyth25_170",
+          "type": "text",
+          "text": "Which of the following diagrams correctly shows the direction in which light travels for the doctor to see Mei's face?"
+        },
+        {
+          "id": "id_rosyth25_171",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_176",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_172",
+              "text": "Diagram 1"
+            },
+            {
+              "id": "id_rosyth25_173",
+              "text": "Diagram 2"
+            },
+            {
+              "id": "id_rosyth25_174",
+              "text": "Diagram 3"
+            },
+            {
+              "id": "id_rosyth25_175",
+              "text": "Diagram 4"
+            }
+          ],
+          "correctId": "id_rosyth25_173"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_185",
+      "elements": [
+        {
+          "id": "id_rosyth25_178",
+          "type": "text",
+          "text": "A boy stood in front of the mirror.  He could not see the soccer ball behind him.  Which one of the following was the reason why he could not see the ball?"
+        },
+        {
+          "id": "id_rosyth25_179",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_184",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_180",
+              "text": "The ball did not reflect light."
+            },
+            {
+              "id": "id_rosyth25_181",
+              "text": "The mirror did not reflect light."
+            },
+            {
+              "id": "id_rosyth25_182",
+              "text": "The ball did not allow light to pass through."
+            },
+            {
+              "id": "id_rosyth25_183",
+              "text": "The boy's body did not allow light to pass through."
+            }
+          ],
+          "correctId": "id_rosyth25_183"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_193",
+      "elements": [
+        {
+          "id": "id_rosyth25_186",
+          "type": "text",
+          "text": "Miss Lim had four bar magnets, P, Q, R and S.  She wanted to compare the strengths of the bar magnet by putting each of them above a tray of pins as shown in the diagram below.  The table below shows the number of pins attracted by each magnet from different distances away from the pins (P: 7 cm, 9 pins; Q: 3 cm, 9 pins; R: 9 cm, 13 pins; S: 3 cm, 13 pins).  Which of the following statements is correct?"
+        },
+        {
+          "id": "id_rosyth25_187",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_192",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_188",
+              "text": "S is the strongest."
+            },
+            {
+              "id": "id_rosyth25_189",
+              "text": "P is as strong as Q."
+            },
+            {
+              "id": "id_rosyth25_190",
+              "text": "R is stronger than S."
+            },
+            {
+              "id": "id_rosyth25_191",
+              "text": "S is stronger than P."
+            }
+          ],
+          "correctId": "id_rosyth25_190"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_201",
+      "elements": [
+        {
+          "id": "id_rosyth25_194",
+          "type": "text",
+          "text": "Anjay made a game as shown below.  The rod with bars A and B were used to pick up objects, T, U and V.  Anjay made the following observations:\n- bar A could pick up objects T and V only\n- bar B could pick up objects T and U only\n(Object T has a magnet, object U has a magnet, object V has an iron bar.)  Which of the following correctly shows what bars A and B?"
+        },
+        {
+          "id": "id_rosyth25_195",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_200",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_196",
+              "text": "Diagram 1: A is a magnet, B is a magnet"
+            },
+            {
+              "id": "id_rosyth25_197",
+              "text": "Diagram 2: A is a magnet, B is an iron bar"
+            },
+            {
+              "id": "id_rosyth25_198",
+              "text": "Diagram 3: A is a magnet, B is an iron bar"
+            },
+            {
+              "id": "id_rosyth25_199",
+              "text": "Diagram 4: A is an iron bar, B is a magnet"
+            }
+          ],
+          "correctId": "id_rosyth25_197"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_209",
+      "elements": [
+        {
+          "id": "id_rosyth25_202",
+          "type": "text",
+          "text": "An experiment was conducted using springs A and B.  Different loads were hung on each spring one at a time.  The lengths of the springs were recorded in the graph below.  Which of the following are correct conclusions that could be drawn from the experiment?"
+        },
+        {
+          "id": "id_rosyth25_203",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_208",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_204",
+              "text": "Longer spring at the start of the experiment: A; Stiffer spring: A"
+            },
+            {
+              "id": "id_rosyth25_205",
+              "text": "Longer spring at the start of the experiment: B; Stiffer spring: B"
+            },
+            {
+              "id": "id_rosyth25_206",
+              "text": "Longer spring at the start of the experiment: A; Stiffer spring: B"
+            },
+            {
+              "id": "id_rosyth25_207",
+              "text": "Longer spring at the start of the experiment: B; Stiffer spring: A"
+            }
+          ],
+          "correctId": "id_rosyth25_205"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_217",
+      "elements": [
+        {
+          "id": "id_rosyth25_210",
+          "type": "text",
+          "text": "At her graduation ceremony, Aisha threw her hat into the air.  Which of the following statements is true when the hat is being thrown into the air, from height X to Y?"
+        },
+        {
+          "id": "id_rosyth25_211",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_216",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_212",
+              "text": "There is no gravitational force acting on the hat at X."
+            },
+            {
+              "id": "id_rosyth25_213",
+              "text": "The amount of gravitational force acting on the hat increased from X to Y."
+            },
+            {
+              "id": "id_rosyth25_214",
+              "text": "The amount of gravitational force acting on the hat decreased from X to Y."
+            },
+            {
+              "id": "id_rosyth25_215",
+              "text": "The amount of gravitational force acting on the hat is the same at X and Y."
+            }
+          ],
+          "correctId": "id_rosyth25_215"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_225",
+      "elements": [
+        {
+          "id": "id_rosyth25_218",
+          "type": "text",
+          "text": "When the circuit is closed, the bar magnet moved from position A to B as shown in the diagram below.  Which of the following shows the conversion of energy that explains the movement of the bar magnet from position A to B when the circuit is closed?"
+        },
+        {
+          "id": "id_rosyth25_219",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_224",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_rosyth25_220",
+              "text": "potential energy → kinetic energy → electrical energy"
+            },
+            {
+              "id": "id_rosyth25_221",
+              "text": "potential energy → electrical energy → kinetic energy"
+            },
+            {
+              "id": "id_rosyth25_222",
+              "text": "kinetic energy → electrical energy → potential energy"
+            },
+            {
+              "id": "id_rosyth25_223",
+              "text": "potential energy → electrical energy → kinetic energy → potential energy"
+            }
+          ],
+          "correctId": "id_rosyth25_223"
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_226",
+      "elements": [
+        {
+          "id": "id_rosyth25_227",
+          "type": "text",
+          "text": "Section B [44 marks].  For questions 29 to 40, write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part question."
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_233",
+      "elements": [
+        {
+          "id": "id_rosyth25_228",
+          "type": "text",
+          "text": "The following shows the information of a food chain in a forest.\n- Y is a prey of Z.\n- Y is a plant-eater.\n- W is the producer.\n- X is a predator of Z."
+        },
+        {
+          "id": "id_rosyth25_229",
+          "type": "part",
+          "label": "(a)",
+          "text": "Construct a food chain using the above information. [1]"
+        },
+        {
+          "id": "id_rosyth25_230",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "W → Y → Z → X",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_231",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain the change in the population of organism Y if a disease wipes out the population of organism X. [1]"
+        },
+        {
+          "id": "id_rosyth25_232",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The population of Y will decrease.  When the population of X is wiped out, there will be less X feeding on Z, so there will be more Z feeding on Y, causing the population of Y to decrease.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_242",
+      "elements": [
+        {
+          "id": "id_rosyth25_234",
+          "type": "text",
+          "text": "Plant M is found growing high on the branches of trees.  The image below shows the enlarged image of plant M with its roots growing into a tree branch.  Birds eat the fruits of plant M.  The seeds that pass through their digestive system are sticky."
+        },
+        {
+          "id": "id_rosyth25_235",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_236",
+          "type": "part",
+          "label": "(a)",
+          "text": "How does plant M get water to survive? [1]"
+        },
+        {
+          "id": "id_rosyth25_237",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "It absorbs the water from the water-carrying tubes of the tree branch through its roots.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_238",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain how the sticky outer covering of the seeds helps plant M to grow on the high branches of trees. [1]"
+        },
+        {
+          "id": "id_rosyth25_239",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "When the seeds land on the high tree branches, they will stick onto the branches and not fall to the ground.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_240",
+          "type": "part",
+          "label": "(c)",
+          "text": "How does growing on the high branches of trees help plant M to survive better? [1]"
+        },
+        {
+          "id": "id_rosyth25_241",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "It can trap more sunlight to make food through photosynthesis.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_251",
+      "elements": [
+        {
+          "id": "id_rosyth25_243",
+          "type": "text",
+          "text": "Birds A and B often live in groups.  They use sounds to communicate and attract their mates.  The table below shows the volume of sounds made by birds A and B (Bird A: 40 – 55 units; Bird B: 50 – 70 units).  For the birds to hear one another, the average volume of the noise in the habitat must be lower than the volume of the sound made by the birds.  The table below shows the average volume of noise measured in a habitat where both birds are found (6 am – 7.59 am: 42; 8 am – 9.59 am: 65; 10 am – 11.59 am: 70; 12 pm – 1.59 pm: 75).  The graph below shows the number of nests built by birds A and B in habitats with different volumes of noise.  The number of nests built by bird B is not affected by the volume of noise in its habitat as it has other adaptations to attract its mates."
+        },
+        {
+          "id": "id_rosyth25_244",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_245",
+          "type": "part",
+          "label": "(a)",
+          "text": "Using the above information, tick (✓) the time range that is most suitable for bird A to communicate with one another. [1]"
+        },
+        {
+          "id": "id_rosyth25_246",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "6 am – 7.59 am",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_247",
+          "type": "part",
+          "label": "(b)",
+          "text": "Based on the graph, how did the population of A change as the average volume of noise in its habitat increased?  Explain your answer. [1]"
+        },
+        {
+          "id": "id_rosyth25_248",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The population of A decreased.  As the noise increases, it drowns out the calls of A and it attracts fewer mates.  Hence, there will be less reproduction, causing there to be fewer A.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_249",
+          "type": "part",
+          "label": "(c)",
+          "text": "Apart from mating calls, suggest another possible adaptation that allowed bird B to attract its mates. [1]"
+        },
+        {
+          "id": "id_rosyth25_250",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Colourful feathers.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_260",
+      "elements": [
+        {
+          "id": "id_rosyth25_252",
+          "type": "text",
+          "text": "The diagram below shows the air sacs of the lungs of a non-smoker and a smoker.  Substance T sticks to the surface of the lungs of a smoker.  A study was done with two men, A and B, to measure the amount of oxygen absorbed into their blood.  The results are shown in the bar graph below.  The bar graph also shows the heart rates of man A and man B when they do different activities."
+        },
+        {
+          "id": "id_rosyth25_253",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_254",
+          "type": "part",
+          "label": "(a)",
+          "text": "Based on the above information, explain why man B is more likely to be a smoker. [2]"
+        },
+        {
+          "id": "id_rosyth25_255",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "As shown in the graph, less oxygen is absorbed into the blood for man B.  This is because substance T has caused the air sacs to have less exposed surface area in contact with the blood vessels.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_256",
+          "type": "part",
+          "label": "(b)",
+          "text": "Draw a bar to show the heart rate for man A when he runs at the same speed as man B. [1]"
+        },
+        {
+          "id": "id_rosyth25_257",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Draw the bar for man A (running) at the same height as the bar for man B (running).",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_258",
+          "type": "part",
+          "label": "(c)",
+          "text": "Explain why the heart rate increases for man B when he runs. [1]"
+        },
+        {
+          "id": "id_rosyth25_259",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "When running, his body needs more energy; hence, the heart pumps faster to transport blood carrying oxygen, digested food and water faster to all parts of the body.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_269",
+      "elements": [
+        {
+          "id": "id_rosyth25_261",
+          "type": "text",
+          "text": "Plant P is found in a rainforest.  The fruit of plant P is shown in the picture below.  During the dry season, the seeds of parent plant P are dispersed in the pattern shown.  The seeds of plant P have a fleshy outer covering.  During the rainy season, the river overflows and floods the forest.  After the river returns to its normal level, a different dispersal pattern is observed for the seeds of plant P."
+        },
+        {
+          "id": "id_rosyth25_262",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_263",
+          "type": "part",
+          "label": "(a)",
+          "text": "State the seed dispersal method for plant P during the dry season. [1]"
+        },
+        {
+          "id": "id_rosyth25_264",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Splitting.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_265",
+          "type": "part",
+          "label": "(b)",
+          "text": "Using the above information, state the method of dispersal for the seeds of plant P during the rainy season.  Explain your answer. [2]"
+        },
+        {
+          "id": "id_rosyth25_266",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Animal dispersal.  The fruit has a fleshy outer covering that the animal is attracted to eat.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_267",
+          "type": "part",
+          "label": "(c)",
+          "text": "Explain why it is more advantageous for plant P to disperse its seeds during the rainy season. [1]"
+        },
+        {
+          "id": "id_rosyth25_268",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "The young plant P would be further from parent plant P.  Hence, there will be less overcrowding and competition for water, light and space.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_278",
+      "elements": [
+        {
+          "id": "id_rosyth25_270",
+          "type": "text",
+          "text": "The diagram below shows set-up P which was placed near the window from 6 am to midnight.  He prepared another similar set-up Q and left it under the sun for the same amount of time as set-up P (set-up Q used a glass jar painted black)."
+        },
+        {
+          "id": "id_rosyth25_271",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_272",
+          "type": "part",
+          "label": "(a)",
+          "text": "The graph below shows the change in the amount of gases in set-up P throughout the experiment.  Label the gases in the boxes provided. [2]"
+        },
+        {
+          "id": "id_rosyth25_273",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "(i) carbon dioxide   (ii) oxygen",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_274",
+          "type": "part",
+          "label": "(b)",
+          "text": "Identify the changed variable in the experiment. [1]"
+        },
+        {
+          "id": "id_rosyth25_275",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The intensity of light.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_276",
+          "type": "part",
+          "label": "(c)",
+          "text": "How would the amount of carbon dioxide in set-up Q change at the end of the experiment?  Explain your answer. [2]"
+        },
+        {
+          "id": "id_rosyth25_277",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "The amount of carbon dioxide would increase.  As no light can pass through the jar painted black, the plant could not undergo photosynthesis and produce oxygen, so the plant only underwent respiration and gave out carbon dioxide.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_285",
+      "elements": [
+        {
+          "id": "id_rosyth25_279",
+          "type": "text",
+          "text": "Kim conducted an experiment to compare four materials, A, B, C and D.  The number of 1-kg weights needed to break each material was counted.  The results are shown in the bar graph below."
+        },
+        {
+          "id": "id_rosyth25_280",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_281",
+          "type": "part",
+          "label": "(a)",
+          "text": "Which property of the material is being tested? [1]"
+        },
+        {
+          "id": "id_rosyth25_282",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Strength.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_283",
+          "type": "part",
+          "label": "(b)",
+          "text": "Based on Kim's results, which material, A, B, C or D, is most suitable to make the shelves for keeping the books in the library?  Explain your answer. [2]"
+        },
+        {
+          "id": "id_rosyth25_284",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "D.  Material D could hold the most number of weights before breaking, indicating that it has the most strength and would be able to hold the heavy loads of books without breaking.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_292",
+      "elements": [
+        {
+          "id": "id_rosyth25_286",
+          "type": "text",
+          "text": "Benny turned on the hot water shower as shown in the picture below.  After a while, he noticed substance A forming near the shower head."
+        },
+        {
+          "id": "id_rosyth25_287",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_288",
+          "type": "part",
+          "label": "(a)",
+          "text": "What state of matter is substance A in? [1]"
+        },
+        {
+          "id": "id_rosyth25_289",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Liquid.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_290",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain how substance A was formed. [2]"
+        },
+        {
+          "id": "id_rosyth25_291",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "The water near the shower head gained heat from the hot water.  The warmer water vapour touched the cooler air further from the shower head, lost heat and condensed to form water droplets, which is substance A.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_299",
+      "elements": [
+        {
+          "id": "id_rosyth25_293",
+          "type": "text",
+          "text": "Sally conducted an experiment using the set-up as shown below.  Sally changed the number of batteries in the set-up and recorded the readings on the spring balance in the table below (2 batteries: 1.0, 1.1, 1.2; 3 batteries: 1.5, 1.6, 1.4; 4 batteries: 2.4, 2.6, 2.2)."
+        },
+        {
+          "id": "id_rosyth25_294",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_295",
+          "type": "part",
+          "label": "(a)",
+          "text": "Explain why the reading on the spring balance increased when the switch was closed. [2]"
+        },
+        {
+          "id": "id_rosyth25_296",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "When the switch was closed, electricity flowed through the circuit, magnetising the iron core to become an electromagnet.  Hence, it attracted the iron disc, causing it to be pulled down and the reading to increase.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_297",
+          "type": "part",
+          "label": "(b)",
+          "text": "Why did Sally repeat her experiment? [1]"
+        },
+        {
+          "id": "id_rosyth25_298",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "To ensure that the results are reliable and accurate.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_308",
+      "elements": [
+        {
+          "id": "id_rosyth25_300",
+          "type": "text",
+          "text": "Shahim made a lantern with three light bulbs.  The bulbs are controlled with a switch.  Shahim constructed a new circuit in the lantern using three new bulbs, X, Y and Z, and a switch.  The bulbs work as described below:\n- If any one bulb fuses, the other two will still light up.\n- Three bulbs will light up only when the switch is closed."
+        },
+        {
+          "id": "id_rosyth25_301",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_302",
+          "type": "part",
+          "label": "(a)",
+          "text": "After one bulb fused, the other two bulbs did not light up when the switch was closed.  Explain why. [1]"
+        },
+        {
+          "id": "id_rosyth25_303",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "The bulbs are arranged in series, so when one bulb fuses an open circuit is formed and the other bulbs cannot light up.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_304",
+          "type": "part",
+          "label": "(b)",
+          "text": "The diagram below shows part of the new circuit.  Complete the circuit so that it will work as described above. [2]"
+        },
+        {
+          "id": "id_rosyth25_305",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Connect bulbs X, Y and Z in parallel with one another, and place the switch in the main circuit in series with the battery.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_306",
+          "type": "part",
+          "label": "(c)",
+          "text": "Based on the circuit arrangement in (b), what would happen to the brightness of bulbs X and Y if bulb Z fuses? [1]"
+        },
+        {
+          "id": "id_rosyth25_307",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "It will remain the same.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_319",
+      "elements": [
+        {
+          "id": "id_rosyth25_309",
+          "type": "text",
+          "text": "Balls, X, Y and Z, are of the same size but have different masses.  Kitson lifted them one at a time onto a table of 1 m high from the ground.  The amount of energy he needed to lift each ball is recorded in the table below (Ball X: 4 kg, 70 units; Ball Y: 8 kg, 140 units; Ball Z: 12 kg, 210 units).  Next, Kitson pushed ball Y off the table.  In another experiment, Kitson pushed a few glass bottles of different masses off the same table and counted the number of pieces each glass bottle broke into."
+        },
+        {
+          "id": "id_rosyth25_310",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_311",
+          "type": "part",
+          "label": "(a)",
+          "text": "What is the relationship between the mass of the ball and the amount of energy needed to lift the ball up to the table? [1]"
+        },
+        {
+          "id": "id_rosyth25_312",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "As the mass of the ball increases, the amount of energy needed to lift the ball increases.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_313",
+          "type": "part",
+          "label": "(b)",
+          "text": "Fill in the boxes to show the energy conversion when ball Y dropped from position A to C. [1]"
+        },
+        {
+          "id": "id_rosyth25_314",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Gravitational potential energy → kinetic energy → sound energy + heat energy",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_315",
+          "type": "part",
+          "label": "(c)",
+          "text": "Which ball, X, Y or Z, when dropped from the table, will produce the softest noise when it lands on the floor?  Explain in terms of energy conversion. [2]"
+        },
+        {
+          "id": "id_rosyth25_316",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "X.  Ball X has the least mass, hence the least gravitational potential energy, which converts to the least kinetic energy, converting to the least sound and heat energy.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_317",
+          "type": "part",
+          "label": "(d)",
+          "text": "State a possible hypothesis for his experiment. [1]"
+        },
+        {
+          "id": "id_rosyth25_318",
+          "type": "answer",
+          "label": "Ans : (d) ",
+          "answer": "As the mass of the glass bottle increases, the number of pieces it breaks into increases.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_rosyth25_326",
+      "elements": [
+        {
+          "id": "id_rosyth25_320",
+          "type": "text",
+          "text": "The diagram shows a wooden pathway in a park.  Wire mesh is fitted on the wooden pathway to prevent people from slipping when they walk on it.  During rainy season, rainwater is trapped by the wires as shown below."
+        },
+        {
+          "id": "id_rosyth25_321",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_rosyth25_322",
+          "type": "part",
+          "label": "(a)",
+          "text": "State the two forces acting on the people as they walked on the pathway. [1]"
+        },
+        {
+          "id": "id_rosyth25_323",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Gravitational force and frictional force.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_rosyth25_324",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain why during rainy season, the wire mesh becomes slippery for people to walk on. [1]"
+        },
+        {
+          "id": "id_rosyth25_325",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "During the rainy season, rainwater is trapped by the wire mesh.  The water acts as a lubricant, reducing the friction between the person's shoes and the wet floor, making it slippery.",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
