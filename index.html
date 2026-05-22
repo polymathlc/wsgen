@@ -738,6 +738,67 @@
     margin-left: auto;
   }
 
+  /* ============================ PRACTICE MODE ============================ */
+  .option-item.selected {
+    border-color: var(--accent-deep);
+    background: var(--accent-bg);
+  }
+  .option-item.correct-answer {
+    border-color: var(--correct-base);
+    background: var(--correct-bg);
+  }
+  .option-item.wrong-answer {
+    border-color: #E57373;
+    background: #FFEBEE;
+  }
+  body.practice-mode .reveal-actions { display: none; }
+  .practice-answer-input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 10px;
+    font-size: var(--font-size-base);
+    border: 1.5px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+  }
+  .practice-answer-input:focus {
+    outline: none;
+    border-color: var(--accent-base);
+  }
+  .practice-answer-input.correct {
+    border-color: var(--correct-base);
+    background: var(--correct-bg);
+  }
+  .practice-answer-input.wrong {
+    border-color: #E57373;
+    background: #FFEBEE;
+  }
+  .practice-model-answer {
+    margin-top: 6px;
+    padding: 8px 10px;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--correct-bg);
+    border: 1px solid var(--correct-base);
+    border-radius: var(--radius-sm);
+    line-height: 1.5;
+  }
+  .practice-bar {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-elevated, #fff);
+    border: 1.5px solid var(--accent-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+  }
+  .practice-hint { font-size: var(--font-size-sm); color: var(--text-tertiary); }
+  .practice-score { font-size: var(--font-size-base); font-weight: 700; color: var(--accent-deep); }
+
   @media (max-width: 900px) {
     .app { grid-template-columns: 1fr; height: auto; }
     .editor-pane, .preview-pane { height: auto; overflow: visible; }
@@ -1329,6 +1390,7 @@
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
         <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
+        <button class="btn" id="practiceModeBtn" title="Try the worksheet on screen — select answers and check your score">✏️ Practice mode</button>
         <button class="btn admin-only" id="saveJsonBtn">Save JSON</button>
         <button class="btn admin-only" id="loadJsonBtn">Load JSON</button>
         <input type="file" id="loadJsonInput" accept="application/json" style="display:none" />
@@ -1406,6 +1468,73 @@ let state = {
 let showAnswers = false;
 let revealedAnswers = new Set();
 let revealedVideos = new Set();
+
+/* Practice mode: students answer on screen, then check their score.
+   practiceResponses maps an element id → the student's response
+   (an option id for mcq, the typed string for answer fields). */
+let practiceMode = false;
+let practiceChecked = false;
+let practiceResponses = new Map();
+
+function normalizeAnswer(s) {
+  return (s || '').toLowerCase().replace(/\s+/g, ' ').replace(/[.\s]+$/, '').trim();
+}
+
+function practiceScore() {
+  let total = 0, correct = 0;
+  state.questions.forEach(q => {
+    if (isInstruction(q)) return;
+    q.elements.forEach(el => {
+      if (el.type === 'mcq' && el.correctId) {
+        total++;
+        if (practiceResponses.get(el.id) === el.correctId) correct++;
+      }
+    });
+  });
+  return { total, correct };
+}
+
+function buildPracticeBar() {
+  const bar = document.createElement('div');
+  bar.className = 'practice-bar';
+  if (!practiceChecked) {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-primary';
+    btn.type = 'button';
+    btn.textContent = 'Check answers';
+    btn.addEventListener('click', () => { practiceChecked = true; renderPreview(); });
+    bar.appendChild(btn);
+    const hint = document.createElement('span');
+    hint.className = 'practice-hint';
+    hint.textContent = 'Select MCQ answers and type open-ended responses, then check.';
+    bar.appendChild(hint);
+  } else {
+    const { total, correct } = practiceScore();
+    const score = document.createElement('span');
+    score.className = 'practice-score';
+    score.textContent = total
+      ? `MCQ score: ${correct} / ${total}`
+      : 'Suggested answers shown below — self-mark your written responses.';
+    bar.appendChild(score);
+    if (total) {
+      const hint = document.createElement('span');
+      hint.className = 'practice-hint';
+      hint.textContent = 'Open-ended questions show a suggested answer for self-marking.';
+      bar.appendChild(hint);
+    }
+    const again = document.createElement('button');
+    again.className = 'btn';
+    again.type = 'button';
+    again.textContent = 'Try again';
+    again.addEventListener('click', () => {
+      practiceResponses.clear();
+      practiceChecked = false;
+      renderPreview();
+    });
+    bar.appendChild(again);
+  }
+  return bar;
+}
 let filterTopic = '';
 let filterConcept = '';
 let activityLogOpen = false;
@@ -2302,6 +2431,7 @@ function renderPreview() {
     empty.textContent = 'No questions match the current topic / concept filter.';
     previewContainer.appendChild(empty);
   }
+  if (practiceMode && shown > 0) previewContainer.appendChild(buildPracticeBar());
   updateFilterCount(shown);
 }
 
@@ -2512,7 +2642,8 @@ function renderInstructionBlock(q, qIndex) {
    ========================================================================= */
 function previewEditingEnabled() {
   // Matches the left-hand editor: only the admin can author worksheets.
-  return isAdmin();
+  // Practice mode is always read-only, even for the admin.
+  return isAdmin() && !practiceMode;
 }
 
 function applyImageFile(file, onDone) {
@@ -2800,6 +2931,20 @@ function renderPreviewElement(el, ctx = {}) {
         if (showAnswers && el.correctId === opt.id) {
           item.classList.add('correct-preview');
         }
+        if (practiceMode) {
+          const selected = practiceResponses.get(el.id) === opt.id;
+          if (selected) item.classList.add('selected');
+          if (practiceChecked && el.correctId) {
+            if (opt.id === el.correctId) item.classList.add('correct-answer');
+            else if (selected) item.classList.add('wrong-answer');
+          } else if (!practiceChecked) {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', () => {
+              practiceResponses.set(el.id, opt.id);
+              renderPreview();
+            });
+          }
+        }
         const radio = document.createElement('div');
         radio.className = 'option-radio';
         if (editable) {
@@ -2836,6 +2981,35 @@ function renderPreviewElement(el, ctx = {}) {
       prefix.className = 'answer-field-prefix';
       prefix.textContent = el.label || 'Ans :';
       if (editable) attachInlineText(prefix, () => el.label || '', (v) => { el.label = v; }, 'Ans :');
+      row.appendChild(prefix);
+
+      if (practiceMode) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'practice-answer-input';
+        input.placeholder = 'Type your answer…';
+        input.value = practiceResponses.get(el.id) || '';
+        input.disabled = practiceChecked;
+        input.addEventListener('input', () => { practiceResponses.set(el.id, input.value); });
+        if (practiceChecked && el.answer) {
+          const expected = normalizeAnswer(el.answer);
+          const got = normalizeAnswer(input.value);
+          if (got && got === expected) input.classList.add('correct');
+          else if (got) input.classList.add('wrong');
+        }
+        row.appendChild(input);
+        if (practiceChecked && el.answer) {
+          const wrap = document.createElement('div');
+          wrap.appendChild(row);
+          const model = document.createElement('div');
+          model.className = 'practice-model-answer';
+          model.innerHTML = '<strong>Suggested answer:</strong> ' + formatTextWithFractions(el.answer);
+          wrap.appendChild(model);
+          return wrap;
+        }
+        return row;
+      }
+
       const line = document.createElement('span');
       line.className = 'answer-field-line';
       if (showAnswers && el.answer) {
@@ -2844,7 +3018,6 @@ function renderPreviewElement(el, ctx = {}) {
       } else {
         line.innerHTML = '&nbsp;';
       }
-      row.appendChild(prefix);
       row.appendChild(line);
       return row;
     }
@@ -3520,6 +3693,18 @@ document.getElementById('worksheetSubtitle').addEventListener('input', (e) => {
 });
 document.getElementById('showAnswersToggle').addEventListener('change', (e) => {
   showAnswers = e.target.checked;
+  renderPreview();
+});
+
+document.getElementById('practiceModeBtn').addEventListener('click', () => {
+  practiceMode = !practiceMode;
+  practiceChecked = false;
+  practiceResponses.clear();
+  const btn = document.getElementById('practiceModeBtn');
+  btn.textContent = practiceMode ? '✕ Exit practice' : '✏️ Practice mode';
+  btn.classList.toggle('btn-primary', practiceMode);
+  document.body.classList.toggle('practice-mode', practiceMode);
+  renderEditor();
   renderPreview();
 });
 
