@@ -1,0 +1,284 @@
+{
+  "exam": "PSLE 2016 Science",
+  "paper_code": "0009/02 (B)",
+  "year": 2016,
+  "booklet": "B",
+  "section": "Part II - Open-Ended",
+  "total_marks": 40,
+  "instructions": "For questions 31 to 44, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 31,
+      "total_marks": 2,
+      "context": "An animal M grows on the shell of a crab.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Animal M has a poisonous sting. Explain how the crab would benefit from its relationship with animal M."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Animal M can also grow on a rock. Explain why it is an advantage for animal M to grow on the crab instead of growing on a rock."
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "total_marks": 3,
+      "context": "To store seeds for long periods of time, a farmer placed them in a large underground hole as shown. The hole was filled completely with seeds and the opening was sealed to prevent rainwater and air from entering. After some time, the farmer found that seeds in the outer layer of the hole germinated but the seeds at the centre of the hole did not germinate.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "After some time, the farmer found that seeds in the outer layer of the hole germinated but the seeds at the centre of the hole did not germinate. Explain why."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Would the seeds at the centre of the hole decompose after some time? Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 3,
+      "context": "At the beginning, island Q had plants and animals but island R had no plants and no animals. A few years later, island R started to have plants. Later on, animals were also found there.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Suggest one way how island R started to have plants."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Give a reason why animals could be found living on island R only after plants were found growing there."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "After some time, a scientist observed that the population of animals on island Q remained constant but the population of animals on island R increased rapidly.",
+          "question": "Explain why the population on island R increased rapidly."
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 4,
+      "context": "The diagram shows white and black moths. The moths frequently rest on tree trunks. The bark of tree trunks in Town A was light in colour.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Which moth would survive better in Town A? Explain your answer."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "After several years, air pollution caused the bark of tree trunks in Town A to turn dark in colour.",
+          "question": "Based on this information, what would happen to the population size of both moths in Town A after several years? Explain your answer."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "The life cycle of the moth is similar to that of the butterfly. The graph shows the mass of a moth during different stages of its life cycle (A → B → C → D with mass changing).",
+          "question": "Name stage C of the life cycle of the moth. Suggest a reason why there is no gain in mass during stage C."
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 3,
+      "context": "Samy conducted an experiment using the set-ups below. He placed four similar test tubes A, B, C and D in different corners of a dim room. A = plant 15 cm from lamp (no fan); B = plant 60 cm from lamp (no fan); C = plant 15 cm from fan; D = plant 60 cm from fan. The graph shows the amount of water in the test tubes over time (D loses most, then B, then C, then A).",
+      "parts": [
+        {
+          "part": "a",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Explain why different distances of light from the plant affect the amount of water lost."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Which variable, light or wind, has a greater effect on the amount of water lost? Give a reason for your answer."
+            }
+          ]
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "Samy observed that a plant P growing in a sunny area has smaller leaves than the same type of plant growing in a shaded area.",
+          "question": "Based on Samy's experiment, suggest a reason why leaf A is smaller in size than leaf B."
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "total_marks": 2,
+      "context": "A greenhouse provides a suitable environment for growing certain crops. A farmer planted some strawberries in his greenhouse. To produce sweet strawberries, he must ensure that the plants get at least 8 hours of sunlight daily.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Suggest how having at least 8 hours of sunlight daily may help in producing sweet strawberries."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "In some cold countries, greenhouses are built next to a power station. There are pipes to transport the waste gases and heat produced by the power station to the greenhouses.",
+          "question": "Suggest one benefit of this arrangement to the environment."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 3,
+      "context": "Liwen conducted an experiment using four identical test tubes as shown. After a few hours, a drop of liquid Y was added to each tube. When liquid Y was added, the colour of water changed according to the amount of carbon dioxide present. A: water only with light; B: plant with light; C: plant with snail with light; D: snail with black box. The scale shows colour from purple (low CO2) to red (medium) to yellow (high).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Each number below represents a different colour. The number for the colour of water in tubes B and D. Suggest a number for the colour of the water in tubes B and D."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Liwen predicted that tube C has more carbon dioxide than tube A. However, her friend Santhi said that this may not be true.",
+          "question": "Explain why tube C may not have more carbon dioxide than tube A."
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 2,
+      "context": "When air became very cold suddenly, cracks appeared on the pavement (with cold wind above and warm soil below).",
+      "question": "Explain how the change in temperature caused the pavement to crack.",
+      "marks": 2
+    },
+    {
+      "number": 39,
+      "total_marks": 3,
+      "context": "Xiaoming conducted an experiment using the set-ups shown. The two beakers were identical and contained hot water at the same temperature. Set-up A: beaker of hot water on a block of wood with thermometer and wooden cover. Set-up B: beaker of hot water inside a larger glass container with air, wooden cover.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "After some time, Xiaoming found that the temperature of water in set-up B was higher than that in set-up A. Explain why."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "Animal Q below lives in cold countries. It has a thick layer of fur on its body.",
+          "question": "Based on the results of Xiaoming's experiment, explain how the thick layer of fur of animal Q would help to keep it warm."
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 3,
+      "context": "Jiaxian used the set-up shown to investigate the magnetic force between two magnets. Diagram 1: magnet A on top of magnet B with wooden rod through them. Diagram 2: similar set-up with distance P between A and B.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Explain why magnet A stayed in the same position above magnet B as shown in Diagram 1."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Jiaxian pushed magnet A towards magnet B as shown in Diagram 2. He found that he needed to push harder as distance P decreased. Explain why."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "A toy ball, G, floated above a base because of magnetic force as shown in Diagram 3. A second toy ball, H, had a rod through its centre that was connected to a base as shown in Diagram 4. Both balls were made of the same material and one the same size. Jiaxian rotated both balls with the same amount of force. Explain why H stopped rotating around the rod after a few rounds but G continued to rotate many more rounds before stopping.",
+          "question": "Explain why H stopped rotating around the rod after a few rounds but G continued to rotate many more rounds before stopping."
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "total_marks": 3,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "context": "Huiling's mother bought a new pot that has a layer of material that prevents food from sticking to its surface during cooking. Huiling's mother stopped her when she wanted to use a metal scrub to clean the pot.",
+          "question": "Explain how the metal scrub will damage the pot."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Huiling wanted to find out the hardness of two materials H and F. She used a rounded object made of material G and forced it into each material with the same force. The results of her experiment are shown below. Rounded object of G pressed 3 mm into object of material H; rounded object of G pressed 1 mm into object of material F.",
+          "question": "List materials F, G, H in increasing order of hardness. Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "total_marks": 3,
+      "context": "Haziq used the set-up shown to find out how the type of bulb affects the temperature of its surrounding. Bulb R was lit up. He covered the box and recorded the temperature of the air in the box over a period of 10 minutes. Then he removed bulb R and lit the box once uncovered for 15 minutes before repeating the experiment with bulb S and then bulb T. Results: Bulb R: 25 → 30 °C; Bulb S: 25 → 33 °C; Bulb T: 25 → 36 °C.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Fill in the boxes to show the energy changes in the bulb. (energy → ___ energy + ___ energy)"
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Give a reason why Haziq left the box uncovered for 15 minutes before repeating the experiment with the next bulb."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Which bulb, R, S or T should Haziq use to light up his room so as to reduce energy used by the air conditioner? Give a reason for your answer."
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "total_marks": 3,
+      "context": "An inflated balloon was placed in a toy rocket as shown below. When air was released from the balloon, the toy rocket moved upwards. (Diagram shows H = highest point, G = launch.)",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "After moving some distance, no more air was released from the balloon at G. Explain why the toy rocket was still able to move from point G to the highest point H and then fell downwards."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "The diagram below shows the path of a balloon moving in many different directions when air escapes from it.",
+          "question": "If there is no wind in the room, suggest a reason why the balloon does not move in a straight line."
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "total_marks": 3,
+      "context": "A ride at an amusement park for children becomes unsafe when the mass of a child is too high. Therefore, a child can board the ride only if his/her mass is less than 40 kg. Set-up A is used to detect a child with mass of 40 kg or more (child stands on a metal plate with spring underneath that closes contacts to light a bulb when pressed).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "What type of material are the contacts made of? Why?"
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "An engineer says that the design of set-up A is not safe. He says it will be safer if the bulb lights up when a child of acceptable mass stands on it. Give a reason why the design of set-up A is not safe."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "How should set-up A be changed to allow a child who is 50 kg and below to board the ride?"
+        }
+      ]
+    }
+  ]
+}
