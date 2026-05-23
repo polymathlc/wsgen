@@ -1,0 +1,272 @@
+{
+  "exam": "PSLE 2022 Science",
+  "paper_code": "0009/2 (B)",
+  "year": 2022,
+  "booklet": "B",
+  "section": "Open-Ended",
+  "total_marks": 44,
+  "duration": "1 hour 45 minutes (total for Booklets A and B)",
+  "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 29,
+      "total_marks": 3,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State what deforestation is."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "State the effect of deforestation on the gases in the surroundings. Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "total_marks": 4,
+      "context": "The table shows the processes taking place in organs J and K. Digestion of food: J ✗, K ✓. Absorption of water: J ✓, K ✗. Chewing of food into smaller pieces: J ✗, K ✓. (Key: ✓ present, ✗ absent)",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State what digestion is."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Identify organs J and K."
+        },
+        {
+          "part": "c",
+          "context": "The diagram represents the flow of blood towards (P) and away from (Q) the small intestine.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Name two substances which are at a higher amount in the blood at Q than P."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Name one substance which is at a higher amount in the blood at P than Q."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "total_marks": 4,
+      "context": "Nicole wanted to study whether liquid T is more effective in killing bacteria compared to soap. Nicole rubbed her right thumb on a table top and cleaned her thumb using soap. She recorded the number of bacteria on her thumb at 3 minutes and at 1 hour after cleaning with soap. The process was repeated using liquid T instead of soap. Results (bar graph) show: using soap - more bacteria at 1 hour than at 3 minutes; using liquid T - few bacteria at both times.",
+      "parts": [
+        {
+          "part": "a",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State what Nicole can conclude about the effectiveness of liquid T."
+            },
+            {
+              "part": "ii",
+              "marks": 2,
+              "question": "Explain your answer in (a)(i)."
+            }
+          ]
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State how using the same thumb instead of other fingers helped to make the study a fair test."
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "total_marks": 4,
+      "context": "Diagram 1 shows an outdoor toilet for collecting human waste, with a tube carrying gases from the waste to equipment X. Diagram 2 shows equipment X (a clear plastic dome that traps and kills mosquitoes) with an opening through which mosquitoes enter.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State why mosquitoes like to lay their eggs on waste."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Gases are given out by waste. Name one group of living things that produces the gases and state the process."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Gases given out by the waste were carried in a tube to equipment X and released at the opening. Suggest why the gases released at the opening attracted mosquitoes."
+        },
+        {
+          "part": "d",
+          "marks": 1,
+          "question": "The opening allows air and mosquitoes to enter the clear plastic dome. Suggest why mosquitoes trapped in the clear dome die quickly."
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 3,
+      "context": "John left a piece of stem standing in red coloured water for one hour. The top of the stem was stained red after one hour.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Name the part of the stem that was stained red and state its function."
+        },
+        {
+          "part": "b",
+          "context": "John wanted to find out if temperature affects the rate of movement of water in stems. He used three similar pieces of stem and three identical beakers with the same amount of red coloured water.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State the variable that John should change in his experiment."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Suggest what John should measure to obtain the results."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 4,
+      "context": "George conducted an experiment to investigate the effect of temperature of the surrounding air on the rate of photosynthesis of plant P. The graph shows that the rate of photosynthesis increases as temperature increases from 10 to 30 °C. Many tiny openings are found on the underside of leaves of plant P. George measured the size of openings at different temperatures: 10 °C - 1 unit; 20 °C - 2 units; 30 °C - 5 units.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Using the results shown in the graph above, explain how the change in size of openings at higher temperatures help the plant."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "State two factors in the surroundings that George should keep constant for his investigation."
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 4,
+      "context": "Mingxin conducted an experiment on a string made of material R. He added a mass of 100 g and measured the length L of the string. He repeated this until the mass reached 1000 g. He then repeated the experiment with another string of the same thickness but made of material S to make a comparison. The graph shows: String R starts at length 60 cm and increases linearly to about 62.5 cm at 1000 g. String S starts at length 61 cm, increases steeply, levels off around 64 cm at 800 g and has no data beyond 800 g.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State the mass added when the length L of string S is 63 cm."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State the increase in length L of string R when the mass is increased from 0 to 800 g."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Explain why the experiment is not a fair comparison."
+        },
+        {
+          "part": "d",
+          "marks": 1,
+          "question": "Suggest why there were no results for the string made of material S beyond 800 g."
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "total_marks": 5,
+      "context": "Kumar set up an apparatus with two identical iron rods AB and CD fixed in place, connected to a battery and switch. PQ is an iron bar with a hammer at one end that rests on a fixed metal nail. A spring is fixed to a support and to PQ. Near the hammer end there is a fixed bell.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "When he closed the switch, the hammer struck the bell repeatedly to give a continuous 'ting … ting … ting' sound. Explain how the sound was produced."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Kumar replaced the spring with a stronger spring of the same size. When he closed the switch, the hammer struck the bell repeatedly. State one effect on the sound produced. Explain your answer."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "State the effect on the sound produced if the fixed metal nail is replaced with a wooden rod of the same size and shape. Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 5,
+      "context": "Peter has a flying bird toy. When he turns the handle, the rubber band becomes twisted and the plastic wings move up and down. Peter turned the handle 50 times and threw the toy into the air. The toy flew from A to B, then flew at the same height from B to C before stopping at D (path shown in Diagram 2).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Fill in the boxes with the main forms of energy when the toy is flying from A to B. (Rubber band → Toy: ___ + ___ + sound)"
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Explain why the toy flew lower and lower from C to D."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "question": "Peter added another rubber band of the same type to the toy. After turning the handle 50 times, he threw the toy into the air as before. Draw a curved line on Diagram 2 to show the new path of the toy."
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 2,
+      "context": "Fiona's bicycle had a flat tyre as shown in Diagram 1. After Fiona pumped air into the tyre, it became fully inflated as shown in Diagram 2.",
+      "question": "State two properties of air that caused the tyre to become fully inflated.",
+      "marks": 2
+    },
+    {
+      "number": 39,
+      "total_marks": 4,
+      "context": "Samy made a toy with two light bulbs. These are controlled by a switch.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "After one bulb blew, the other bulb did not light up when the switch was closed. State how the two bulbs were connected in the circuit."
+        },
+        {
+          "part": "b",
+          "marks": 3,
+          "question": "Samy changed to another circuit in the toy with two new bulbs, L and R, and the switch so that the bulbs work as described below: If one bulb blows, the other will still be lit. Both bulbs will light up only when the switch is closed. The diagram shows part of Samy's circuit (bulbs L and R, and a battery). Complete the circuit so that it will work as described."
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 2,
+      "context": "Tom prepared a turkey at room temperature and heated the oven to 160 °C. He placed the turkey in the oven to cook. After the turkey was cooked for two hours, he inserted a thermometer into the turkey to check the temperature as shown (thermometer reading around 70 °C).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State the temperature shown on the thermometer."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State why the temperature of the turkey is not 160 °C even after two hours in the oven."
+        }
+      ]
+    }
+  ]
+}
