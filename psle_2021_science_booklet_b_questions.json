@@ -1,0 +1,263 @@
+{
+  "exam": "PSLE 2021 Science",
+  "paper_code": "0009/02 (B)",
+  "year": 2021,
+  "booklet": "B",
+  "section": "Open-Ended",
+  "total_marks": 44,
+  "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 29,
+      "total_marks": 3,
+      "context": "The diagram shows a plant cell with parts R, S, P and Q labelled.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Name parts R and S."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "State the functions of P and Q."
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "total_marks": 4,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State the function of the human respiratory system. Include in your answer the gases involved."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Name three parts found in the human respiratory system."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "question": "Describe how the respiratory system works together with the circulatory system in our body."
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "total_marks": 3,
+      "context": "David ate a bowl of rice. Rice is digested into sugar. After three hours, the doctor measured the amount of sugar in different parts of the small intestine (Q, R and S). The chart shows: small amount of sugar at Q, large amount at R, very little at S.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "The amount of sugar increased between Q and R. Explain why."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "The amount of sugar decreased between R and S. Explain why."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Undigested food enters an organ after leaving the small intestine. Name this organ and state its main function."
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "total_marks": 4,
+      "context": "George wanted to find out about conditions that affect the breeding of mosquitoes. In an experiment, George recorded the number of mosquito eggs that hatched in a day out of 20 eggs at different temperatures. He repeated the experiment two more times. Results: 22 °C - 8, 12, 13; 28 °C - 16, 17, 19; 38 °C - 2, 0, 4.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Describe what George could conclude about the effect of temperature on the hatching of mosquito eggs."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "In another experiment, George dropped small balls into a well that contains water.",
+          "question": "From the diagram, state one physical property of the balls."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Explain how George's method reduces the breeding of mosquitoes."
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 4,
+      "context": "A bee has larva and pupa stages.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State one way a larva is different from a pupa."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Bee K collects nectar from flowers. Nectar contains water and sugar. After collecting the nectar, bee K puts it into a hole in the hive. The bee fans the nectar by beating its wings quickly to turn it into honey. Diagram 2 shows: nectar contains about 2 units sugar and 8 units water; honey contains about 2 units sugar and 1 unit water.",
+          "question": "Using the information above, suggest how honey is obtained from nectar and how the behaviour of bee K helps to turn nectar into honey."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Bee T is another type of bee. It is fiercer than bee K towards humans. When bee T mated with bee K, their offspring are also fiercer towards humans. Explain why these offspring behave differently from bee K."
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 4,
+      "context": "John cut out circular discs of equal size from a leaf. These leaf discs can still carry out their functions as a leaf for some time. He dropped one leaf disc into a clear container with liquid Y placed 10 cm from the lamp. John switched on the lamp and started the stopwatch. Bubbles were observed under the leaf discs after some time. John recorded the time taken for the disc to float to the surface of liquid Y. He repeated the experiment using fresh sets of liquid Y and leaf discs. He placed the containers at different distances from the lamp. Results: 10 cm - 8 s; 20 cm - 17 s; 30 cm - 28 s.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Name the process that occurred in the leaf disc. State how this process caused the leaf disc to rise to the surface of liquid Y."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Suggest two things John could do to obtain more reliable results."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "John repeated the experiment with water instead of liquid Y. He placed the container 10 cm away from the lamp. The leaf disc did not rise to the surface even after 200 s. Liquid Y provided the leaf discs with a larger amount of a substance than water. Name the substance."
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 2,
+      "context": "Fook Choy wore a face mask in an air-conditioned room. His spectacles became fogged when he breathed.",
+      "question": "Explain why his spectacles became fogged.",
+      "marks": 2
+    },
+    {
+      "number": 36,
+      "total_marks": 4,
+      "context": "Cars parked under the sun become hot quickly as heat that enters the cars cannot escape easily. Alex measured the temperature inside a car parked under the sun. He started timing immediately after the car was parked. The graph shows temperature starts at 30 °C, rises and levels off at 55 °C.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State what is temperature."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State the temperature of the surroundings."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "State the time taken for temperature to reach 40 °C."
+        },
+        {
+          "part": "d",
+          "marks": 1,
+          "context": "Alex put a film over a car window to reduce the amount of sunlight coming into the car. A bubble was seen between the film and the car window.",
+          "question": "Explain why the bubble became larger after some days."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 4,
+      "context": "Terrence drilled a small hole at the bottom of a pail and hung it above a plate. He filled the pail with water and let the water drip from the hole onto the plate. A sound sensor recorded the sound made by the water droplets. Results (graph) show 4 peaks of sound at roughly 10 s intervals from 0 to 40 s.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State the number of water droplets that fell on the plate in the first 30 s."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Suggest why the sound level is not zero between 10 s and 15 s."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "question": "Using the same apparatus, suggest two changes to increase the maximum sound level recorded by the sound sensor."
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 5,
+      "context": "Kumar set up the apparatus in Diagram 1 (wire coiled around a hollow metal cylinder connected to a battery and switch, with a bar hung from a string near point P). When he closed the switch, the bar swung towards point P. Kumar concluded that the bar is a magnet.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State if you agree with Kumar's conclusion. Explain your answer."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Kumar designed part of a game named 'Bobbing Carrots' (Diagram 2). An iron rod and a spring are fixed to the plastic carrot from below. The bottom end of the spring is fixed to a wooden board. When Kumar closes switch A, the carrot will drop below the hole.",
+          "question": "Explain why the carrot appears above the hole when Kumar opens switch A."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "question": "Suggest two ways to make the carrot drop into the hole faster while making sure that the carrot appears above the hole when the switch is opened."
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "total_marks": 3,
+      "context": "Charlie has a coin bank (shaped like a car).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Describe one way to find the volume inside the coin bank."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "The volume inside the coin bank is 200 cm³. Charlie has 200 similar coins. Each coin has a volume of 1 cm³. Explain why Charlie cannot put all 200 coins into the coin bank."
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 4,
+      "context": "Samy compressed a spring to launch a toy rocket in a room. There was no wind. The rocket travels up a ramp, reaches point H at the top of its path, then lands on a hard floor. He measured the distance moved by the rocket for each try. Results: 2.0 cm compression - 4.2, 5.1 cm; 4.0 cm - 20.5, 18.6 cm; 6.0 cm - 46.0, 49.4 cm; 8.0 cm - 81.5, 86.2 cm.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State the relationship between the compression of spring and the distance moved by the rocket."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Name the force(s) acting on the rocket at G when it is moving up the ramp and not touching the spring."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Name the main form(s) of energy of the rocket at H."
+        },
+        {
+          "part": "d",
+          "marks": 1,
+          "question": "Samy decided to repeat his experiment on a sand pit. Explain how this will help him obtain more accurate results."
+        }
+      ]
+    }
+  ]
+}
