@@ -1,0 +1,567 @@
+{
+  "exam": "PSLE 2023 Science",
+  "paper_code": "0009/2",
+  "year": 2023,
+  "total_marks": 100,
+  "duration": "1 hour 45 minutes",
+  "booklets": [
+    {
+      "booklet": "A",
+      "paper_code": "0009/2 (A)",
+      "section": "Multiple Choice",
+      "total_marks": 56,
+      "instructions": "For each question from 1 to 28, four options are given. One of them is the correct answer. Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.",
+      "questions": [
+        {
+          "number": 1,
+          "marks": 2,
+          "question": "What is one effect of deforestation?",
+          "options": {
+            "1": "more types of plants and animals",
+            "2": "increase in carbon dioxide",
+            "3": "increase in oxygen",
+            "4": "lower temperature"
+          }
+        },
+        {
+          "number": 2,
+          "marks": 2,
+          "question": "Which group of organisms have a three-stage life cycle?",
+          "options": {
+            "1": "beetle, chicken and frog",
+            "2": "chicken, frog and grasshopper",
+            "3": "butterfly, frog and grasshopper",
+            "4": "beetle, chicken and cockroach"
+          }
+        },
+        {
+          "number": 3,
+          "marks": 2,
+          "question": "Study the following structures. (Structures R and S of a seed are shown.) Structures R and S help the seeds to ______.",
+          "options": {
+            "1": "obtain sunlight",
+            "2": "obtain water",
+            "3": "germinate",
+            "4": "disperse"
+          }
+        },
+        {
+          "number": 4,
+          "marks": 2,
+          "question": "The diagram shows the human digestive system (organs labelled A, B, C, D, E). Which graph correctly shows the amount of undigested food leaving each organ A, B, C, D and E after a heavy meal?",
+          "options": {
+            "1": "Graph 1 (organs in order E B A D C)",
+            "2": "Graph 2 (organs in order A B C D E)",
+            "3": "Graph 3 (organs in order D C B A E)",
+            "4": "Graph 4 (organs in order E D C B A)"
+          }
+        },
+        {
+          "number": 5,
+          "marks": 2,
+          "question": "The table shows how animals can be grouped: A = Gives birth & Can swim; B = Lays eggs & Can swim; C = Gives birth & Cannot swim; D = Lays eggs & Cannot swim. The diagram shows animal X (a bird with beak, feathers and webbed feet). Which group does animal X belong to?",
+          "options": {
+            "1": "A",
+            "2": "B",
+            "3": "C",
+            "4": "D"
+          }
+        },
+        {
+          "number": 6,
+          "marks": 2,
+          "question": "The graph shows the number of bacteria P and Q at different temperatures. Which temperature is the most suitable for both bacteria P and Q to grow?",
+          "options": {
+            "1": "20 °C",
+            "2": "25 °C",
+            "3": "30 °C",
+            "4": "38 °C"
+          }
+        },
+        {
+          "number": 7,
+          "marks": 2,
+          "question": "George wrapped and tied a black plastic bag around part of a green plant as shown (leaves exposed to light above the bag). Food produced by the exposed leaves is transported ______.",
+          "options": {
+            "1": "upwards only by the water carrying tubes",
+            "2": "downwards only by the food carrying tubes",
+            "3": "upwards and downwards by the food carrying tubes",
+            "4": "upwards and downwards by both the water and food carrying tubes"
+          }
+        },
+        {
+          "number": 8,
+          "marks": 2,
+          "question": "The diagram shows the female part of a flower with three sections P, Q and R. Which statement(s) is/are correct? A: P is where pollen grains land. B: Q is where fertilisation occurs. C: R is where a seed develops.",
+          "options": {
+            "1": "A only",
+            "2": "A and C only",
+            "3": "B and C only",
+            "4": "A, B and C"
+          }
+        },
+        {
+          "number": 9,
+          "marks": 2,
+          "question": "Devi wanted to know if substance S could keep ants away. She conducted an experiment using two identical glass containers P and Q. In P, she put in some ants, food and substance S as shown. Which diagram shows correctly what must Devi put into glass container Q for a fair test?",
+          "options": {
+            "1": "Glass Q with ants and food only (no substance S)",
+            "2": "Glass Q with ants and substance S only",
+            "3": "Glass Q with food only",
+            "4": "Glass Q with ants and substance S (different setup)"
+          }
+        },
+        {
+          "number": 10,
+          "marks": 2,
+          "question": "The graph shows how the amount of light affects the rate of photosynthesis. Sherwin: 'The rate of photosynthesis increases when the amount of light increases from 0 to 1500 units.' Michael: 'Above 1500 units, increasing the amount of light has no effect on the rate of photosynthesis.' Who is/are correct?",
+          "options": {
+            "1": "Sherwin only",
+            "2": "Michael only",
+            "3": "Both Sherwin and Michael",
+            "4": "Neither Sherwin nor Michael"
+          }
+        },
+        {
+          "number": 11,
+          "marks": 2,
+          "question": "Which term is given to all the grasshoppers shown in a garden?",
+          "options": {
+            "1": "population",
+            "2": "predator",
+            "3": "habitat",
+            "4": "community"
+          }
+        },
+        {
+          "number": 12,
+          "marks": 2,
+          "question": "Jeanie used four similar leaves, A, B, C and D, of the same mass to conduct an experiment. These leaves have more stomata (tiny openings) on their bottom surfaces than on their top surfaces. Leaves lose water through their stomata. Treatments: A = no oil; B = oil on bottom surface; C = oil on top surface; D = oil on top and bottom surfaces. After the leaves were left in an open area for an hour, she removed the oil and measured the mass of each leaf. Which shows the mass of the leaves in increasing order?",
+          "options": {
+            "1": "A, B, C, D",
+            "2": "A, C, B, D",
+            "3": "D, B, C, A",
+            "4": "D, C, B, A"
+          }
+        },
+        {
+          "number": 13,
+          "marks": 2,
+          "question": "Fatimah investigated the effect of light on the germination and growth of plant M. She placed three seeds in each of two identical containers, R and S, and watered them daily. R was placed in a well-lit room, while S was placed in a dark room. Both rooms were kept at the same temperature. On Day 5, she observed R (well-lit room) with shorter green plants and S (dark room) with taller pale plants. What can she conclude from the investigation? A: The seeds need warmth for germination. B: The seeds do not need light for germination. C: The seedlings grow faster in the dark.",
+          "options": {
+            "1": "A only",
+            "2": "B only",
+            "3": "B and C only",
+            "4": "A, B and C"
+          }
+        },
+        {
+          "number": 14,
+          "marks": 2,
+          "question": "Jiamin placed five fruit flies in a jar containing food and water. The diagram shows the number of fruit flies over 25 days (Day 1 alive, Day 10 more flies, Day 17 even more, Day 25 dead flies). Which row gives the correct conclusion based on observation from Day 1 to Day 17 and the possible reason for death of flies from Day 17 to Day 25?",
+          "options": {
+            "1": "Living things respond / Not enough air for the flies",
+            "2": "Living things reproduce / Not enough air for the flies",
+            "3": "Living things respond / Disease",
+            "4": "Living things reproduce / Disease"
+          }
+        },
+        {
+          "number": 15,
+          "marks": 2,
+          "question": "A crab is covered in a shell made of material W. The shell protects the internal organs of the crab. Which property of material W allows the shell to perform these functions?",
+          "options": {
+            "1": "ability to float on water",
+            "2": "flexibility",
+            "3": "strength",
+            "4": "waterproof"
+          }
+        },
+        {
+          "number": 16,
+          "marks": 2,
+          "question": "The diagram shows a water cycle (A = river, B = cloud, C = rain). Which process(es) represent(s) condensation?",
+          "options": {
+            "1": "A only",
+            "2": "B only",
+            "3": "C only",
+            "4": "B and C only"
+          }
+        },
+        {
+          "number": 17,
+          "marks": 2,
+          "question": "Zhiming held magnet A on a slope. He placed magnet B at the top of the slope. Magnet B moved down the slope before coming to a stop as shown. Which force(s) acted on magnet B when it stopped? (Key: ✓ yes, ✗ no for Friction, Gravitational force, Magnetic force)",
+          "options": {
+            "1": "Friction ✗ / Gravitational ✓ / Magnetic ✗",
+            "2": "Friction ✗ / Gravitational ✗ / Magnetic ✓",
+            "3": "Friction ✓ / Gravitational ✓ / Magnetic ✗",
+            "4": "Friction ✓ / Gravitational ✓ / Magnetic ✓"
+          }
+        },
+        {
+          "number": 18,
+          "marks": 2,
+          "question": "Some workers unrolled a netting to keep people out of a work area. Based on the properties shown (strong, flexible, allows light to pass through), which material is most suitable for making the netting?",
+          "options": {
+            "1": "A: strong ✓, flexible ✓, allows light ✓",
+            "2": "B: strong ✗, flexible ✓, allows light ✓",
+            "3": "C: strong ✓, flexible ✓, allows light ✗",
+            "4": "D: strong ✓, flexible ✗, allows light ✗"
+          }
+        },
+        {
+          "number": 19,
+          "marks": 2,
+          "question": "A worker wants to fit a metal rim onto a metal wheel as shown. The wheel is too big for the rim. How could the worker fit the rim on the wheel?",
+          "options": {
+            "1": "heat the rim and place it over the wheel",
+            "2": "heat the wheel and place it in the rim",
+            "3": "cool the rim and place it over the wheel",
+            "4": "cool the wheel and rim to the same temperature and push them together"
+          }
+        },
+        {
+          "number": 20,
+          "marks": 2,
+          "question": "Ai Choo lighted a candle inside a paper lantern as shown (metal wire, paper, part X, flame, candle, cardboard base). After a while, part X of the paper lantern became brown and started to burn. Which statement best explains why part X started to burn?",
+          "options": {
+            "1": "Air is a bad conductor of heat.",
+            "2": "Metal is a good conductor of heat.",
+            "3": "Paper is a poor conductor of heat.",
+            "4": "The cardboard base is a poor conductor of heat."
+          }
+        },
+        {
+          "number": 21,
+          "marks": 2,
+          "question": "A bulb was connected in a circuit as shown. When the switch was closed, the bulb blew. What would have prevented the bulb from blowing?",
+          "options": {
+            "1": "adding a battery in series",
+            "2": "adding another switch in series",
+            "3": "closing the switch more slowly",
+            "4": "using fewer batteries"
+          }
+        },
+        {
+          "number": 22,
+          "marks": 2,
+          "question": "Hassan has a toy. When part S of the toy is pushed down, the ball moved as shown (path: part S → P → Q → into net). Which statement on forces is not correct?",
+          "options": {
+            "1": "A force pushed the ball up at P.",
+            "2": "A force is pulling the ball downwards at P.",
+            "3": "The ball slowed down from P to Q because of its weight.",
+            "4": "The ball started to fall at Q as the pushing force is used up."
+          }
+        },
+        {
+          "number": 23,
+          "marks": 2,
+          "question": "Which components can be placed at A and B of the circuit without changing the brightness of bulb L?",
+          "options": {
+            "1": "A: battery / B: bulb",
+            "2": "A: battery / B: wire",
+            "3": "A: bulb / B: wire",
+            "4": "A: wire / B: bulb"
+          }
+        },
+        {
+          "number": 24,
+          "marks": 2,
+          "question": "Leela measured the mass of object X (50.0 g) as shown in Diagram 1. Leela next placed object P above object X (Diagram 2 reads 50.0 g). She repeated the experiment with object Q (Diagram 3 reads 70.0 g). Which conclusion about objects P, Q and X is correct?",
+          "options": {
+            "1": "P: not a magnet / Q: magnet / X: non-magnetic material",
+            "2": "P: magnetic material / Q: magnet / X: magnetic material",
+            "3": "P: not a magnet / Q: magnetic material / X: magnet",
+            "4": "P: non-magnetic material / Q: magnet / X: magnet"
+          }
+        },
+        {
+          "number": 25,
+          "marks": 2,
+          "question": "Which of the following is not matter?",
+          "options": {
+            "1": "a beam of light",
+            "2": "a cloud in the sky",
+            "3": "a stream of water",
+            "4": "melting ice cream"
+          }
+        },
+        {
+          "number": 26,
+          "marks": 2,
+          "question": "Two different springs X and Y have the same length. When two identical blocks are placed on the springs, the results are as shown (X compressed by 4 cm, Y compressed by 4 cm under same blocks). Which graph correctly shows the relationship between the elastic spring force and the compression of the springs X and Y?",
+          "options": {
+            "1": "compression vs force: X steeper than Y",
+            "2": "compression vs force: Y steeper than X",
+            "3": "compression vs force: Y above X (decreasing)",
+            "4": "compression vs force: X above Y (decreasing)"
+          }
+        },
+        {
+          "number": 27,
+          "marks": 2,
+          "question": "Gopal set up the experiment shown to investigate the force needed to move an object. The table shows: A: mass 20 g, surface area 4 cm², force 4.0 units; B: mass 20 g, surface area 8 cm², force 4.1 units; C: mass 40 g, surface area 4 cm², force 8.0 units; D: mass 40 g, surface area 8 cm², force 7.9 units. Which two experiments support the hypothesis: 'The force needed to move an object is not affected by the surface area of the object in contact with the table'?",
+          "options": {
+            "1": "A and B",
+            "2": "A and C",
+            "3": "B and C",
+            "4": "B and D"
+          }
+        },
+        {
+          "number": 28,
+          "marks": 2,
+          "question": "The length of Eve's shadow near a lamp post over some time is as shown (length decreases then increases). What was Eve doing during that time?",
+          "options": {
+            "1": "walking towards the lamp post",
+            "2": "walking away from the lamp post",
+            "3": "jumping up and down near the lamp post",
+            "4": "standing still near the lamp post"
+          }
+        }
+      ]
+    },
+    {
+      "booklet": "B",
+      "paper_code": "0009/2 (B)",
+      "section": "Open-Ended",
+      "total_marks": 44,
+      "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+      "questions": [
+        {
+          "number": 29,
+          "total_marks": 4,
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "Use a pencil to draw the life cycle of a mosquito using only words and arrows."
+            },
+            {
+              "part": "b",
+              "marks": 1,
+              "question": "State one characteristic of the adult mosquito that classifies it as an insect."
+            },
+            {
+              "part": "c",
+              "marks": 2,
+              "question": "John studied the effect of temperature on the life cycle of mosquitoes. His findings (number of days to complete one life cycle decreases as temperature increases) are as shown. Explain how global warming will affect the life cycle of mosquitoes and the number of adult mosquitoes."
+            }
+          ]
+        },
+        {
+          "number": 30,
+          "total_marks": 4,
+          "context": "The table shows the amount of blood transported per minute to some parts of the body when a person is resting and jogging. Leg muscles: Resting 900, Jogging 4700. Digestive system: Resting 1200, Jogging 720.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 2,
+              "question": "Explain why there is an increase in the amount of blood transported to the leg muscles when jogging."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "question": "Using the information given, explain how the absorption of digested food is affected during jogging."
+            }
+          ]
+        },
+        {
+          "number": 31,
+          "total_marks": 4,
+          "context": "A special disc can be used to find out how polluted water is. Polluted water has dirt in it. The disc is tied to a rope and lowered into water until it can no longer be seen. Yunxi used the same disc to measure the depth at which it can no longer be seen in three different lakes. Lake R: 345, 355, 355. Lake S: 750, 745, 755. Lake T: 580, 575, 585 (cm).",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "State one variable that was changed."
+            },
+            {
+              "part": "b",
+              "marks": 1,
+              "question": "Explain why the results were reliable."
+            },
+            {
+              "part": "c",
+              "marks": 2,
+              "question": "Based on Yunxi's results, identify the lake that was least polluted. Explain why."
+            }
+          ]
+        },
+        {
+          "number": 32,
+          "total_marks": 4,
+          "context": "A scientist made the following observations of organisms B, C, E, F and G: B and C live in the water, and feed on F. E lives on both land and water, and eats both B and C. G lives on land and feeds on E.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 2,
+              "question": "Draw a food web to show the relationships among all the organisms above."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "question": "Organism E builds a nest in water for shelter as shown (entrance to the nest below water). Using the food web in (a) and the information above, suggest two advantages of the nest for the survival of E. Explain your answer."
+            }
+          ]
+        },
+        {
+          "number": 33,
+          "total_marks": 3,
+          "context": "Organism P is made of one cell and it lives in a pond (chloroplast, nucleus, cytoplasm, cell membrane shown). Organism P can make its own food. Fiona placed some pond water with organism P in a dish (Diagram 1). She cut two holes in a sheet of aluminium foil and covered the dish (Diagram 2). She left the dish under bright light for some time. Diagram 3 shows what she observed when she removed the aluminium foil (organism P gathered under the holes).",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "Which part of the cell enables it to make its own food?"
+            },
+            {
+              "part": "b",
+              "marks": 1,
+              "question": "State the characteristic of living things that is shown by organism P."
+            },
+            {
+              "part": "c",
+              "marks": 1,
+              "question": "Suggest why organism P behaved as observed by Fiona."
+            }
+          ]
+        },
+        {
+          "number": 34,
+          "total_marks": 3,
+          "context": "Insect M lays an egg in the ovary of a flower of plant Y and rubs pollen grains on the stigma of the same flower. The egg of insect M hatches in the developing ovary and its young feeds on the seeds of plant Y.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "State the part of the flower that the fruit of plant Y develops from."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "question": "Explain how rubbing pollen grains on the stigma of the flower benefits both the plant and insect M."
+            }
+          ]
+        },
+        {
+          "number": 35,
+          "total_marks": 3,
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "Ali sprayed some hand sanitiser on his hand. State why Ali's hand became dry very quickly."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "question": "Ali sprayed more hand sanitiser on his hand again and blew on it. Explain why his hand felt colder than before."
+            }
+          ]
+        },
+        {
+          "number": 36,
+          "total_marks": 4,
+          "context": "Thomas carried out an experiment with a toy boat. He turned the propeller to twist the rubber band before releasing the boat into a bathtub filled with water. He measured the distance moved by the boat. There was no wind during the experiment. Results: 10 turns - First try 15.5, Second try 14.4 cm. 20 turns - 24.6, 26.3 cm. 30 turns - 39.2, 36.0 cm.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "State how the number of turns of the propeller affected the distance moved by the boat."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "question": "Fill in the boxes to show the energy conversion when the boat is moving (rubber band → propeller → boat)."
+            },
+            {
+              "part": "c",
+              "marks": 1,
+              "question": "Suggest a reason why the distance moved for both tries are different for 20 turns of the propeller when Thomas released the boat at the same edge of the bathtub."
+            }
+          ]
+        },
+        {
+          "number": 37,
+          "total_marks": 4,
+          "context": "Meimei cooked some vegetables using oil F in a heated pan. She measured the temperature of the pan before adding the vegetables and after the pan was washed. Her results (temperature vs time graph) show temperature rising, dropping when vegetables added, then rising again.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "State the room temperature."
+            },
+            {
+              "part": "b",
+              "marks": 1,
+              "question": "State the time at which she put the vegetables into the pan."
+            },
+            {
+              "part": "c",
+              "marks": 2,
+              "question": "After cooking, she poured the hot oil into the sink. Oil F has a melting point of 40 °C. Several months later, the water pipe below the sink was blocked by a solid at X. Explain why a solid was formed in the water pipe even though the sink protector prevented solid waste from entering."
+            }
+          ]
+        },
+        {
+          "number": 38,
+          "total_marks": 5,
+          "context": "In the circuit shown, P and Q are identical bulbs. All components are working. When switch S is closed, the iron bar moves up and down between points A and B, and bulb P turns on and off repeatedly.",
+          "parts": [
+            {
+              "part": "a",
+              "marks": 2,
+              "question": "Explain why the iron bar moves between A and B repeatedly."
+            },
+            {
+              "part": "b",
+              "marks": 1,
+              "question": "State which bulb(s) is/are lighted when the iron bar is at A."
+            },
+            {
+              "part": "c",
+              "marks": 2,
+              "question": "When the iron bar is at B, state how the brightness of bulb Q changes. Explain your answer."
+            }
+          ]
+        },
+        {
+          "number": 39,
+          "total_marks": 3,
+          "question": "Kenneth sets up an electric circuit in a toy using identical bulbs and batteries as shown. All the circuit components are working. When he closed the switch, the bulbs did not light up. Use a pencil to complete the circuit below. Correct the mistake(s). Connect the bulbs such that: if one blows, the other will still be lit; and the bulbs will light up only when the switch is closed.",
+          "marks": 3
+        },
+        {
+          "number": 40,
+          "total_marks": 3,
+          "parts": [
+            {
+              "part": "a",
+              "marks": 1,
+              "question": "State what boiling means."
+            },
+            {
+              "part": "b",
+              "marks": 2,
+              "context": "An engineer wanted to test if an electric pot can be used on a table with a thick glass top. He heated water in the pot for one hour.",
+              "subparts": [
+                {
+                  "part": "i",
+                  "marks": 1,
+                  "question": "Explain why part A of the glass top was hotter than part B."
+                },
+                {
+                  "part": "ii",
+                  "marks": 1,
+                  "question": "The glass top cracked after some time. Explain why."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
