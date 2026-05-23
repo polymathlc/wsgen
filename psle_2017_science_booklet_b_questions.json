@@ -1,0 +1,298 @@
+{
+  "exam": "PSLE 2017 Science",
+  "paper_code": "0009/02 (B)",
+  "year": 2017,
+  "booklet": "B",
+  "section": "Open-Ended",
+  "total_marks": 44,
+  "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 29,
+      "total_marks": 4,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "context": "The diagram shows half a seed. Part Q protects the baby plant.",
+          "question": "State another function of part Q."
+        },
+        {
+          "part": "b",
+          "context": "Melvin observed stages in the life of fish T and fish W as shown. Fish T: egg → young (stage 1, with stored food) → young (stage 2) → adult. Fish W: young → adult (gives birth to young).",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Based on Melvin's observation, state a characteristic of the young of fish T that helps it to survive in stage 1."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "State a characteristic of the young of fish W which gives it an advantage to survive compared to the young of fish T at stage 1. Explain your answer."
+            },
+            {
+              "part": "iii",
+              "marks": 1,
+              "context": "Fish T lays its eggs inside a cave as shown. It is known to protect its eggs.",
+              "question": "Explain how laying eggs in a cave helps fish T to protect its eggs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "total_marks": 4,
+      "context": "Bacteria M can cause illness when it is present in large numbers. Rahim conducted an experiment to find out how quickly bacteria M can reproduce when it is kept at different temperatures. Results: 30 °C: at start 1, 24 hrs later 120; 35 °C: 1, 250; 40 °C: 1, 130; 45 °C: 1, 60.",
+      "parts": [
+        {
+          "part": "a",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Describe how the amount of bacteria M changes with temperature."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "context": "Bacteria M can be found on raw food. The human body temperature is 37 °C.",
+              "question": "Based on the information given, suggest why bacteria M will reproduce quickly in the human intestines when raw food is eaten."
+            }
+          ]
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Rahim carried out a second experiment to find out if bacteria M can be killed at high temperatures. He heated the same amount of bacteria at different temperatures for 15 seconds. His results are shown above (graph showing amount of bacteria M left after 15 seconds vs temperature 80, 90, 100 °C - bacteria amount decreases as temperature increases). He cooked some raw food to 100 °C. The cooked food was left at 30 °C for several hours.",
+          "question": "Based on the results of Rahim's two experiments, explain why the cooked food may no longer be safe to eat."
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "total_marks": 2,
+      "context": "A farmer observed a food relationship on his farm: plant E → insect B. The farmer learnt that another insect, L, is a predator of insect B. Insect L also likes to feed on pollen. Using this information, he grew plant E between rows of plant D as shown.",
+      "question": "Based on the information above, explain how this farming method allows the farmer to grow plant E without pesticides.",
+      "marks": 2
+    },
+    {
+      "number": 32,
+      "total_marks": 4,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "context": "The diagram shows cells during a process H in the reproduction of an animal. Part C controls all the activities of the cell.",
+          "question": "Name part C."
+        },
+        {
+          "part": "b",
+          "context": "Process H also occurs in plant P. The diagram shows how a fruit is formed from the flower of plant P. The fruit of plant P has been cut open. flower → Process G → Process H → fruit (with seed J).",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Describe process G."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "State the part of the flower that J developed from."
+            }
+          ]
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "In a population of plant K, each plant has only red flowers or only white flowers.",
+          "question": "A farmer collected seeds from plant K with red flowers to grow new plants. Explain why the new plants will have only red flowers."
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 3,
+      "context": "A scientist carried out an experiment to measure the volume of blood supplied per minute to different parts of the human body during two activities: resting and running. Graph shows: legs - resting low, running very high; small intestine - resting moderate, running very low.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Describe how oxygen in the environment reaches the legs."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Using the graph above, explain how running after a meal affects the absorption of digested food in the small intestine."
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 5,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "context": "Four parts of a plant are shown below (stem, leaves, roots, flowers).",
+          "question": "Draw arrows in the diagram below to show how water is transported in a plant."
+        },
+        {
+          "part": "b",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Describe the process of photosynthesis in green plants."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "context": "Insect R eats its way into a tree trunk. This affects the growth of the roots of the tree.",
+              "question": "Explain why."
+            }
+          ]
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "context": "Plant T grows in a desert. It is able to store air in the leaves. Carl observed the cells of a leaf of plant T during the day (Day 45 °C: tiny opening closed) and at night (Night 9 °C: tiny opening open).",
+          "question": "Based on Carl's observations, explain how plant T is adapted for photosynthesis in a desert."
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 3,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "context": "A metal lid was fitted tightly onto an empty glass jar. Mary placed the lid in hot water.",
+          "question": "After a while, she found it easier to remove the lid. Explain why."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "A thick-walled glass placed in boiling water.",
+          "question": "When Mary took a cold thick-walled glass from a refrigerator and placed it in boiling water as shown above, the glass cracked. Explain why."
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "total_marks": 3,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State a difference between evaporation and boiling."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Fatimah fried some bananas and put two pieces each in box R (closed lid, no holes) and box S (lid with holes). She observed that the bananas in box R became slightly wet after some time, but not those in box S.",
+          "question": "Explain why the bananas in box R became wet."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 3,
+      "context": "Dingwei wanted to investigate how the number of batteries affects the number of paper clips attracted by a rod (electromagnet) using the set-up shown. He placed the rod 1 cm from some paper clips and counted the number of paper clips that were attracted to it. Results: 3 batteries - 6 clips; 4 batteries - 6 clips.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Name one suitable material for the rod."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Suggest two reasons why the number of paper clips attracted did not increase when the number of batteries was increased from three to four."
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 5,
+      "context": "Muthu performed an experiment on two different types of springs, P and Q, of the same length. He measured the extension of the spring after adding a mass. Results: Mass 100 g → P: 2.9 cm, Q: 1.9 cm; 200 g → 6.1, 4.0; 300 g → 9.0, 5.9; 400 g → 12.1, 8.1.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Based on his results, state the relationship between the mass and extension of spring P."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Explain the purpose of the pin in the set-up."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "Muthu used spring P to make a dish rack as shown in Diagram 2 (positions A, B, C on the stretched spring with a metal disc).",
+          "question": "When Muthu removed a few plates quickly from the top, the metal disc moved up continuously from A to C. Name the main forms of energy of the metal disc at B."
+        },
+        {
+          "part": "d",
+          "marks": 2,
+          "context": "Next, Muthu changed all the spring P to spring Q. He put back all the plates on the metal disc.",
+          "question": "Based on the results in Table 1, describe one difference Muthu will observe of the new dish rack with spring Q when he removes a plate from the top. Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "total_marks": 4,
+      "context": "John wanted to compare how fast a wooden block can move on different planks using the set-up below. He released the block, measured the distance moved by the block down the plank and the time taken.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "context": "A shorter plank made of the same material as R was placed at the same height, h. Will the block take a shorter, longer or the same time to reach the bottom of the plank?",
+          "question": "Explain your answer in terms of energy changes."
+        },
+        {
+          "part": "b",
+          "context": "John's results for plank R (graph of distance vs time, curve up to 80 cm by 2 s) shown. John repeated the experiment with a wooden plank of the same length. The wooden block moved down the plank more slowly.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State which graph, J, K, L or M shows the correct results for the wooden plank. (J highest curve, L next, K, M lowest)"
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Besides the height, h and the length of the plank, state two other variables that John must keep constant for the comparison."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 4,
+      "context": "Poh Lee wants to remove water from the ground using a water pump when it rains heavily. He uses the set-up: metal rods, water pump connected via rubber to metal container, ground level with metal sheet over wooden block, water enters container through hole at G.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State a property of rubber that allows the set-up to work properly."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Describe and explain how the water pump is turned on when it rains heavily."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Without using different apparatus, suggest one way to turn on the water pump when it rains less heavily. Explain your answer."
+        }
+      ]
+    }
+  ]
+}
