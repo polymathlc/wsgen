@@ -1,0 +1,300 @@
+{
+  "exam": "PSLE 2018 Science",
+  "paper_code": "0009/02 (B)",
+  "year": 2018,
+  "booklet": "B",
+  "section": "Open-Ended",
+  "total_marks": 44,
+  "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 29,
+      "total_marks": 3,
+      "context": "Unripe bananas are green and contain chlorophyll.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Bananas curve upwards when growing. Suggest a reason why bananas grow upwards."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Ripe bananas are yellow and give out gas X. Priya wants to investigate whether gas X will help unripe bananas to ripen more quickly. She has only the items below. She may use some or all of them. Item: ripe banana - Quantity 2; unripe banana - Quantity 2. Priya used two identical clear containers for her investigation.",
+          "question": "What item(s) should she put inside the container for each set-up? (Experimental set-up and Control set-up)"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "total_marks": 3,
+      "context": "The adult of bird K lays its egg in the nest of another type of bird, L. This only happens when the adult of bird L is not at its nest. Bird K flies away after laying its egg and does not return. The egg of bird K looks very similar to the eggs of bird L. The young of bird K grows more quickly than the young of bird L. Once it is big enough, it will push the smaller young of bird L out of the nest.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "The egg of bird K looks very similar to the eggs of bird L. Explain how this similarity helps bird K to survive."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "If more of bird K successfully lay their eggs in the nests of bird L, predict how the population size of bird L will change. Give a reason for your answer."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "The adults of bird L usually build their nests close together instead of far apart. Predict how the population size of bird K will change. Give a reason for your answer."
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "total_marks": 3,
+      "context": "A farmer measured the amount of light entering his greenhouse at four different times of the day. Results: 12 am - 25 units; 6 am - 50; 12 pm - 260; 6 pm - 150.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State at which time of the day the rate of photosynthesis is highest. Explain your answer."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "A greenhouse needs to be kept warm on cold days and cool on hot days. Some greenhouses have pockets of air in their roofs in order not to become too cold or hot. Between two sheets of material F is a pocket of air. The volume of each pocket could be changed as air is pumped into and out of the pocket.",
+          "question": "Explain how this set-up uses a property of air to allow greenhouses to keep warm on a cold day."
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "total_marks": 4,
+      "context": "Diagram 1 shows a process, R, that takes place in the life cycle of a coconut plant (coconut fruit in soil → process R → structure J grows above soil and structure K grows in soil).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Name process R."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State all the conditions needed for process R to take place."
+        },
+        {
+          "part": "c",
+          "context": "Diagram 2 shows some parts of a coconut fruit: fibrous husk (outermost), empty space, seed coat, fleshy solid P inside.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Solid P serves an important function in process R. Explain why this function is important before structure J as shown in Diagram 1 develops."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Explain how a characteristic of the coconut fruit as shown in Diagram 2 helps in its dispersal."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 5,
+      "context": "The Aedes mosquito spreads dengue fever in humans.",
+      "parts": [
+        {
+          "part": "a",
+          "context": "In Country X, the number of cases of dengue fever is affected by the amount of rainfall. Two graphs show: amount of rainfall (Jan-Dec) peaks Jul-Sep around 150-200 mm; number of dengue cases peaks Aug-Oct around 400-500.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 2,
+              "question": "State the relationship between the amount of rainfall and number of dengue cases for March to August. Explain why this relationship is observed."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "context": "The number of dengue cases takes about three to four weeks to change after the amount of rainfall changes. Dengue fever develops about two weeks after a person is bitten by an Aedes mosquito.",
+              "question": "Give another reason why the number of dengue cases does not change immediately after the amount of rainfall changes."
+            }
+          ]
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Male mosquitoes do not bite and do not spread dengue fever. When a male mosquito carrying bacteria W mates with a female mosquito, the eggs will not hatch.",
+          "question": "In 2016, male mosquitoes carrying bacteria W were released into some housing estates in Singapore. The number of dengue cases in these housing estates decreased after the release of these male mosquitoes. Explain why."
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 4,
+      "context": "A farmer grew some young plants far apart from one another to prevent overcrowding.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Explain why growing far apart from one another benefits the plants."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "The farmer found many tiny insects feeding on the stems of his plants during the day.",
+          "question": "These insects used their mouths to dig into the stems of the plants. Explain why these insects fed on the stems."
+        },
+        {
+          "part": "c",
+          "context": "The tiny insects produced drops of sweet, sticky substance from their bodies. Large ants could be found near these tiny insects but do not feed on them.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "Explain why it is an advantage for the large ants to be near the tiny insects."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "The tiny insects do not have wings and cannot move far. Explain why it is an advantage for the tiny insects to have the large ants near them."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 4,
+      "context": "Peter has a toy train that runs on batteries. He placed plates of food on the train as shown (toy train with food on a track, points G and H on the track).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "When he switched on the toy train, it moved along the track. Fill in the boxes below to show the energy conversion as the train is moving. (Battery → Wires → Train → ___ + ___)"
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Peter did not change the batteries. Give a reason why the train moved faster as the food was removed."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "context": "Peter placed a wooden block under the track at point H, raising it slightly above G.",
+          "question": "Explain why the train moved more slowly as it moved from G to H."
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "total_marks": 3,
+      "context": "Susan heated a beaker of water. She stopped heating when the water started to boil and recorded the temperature of the water every five minutes. Graph shows temperature starts at 100 °C and decreases over time, levelling off around 30 °C.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State what is temperature."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Based on the graph, state the room temperature."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Explain why it will be more accurate to record the temperature every minute for the first five minutes."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 3,
+      "context": "Seng Huat connected his phone to the electricity supply with a wire. The plug of the wire fitted the phone properly.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "The wire is covered with rubber. State a property of rubber that makes it safe for this use."
+        },
+        {
+          "part": "b",
+          "context": "Seng Huat held the phone by the wire. Diagram 2: phone hanging by wire, does not drop. Diagram 3: phone drops after a few seconds.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "The phone did not drop off immediately in Diagram 2. Explain why the phone did not drop off."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "The phone dropped to the ground after a few seconds as shown in Diagram 3. Explain, in terms of forces, why the phone dropped."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 4,
+      "context": "Carol wanted to set up a circuit to light up a corridor using two special switches. Each switch can be turned to position A or position B. She set up the circuit so that the bulb will be lit as described in the table below. Switch 1: A / Switch 2: A → Bulb Yes. A / B → No. B / A → No. B / B → Yes.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 3,
+          "question": "The diagram below shows part of the circuit. Complete the circuit so that it will work as described."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Carol wanted to add a new bulb to the circuit without decreasing the brightness of the first bulb when the circuit is closed. Describe how you would connect the new bulb to the circuit."
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "total_marks": 4,
+      "context": "A worker used a truck to deliver blocks of ice. A mist was seen when ice was taken out of the truck (truck with thick plastic strips at the door).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Explain how the mist was formed."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "The mist disappeared after a short time. Explain why."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Thick plastic strips were hung at the door to prevent the ice inside the truck from melting. Explain why."
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 4,
+      "context": "Samy set up a doorbell as shown. The iron cylinder and electric circuit are fixed in place. The iron rod can swing about point P. A spring is fixed to the iron rod. The other end of the spring is fixed. When Samy closed the switch, the iron rod hit the bell to produce a 'ding' sound. When he opened the switch, the iron rod hit plate R to produce a 'dong' sound.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Explain how the 'ding' sound is produced when Samy closed the switch."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Suggest two changes to the set-up to produce a louder 'ding' sound."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "question": "Without changing the iron rod and plate R, suggest a change to the set-up to produce a louder 'dong' sound. Explain your answer."
+        }
+      ]
+    }
+  ]
+}
