@@ -949,6 +949,93 @@
     font-weight: 600;
   }
 
+  /* Open-ended writing box: a stack of ruled lines for the student to fill in. */
+  .open-lines-box {
+    margin-top: var(--space-md);
+    border: 1.5px solid var(--text-primary);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    padding: 6px 14px 0;
+    overflow: hidden;
+  }
+  .open-lines-row {
+    height: 30px;
+    border-bottom: 1.2px solid var(--text-primary);
+    line-height: 30px;
+  }
+  .open-lines-row:last-child { border-bottom: none; }
+  .open-lines-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    color: var(--text-primary);
+    resize: vertical;
+    padding: 4px 0;
+    line-height: 30px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 29px,
+      var(--text-primary) 29px,
+      var(--text-primary) 30px
+    );
+    background-attachment: local;
+  }
+  .open-lines-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .open-lines-controls input[type="range"] { flex: 1; min-width: 140px; }
+  .open-lines-controls .open-lines-count {
+    font-weight: 700;
+    color: var(--accent-deep);
+    min-width: 56px;
+    text-align: right;
+  }
+  .open-lines-wrap { margin-top: var(--space-md); }
+  .open-lines-wrap .open-lines-box { margin-top: 6px; }
+  .open-lines-inline-ctrl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+  }
+  .open-lines-inline-label {
+    font-weight: 700;
+    color: var(--accent-deep);
+    min-width: 52px;
+    text-align: center;
+  }
+  .open-lines-step-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--border-medium);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background var(--transition-base), border-color var(--transition-base);
+  }
+  .open-lines-step-btn:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-base);
+  }
+
   .answer-key {
     margin-top: var(--space-md);
     padding: var(--space-md);
@@ -1610,6 +1697,8 @@ function makeElement(type) {
       return { ...base, text: '', dataUrl: '' };
     case 'video':
       return { ...base, url: '', caption: '' };
+    case 'openLines':
+      return { ...base, lines: 4 };
   }
 }
 function nextPartLabel() {
@@ -1669,6 +1758,7 @@ function renderEditorQuestion(q, qIndex) {
   addRow.appendChild(makeAddBtn('+ Part', () => addElement(q, 'part')));
   addRow.appendChild(makeAddBtn('+ MCQ', () => addElement(q, 'mcq')));
   addRow.appendChild(makeAddBtn('+ Answer field', () => addElement(q, 'answer')));
+  addRow.appendChild(makeAddBtn('+ Open-ended box', () => addElement(q, 'openLines')));
   addRow.appendChild(makeAddBtn('+ Answer key', () => addElement(q, 'answerKey')));
   addRow.appendChild(makeAddBtn('+ Video (Dropbox)', () => addElement(q, 'video')));
   card.appendChild(addRow);
@@ -2020,6 +2110,7 @@ function renderElementEditor(q, el, elIndex) {
     case 'part':       wrap.appendChild(buildPartEditor(el)); break;
     case 'mcq':        wrap.appendChild(buildMcqEditor(el)); break;
     case 'answer':     wrap.appendChild(buildAnswerEditor(el)); break;
+    case 'openLines':  wrap.appendChild(buildOpenLinesEditor(el)); break;
     case 'answerKey':  wrap.appendChild(buildAnswerKeyEditor(el)); break;
     case 'video':      wrap.appendChild(buildVideoEditor(el)); break;
   }
@@ -2057,6 +2148,67 @@ function buildAnswerEditor(el) {
   wrap.appendChild(wrapWithFractionTool(ansInput));
 
   return wrap;
+}
+
+function buildOpenLinesEditor(el) {
+  const wrap = document.createElement('div');
+
+  const lbl = document.createElement('label');
+  lbl.className = 'field-label';
+  lbl.textContent = 'Number of writing lines';
+  wrap.appendChild(lbl);
+
+  const row = document.createElement('div');
+  row.className = 'open-lines-controls';
+
+  const slider = document.createElement('input');
+  slider.type = 'range';
+  slider.min = '1';
+  slider.max = '20';
+  slider.step = '1';
+  slider.value = String(clampLines(el.lines));
+
+  const num = document.createElement('input');
+  num.type = 'number';
+  num.min = '1';
+  num.max = '40';
+  num.step = '1';
+  num.value = String(clampLines(el.lines));
+  num.style.width = '64px';
+  num.className = 'text-line';
+
+  const readout = document.createElement('span');
+  readout.className = 'open-lines-count';
+  readout.textContent = `${clampLines(el.lines)} line${clampLines(el.lines) === 1 ? '' : 's'}`;
+
+  const apply = (v) => {
+    el.lines = clampLines(v);
+    slider.value = String(Math.min(20, el.lines));
+    num.value = String(el.lines);
+    readout.textContent = `${el.lines} line${el.lines === 1 ? '' : 's'}`;
+    renderPreview();
+  };
+  slider.addEventListener('input', () => apply(slider.value));
+  num.addEventListener('input', () => apply(num.value));
+
+  row.appendChild(slider);
+  row.appendChild(num);
+  row.appendChild(readout);
+  wrap.appendChild(row);
+
+  const hint = document.createElement('div');
+  hint.style.cssText = 'margin-top:6px; font-size:var(--font-size-xs); color:var(--text-tertiary);';
+  hint.textContent = 'A bordered box with ruled lines for open-ended written answers. More lines = taller box.';
+  wrap.appendChild(hint);
+
+  return wrap;
+}
+
+function clampLines(v) {
+  const n = parseInt(v, 10);
+  if (!Number.isFinite(n) || n < 1) return 1;
+  if (n > 40) return 40;
+  return n;
 }
 
 function buildAnswerKeyEditor(el) {
@@ -2791,7 +2943,8 @@ function buildTagGroup(container, label, q, kind) {
 // buttons that insert a new element right after position `afterIndex`.
 const INSERT_TYPES = [
   ['Text', 'text'], ['Image', 'image'], ['Part', 'part'], ['MCQ', 'mcq'],
-  ['Answer field', 'answer'], ['Answer key', 'answerKey'], ['Video', 'video']
+  ['Answer field', 'answer'], ['Open-ended box', 'openLines'],
+  ['Answer key', 'answerKey'], ['Video', 'video']
 ];
 function buildInsertBar(q, afterIndex) {
   const bar = document.createElement('div');
@@ -3020,6 +3173,57 @@ function renderPreviewElement(el, ctx = {}) {
       }
       row.appendChild(line);
       return row;
+    }
+    case 'openLines': {
+      const n = clampLines(el.lines);
+      const wrap = document.createElement('div');
+      wrap.className = 'open-lines-wrap';
+
+      if (editable) {
+        const ctrl = document.createElement('div');
+        ctrl.className = 'open-lines-inline-ctrl';
+        const mk = (txt, title, delta) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'open-lines-step-btn';
+          b.textContent = txt;
+          b.title = title;
+          b.addEventListener('click', () => {
+            el.lines = clampLines((el.lines || 4) + delta);
+            renderPreview();
+          });
+          return b;
+        };
+        const label = document.createElement('span');
+        label.className = 'open-lines-inline-label';
+        label.textContent = `${n} line${n === 1 ? '' : 's'}`;
+        ctrl.appendChild(mk('−', 'Remove a line', -1));
+        ctrl.appendChild(label);
+        ctrl.appendChild(mk('+', 'Add a line', +1));
+        wrap.appendChild(ctrl);
+      }
+
+      const box = document.createElement('div');
+      box.className = 'open-lines-box';
+      if (practiceMode) {
+        const ta = document.createElement('textarea');
+        ta.className = 'open-lines-textarea';
+        ta.rows = n;
+        ta.style.height = (n * 30) + 'px';
+        ta.placeholder = 'Write your answer here…';
+        ta.value = practiceResponses.get(el.id) || '';
+        ta.disabled = practiceChecked;
+        ta.addEventListener('input', () => { practiceResponses.set(el.id, ta.value); });
+        box.appendChild(ta);
+      } else {
+        for (let i = 0; i < n; i++) {
+          const row = document.createElement('div');
+          row.className = 'open-lines-row';
+          box.appendChild(row);
+        }
+      }
+      wrap.appendChild(box);
+      return wrap;
     }
     case 'answerKey': {
       const block = document.createElement('div');
@@ -3250,6 +3454,11 @@ function elementToPrintHtml(el, qIndex, elIndex) {
     }
     case 'answer':
       return `<div class="answer-field"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><span class="answer-field-print-line"></span></div>`;
+    case 'openLines': {
+      const n = clampLines(el.lines);
+      const rows = Array.from({ length: n }, () => '<div class="open-lines-row">&nbsp;</div>').join('');
+      return `<div class="open-lines-box">${rows}</div>`;
+    }
     case 'answerKey':
       // Answer keys are not printed on student worksheets.
       return '';
@@ -3357,6 +3566,22 @@ body { background: #fff !important; padding: 0 !important; }
   border-bottom: 1.2px solid #1A1A1A;
   height: 1.2em;
 }
+
+.print-question .open-lines-box {
+  margin-top: 8px;
+  border: 1.2px solid #1A1A1A;
+  border-radius: 8px;
+  padding: 4px 10px 0;
+  background: #fff;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.print-question .open-lines-row {
+  height: 9mm;
+  border-bottom: 1px solid #1A1A1A;
+  line-height: 9mm;
+}
+.print-question .open-lines-row:last-child { border-bottom: none; }
 
 .print-option:hover { background: #fff !important; transform: none !important; border-color: #D4D4CF !important; }
 .print-option .option-radio { background: #fff !important; }
@@ -3521,6 +3746,11 @@ function elementToHtml(el, qIndex, elIndex) {
     case 'answer': {
       return `<div class="answer-field" data-answer="${escapeAttr(el.answer || '')}"><span class="answer-field-prefix">${escapeHtml(el.label || 'Ans :')}</span><input type="text" class="answer-field-input" placeholder="" /></div>`;
     }
+    case 'openLines': {
+      const n = clampLines(el.lines);
+      const heightPx = n * 30 + 12;
+      return `<div class="open-lines-box"><textarea class="open-lines-textarea" rows="${n}" style="height:${heightPx}px;" placeholder="Write your answer here…"></textarea></div>`;
+    }
     case 'answerKey': {
       const bodyText = (el.text && el.text.trim())
         ? `<div class="answer-key-body">${formatTextWithFractions(el.text)}</div>` : '';
@@ -3607,6 +3837,10 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .answer-field-input{flex:1; border:none; border-bottom:1.5px solid var(--text-primary); background:transparent; font:inherit; padding:2px 4px; outline:none;}
 .answer-field-input.correct{border-bottom-color:var(--correct-base); color:var(--correct-base); font-weight:600;}
 .answer-field-input.wrong{border-bottom-color:var(--wrong-base); color:var(--wrong-base);}
+.open-lines-box{margin-top:var(--space-md); border:1.5px solid var(--text-primary); border-radius:var(--radius-md); background:#fff; padding:6px 14px 0; overflow:hidden;}
+.open-lines-row{height:30px; border-bottom:1.2px solid var(--text-primary); line-height:30px;}
+.open-lines-row:last-child{border-bottom:none;}
+.open-lines-textarea{display:block; width:100%; border:none; outline:none; background:transparent; font:inherit; color:var(--text-primary); resize:vertical; padding:4px 0; line-height:30px; background-image:repeating-linear-gradient(to bottom, transparent 0, transparent 29px, var(--text-primary) 29px, var(--text-primary) 30px); background-attachment:local;}
 .answer-key-export{margin-top:var(--space-md); padding:var(--space-md); border-radius:var(--radius-md); background:var(--correct-bg); border:1.5px solid #C8E6C9;}
 .answer-key-export summary{cursor:pointer; font-weight:700; color:#43A047; text-transform:uppercase; font-size:var(--font-size-sm); letter-spacing:0.05em;}
 .answer-key-export .answer-key-body{margin-top:8px; white-space:pre-wrap;}
