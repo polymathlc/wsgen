@@ -1,0 +1,283 @@
+{
+  "exam": "PSLE 2019 Science",
+  "paper_code": "0009/02 (B)",
+  "year": 2019,
+  "booklet": "B",
+  "section": "Open-Ended",
+  "total_marks": 44,
+  "instructions": "For questions 29 to 40, write your answers in this booklet. The number of marks available is shown in brackets [ ] at the end of each question or part question.",
+  "questions": [
+    {
+      "number": 29,
+      "total_marks": 2,
+      "context": "The diagram shows insect P and flower Q. Insect P feeds on bees and butterflies and is often found sitting on flower Q. (Insect P looks like parts of flower Q.)",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Explain how looking like parts of flower Q is an advantage to insect P."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Explain how insect P sitting on flower Q is a disadvantage to flower Q."
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "total_marks": 3,
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "context": "The wings of a butterfly S have upper sides and undersides. Each side may be dull or bright red in colour. Xiaoli observed 50 butterflies S for each type of wing colour, K, L, M and N. For each type, she counted the number of butterflies that attracted a mate. Results: K (dull upper, dull under) ~10; L (dull upper, bright under) ~10; M (bright upper, dull under) ~50; N (bright upper, dull under) ~50. Xiaoli thinks that the wing colour of the upper side would affect the ability of butterfly S to attract a mate.",
+          "question": "Which two types of wing colour, K, L, M and N, did she use to arrive at this conclusion? Explain your answer."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "context": "The larva of butterfly S eats only the leaves of a plant which are poisonous. The poison does not affect the larva but is harmful to other organisms.",
+          "question": "Explain how the eating of the larva on a poisonous plant impacts the survival of butterfly S."
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "total_marks": 4,
+      "context": "Bird P is a pest found in large numbers in areas where people live. The droppings of bird P may carry diseases that are harmful to people.",
+      "parts": [
+        {
+          "part": "a",
+          "context": "Scientists introduced a substance S to the food of bird P in a town. The graph shows the changes in the number of births and deaths of bird P after substance S was introduced (over months 0 to 36).",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State how many months after the introduction of substance S did the number of births of bird P start to decrease."
+            },
+            {
+              "part": "ii",
+              "marks": 2,
+              "question": "Using information from the graph, suggest a possible way that substance S acted on bird P. Explain your answer."
+            }
+          ]
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Other than substance S, state another way to control the population size of bird P."
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "total_marks": 4,
+      "context": "Polar bears are mammals. They swim in the seas to look for food. After some time, they need to get out of the water to breathe and rest on the ice before entering the water again.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Give a reason why polar bears cannot breathe under water."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "State two forces acting on the polar bear as it walks on the ice."
+        },
+        {
+          "part": "c",
+          "marks": 2,
+          "context": "Due to global warming, the ice on the surface of sea water decreases in size as shown (size shrinks at higher temperature).",
+          "question": "Based on the information given, suggest how global warming affects the survival of polar bears. Explain your answer."
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "total_marks": 5,
+      "context": "Ravi wanted to investigate the conditions needed for leaf growth using three types of soil. Four pots of identical plants were placed in the same area within a garden. The diagram shows the four pots of plants after two weeks. Pot P: garden soil, water Yes. Pot Q: garden soil, water No. Pot R: sandy soil, water Yes. Pot S: clayey soil, water Yes.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "State which pots must be compared to conclude about the effect of each variable on leaf growth. (Variable: Type of soil / Availability of water — Pots to compare?)"
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "Ravi conducted a second experiment to find how the amount of fertiliser affects leaf growth. He conducted a fair test, planting the same number of plants in five big pots, V, W, X, Y and Z. The pots are filled with garden soil. Results: Amount of fertiliser (g): V=0, W=5, X=10, Y=15, Z=20. Average surface area of a leaf after two weeks (cm²): V=20, W=30, X=36, Y=20, Z=14.",
+          "question": "What can Ravi conclude about the effect of fertiliser on leaf growth?"
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "Explain why the results of Ravi's second experiment cannot be used to improve the leaf growth in pot S from his first experiment."
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "total_marks": 4,
+      "context": "Study the information below about organisms W, X, Y and Z. W: depends on X and Z to disperse its seeds. X: eats W. Y: eats W. Z: eats X.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Draw a food web to show the food relationships among organisms W, X, Y and Z."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "context": "The statements below describe the behaviours of organisms X and Z: X eats the whole fruit of W but cannot digest its seeds. Z catches X and flies far away from W before eating it. Z eats only the flesh of X but leaves the internal organs of X behind.",
+          "question": "Explain how these actions of Z ensure the survival of W."
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "total_marks": 3,
+      "context": "Mary has a pot of water with a layer of oil floating on top.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "Based on what you can observe from the diagram, state a physical property of oil."
+        },
+        {
+          "part": "b",
+          "context": "Mary put the pot in the refrigerator which is at a temperature of 4 °C. After a few hours, the oil froze and Mary removed it easily from the water.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State what freezing means."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "What can you tell about the melting point of oil?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "total_marks": 3,
+      "context": "Diagram 1 shows the front view of Kenneth's toy ambulance. He sets up an electric circuit in the toy using bulb P, a sound box S and batteries as shown in Diagram 2. All the circuit components are working.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "When he closes the switch, the bulb does not light up and there is no sound. Draw a circuit below to correct the mistake(s)."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Kenneth adds two other bulbs for the headlights of the toy. When he closes the switch, all three bulbs will light up without dimming bulb P. Draw on your circuit in (a) to show how you would connect the two bulbs."
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "total_marks": 4,
+      "context": "Zhiming set up the apparatus below to investigate how his toy car can move on its own along the plastic track from A down to B, up to C before leaving at D. C is at a fixed height above B.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "When Zhiming released the car at A, it moved past B but was not able to reach C. Explain why."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Without using different apparatus and additional materials, suggest two different ways to help the car reach C in this investigation. Explain your answer."
+        },
+        {
+          "part": "c",
+          "marks": 1,
+          "question": "State the main form(s) of energy that the car will have at C."
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "total_marks": 5,
+      "context": "Leela placed a magnet on top of a balance as shown in Diagram 1 (reading 60.0 g). She brought object A close to the magnet as shown in Diagram 2 (reading 68.0 g).",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State what object A is."
+        },
+        {
+          "part": "b",
+          "marks": 2,
+          "question": "Explain why the reading of the balance increased in Diagram 2."
+        },
+        {
+          "part": "c",
+          "context": "Leela replaced object A with an iron bar of the same size in the set-up of Diagram 2. State which reading, P, Q, R, S or T, shown below is possible on the balance. P=54.0 g, Q=60.0 g, R=64.0 g, S=68.0 g, T=72.0 g.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 1,
+              "question": "State which reading, P, Q, R, S or T, is possible on the balance. Explain your answer."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "State a variable that Leela must keep constant when comparing object A and the iron bar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "total_marks": 4,
+      "context": "A glass has a thin wall and a thick bottom.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 1,
+          "question": "State a physical property of the thick bottom glass that prevents it from breaking when placed on a table."
+        },
+        {
+          "part": "b",
+          "context": "Two glasses, A and B, are stacked together as shown. They became stuck and Ahmad was unable to separate them with his hands. For safety reasons, Ahmad is not allowed to use lubricants (e.g. oil) on the glass and not to force the glasses apart with his hands.",
+          "subparts": [
+            {
+              "part": "i",
+              "marks": 2,
+              "question": "Describe two ways that Ahmad can separate the glasses. You may use a diagram in your answer."
+            },
+            {
+              "part": "ii",
+              "marks": 1,
+              "question": "Explain why one of the ways in (i) works."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "total_marks": 3,
+      "context": "Alice and Beatrice were travelling in an air-conditioned car. Both were wearing the same type of spectacles. Alice put her hands over her spectacles but Beatrice did not. When they stepped out of the car, there is less fogging on Alice's spectacles than Beatrice's as shown.",
+      "parts": [
+        {
+          "part": "a",
+          "marks": 2,
+          "question": "Explain why there is less fogging on Alice's spectacles."
+        },
+        {
+          "part": "b",
+          "marks": 1,
+          "question": "Explain why their spectacles became clear again after some time."
+        }
+      ]
+    }
+  ]
+}
