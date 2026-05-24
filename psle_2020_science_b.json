@@ -1,0 +1,211 @@
+{
+  "title": "PSLE 2020 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2020 — Science (0009/2 B).  Booklet B consists of 12 open-ended questions, Q29–Q40 (44 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "psle20b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle20b_intro_t",
+          "type": "text",
+          "text": "Booklet B.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (44 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle20b_q29",
+      "topics": ["Circulatory System"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q29_t", "type": "text", "text": "Question 29.  The diagram shows a human body system." },
+        { "id": "psle20b_q29_img", "type": "image", "dataUrl": "", "caption": "Human body outline showing a branching network of vessels throughout the body; part Y labelled at the heart in the upper chest" },
+        { "id": "psle20b_q29_pa", "type": "part", "label": "(a)", "text": "Identify the system and state the function of this system.  [2]" },
+        { "id": "psle20b_q29_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle20b_q29_pb", "type": "part", "label": "(b)", "text": "Name Y.  [1]" },
+        { "id": "psle20b_q29_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q29_pc", "type": "part", "label": "(c)", "text": "Other than Y, name another two parts of this system.  [1]" },
+        { "id": "psle20b_q29_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle20b_q30",
+      "topics": ["Plant Reproduction", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q30_t", "type": "text", "text": "Question 30.  The diagram shows fruits E and F." },
+        { "id": "psle20b_q30_img1", "type": "image", "dataUrl": "", "caption": "Fruit E — single feathery/winged seed with a hair-like parachute at the top.  Fruit F — splitting pod with seeds being flung out from the curling halves" },
+        { "id": "psle20b_q30_pa", "type": "part", "label": "(a)", "text": "How are the seeds of E and F dispersed?  [1]\n\nE ____________________\nF ____________________" },
+        { "id": "psle20b_q30_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q30_pb", "type": "part", "label": "(b)", "text": "State one advantage of the method used by F to disperse its seeds.  [1]" },
+        { "id": "psle20b_q30_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q30_pc", "type": "part", "label": "(c)", "text": "John conducted an experiment to find out if the amount of wind affects the distance moved by E as shown." },
+        { "id": "psle20b_q30_img2", "type": "image", "dataUrl": "", "caption": "Tower fan blowing wind towards fruit E suspended in air to the right of the fan" },
+        { "id": "psle20b_q30_pc2", "type": "part", "label": "(c)", "text": "John repeated the experiment five times with all factors kept the same except for one.  Suggest two possible ways of varying this factor.  [2]" },
+        { "id": "psle20b_q30_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle20b_q31",
+      "topics": ["Plant Transport System"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q31_t", "type": "text", "text": "Question 31.  The diagram shows how substances are transported in a plant.  P and Q represent different parts of the plant.  The arrows represent the movement of substances G and H." },
+        { "id": "psle20b_q31_img", "type": "image", "dataUrl": "", "caption": "Flow diagram — Roots → P → Q (with horizontal arrows representing G dashed and H solid) and P → Flowers (downward arrows).  Key: G as dashed arrow, H as solid arrow" },
+        { "id": "psle20b_q31_pa", "type": "part", "label": "(a)", "text": "Identify parts P and Q.  [1]\n\nP ____________________\nQ ____________________" },
+        { "id": "psle20b_q31_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q31_pb", "type": "part", "label": "(b)", "text": "Identify substances represented by H and describe how these substances move in the plant.  [2]" },
+        { "id": "psle20b_q31_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle20b_q32",
+      "topics": ["Life Cycles", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q32_t", "type": "text", "text": "Question 32." },
+        { "id": "psle20b_q32_pa", "type": "part", "label": "(a)", "text": "Oil is sprayed on stagnant water as shown.\n\nExplain how this prevents mosquito from breeding.  [1]" },
+        { "id": "psle20b_q32_img1", "type": "image", "dataUrl": "", "caption": "Cross-section of stagnant water with a thin layer of oil floating on top; mosquito larva visible just below the oil layer" },
+        { "id": "psle20b_q32_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q32_pb", "type": "part", "label": "(b)", "text": "Malaria is a disease spread by mosquito A.  Children infected with malaria are found to be bitten more often by mosquito A.\n\nJoel wanted to find out if children infected with malaria are more attractive to mosquito A due to a certain smell that they produce.  He used the set-up shown with 20 of mosquito A in box P." },
+        { "id": "psle20b_q32_img2", "type": "image", "dataUrl": "", "caption": "Box P containing two shirts hung on strings: a white shirt worn by a child infected with malaria, and another shirt; mosquito A present in the box" },
+        { "id": "psle20b_q32_t2", "type": "text", "text": "Joel counted the number of times mosquitoes landed on the shirt for 3 minutes.  He repeated the experiment using another shirt worn by an un-infected child in box Q." },
+        { "id": "psle20b_q32_pbi", "type": "part", "label": "(b)(i)", "text": "State a hypothesis on how the smell on a shirt affects its attractiveness to mosquito A.  [1]" },
+        { "id": "psle20b_q32_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q32_pbii", "type": "part", "label": "(b)(ii)", "text": "Joel used a white shirt instead of a black shirt for the experiment.  Suggest why using a white shirt allows him to obtain more accurate results.  [1]" },
+        { "id": "psle20b_q32_abii", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q32_pbiii", "type": "part", "label": "(b)(iii)", "text": "Joel recorded his results in the table.\n\n                              Number of times mosquitoes landed\nShirt in box P                          300\nShirt in box Q                          120\n\nScientists are able to store the smell produced by infected people in a container.  Suggest how Joel could use this smell and his results to reduce the number of bites on people.  [1]" },
+        { "id": "psle20b_q32_abiii", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle20b_q33",
+      "topics": ["Plant Reproduction", "Interactions within the Environment", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q33_t", "type": "text", "text": "Question 33.  Bees are commonly found near flowering plants." },
+        { "id": "psle20b_q33_pa", "type": "part", "label": "(a)", "text": "Describe how bees help plants to reproduce.  [1]" },
+        { "id": "psle20b_q33_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q33_t2", "type": "text", "text": "Jia Xuan investigated the effect of substance N on bees with two containers, R and S, of the same size using a circular cage." },
+        { "id": "psle20b_q33_img", "type": "image", "dataUrl": "", "caption": "Circular cage with container R (sugar water only) on the left and container S (sugar water and substance N) on the right; an opening at the bottom marked 'bees enter here'" },
+        { "id": "psle20b_q33_t3", "type": "text", "text": "Jia Xuan introduced bees into the cage and closed the opening.  She counted the number of times bees visited each container for a duration of 3 hours on Day 1, Day 5 and Day 10." },
+        { "id": "psle20b_q33_pb", "type": "part", "label": "(b)", "text": "Suggest how the arrangement of containers in the cage allowed for a fair test.  [1]" },
+        { "id": "psle20b_q33_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q33_t4", "type": "text", "text": "The number of times bees visited both containers on Day 1, Day 5 and Day 10 are shown." },
+        { "id": "psle20b_q33_img2", "type": "image", "dataUrl": "", "caption": "Bar chart — Number of times bees visited the containers vs Day.  Key: solid bar = container R, hatched bar = container S.  Day 1: similar heights; Day 5: container S taller; Day 10: container S much taller" },
+        { "id": "psle20b_q33_pc", "type": "part", "label": "(c)", "text": "Describe how substance N affected the number of times bees visited both containers from Day 1 to Day 10.  [2]" },
+        { "id": "psle20b_q33_ac", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle20b_q34",
+      "topics": ["Photosynthesis", "Living Things"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q34_t", "type": "text", "text": "Question 34.  Jayden placed the same amount of pond water which contained tiny organisms into two identical glass containers, A and B.  He painted container B black." },
+        { "id": "psle20b_q34_img1", "type": "image", "dataUrl": "", "caption": "Two identical glass containers side by side.  Container A: clear lid, pond water with tiny organisms in a clear container.  Container B: black lid, pond water with tiny organisms in a black container" },
+        { "id": "psle20b_q34_t2", "type": "text", "text": "He placed both containers at the same place under bright light.  He measured the amount of oxygen in each container daily.  His results are as shown." },
+        { "id": "psle20b_q34_img2", "type": "image", "dataUrl": "", "caption": "Graph — Amount of oxygen (units) vs Days.  Container A: solid line rising over time.  Container B: dashed line decreasing over time" },
+        { "id": "psle20b_q34_pa", "type": "part", "label": "(a)", "text": "Explain why the amount of oxygen in container A increased while the amount of oxygen in container B decreased.  [2]" },
+        { "id": "psle20b_q34_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle20b_q34_pb", "type": "part", "label": "(b)", "text": "Suggest one possible reason that could have resulted in Jayden obtaining inaccurate results.  [1]" },
+        { "id": "psle20b_q34_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle20b_q35",
+      "topics": ["States of Matter", "Heat and Temperature"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q35_t", "type": "text", "text": "Question 35.  Sylvia boiled some water in a pot on a stove." },
+        { "id": "psle20b_q35_pa", "type": "part", "label": "(a)", "text": "State what boiling means.  [1]" },
+        { "id": "psle20b_q35_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q35_pb", "type": "part", "label": "(b)", "text": "Sylvia wanted to cook some eggs at 80 °C.  When the water boiled, she removed the pot from the stove and added some cold water.  She then put in some eggs and covered the pot for 10 minutes." },
+        { "id": "psle20b_q35_img", "type": "image", "dataUrl": "", "caption": "Covered pot containing water and eggs sitting on a metal tabletop; temperature sensor attached to the pot showing 80 °C" },
+        { "id": "psle20b_q35_pb2", "type": "part", "label": "(b)", "text": "Without reheating the pot, suggest two ways that Sylvia can make sure that water was kept at about 80 °C in the same pot.  [2]" },
+        { "id": "psle20b_q35_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle20b_q36",
+      "topics": ["Magnets", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q36_t", "type": "text", "text": "Question 36.  Ravi rolled a metal ball from point X at a low speed past a strong magnet on a table as shown." },
+        { "id": "psle20b_q36_img1", "type": "image", "dataUrl": "", "caption": "Top view of a table.  Metal ball at X (1 cm from edge), rolling in a straight line past a strong magnet placed nearby on the table" },
+        { "id": "psle20b_q36_pa", "type": "part", "label": "(a)", "text": "Explain why the metal ball moved past the magnet in a straight line.  [1]" },
+        { "id": "psle20b_q36_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q36_pb", "type": "part", "label": "(b)", "text": "He next rolled an iron ball from X in the same way." },
+        { "id": "psle20b_q36_img2", "type": "image", "dataUrl": "", "caption": "Top view — iron ball at X (1 cm from edge) with four possible paths labelled: Path Q (curves away from magnet), Path R (slightly curves towards magnet then back), Path S (straight), Path T (curves sharply towards magnet)" },
+        { "id": "psle20b_q36_pb2", "type": "part", "label": "(b)", "text": "Which path of the iron ball, Q, R, S or T, is most likely?  Explain your answer.  [2]" },
+        { "id": "psle20b_q36_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle20b_q37",
+      "topics": ["Forces", "Energy"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q37_t", "type": "text", "text": "Question 37.  Aisha tied a mass to an electric toy train as shown in Diagram 1.  The train moved slowly from A to B." },
+        { "id": "psle20b_q37_img1", "type": "image", "dataUrl": "", "caption": "Diagram 1 — train on a track pulling a mass behind it tied by a string; the track is flat from A to B and then goes up a slope after B" },
+        { "id": "psle20b_q37_t2", "type": "text", "text": "Next, Aisha linked a wagon to the train as shown in Diagram 2.  When she placed the same mass on the wagon, the train moved faster from A to B." },
+        { "id": "psle20b_q37_img2", "type": "image", "dataUrl": "", "caption": "Diagram 2 — train linked to a wagon carrying the mass; track flat from A to B then sloping upwards" },
+        { "id": "psle20b_q37_pa", "type": "part", "label": "(a)", "text": "Give a reason why the train moved faster when pulling the mass on the wagon.  [1]" },
+        { "id": "psle20b_q37_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q37_pb", "type": "part", "label": "(b)", "text": "The train moved from A to B easily but moved up the slope slowly.\nExplain why the train moved up the slope slowly.  [1]" },
+        { "id": "psle20b_q37_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q37_t3", "type": "text", "text": "The train and wagon were linked by plastic rings as shown in Diagram 3." },
+        { "id": "psle20b_q37_img3", "type": "image", "dataUrl": "", "caption": "Diagram 3 — close-up of plastic ring of train linked to plastic ring of wagon; the opening in the plastic ring of wagon is narrower than the ring of train.  Labels: front of wagon, back of train, mass on wagon" },
+        { "id": "psle20b_q37_t4", "type": "text", "text": "When the wagon was on the slope, the plastic rings broke loose from the train and rolled downwards as shown in Diagram 4.  The plastic rings used for linking the wagon to the train were not broken." },
+        { "id": "psle20b_q37_img4", "type": "image", "dataUrl": "", "caption": "Diagram 4 — wagon rolling down the slope; train continued to move up the slope" },
+        { "id": "psle20b_q37_pc", "type": "part", "label": "(c)", "text": "Explain why the wagon broke loose from the train on the slope without breaking the plastic rings.  [2]" },
+        { "id": "psle20b_q37_ac", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle20b_q38",
+      "topics": ["Forces", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q38_t", "type": "text", "text": "Question 38.  Ahmad set up an experiment in a room as shown.  There was no wind.  He released the wooden strip with plasticine at A gently.  The plasticine made one complete swing when it moved from A to B and back to A." },
+        { "id": "psle20b_q38_img", "type": "image", "dataUrl": "", "caption": "Pendulum set-up — two strings hanging from a rod attached to a stand; a wooden strip with plasticine attached swings between positions A and B" },
+        { "id": "psle20b_q38_t2", "type": "text", "text": "He wanted to investigate how the mass of plasticine affects the time taken for ten complete swings.  His results are as shown.\n\nmass of plasticine (g)   time for ten complete swings (s)\n         10                          15.0\n         15                          14.8\n         20                          15.2\n         25                          14.9" },
+        { "id": "psle20b_q38_pa", "type": "part", "label": "(a)", "text": "State two variables he needed to keep constant for the experiment.  [2]" },
+        { "id": "psle20b_q38_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle20b_q38_pb", "type": "part", "label": "(b)", "text": "Based on his results above, state how the mass of plasticine affects the time for ten complete swings.  [1]" },
+        { "id": "psle20b_q38_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q38_pc", "type": "part", "label": "(c)", "text": "Suggest one improvement to the experiment to obtain more accurate results.  [1]" },
+        { "id": "psle20b_q38_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle20b_q39",
+      "topics": ["Electricity", "Magnets", "Materials"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q39_t", "type": "text", "text": "Question 39.  Peter built a door lock as shown.  When he closed the switch, the iron bolt moved to the right, away from the catch and the door was unlocked." },
+        { "id": "psle20b_q39_img", "type": "image", "dataUrl": "", "caption": "Door lock set-up — door with a catch fixed to it; wall holds a fixed metal cylinder with wire coiled around it; iron bolt sits inside the cylinder and is connected to a spring; battery and switch complete the circuit" },
+        { "id": "psle20b_q39_pa", "type": "part", "label": "(a)", "text": "State why copper, a type of metal, is used to make wires.  [1]" },
+        { "id": "psle20b_q39_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle20b_q39_pb", "type": "part", "label": "(b)", "text": "Explain how the door was unlocked when Peter closed the switch.  [2]" },
+        { "id": "psle20b_q39_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle20b_q39_pc", "type": "part", "label": "(c)", "text": "When Peter opened the switch again, he found that the bolt did not go deep enough into the catch to lock the door properly.\n\nWithout changing the iron bolt, suggest changes to his set-up so that he can lock and unlock the door properly.  Explain your answer.  [2]" },
+        { "id": "psle20b_q39_ac", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle20b_q40",
+      "topics": ["States of Matter", "Heat Transfer"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle20b_q40_t", "type": "text", "text": "Question 40.  John placed a pack of brown sausages wrapped in clear plastic from the freezer onto a table.  After a short time, a thin layer of white solid was formed on the surface of the plastic wrapping." },
+        { "id": "psle20b_q40_img", "type": "image", "dataUrl": "", "caption": "Brown sausages wrapped in clear plastic on a table; a thin layer of white solid (frost) on the surface of the plastic wrapping" },
+        { "id": "psle20b_q40_pa", "type": "part", "label": "(a)", "text": "Explain how the white solid was formed.  [2]" },
+        { "id": "psle20b_q40_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle20b_q40_pb", "type": "part", "label": "(b)", "text": "The white solid cannot be seen after a while.  Explain why.  [1]" },
+        { "id": "psle20b_q40_ab", "type": "openLines", "lines": 2 }
+      ]
+    }
+  ]
+}
