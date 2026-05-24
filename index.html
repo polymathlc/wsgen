@@ -1153,16 +1153,59 @@
   .option-radio.pv-radio { cursor: pointer; }
   .option-radio.pv-radio:hover { border-color: var(--correct-base); }
 
-  /* ============================ AUTOSAVE STATUS ============================ */
-  .autosave-status {
+  /* ============================ SAVE STATUS PILL ============================ */
+  .save-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
     font-size: var(--font-size-xs);
-    color: var(--text-tertiary);
     font-weight: 600;
+    color: var(--text-secondary);
     white-space: nowrap;
+    transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
   }
-  .autosave-status.saving { color: var(--accent-deep); }
-  .autosave-status.saved { color: var(--correct-dark); }
-  .autosave-status.error { color: var(--wrong-dark); }
+  .save-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: background var(--transition-base);
+  }
+  .save-status[data-state="idle"] .save-status-dot { background: var(--correct-base); }
+  .save-status[data-state="idle"] { color: var(--correct-dark, #2E7D32); }
+  .save-status[data-state="saving"] .save-status-dot {
+    background: var(--accent-deep);
+    animation: save-status-pulse 1.1s ease-in-out infinite;
+  }
+  .save-status[data-state="saving"] { color: var(--accent-deep); border-color: var(--accent-base); background: var(--accent-bg); }
+  .save-status[data-state="offline"] .save-status-dot { background: #FB8C00; }
+  .save-status[data-state="offline"] { color: #E65100; border-color: #FFCC80; background: #FFF3E0; }
+  .save-status[data-state="error"] .save-status-dot { background: var(--wrong-base); }
+  .save-status[data-state="error"] { color: var(--wrong-dark, #C62828); border-color: var(--wrong-base); background: var(--wrong-bg); }
+  .save-status[data-state="paused"] { color: var(--text-secondary); }
+  @keyframes save-status-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
+  .save-status-action {
+    margin-left: 2px;
+    padding: 2px 8px;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--transition-base);
+  }
+  .save-status-action:hover { background: rgba(0,0,0,0.06); }
 
   /* ============================ TOPIC / CONCEPT ============================ */
   .question-meta-row {
@@ -1462,7 +1505,11 @@
         <span id="authChip" class="auth-chip guest">Not signed in</span>
         <button class="btn btn-tiny" id="googleSignInBtn">Sign in with Google</button>
         <button class="btn btn-tiny" id="signOutBtn" style="display:none;">Sign out</button>
-        <span id="autoSaveStatus" class="autosave-status admin-only"></span>
+        <div id="saveStatus" class="save-status admin-only" data-state="idle" title="Save status">
+          <span class="save-status-dot" aria-hidden="true"></span>
+          <span class="save-status-text">Saved</span>
+          <button type="button" class="save-status-action" id="saveStatusRetry" style="display:none;">Retry</button>
+        </div>
       </div>
       <div id="authHint" class="auth-hint" style="display:none;"></div>
       <input type="text" id="worksheetTitle" class="title-input admin-only" placeholder="Worksheet title" value="New Worksheet" />
@@ -1520,10 +1567,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore, doc, setDoc, getDoc, deleteDoc, collection, getDocs,
-  serverTimestamp, orderBy, query
+  serverTimestamp, orderBy, query, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import {
-  getStorage, ref as storageRef, uploadString, getBytes, deleteObject
+  getStorage, ref as storageRef, uploadString, getBytes, getDownloadURL, deleteObject
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -2844,7 +2891,16 @@ function attachImagePaste(zoneEl, el) {
   zoneEl.classList.add('pv-image-zone');
   zoneEl.tabIndex = 0;
   zoneEl.title = 'Click here, then paste an image (Ctrl+V / ⌘+V) — or drop one';
-  const commit = (url) => { el.dataUrl = url; renderEditor(); renderPreview(); };
+  const commit = (url) => {
+    el.dataUrl = url;
+    el.imageRef = null; // dropped image content invalidates any previous ref
+    renderEditor();
+    renderPreview();
+    // Fire-and-forget: hash & upload now so the next save is tiny.
+    if (typeof kickoffImageUploads === 'function') {
+      kickoffImageUploads().catch(() => {});
+    }
+  };
   // When a diagram already has an image, confirm before replacing it.
   const okToReplace = () =>
     !el.dataUrl || confirm('This diagram already has an image.\n\nReplace it with the image you just pasted?');
@@ -3329,7 +3385,32 @@ function toEmbeddableVideoUrl(raw) {
 /* =========================================================================
    EXPORT — standalone worksheet HTML (paste-able images embedded as data URLs)
    ========================================================================= */
-function exportHtml() {
+// Standalone exports embed images as base64 so the file works offline. If
+// some images are still Storage refs (just URLs), pull the bytes and inline
+// them before building the export. No-op when every image is already a
+// proper data URL.
+async function resolveImagesForExport() {
+  const els = imageElements(state).filter((el) =>
+    el.imageRef && el.imageRef.path && (!el.dataUrl || !el.dataUrl.startsWith('data:'))
+  );
+  if (els.length === 0) return;
+  await Promise.allSettled(els.map(async (el) => {
+    try {
+      const bytes = await retrying('export: fetch image bytes',
+        () => getBytes(storageRef(fbStorage, el.imageRef.path)),
+        { attempts: 2, timeoutMs: 15000 });
+      let bin = '';
+      const a = new Uint8Array(bytes);
+      for (let i = 0; i < a.length; i++) bin += String.fromCharCode(a[i]);
+      el.dataUrl = `data:${el.imageRef.mime || 'image/png'};base64,${btoa(bin)}`;
+    } catch (e) {
+      console.warn('Could not inline image for export:', e && (e.message || e));
+    }
+  }));
+}
+
+async function exportHtml() {
+  await resolveImagesForExport();
   const html = buildStandaloneHtml();
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
@@ -3346,7 +3427,8 @@ function exportHtml() {
    PDF EXPORT — opens a print-friendly window (one question per page,
    ruled working space) and triggers the browser's print-to-PDF dialog.
    ========================================================================= */
-function exportPdf() {
+async function exportPdf() {
+  await resolveImagesForExport();
   const html = buildPrintableHtml();
   const w = window.open('', '_blank');
   if (!w) {
@@ -3891,6 +3973,8 @@ function loadJson(file) {
       currentSavedTitle = null;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+      seedUploadCacheFromState(state);
+      hydrateImageRefs(state);
       renderEditor();
       renderPreview();
       updateLinkStatus();
@@ -4060,20 +4144,162 @@ function worksheetStoragePath(id) {
   return `${WORKSHEET_STORAGE_PREFIX}/${id}.json`;
 }
 
-// Each Firestore doc is capped at ~1 MiB. Worksheets with embedded base64 images
-// blow past that easily, so we shard the JSON across sibling docs in the same
-// `worksheets/` collection (so the user's existing Firestore rules cover us
-// without any Storage rule setup). Chunk size leaves headroom for field
-// overhead and UTF-8 expansion.
+// Firestore docs cap at ~1 MiB. Inline base64 images used to blow past that on
+// every save, so:
+//   - Image binaries now live in Cloud Storage, keyed by sha256(content).
+//     Each unique image uploads once; the worksheet JSON only references its
+//     storage path. Most saves become tiny text writes.
+//   - If the trimmed JSON still exceeds one doc, it's sharded across sibling
+//     `worksheets/<id>__chunk__<i>` docs and the chunks are written in parallel.
 const CHUNK_CHARS = 700_000;
 const CHUNK_SUFFIX = '__chunk__';
 const chunkDocId = (id, i) => `${id}${CHUNK_SUFFIX}${i}`;
 const isChunkDocId = (docId) => typeof docId === 'string' && docId.includes(CHUNK_SUFFIX);
+const IMAGE_STORAGE_PREFIX = 'worksheet-images';
+const STATE_FORMAT_VERSION = 2;
+
+// hash -> { path, mime } — content-addressed image refs we've uploaded this session.
+const uploadedImageCache = new Map();
+// path -> Promise<dataUrl or downloadUrl> — in-flight image hydrations.
+const imageHydrateCache = new Map();
+// Set of in-flight upload promises per element so we know when to retry a save.
+const inflightImageUploads = new Set();
+
+function imageElements(s) {
+  const out = [];
+  for (const q of (s && s.questions) || []) {
+    for (const el of (q.elements) || []) {
+      if ((el.type === 'image' || el.type === 'answerKey')) out.push(el);
+    }
+  }
+  return out;
+}
+
+function bytesToHex(buf) {
+  const a = new Uint8Array(buf);
+  let s = '';
+  for (let i = 0; i < a.length; i++) s += a[i].toString(16).padStart(2, '0');
+  return s;
+}
+
+function decodeBase64(b64) {
+  const bin = atob(b64);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+// data:image/png;base64,iVBOR... -> { mime, ext, bytes }
+function parseDataUrl(dataUrl) {
+  const m = /^data:([^;,]+)?(?:;([^,]+))?,(.*)$/s.exec(dataUrl || '');
+  if (!m) return null;
+  const mime = (m[1] || 'application/octet-stream').toLowerCase();
+  const isBase64 = (m[2] || '').includes('base64');
+  const raw = m[3];
+  let bytes;
+  try {
+    bytes = isBase64 ? decodeBase64(raw) : new TextEncoder().encode(decodeURIComponent(raw));
+  } catch (_) {
+    return null;
+  }
+  const ext = (mime.split('/')[1] || 'bin').replace(/[^a-z0-9]/gi, '') || 'bin';
+  return { mime, ext, bytes };
+}
+
+async function hashImageDataUrl(dataUrl) {
+  const parsed = parseDataUrl(dataUrl);
+  if (!parsed) return null;
+  const buf = await crypto.subtle.digest('SHA-256', parsed.bytes);
+  return { hash: bytesToHex(buf), mime: parsed.mime, ext: parsed.ext, bytes: parsed.bytes };
+}
+
+// Upload an image element's dataUrl to Storage (if it isn't already), and
+// tag the element with `imageRef` so subsequent serializations skip the
+// inline base64. Safe to call repeatedly; no-ops once an imageRef is set.
+async function ensureImageUploaded(el) {
+  if (!el || (el.type !== 'image' && el.type !== 'answerKey')) return;
+  if (el.imageRef && el.imageRef.path) return;
+  if (!el.dataUrl || !el.dataUrl.startsWith('data:')) return;
+  if (!currentUser || !isAdmin()) return;
+  const info = await hashImageDataUrl(el.dataUrl);
+  if (!info) return;
+  if (uploadedImageCache.has(info.hash)) {
+    el.imageRef = uploadedImageCache.get(info.hash);
+    return;
+  }
+  const path = `${IMAGE_STORAGE_PREFIX}/${info.hash}.${info.ext}`;
+  const ref = storageRef(fbStorage, path);
+  // Upload base64 directly; cheaper than re-encoding bytes.
+  await uploadString(ref, el.dataUrl, 'data_url');
+  const r = { path, mime: info.mime };
+  uploadedImageCache.set(info.hash, r);
+  el.imageRef = r;
+}
+
+// Walk the current state and kick off uploads for any image that still
+// carries an inline dataUrl. Resolves once everything has either uploaded
+// or failed (failures stay inline and get retried next time).
+function kickoffImageUploads(s = state) {
+  if (!currentUser || !isAdmin()) return Promise.resolve();
+  const pending = [];
+  for (const el of imageElements(s)) {
+    if (el.imageRef && el.imageRef.path) continue;
+    if (!el.dataUrl || !el.dataUrl.startsWith('data:')) continue;
+    const p = ensureImageUploaded(el).catch((e) => {
+      console.warn('image upload failed:', e && (e.message || e));
+    });
+    inflightImageUploads.add(p);
+    p.finally(() => inflightImageUploads.delete(p));
+    pending.push(p);
+  }
+  return Promise.all(pending);
+}
+
+// Build the JSON we actually send to Firestore: strip every dataUrl on an
+// element that has an imageRef. Anything still inline stays inline (so the
+// save still works while uploads are in flight).
+function serializeStateForCloud(s) {
+  return JSON.stringify(s, function (key, value) {
+    if (key === 'dataUrl' && this && this.imageRef && this.imageRef.path) return undefined;
+    return value;
+  });
+}
+
+function withTimeout(promise, ms, label) {
+  if (!Number.isFinite(ms) || ms <= 0) return promise;
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`${label || 'operation'} timed out after ${Math.round(ms/1000)}s`)), ms);
+    promise.then((v) => { clearTimeout(timer); resolve(v); },
+                 (e) => { clearTimeout(timer); reject(e); });
+  });
+}
+
+async function retrying(label, fn, { attempts = 3, baseMs = 600, timeoutMs = 20000 } = {}) {
+  let lastErr;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await withTimeout(fn(), timeoutMs, label);
+    } catch (e) {
+      lastErr = e;
+      if (i === attempts - 1) break;
+      await new Promise(r => setTimeout(r, baseMs * Math.pow(2, i)));
+    }
+  }
+  throw lastErr;
+}
 
 // Core cloud-save routine, shared by the manual button and the auto-saver.
 async function persistToSystem() {
+  // Best-effort: upload any pending images first so the serialized JSON
+  // is small. If an upload is slow we still proceed (the next save mops up).
+  await Promise.race([
+    kickoffImageUploads(),
+    new Promise((r) => setTimeout(r, 8000))
+  ]);
+
   const id = currentSavedId || `ws_${Date.now().toString(36)}`;
-  const json = JSON.stringify(state);
+  const stateWithVersion = { ...state, schemaVersion: STATE_FORMAT_VERSION };
+  const json = serializeStateForCloud(stateWithVersion);
   const chunks = [];
   for (let i = 0; i < json.length; i += CHUNK_CHARS) {
     chunks.push(json.slice(i, i + CHUNK_CHARS));
@@ -4084,21 +4310,25 @@ async function persistToSystem() {
   //    any orphans if the new version is shorter.
   let prevChunkCount = 0;
   try {
-    const prevSnap = await getDoc(doc(fbDb, 'worksheets', id));
+    const prevSnap = await retrying('read prev metadata',
+      () => getDoc(doc(fbDb, 'worksheets', id)),
+      { attempts: 2, timeoutMs: 8000 });
     if (prevSnap.exists()) prevChunkCount = prevSnap.data().chunkCount || 0;
   } catch (_) { /* best-effort */ }
 
-  // 2. Write every chunk doc.
-  for (let i = 0; i < chunks.length; i++) {
-    await setDoc(doc(fbDb, 'worksheets', chunkDocId(id, i)), {
-      parentId: id,
-      index: i,
-      data: chunks[i]
-    });
-  }
+  // 2. Write every chunk doc in parallel (each with its own retry/timeout).
+  await Promise.all(chunks.map((chunk, i) =>
+    retrying(`save chunk ${i + 1}/${chunks.length}`,
+      () => setDoc(doc(fbDb, 'worksheets', chunkDocId(id, i)), {
+        parentId: id,
+        index: i,
+        data: chunk
+      })
+    )
+  ));
 
   // 3. Write the metadata doc last so a partial save can't be discovered.
-  await setDoc(doc(fbDb, 'worksheets', id), {
+  await retrying('save metadata', () => setDoc(doc(fbDb, 'worksheets', id), {
     id,
     title: state.title || 'Untitled',
     subtitle: state.subtitle || '',
@@ -4107,95 +4337,157 @@ async function persistToSystem() {
     ownerUid: currentUser.uid,
     savedAt: serverTimestamp(),
     savedAtClient: new Date().toISOString(),
-    sizeBytes: json.length
-  });
+    sizeBytes: json.length,
+    schemaVersion: STATE_FORMAT_VERSION
+  }));
 
-  // 4. Drop any leftover chunk docs from a longer previous save.
-  for (let i = chunks.length; i < prevChunkCount; i++) {
-    try { await deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, i))); } catch (_) {}
+  // 4. Drop any leftover chunk docs from a longer previous save (parallel,
+  //    best-effort — orphans are harmless and the next save retries).
+  if (prevChunkCount > chunks.length) {
+    await Promise.allSettled(
+      Array.from({ length: prevChunkCount - chunks.length }, (_, k) =>
+        deleteDoc(doc(fbDb, 'worksheets', chunkDocId(id, chunks.length + k)))
+      )
+    );
   }
 
   currentSavedId = id;
   currentSavedTitle = state.title || 'Untitled';
 }
 
-/* Save to the system.
-   - forceNew: always create a brand-new worksheet (never touch the linked one).
-   - Otherwise, if linked to a worksheet whose title no longer matches, the
-     worksheet was probably swapped — confirm before overwriting, and default
-     to saving as a new worksheet so a different paper can't clobber it. */
+/* =========================================================================
+   SAVE ENGINE
+   Single coalescing pipeline shared by every trigger (autosave, manual
+   "Save to System", "Save as New", typing, image paste). One save runs at
+   a time; if another change lands while one is in flight, exactly one more
+   save fires when it completes. The status pill is the single source of
+   truth for what's happening.
+   ========================================================================= */
+const SAVE_STATUS_LABELS = {
+  idle:    'Saved',
+  saving:  'Saving…',
+  error:   'Save failed',
+  offline: 'Offline',
+  paused:  'Auto-save paused',
+};
+let saveStatusState = 'idle';
+let saveStatusLastError = null;
+
+function setSaveStatus(kind, opts = {}) {
+  saveStatusState = kind;
+  if (opts.error !== undefined) saveStatusLastError = opts.error;
+  if (kind !== 'error') saveStatusLastError = null;
+  const el = document.getElementById('saveStatus');
+  if (!el) return;
+  el.dataset.state = kind;
+  const text = el.querySelector('.save-status-text');
+  if (text) text.textContent = opts.label || SAVE_STATUS_LABELS[kind] || kind;
+  const retry = el.querySelector('#saveStatusRetry');
+  if (retry) retry.style.display = (kind === 'error') ? '' : 'none';
+  el.title = saveStatusLastError
+    ? `${SAVE_STATUS_LABELS[kind] || kind} — ${saveStatusLastError.message || saveStatusLastError}`
+    : (SAVE_STATUS_LABELS[kind] || kind);
+}
+
+// Coalescing save controller. Exactly one save runs at a time. While one is
+// running, further requests just set `pendingSave`; when it finishes,
+// exactly one more save fires (collapsing N edits into a single trailing
+// save).
+let saveInFlight = false;
+let pendingSave = false;
+let pendingForceNew = false;
+let pendingResolves = [];
+
+function requestCloudSave({ forceNew = false } = {}) {
+  if (!currentUser || !isAdmin()) return Promise.resolve();
+  if (forceNew) pendingForceNew = true;
+  return new Promise((resolve) => {
+    pendingResolves.push(resolve);
+    pendingSave = true;
+    runSaveLoop();
+  });
+}
+
+async function runSaveLoop() {
+  if (saveInFlight) return;
+  if (!pendingSave) return;
+  if (!currentUser || !isAdmin()) { pendingSave = false; pendingResolves = []; return; }
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    setSaveStatus('offline');
+    return; // online-listener will resume this
+  }
+
+  // Latch: capture the work for this cycle, then clear so new edits during
+  // the save trigger a single trailing save.
+  saveInFlight = true;
+  pendingSave = false;
+  const forceNew = pendingForceNew;
+  pendingForceNew = false;
+  const waiters = pendingResolves;
+  pendingResolves = [];
+
+  if (forceNew) {
+    currentSavedId = null;
+    currentSavedTitle = null;
+  } else if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
+    // Title changed since we opened this worksheet. Don't silently overwrite
+    // a different worksheet — pause auto-save until the admin confirms.
+    setSaveStatus('paused', { label: 'Auto-save paused — title changed' });
+    saveInFlight = false;
+    waiters.forEach((r) => r({ ok: false, reason: 'title-mismatch' }));
+    updateLinkStatus();
+    return;
+  }
+
+  setSaveStatus('saving');
+  try {
+    await persistToSystem();
+    setSaveStatus('idle');
+    logActivity('saved: ' + (state.title || 'Untitled'));
+    updateLinkStatus();
+    refreshSavedList().catch(() => {});
+    waiters.forEach((r) => r({ ok: true }));
+  } catch (e) {
+    console.warn('Save failed:', e && (e.message || e));
+    setSaveStatus('error', { error: e });
+    waiters.forEach((r) => r({ ok: false, reason: 'error', error: e }));
+  } finally {
+    saveInFlight = false;
+    if (pendingSave) {
+      // A change landed while we were saving — handle it next tick.
+      Promise.resolve().then(runSaveLoop);
+    }
+  }
+}
+
+/* Manual save trigger.
+   - forceNew: always create a brand-new worksheet (never overwrite).
+   - Otherwise, if linked to a worksheet whose title no longer matches, ask
+     before overwriting (defaults to "save as new" so a swapped paper can't
+     clobber the original). */
 async function saveToSystem(forceNew = false) {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
     alert(`Cloud saving is restricted to ${ALLOWED_EMAIL}.`);
     return;
   }
-  if (forceNew) {
-    currentSavedId = null;
-    currentSavedTitle = null;
-  } else if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
+  if (!forceNew && currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
     const overwrite = confirm(
       `This worksheet is linked to the saved worksheet:\n` +
       `    "${currentSavedTitle}"\n\n` +
       `but it is now titled:\n    "${state.title || 'Untitled'}"\n\n` +
       `OK  = overwrite "${currentSavedTitle}" with the current content\n` +
       `Cancel = save as a NEW, separate worksheet (recommended)`);
-    if (!overwrite) {
-      currentSavedId = null;
-      currentSavedTitle = null;
-    }
+    if (!overwrite) forceNew = true;
   }
-  const btn = document.getElementById(forceNew ? 'saveAsNewBtn' : 'saveSystemBtn');
-  const original = btn.textContent;
-  btn.textContent = '⏳ Saving…';
-  btn.disabled = true;
-  try {
-    await persistToSystem();
-    btn.textContent = '✓ Saved';
-    logActivity('saved to system: ' + (state.title || 'Untitled'));
-    updateLinkStatus();
-    await refreshSavedList();
-  } catch (e) {
-    console.error(e);
-    btn.textContent = original;
-    alert('Save failed: ' + (e.message || e) +
+  const result = await requestCloudSave({ forceNew });
+  if (!result.ok && result.reason === 'error') {
+    alert('Save failed: ' + (result.error && (result.error.message || result.error)) +
       '\n\nMake sure Firestore rules allow:\n' +
       "match /worksheets/{ws} {\n" +
       "  allow read: if request.auth != null;\n" +
       "  allow write: if request.auth != null && request.auth.token.email == 'chungzhikai@gmail.com';\n" +
       "}");
-  } finally {
-    btn.disabled = false;
-    setTimeout(() => {
-      if (btn.textContent === '✓ Saved') btn.textContent = original;
-    }, 1400);
-  }
-}
-
-// Silent cloud save triggered by the auto-saver. Only syncs worksheets that
-// have already been saved to the system at least once (so a doc exists).
-let cloudAutoSaveInFlight = false;
-async function autoCloudSave() {
-  if (!isAdmin() || !currentSavedId) return;
-  // Safety: never silently overwrite a saved worksheet whose title no longer
-  // matches the one that was opened — it may have been replaced by a
-  // different worksheet. Pause cloud auto-save until the admin saves manually.
-  if ((state.title || '') !== (currentSavedTitle || '')) {
-    updateLinkStatus();
-    return;
-  }
-  if (cloudAutoSaveInFlight) { scheduleCloudAutoSave(); return; }
-  cloudAutoSaveInFlight = true;
-  setAutoSaveStatus('saving');
-  try {
-    await persistToSystem();
-    setAutoSaveStatus('saved');
-    await refreshSavedList();
-  } catch (e) {
-    console.warn('Auto cloud-save failed:', e.message || e);
-    setAutoSaveStatus('error');
-  } finally {
-    cloudAutoSaveInFlight = false;
   }
 }
 
@@ -4229,6 +4521,48 @@ async function fetchWorksheetState(data) {
   throw new Error('Worksheet has no state payload.');
 }
 
+// Replace any `imageRef` on an image/answerKey element with a viewable URL
+// (a Storage download URL) set on `dataUrl`. Cached by storage path, so
+// reopening a worksheet during the same session reuses the URLs.
+async function hydrateImageRefs(s) {
+  const tasks = [];
+  for (const el of imageElements(s)) {
+    if (el.dataUrl) continue;
+    if (!el.imageRef || !el.imageRef.path) continue;
+    const path = el.imageRef.path;
+    if (!imageHydrateCache.has(path)) {
+      imageHydrateCache.set(path,
+        retrying('fetch image URL',
+          () => getDownloadURL(storageRef(fbStorage, path)),
+          { attempts: 2, timeoutMs: 10000 }
+        ).catch(() => null)
+      );
+    }
+    tasks.push(imageHydrateCache.get(path).then((url) => {
+      if (url) el.dataUrl = url;
+    }));
+  }
+  // Don't block the whole load on slow image fetches — render the worksheet
+  // first, then resolve images as URLs come back. Re-render on each.
+  if (tasks.length > 0) {
+    Promise.allSettled(tasks).then(() => {
+      try { renderPreview(); } catch (_) {}
+    });
+  }
+}
+
+// Pre-seed the upload cache with refs we just loaded so the next save
+// doesn't try to re-upload images we already have in Storage.
+function seedUploadCacheFromState(s) {
+  for (const el of imageElements(s)) {
+    if (el.imageRef && el.imageRef.path) {
+      // We don't know the hash for refs loaded from disk, but knowing the
+      // ref is already set means ensureImageUploaded() short-circuits.
+      // Nothing more to cache here.
+    }
+  }
+}
+
 async function loadFromSystem(id) {
   if (!currentUser) return;
   try {
@@ -4246,10 +4580,20 @@ async function loadFromSystem(id) {
     currentSavedTitle = state.title || 'Untitled';
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+    seedUploadCacheFromState(state);
+    hydrateImageRefs(state);
     if (isAdmin()) renderEditor();
     renderPreview();
     updateLinkStatus();
+    setSaveStatus('idle');
     await refreshSavedList();
+    // Lazy migrate: any inline images in a legacy worksheet now get
+    // hashed + uploaded so the *next* autosave drops to a tiny JSON write.
+    if (isAdmin()) {
+      kickoffImageUploads().then(() => {
+        if (currentSavedId === id) scheduleCloudAutoSave();
+      }).catch(() => {});
+    }
   } catch (e) {
     console.error(e);
     alert('Load failed: ' + (e.message || e));
@@ -4530,21 +4874,12 @@ function updateDraftBadge() {
    adding a question, …).
    - localStorage: an immediate safety net that survives page reloads.
    - Cloud: once a worksheet has been saved to the system at least once,
-     later edits sync automatically (admin only).
+     later edits sync automatically (admin only) through the coalescing
+     save engine above. The status pill reflects exactly one state.
    ========================================================================= */
 const AUTOSAVE_KEY = 'wsgen.autosaveState';
 let localAutoSaveTimer = null;
 let cloudAutoSaveTimer = null;
-
-function setAutoSaveStatus(kind) {
-  const el = document.getElementById('autoSaveStatus');
-  if (!el) return;
-  el.classList.remove('saving', 'saved', 'error');
-  if (kind === 'saving') { el.classList.add('saving'); el.textContent = '⏳ Saving…'; }
-  else if (kind === 'saved') { el.classList.add('saved'); el.textContent = '✓ Auto-saved'; }
-  else if (kind === 'error') { el.classList.add('error'); el.textContent = '⚠ Autosave failed'; }
-  else el.textContent = '';
-}
 
 function autoSaveLocal() {
   try {
@@ -4558,13 +4893,13 @@ function autoSaveLocal() {
 
 function scheduleAutoSave() {
   clearTimeout(localAutoSaveTimer);
-  localAutoSaveTimer = setTimeout(runAutoSave, 700);
+  localAutoSaveTimer = setTimeout(runAutoSave, 600);
 }
 
 function runAutoSave() {
   // Students view read-only worksheets — nothing of theirs to persist.
   if (currentUser && !isAdmin()) return;
-  if (autoSaveLocal()) setAutoSaveStatus('saved');
+  autoSaveLocal();
   maybePeriodicSnapshot();
   scheduleCloudAutoSave();
 }
@@ -4572,7 +4907,7 @@ function runAutoSave() {
 function scheduleCloudAutoSave() {
   if (!isAdmin() || !currentSavedId) return;
   clearTimeout(cloudAutoSaveTimer);
-  cloudAutoSaveTimer = setTimeout(autoCloudSave, 1800);
+  cloudAutoSaveTimer = setTimeout(() => requestCloudSave(), 1500);
 }
 
 function restoreAutoSave() {
@@ -4585,6 +4920,8 @@ function restoreAutoSave() {
       state = parsed;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+      seedUploadCacheFromState(state);
+      hydrateImageRefs(state);
       renderEditor();
       renderPreview();
       return true;
@@ -4731,6 +5068,8 @@ function restoreActivityEntry(index) {
   currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title || '';
   document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+  seedUploadCacheFromState(state);
+  hydrateImageRefs(state);
   renderEditor();
   renderPreview();
   updateLinkStatus();
@@ -4886,6 +5225,21 @@ document.getElementById('searchAllBtn').addEventListener('click', searchAllWorks
 
 document.getElementById('saveSystemBtn').addEventListener('click', () => saveToSystem(false));
 document.getElementById('saveAsNewBtn').addEventListener('click', () => saveToSystem(true));
+document.getElementById('saveStatusRetry').addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  if (currentSavedId) requestCloudSave();
+  else saveToSystem(false);
+});
+window.addEventListener('online', () => {
+  if (saveStatusState === 'offline' || saveStatusState === 'error') {
+    setSaveStatus('idle');
+    if (currentSavedId) requestCloudSave();
+  }
+});
+window.addEventListener('offline', () => {
+  if (saveStatusState !== 'saving') setSaveStatus('offline');
+});
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
