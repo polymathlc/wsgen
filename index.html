@@ -654,6 +654,7 @@
   .question-image {
     margin: var(--space-md) 0;
     text-align: center;
+    position: relative;
   }
   .question-image img {
     max-width: 100%;
@@ -661,6 +662,35 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-xs);
   }
+  .image-scale-ctrl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+  }
+  .image-scale-ctrl .image-scale-label {
+    font-weight: 600;
+    color: var(--accent-deep);
+    min-width: 42px;
+    text-align: center;
+  }
+  .image-scale-btn {
+    width: 26px; height: 26px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .image-scale-btn:hover { background: var(--bg-secondary); }
+  .image-scale-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
   .options-list {
     display: flex;
@@ -1748,7 +1778,7 @@ function makeElement(type) {
     case 'text':
       return { ...base, text: '' };
     case 'image':
-      return { ...base, dataUrl: '', caption: '' };
+      return { ...base, dataUrl: '', caption: '', scale: 1.0 };
     case 'part':
       return { ...base, label: nextPartLabel(), text: '' };
     case 'mcq':
@@ -2338,6 +2368,17 @@ function clampLines(v) {
   if (!Number.isFinite(n) || n < 1) return 1;
   if (n > 40) return 40;
   return n;
+}
+
+const IMG_SCALE_MIN = 0.2;
+const IMG_SCALE_MAX = 1.0;
+const IMG_SCALE_STEP = 0.1;
+function clampImgScale(v) {
+  const n = parseFloat(v);
+  if (!Number.isFinite(n)) return 1.0;
+  if (n < IMG_SCALE_MIN) return IMG_SCALE_MIN;
+  if (n > IMG_SCALE_MAX) return IMG_SCALE_MAX;
+  return Math.round(n * 10) / 10;
 }
 
 function buildAnswerKeyEditor(el) {
@@ -3174,10 +3215,12 @@ function renderPreviewElement(el, ctx = {}) {
     case 'image': {
       const wrap = document.createElement('div');
       wrap.className = 'question-image';
+      const scale = clampImgScale(el.scale ?? 1.0);
       if (el.dataUrl) {
         const img = document.createElement('img');
         img.src = el.dataUrl;
         img.alt = el.caption || '';
+        img.style.width = (scale * 100) + '%';
         wrap.appendChild(img);
       } else {
         const placeholder = document.createElement('div');
@@ -3188,6 +3231,37 @@ function renderPreviewElement(el, ctx = {}) {
         wrap.appendChild(placeholder);
       }
       if (editable) attachImagePaste(wrap, el);
+      if (editable && el.dataUrl) {
+        const ctrl = document.createElement('div');
+        ctrl.className = 'image-scale-ctrl';
+        const mk = (txt, title, delta) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'image-scale-btn';
+          b.textContent = txt;
+          b.title = title;
+          b.addEventListener('click', (e) => {
+            e.stopPropagation();
+            el.scale = clampImgScale((el.scale ?? 1.0) + delta);
+            renderPreview();
+          });
+          return b;
+        };
+        const minus = mk('−', 'Shrink image', -IMG_SCALE_STEP);
+        const plus = mk('+', 'Enlarge image', +IMG_SCALE_STEP);
+        minus.disabled = scale <= IMG_SCALE_MIN + 1e-9;
+        plus.disabled = scale >= IMG_SCALE_MAX - 1e-9;
+        const label = document.createElement('span');
+        label.className = 'image-scale-label';
+        label.textContent = Math.round(scale * 100) + '%';
+        ctrl.appendChild(minus);
+        ctrl.appendChild(label);
+        ctrl.appendChild(plus);
+        const wrapCtrl = document.createElement('div');
+        wrapCtrl.style.textAlign = 'center';
+        wrapCtrl.appendChild(ctrl);
+        wrap.appendChild(wrapCtrl);
+      }
       if (el.caption || editable) {
         const cap = document.createElement('div');
         cap.style.cssText = 'margin-top:8px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;';
@@ -3653,7 +3727,9 @@ function elementToPrintHtml(el, qIndex, elIndex) {
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
-      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
+      const scale = clampImgScale(el.scale ?? 1.0);
+      const widthStyle = `style="width:${Math.round(scale * 100)}%"`;
+      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" ${widthStyle} />${cap}</div>`;
     }
     case 'part':
       return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${formatTextWithFractions(el.text)}</span></div>`;
@@ -3949,7 +4025,9 @@ function elementToHtml(el, qIndex, elIndex) {
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
-      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" />${cap}</div>`;
+      const scale = clampImgScale(el.scale ?? 1.0);
+      const widthStyle = `style="width:${Math.round(scale * 100)}%"`;
+      return `<div class="question-image"><img src="${escapeAttr(el.dataUrl)}" alt="${escapeAttr(el.caption || '')}" ${widthStyle} />${cap}</div>`;
     }
     case 'part':
       return `<div class="part-stem"><span class="part-marker">${escapeHtml(el.label)}</span><span class="part-text">${formatTextWithFractions(el.text)}</span></div>`;
