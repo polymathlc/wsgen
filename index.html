@@ -3174,6 +3174,27 @@ function buildElementControls(q, idx, el) {
   bar.appendChild(mkMove('↓', 'Move this block down', 1));
 
   if ((el.type === 'image' || el.type === 'answerKey') && el.dataUrl) {
+    const scale = clampImgScale(el.scale ?? 1.0);
+    const mkScale = (txt, title, delta) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pv-el-btn';
+      b.textContent = txt;
+      b.title = title;
+      b.addEventListener('click', (e) => {
+        e.stopPropagation();
+        el.scale = clampImgScale((el.scale ?? 1.0) + delta);
+        renderPreview();
+      });
+      return b;
+    };
+    const shrink = mkScale('−', `Shrink image (currently ${Math.round(scale*100)}%)`, -IMG_SCALE_STEP);
+    const grow = mkScale('+', `Enlarge image (currently ${Math.round(scale*100)}%)`, +IMG_SCALE_STEP);
+    shrink.disabled = scale <= IMG_SCALE_MIN + 1e-9;
+    grow.disabled = scale >= IMG_SCALE_MAX - 1e-9;
+    bar.appendChild(shrink);
+    bar.appendChild(grow);
+
     const rmImg = document.createElement('button');
     rmImg.type = 'button';
     rmImg.className = 'pv-el-btn';
