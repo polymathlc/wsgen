@@ -1,0 +1,209 @@
+{
+  "title": "PSLE 2021 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2021 — Science (0009/2 B).  Booklet B consists of 12 open-ended questions, Q29–Q40 (44 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "psle21b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle21b_intro_t",
+          "type": "text",
+          "text": "Booklet B.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (44 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle21b_q29",
+      "topics": ["Cells", "Plants"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q29_t", "type": "text", "text": "Question 29.  The diagram shows a plant cell." },
+        { "id": "psle21b_q29_img", "type": "image", "dataUrl": "", "caption": "Plant cell diagram with parts labelled R (cell wall on left edge), S (nucleus, dark oval at top), P (pointer to right edge), Q (pointer to internal structure on right)" },
+        { "id": "psle21b_q29_pa", "type": "part", "label": "(a)", "text": "Name parts R and S.  [1]\n\nR ____________________     S ____________________" },
+        { "id": "psle21b_q29_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q29_pb", "type": "part", "label": "(b)", "text": "State the functions of P and Q.  [2]\n\nP ____________________\nQ ____________________" },
+        { "id": "psle21b_q29_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q30",
+      "topics": ["Respiratory System", "Circulatory System"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q30_t", "type": "text", "text": "Question 30." },
+        { "id": "psle21b_q30_pa", "type": "part", "label": "(a)", "text": "State the function of the human respiratory system.  Include in your answer the gases involved.  [1]" },
+        { "id": "psle21b_q30_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q30_pb", "type": "part", "label": "(b)", "text": "Name three parts found in the human respiratory system.  [1]" },
+        { "id": "psle21b_q30_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q30_pc", "type": "part", "label": "(c)", "text": "Describe how the respiratory system works together with the circulatory system in our body.  [2]" },
+        { "id": "psle21b_q30_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q31",
+      "topics": ["Digestive System"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q31_t", "type": "text", "text": "Question 31.  David ate a bowl of rice.  Rice is digested into sugar.\nAfter three hours, the doctor measured the amount of sugar in different parts of the small intestine." },
+        { "id": "psle21b_q31_img1", "type": "image", "dataUrl": "", "caption": "Diagram of human torso with digestive organs.  Labels: Q (top of small intestine, near stomach), R (middle section), S (lower section before large intestine)" },
+        { "id": "psle21b_q31_t2", "type": "text", "text": "The chart shows the amount of sugar at various parts of the small intestine." },
+        { "id": "psle21b_q31_img2", "type": "image", "dataUrl": "", "caption": "Bar chart — Amount of sugar (units) vs Parts of small intestine.  Q: medium bar; R: very tall bar (highest); S: very short bar" },
+        { "id": "psle21b_q31_pa", "type": "part", "label": "(a)", "text": "The amount of sugar increased between Q and R.  Explain why.  [1]" },
+        { "id": "psle21b_q31_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q31_pb", "type": "part", "label": "(b)", "text": "The amount of sugar decreased between R and S.  Explain why.  [1]" },
+        { "id": "psle21b_q31_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q31_pc", "type": "part", "label": "(c)", "text": "Undigested food enters an organ after leaving the small intestine.\nName this organ and state its main function.  [1]" },
+        { "id": "psle21b_q31_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q32",
+      "topics": ["Life Cycles", "Experimental Design", "Materials"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q32_t", "type": "text", "text": "Question 32.  George wanted to find out about conditions that affect the breeding of mosquitoes.\nIn an experiment, George recorded the number of mosquito eggs that hatched in a day out of 20 eggs at different temperatures.  He repeated the experiment two more times.\n\nHis results are as shown.\n\nTemperature (°C)   1st experiment   2nd experiment   3rd experiment\n      22                  8                12                13\n      28                 16                17                19\n      38                  2                 0                 4" },
+        { "id": "psle21b_q32_pa", "type": "part", "label": "(a)", "text": "Describe what George could conclude about the effect of temperature on the hatching of mosquito eggs.  [2]" },
+        { "id": "psle21b_q32_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q32_t2", "type": "text", "text": "In another experiment, George dropped small balls into a well that contains water." },
+        { "id": "psle21b_q32_img", "type": "image", "dataUrl": "", "caption": "Two wells side by side.  Left: person dropping small balls into a well containing water.  Right: well with balls already settled on the water surface forming a layer.  Labels: well, water, ball" },
+        { "id": "psle21b_q32_pb", "type": "part", "label": "(b)", "text": "From the diagram, state one physical property of the balls.  [1]" },
+        { "id": "psle21b_q32_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q32_pc", "type": "part", "label": "(c)", "text": "Explain how George's method reduces the breeding of mosquitoes.  [1]" },
+        { "id": "psle21b_q32_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q33",
+      "topics": ["Life Cycles", "Living Things", "Heredity"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q33_t", "type": "text", "text": "Question 33.  A bee has larva and pupa stages." },
+        { "id": "psle21b_q33_pa", "type": "part", "label": "(a)", "text": "State one way a larva is different from a pupa.  [1]" },
+        { "id": "psle21b_q33_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q33_t2", "type": "text", "text": "Bee K collects nectar from flowers.  Nectar contains water and sugar.  After collecting the nectar, bee K puts it into a hole in the hive.  The bee fans the nectar by beating its wings quickly to turn it into honey as shown in Diagram 1.\n\nDiagram 2 shows the amount of water and sugar in nectar and honey." },
+        { "id": "psle21b_q33_img", "type": "image", "dataUrl": "", "caption": "Diagram 1 — bee at hole in hive fanning nectar.  Diagram 2 — bar chart showing Amount (units) for nectar (sugar ~2, water ~8) and honey (sugar ~2, water ~1).  Key: black = sugar, grey = water" },
+        { "id": "psle21b_q33_pb", "type": "part", "label": "(b)", "text": "Using the information above, suggest how honey is obtained from nectar and how the behaviour of bee K helps to turn nectar into honey.  [2]" },
+        { "id": "psle21b_q33_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q33_pc", "type": "part", "label": "(c)", "text": "Bee T is another type of bee.  It is fiercer than bee K towards humans.  When bee T mated with bee K, their offspring are also fiercer towards humans.  Explain why these offspring behave differently from bee K.  [1]" },
+        { "id": "psle21b_q33_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q34",
+      "topics": ["Photosynthesis", "Plants", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q34_t", "type": "text", "text": "Question 34.  John cut out circular discs of equal size from a leaf.  These leaf discs can still carry out their functions as a leaf for some time.\n\nHe dropped one leaf disc into a clear container with liquid Y placed 10 cm from the lamp.  John switched on the lamp and started the stopwatch." },
+        { "id": "psle21b_q34_img1", "type": "image", "dataUrl": "", "caption": "Set-up — lamp 10 cm from clear container (cylinder) of liquid Y; leaf disc sitting at the bottom of the cylinder" },
+        { "id": "psle21b_q34_t2", "type": "text", "text": "Bubbles were observed under the leaf discs after some time.  John recorded the time taken for the disc to float to the surface of liquid Y." },
+        { "id": "psle21b_q34_img2", "type": "image", "dataUrl": "", "caption": "Second set-up — same lamp and cylinder; bubble under leaf disc is shown lifting the disc to the surface of liquid Y" },
+        { "id": "psle21b_q34_t3", "type": "text", "text": "John repeated the experiment using fresh sets of liquid Y and leaf discs.  He placed the containers at different distances from the lamp and his results are as shown.\n\nDistance of container from lamp (cm)   Time taken for leaf disc to float to surface (s)\n            10                                              8\n            20                                             17\n            30                                             28" },
+        { "id": "psle21b_q34_pa", "type": "part", "label": "(a)", "text": "Name the process that occurred in the leaf disc.  State how this process caused the leaf disc to rise to the surface of liquid Y.  [1]" },
+        { "id": "psle21b_q34_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q34_pb", "type": "part", "label": "(b)", "text": "Suggest two things John could do to obtain more reliable results.  [2]" },
+        { "id": "psle21b_q34_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q34_pc", "type": "part", "label": "(c)", "text": "John repeated the experiment with water instead of liquid Y.  He placed the container 10 cm away from the lamp.  The leaf disc did not rise to the surface even after 200 s.  Liquid Y provided the leaf discs with a larger amount of a substance than water.  Name the substance.  [1]" },
+        { "id": "psle21b_q34_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q35",
+      "topics": ["States of Matter", "Heat and Temperature"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q35_t", "type": "text", "text": "Question 35.  Fook Choy wore a face mask in an air-conditioned room.  His spectacles became fogged when he breathed." },
+        { "id": "psle21b_q35_img", "type": "image", "dataUrl": "", "caption": "Drawing of a person wearing spectacles and a face mask; fogged spectacles labelled" },
+        { "id": "psle21b_q35_p", "type": "part", "label": "", "text": "Explain why his spectacles became fogged.  [2]" },
+        { "id": "psle21b_q35_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q36",
+      "topics": ["Heat and Temperature", "Heat Transfer", "States of Matter"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q36_t", "type": "text", "text": "Question 36.  Cars parked under the sun become hot quickly as heat that enters the cars cannot escape easily.\n\nAlex measured the temperature inside a car parked under the sun.  He started timing immediately after the car was parked.  His results are as shown." },
+        { "id": "psle21b_q36_img1", "type": "image", "dataUrl": "", "caption": "Graph — Temperature (°C) vs Time (min).  Starts at 30 °C at 0 min, rises steeply, levels off at about 55 °C from 50 min onwards.  Reaches 40 °C at about 10 min." },
+        { "id": "psle21b_q36_pa", "type": "part", "label": "(a)", "text": "State what is temperature.  [1]" },
+        { "id": "psle21b_q36_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q36_pb", "type": "part", "label": "(b)", "text": "State the temperature of the surroundings.  [1]" },
+        { "id": "psle21b_q36_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q36_pc", "type": "part", "label": "(c)", "text": "State the time taken for temperature to reach 40 °C.  [1]" },
+        { "id": "psle21b_q36_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q36_t2", "type": "text", "text": "Alex put a film over a car window to reduce the amount of sunlight coming into the car.  A bubble was seen as shown." },
+        { "id": "psle21b_q36_img2", "type": "image", "dataUrl": "", "caption": "Car window with a film stuck to the glass; a small bubble of air is trapped between the film and the glass" },
+        { "id": "psle21b_q36_pd", "type": "part", "label": "(d)", "text": "Explain why the bubble became larger after some days.  [1]" },
+        { "id": "psle21b_q36_ad", "type": "answer", "label": "Ans : (d) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q37",
+      "topics": ["Sound", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q37_t", "type": "text", "text": "Question 37.  Terrence drilled a small hole at the bottom of a pail and hung it above a plate.  He filled the pail with water and let the water drip from the hole onto the plate as shown.  A sound sensor recorded the sound made by the water droplets." },
+        { "id": "psle21b_q37_img1", "type": "image", "dataUrl": "", "caption": "Pail hung from ceiling with water inside; small hole at bottom of pail releases water droplets that fall onto a plate below; sound sensor placed on the surface near the plate" },
+        { "id": "psle21b_q37_t2", "type": "text", "text": "The results are as shown." },
+        { "id": "psle21b_q37_img2", "type": "image", "dataUrl": "", "caption": "Graph — Sound level (units) vs Time (s).  Four sharp peaks reaching ~33 units at roughly 7 s, 17 s, 27 s and 37 s; low background level (~5 units) between peaks" },
+        { "id": "psle21b_q37_pa", "type": "part", "label": "(a)", "text": "State the number of water droplets that fell on the plate in the first 30 s.  [1]" },
+        { "id": "psle21b_q37_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q37_pb", "type": "part", "label": "(b)", "text": "Suggest why the sound level is not zero between 10 s and 15 s.  [1]" },
+        { "id": "psle21b_q37_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q37_pc", "type": "part", "label": "(c)", "text": "Using the same apparatus, suggest two changes to increase the maximum sound level recorded by the sound sensor.  [2]" },
+        { "id": "psle21b_q37_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q38",
+      "topics": ["Magnets", "Electricity", "Forces", "Energy"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q38_t", "type": "text", "text": "Question 38.  Kumar set up the apparatus in Diagram 1." },
+        { "id": "psle21b_q38_img1", "type": "image", "dataUrl": "", "caption": "Diagram 1 — wire coiled around a hollow metal cylinder with point P at one end, connected to a battery and switch; nearby, a bar hangs from the ceiling by a string" },
+        { "id": "psle21b_q38_t2", "type": "text", "text": "When he closed the switch, the bar swung towards the point P.  Kumar concluded that the bar is a magnet." },
+        { "id": "psle21b_q38_pa", "type": "part", "label": "(a)", "text": "State if you agree with Kumar's conclusion.  Explain your answer.  [1]" },
+        { "id": "psle21b_q38_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q38_t3", "type": "text", "text": "Kumar designed part of a game named \"Bobbing Carrots\" as shown in Diagram 2.  An iron rod and a spring are fixed to the plastic carrot from below.  The bottom end of the spring is fixed to a wooden board." },
+        { "id": "psle21b_q38_img2", "type": "image", "dataUrl": "", "caption": "Diagram 2 — plastic carrot with iron rod and spring attached below; spring fixed at top to carrot and at bottom to a wooden board; below the wooden board is a wire coiled around a hollow metal cylinder connected to a battery and switch A; carrot pops up through a hole in the top surface" },
+        { "id": "psle21b_q38_t4", "type": "text", "text": "When Kumar closes switch A, the carrot will drop below the hole." },
+        { "id": "psle21b_q38_pb", "type": "part", "label": "(b)", "text": "Explain why the carrot appears above the hole when Kumar opens switch A.  [2]" },
+        { "id": "psle21b_q38_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q38_pc", "type": "part", "label": "(c)", "text": "Suggest two ways to make the carrot drop into the hole faster while making sure that the carrot appears above the hole when the switch is opened.  [2]" },
+        { "id": "psle21b_q38_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q39",
+      "topics": ["Matter", "Measurement"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q39_t", "type": "text", "text": "Question 39.  Charlie has a coin bank." },
+        { "id": "psle21b_q39_img", "type": "image", "dataUrl": "", "caption": "Drawing of a car-shaped coin bank with a coin slot on the top" },
+        { "id": "psle21b_q39_pa", "type": "part", "label": "(a)", "text": "Describe one way to find the volume inside the coin bank.  [2]" },
+        { "id": "psle21b_q39_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q39_pb", "type": "part", "label": "(b)", "text": "The volume inside the coin bank is 200 cm³.  Charlie has 200 similar coins.  Each coin has a volume of 1 cm³.\nExplain why Charlie cannot put all 200 coins into the coin bank.  [1]" },
+        { "id": "psle21b_q39_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "psle21b_q40",
+      "topics": ["Forces", "Energy", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle21b_q40_t", "type": "text", "text": "Question 40.  Samy compressed a spring to launch a toy rocket in a room as shown.  There was no wind." },
+        { "id": "psle21b_q40_img", "type": "image", "dataUrl": "", "caption": "Toy rocket on a ramp with a compressed spring at the bottom; path of rocket shown as a curved arc from G (on the ramp) up to highest point H and down to the hard floor; horizontal distance moved by rocket measured along the floor" },
+        { "id": "psle21b_q40_t2", "type": "text", "text": "He measured the distance moved by the rocket for each try.  His results are as shown.\n\nCompression of spring (cm)   Distance moved (cm)\n                              1st try     2nd try\n        2.0                     4.2         5.1\n        4.0                    20.5        18.6\n        6.0                    46.0        49.4\n        8.0                    81.5        86.2" },
+        { "id": "psle21b_q40_pa", "type": "part", "label": "(a)", "text": "State the relationship between the compression of spring and the distance moved by the rocket.  [1]" },
+        { "id": "psle21b_q40_aa", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q40_pb", "type": "part", "label": "(b)", "text": "Name the force(s) acting on the rocket at G when it is moving up the ramp and not touching the spring.  [1]" },
+        { "id": "psle21b_q40_ab", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q40_pc", "type": "part", "label": "(c)", "text": "Name the main form(s) of energy of the rocket at H.  [1]" },
+        { "id": "psle21b_q40_ac", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 },
+        { "id": "psle21b_q40_pd", "type": "part", "label": "(d)", "text": "Samy decided to repeat his experiment on a sand pit.\nExplain how this will help him obtain more accurate results.  [1]" },
+        { "id": "psle21b_q40_ad", "type": "answer", "label": "Ans : (d) ", "answer": "", "lineLength": 30 }
+      ]
+    }
+  ]
+}
