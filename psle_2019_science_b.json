@@ -1,0 +1,203 @@
+{
+  "title": "PSLE 2019 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2019 — Science (0009/2 B).  Booklet B consists of 12 open-ended questions, Q29–Q40 (44 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "psle19b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle19b_intro_t",
+          "type": "text",
+          "text": "Booklet B.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (44 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle19b_q29",
+      "topics": ["Interactions within the Environment", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q29_t", "type": "text", "text": "Question 29.  The diagram below shows insect P and flower Q.  Insect P feeds on bees and butterflies and is often found sitting on flower Q." },
+        { "id": "psle19b_q29_img", "type": "image", "dataUrl": "", "caption": "Insect P resembling parts of flower Q (camouflaged); insect P sits on flower Q which has pale-coloured petals" },
+        { "id": "psle19b_q29_pa", "type": "part", "label": "(a)", "text": "Explain how looking like parts of flower Q is an advantage to insect P.  [1]" },
+        { "id": "psle19b_q29_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q29_pb", "type": "part", "label": "(b)", "text": "Explain how insect P sitting on flower Q is a disadvantage to flower Q.  [1]" },
+        { "id": "psle19b_q29_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle19b_q30",
+      "topics": ["Adaptations", "Living Things"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q30_t", "type": "text", "text": "Question 30." },
+        { "id": "psle19b_q30_pa", "type": "part", "label": "(a)", "text": "The wings of a butterfly S have upper sides and undersides.  Each side may be dull or bright red in colour." },
+        { "id": "psle19b_q30_img1", "type": "image", "dataUrl": "", "caption": "Butterfly S with labels — 'upper sides' visible on top of wings; 'undersides' visible underneath when wings are folded" },
+        { "id": "psle19b_q30_t2", "type": "text", "text": "Xiaoli observed 50 butterflies S for each type of wing colour, K, L, M and N.  For each type, she counted the number of butterflies that attracted a mate." },
+        { "id": "psle19b_q30_img2", "type": "image", "dataUrl": "", "caption": "Bar chart — Number of butterflies that attracted a mate vs Type of wing colour.  K (dull upper / bright under): low.  L (dull upper / dull under): very low.  M (bright upper / dull under): high (~50).  N (bright upper / dull under): high" },
+        { "id": "psle19b_q30_pa2", "type": "part", "label": "(a)", "text": "Xiaoli thinks that the wing colour of the upper side would affect the ability of butterfly S to attract a mate.\n\nWhich two types of wing colour, K, L, M and N, did she use to arrive at this conclusion?  Explain your answer.  [2]" },
+        { "id": "psle19b_q30_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q30_pb", "type": "part", "label": "(b)", "text": "The larva of butterfly S eats only the leaves of a plant which are poisonous.  The poison does not affect the larva but is harmful to other organisms.\n\nExplain how the ability of the larva to eat a poisonous plant impacts the survival of butterfly S.  [1]" },
+        { "id": "psle19b_q30_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle19b_q31",
+      "topics": ["Interactions within the Environment"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q31_t", "type": "text", "text": "Question 31.  Bird P is a pest found in large numbers in areas where people live.  The droppings of bird P may carry diseases that are harmful to people." },
+        { "id": "psle19b_q31_pa", "type": "part", "label": "(a)", "text": "Scientists introduced a substance S to the food of bird P in a town.  The graph shows the changes in the number of births and deaths of bird P after substance S was introduced." },
+        { "id": "psle19b_q31_img", "type": "image", "dataUrl": "", "caption": "Graph — number of bird P (y-axis) vs months after introduction of substance S (x-axis, 0–36 months).  'Deaths' curve rises above the original level; 'Births' curve falls below the original level after substance S was introduced" },
+        { "id": "psle19b_q31_pai", "type": "part", "label": "(a)(i)", "text": "State how many months after the introduction of substance S did the number of births of bird P start to decrease.  [1]" },
+        { "id": "psle19b_q31_aai", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q31_paii", "type": "part", "label": "(a)(ii)", "text": "Using information from the graph, suggest a possible way that substance S acted on bird P.  Explain your answer.  [2]" },
+        { "id": "psle19b_q31_aaii", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q31_pb", "type": "part", "label": "(b)", "text": "Other than substance S, state another way to control the population size of bird P.  [1]" },
+        { "id": "psle19b_q31_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle19b_q32",
+      "topics": ["Respiratory System", "Forces", "Interactions within the Environment"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q32_t", "type": "text", "text": "Question 32.  Polar bears are mammals.  They swim in the seas to look for food.  After some time, they need to get out of the water to breathe and rest on the ice before entering the water again." },
+        { "id": "psle19b_q32_img1", "type": "image", "dataUrl": "", "caption": "Polar bear standing on a sheet of ice on the surface of sea water; fish swim in the water below" },
+        { "id": "psle19b_q32_pa", "type": "part", "label": "(a)", "text": "Give a reason why polar bears cannot breathe under water.  [1]" },
+        { "id": "psle19b_q32_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q32_pb", "type": "part", "label": "(b)", "text": "State two forces acting on the polar bear as it walks on the ice.  [1]" },
+        { "id": "psle19b_q32_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q32_pc", "type": "part", "label": "(c)", "text": "Due to global warming, the ice on the surface of sea water decreases in size and number." },
+        { "id": "psle19b_q32_img2", "type": "image", "dataUrl": "", "caption": "Three ice sheets shown from left (lower temperature, larger ice) to right (higher temperature, smaller ice)" },
+        { "id": "psle19b_q32_pc2", "type": "part", "label": "(c)", "text": "Based on the information given, suggest how global warming affects the survival of polar bears.  Explain your answer.  [2]" },
+        { "id": "psle19b_q32_ac", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle19b_q33",
+      "topics": ["Plants", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q33_t", "type": "text", "text": "Question 33.  Ravi wanted to investigate the conditions needed for leaf growth using three types of soil.  Four pots of identical plants were placed in the same area within a garden.  The diagram shows the four pots of plants after two weeks.\n\nPot                    P             Q              R              S\nType of soil       garden soil  garden soil   sandy soil    clayey soil\nAvailability of    Yes          No            Yes           Yes\nwater" },
+        { "id": "psle19b_q33_img1", "type": "image", "dataUrl": "", "caption": "Four potted plants P, Q, R, S after two weeks: P (healthy), Q (wilted), R (slightly grown), S (medium growth)" },
+        { "id": "psle19b_q33_pa", "type": "part", "label": "(a)", "text": "State which pots must be compared to conclude about the effect of each variable on leaf growth.  [2]\n\nVariable                  Pots to compare\nType of soil              ____________________\nAvailability of water     ____________________" },
+        { "id": "psle19b_q33_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q33_t2", "type": "text", "text": "Ravi conducted a second experiment to find how the amount of fertiliser affects leaf growth.  He conducted a fair test, planting the same number of plants in five big pots, V, W, X, Y and Z.  The pots are filled with garden soil.\n\nThe results of his experiment are as shown.\n\nPot                                          V    W    X    Y    Z\nAmount of fertiliser (g)                    0    5   10   15   20\nAverage surface area of a leaf             20   30  36   20   14\nafter two weeks (cm²)" },
+        { "id": "psle19b_q33_pb", "type": "part", "label": "(b)", "text": "What can Ravi conclude about the effect of fertiliser on leaf growth?  [2]" },
+        { "id": "psle19b_q33_ab", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q33_pc", "type": "part", "label": "(c)", "text": "Explain why the results of Ravi's second experiment cannot be used to improve the leaf growth in pot S from his first experiment.  [1]" },
+        { "id": "psle19b_q33_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle19b_q34",
+      "topics": ["Interactions within the Environment", "Food Chains and Webs"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q34_t", "type": "text", "text": "Question 34.  Study the information below about organisms W, X, Y and Z.\n\nW                                X         Y         Z\ndepends on X and Z to            eats W    eats W    eats X\ndisperse its seeds" },
+        { "id": "psle19b_q34_pa", "type": "part", "label": "(a)", "text": "Draw a food web to show the food relationships among organisms W, X, Y and Z.  [2]" },
+        { "id": "psle19b_q34_aa", "type": "openLines", "lines": 6 },
+        { "id": "psle19b_q34_pb", "type": "part", "label": "(b)", "text": "The statements below describe the behaviours of organisms X and Z:\n\n-  X eats the whole fruit of W but cannot digest its seeds.\n-  Z catches X and flies far away from W before eating it.\n-  Z eats only the flesh of X but leaves the internal organs of X behind.\n\nExplain how these actions of Z ensure the survival of W.  [2]" },
+        { "id": "psle19b_q34_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle19b_q35",
+      "topics": ["States of Matter", "Heat and Temperature", "Materials"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q35_t", "type": "text", "text": "Question 35.  Mary has a pot of water with a layer of oil as shown below." },
+        { "id": "psle19b_q35_img", "type": "image", "dataUrl": "", "caption": "Cross-section of a pot containing water with a layer of oil floating on top of the water" },
+        { "id": "psle19b_q35_pa", "type": "part", "label": "(a)", "text": "Based on what you can observe from the diagram, state a physical property of oil.  [1]" },
+        { "id": "psle19b_q35_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q35_pb", "type": "part", "label": "(b)", "text": "Mary put the pot in the refrigerator which is at a temperature of 4 °C.  After a few hours, the oil froze and Mary removed it easily from the water." },
+        { "id": "psle19b_q35_pbi", "type": "part", "label": "(b)(i)", "text": "State what freezing means.  [1]" },
+        { "id": "psle19b_q35_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q35_pbii", "type": "part", "label": "(b)(ii)", "text": "What can you tell about the melting point of oil?  [1]" },
+        { "id": "psle19b_q35_abii", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle19b_q36",
+      "topics": ["Electricity"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q36_t", "type": "text", "text": "Question 36.  Diagram 1 shows the front view of Kenneth's toy ambulance.  He sets up an electric circuit in the toy using bulb P, a sound box S and batteries as shown in Diagram 2.  All the circuit components are working." },
+        { "id": "psle19b_q36_img", "type": "image", "dataUrl": "", "caption": "Diagram 1 — front of toy ambulance with bulb P on roof and two headlights at the front.  Diagram 2 — circuit showing bulb P, sound box S, battery, and two fixed metal plates that act as connectors" },
+        { "id": "psle19b_q36_t2", "type": "text", "text": "When he closes the switch, the bulb does not light up and there is no sound." },
+        { "id": "psle19b_q36_pa", "type": "part", "label": "(a)", "text": "Draw a circuit below to correct the mistake(s).  [2]" },
+        { "id": "psle19b_q36_aa", "type": "openLines", "lines": 6 },
+        { "id": "psle19b_q36_pb", "type": "part", "label": "(b)", "text": "Kenneth adds two other bulbs for the headlights of the toy.  When he closes the switch, all three bulbs will light up without dimming bulb P.\n\nDraw on your circuit in (a) to show how you would connect the two bulbs.  [1]" },
+        { "id": "psle19b_q36_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle19b_q37",
+      "topics": ["Energy", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q37_t", "type": "text", "text": "Question 37.  Zhiming set up the apparatus below to investigate how his toy car can move on its own along the plastic track from A down to B, up to C before leaving at D.  C is at a fixed height above B." },
+        { "id": "psle19b_q37_img", "type": "image", "dataUrl": "", "caption": "Flexible plastic track on a stand with an adjustable clamp at A; track goes down from A to B (lowest point), loops up through C (top of a circular loop), and out at D" },
+        { "id": "psle19b_q37_pa", "type": "part", "label": "(a)", "text": "When Zhiming released the car at A, it moved past B but was not able to reach C.  Explain why.  [1]" },
+        { "id": "psle19b_q37_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle19b_q37_pb", "type": "part", "label": "(b)", "text": "Without using different apparatus and additional materials, suggest two different ways to help the car reach C in this investigation.  Explain your answer.  [2]\n\n1. ____________________\n2. ____________________" },
+        { "id": "psle19b_q37_ab", "type": "openLines", "lines": 5 },
+        { "id": "psle19b_q37_pc", "type": "part", "label": "(c)", "text": "State the main form(s) of energy that the car will have at C.  [1]" },
+        { "id": "psle19b_q37_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle19b_q38",
+      "topics": ["Magnets", "Forces", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q38_t", "type": "text", "text": "Question 38.  Leela placed a magnet on top of a balance as shown in Diagram 1." },
+        { "id": "psle19b_q38_img", "type": "image", "dataUrl": "", "caption": "Diagram 1 — magnet sitting on top of a balance reading 60.0 g.  Diagram 2 — object A held above the magnet by a clamp on a stand; balance now reads 68.0 g" },
+        { "id": "psle19b_q38_t2", "type": "text", "text": "She brought object A close to the magnet as shown in Diagram 2." },
+        { "id": "psle19b_q38_pa", "type": "part", "label": "(a)", "text": "State what object A is.  [1]" },
+        { "id": "psle19b_q38_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q38_pb", "type": "part", "label": "(b)", "text": "Explain why the reading of the balance increased in Diagram 2.  [2]" },
+        { "id": "psle19b_q38_ab", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q38_pc", "type": "part", "label": "(c)", "text": "Leela replaced object A with an iron bar of the same size in the set-up of Diagram 2." },
+        { "id": "psle19b_q38_pci", "type": "part", "label": "(c)(i)", "text": "State which reading, P, Q, R, S or T, shown below is possible on the balance.  [1]\n\nP        Q        R        S        T\n54.0 g   60.0 g   64.0 g   68.0 g   72.0 g\n\nReading: ____________________\nExplain your answer." },
+        { "id": "psle19b_q38_aci", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q38_pcii", "type": "part", "label": "(c)(ii)", "text": "State a variable that Leela must keep constant when comparing object A and the iron bar.  [1]" },
+        { "id": "psle19b_q38_acii", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle19b_q39",
+      "topics": ["Materials", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q39_t", "type": "text", "text": "Question 39.  A glass has a thin wall and a thick bottom." },
+        { "id": "psle19b_q39_img1", "type": "image", "dataUrl": "", "caption": "Cross-section of a single glass with thin wall and thick bottom labelled" },
+        { "id": "psle19b_q39_pa", "type": "part", "label": "(a)", "text": "State a physical property of the thick bottom glass that prevents it from breaking when placed on a table.  [1]" },
+        { "id": "psle19b_q39_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle19b_q39_pb", "type": "part", "label": "(b)", "text": "Two glasses, A and B, are stacked together as shown.  They became stuck and Ahmad was unable to separate them with his hands." },
+        { "id": "psle19b_q39_img2", "type": "image", "dataUrl": "", "caption": "Glass A stacked inside glass B; the two glasses appear stuck together" },
+        { "id": "psle19b_q39_t2", "type": "text", "text": "For safety reasons, Ahmad is not allowed to use lubricants (e.g. oil) on the glass and not to force the glasses apart with his hands." },
+        { "id": "psle19b_q39_pbi", "type": "part", "label": "(b)(i)", "text": "Describe two ways that Ahmad can separate the glasses.  You may use a diagram in your answer.  [2]" },
+        { "id": "psle19b_q39_abi", "type": "openLines", "lines": 6 },
+        { "id": "psle19b_q39_pbii", "type": "part", "label": "(b)(ii)", "text": "Explain why one of the ways in (i) works.  [1]" },
+        { "id": "psle19b_q39_abii", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle19b_q40",
+      "topics": ["States of Matter", "Heat Transfer"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle19b_q40_t", "type": "text", "text": "Question 40.  Alice and Beatrice were travelling in an air-conditioned car.  Both were wearing the same type of spectacles.  Alice put her hands over her spectacles but Beatrice did not.  When they stepped out of the car, there is less fogging on Alice's spectacles than Beatrice's as shown." },
+        { "id": "psle19b_q40_img", "type": "image", "dataUrl": "", "caption": "Two girls — Alice with slight fogging on spectacles, Beatrice with heavily fogged spectacles" },
+        { "id": "psle19b_q40_pa", "type": "part", "label": "(a)", "text": "Explain why there is less fogging on Alice's spectacles.  [2]" },
+        { "id": "psle19b_q40_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle19b_q40_pb", "type": "part", "label": "(b)", "text": "Explain why their spectacles became clear again after some time.  [1]" },
+        { "id": "psle19b_q40_ab", "type": "openLines", "lines": 3 }
+      ]
+    }
+  ]
+}
