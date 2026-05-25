@@ -1,0 +1,715 @@
+{
+  "title": "Raffles Girls' Primary School 2025 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Raffles Girls' Primary School — Preliminary Examination 2025 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "rgps25_q_a",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rgps25_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4) and shade your answer on the Optical Answer Sheet.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q1",
+      "topics": ["Whole Numbers"],
+      "concepts": ["Place Value"],
+      "elements": [
+        { "id": "rgps25_q1_t", "type": "text", "text": "What does the digit 9 in 190 284 stand for?" },
+        {
+          "id": "rgps25_q1_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q1_o1", "text": "90" },
+            { "id": "rgps25_q1_o2", "text": "900" },
+            { "id": "rgps25_q1_o3", "text": "9000" },
+            { "id": "rgps25_q1_o4", "text": "90 000" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q2",
+      "topics": ["Fractions"],
+      "concepts": ["Fraction of a Figure"],
+      "elements": [
+        { "id": "rgps25_q2_t", "type": "text", "text": "The figure is made up of equilateral triangles.  What fraction of the figure is shaded?" },
+        { "id": "rgps25_q2_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q2_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q2_o1", "text": "1/3" },
+            { "id": "rgps25_q2_o2", "text": "1/2" },
+            { "id": "rgps25_q2_o3", "text": "2/3" },
+            { "id": "rgps25_q2_o4", "text": "5/8" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q3",
+      "topics": ["Fractions"],
+      "concepts": ["Mixed Numbers and Improper Fractions"],
+      "elements": [
+        { "id": "rgps25_q3_t", "type": "text", "text": "Which of the following is equal to 2 4/5?" },
+        {
+          "id": "rgps25_q3_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q3_o1", "text": "8/5" },
+            { "id": "rgps25_q3_o2", "text": "11/5" },
+            { "id": "rgps25_q3_o3", "text": "13/5" },
+            { "id": "rgps25_q3_o4", "text": "14/5" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q4",
+      "topics": ["Decimals"],
+      "concepts": ["Number Line"],
+      "elements": [
+        { "id": "rgps25_q4_t", "type": "text", "text": "In the number line, what is the value represented by A?" },
+        { "id": "rgps25_q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q4_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q4_o1", "text": "3.02" },
+            { "id": "rgps25_q4_o2", "text": "3.04" },
+            { "id": "rgps25_q4_o3", "text": "3.2" },
+            { "id": "rgps25_q4_o4", "text": "3.4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q5",
+      "topics": ["Percentage"],
+      "concepts": ["Finding the Whole from a Percentage"],
+      "elements": [
+        { "id": "rgps25_q5_t", "type": "text", "text": "40% of a number is 80. What is the number?" },
+        {
+          "id": "rgps25_q5_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q5_o1", "text": "32" },
+            { "id": "rgps25_q5_o2", "text": "50" },
+            { "id": "rgps25_q5_o3", "text": "120" },
+            { "id": "rgps25_q5_o4", "text": "200" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q6",
+      "topics": ["Measurement"],
+      "concepts": ["Length Conversion"],
+      "elements": [
+        { "id": "rgps25_q6_t", "type": "text", "text": "Which of the following is the same as 8050 m?" },
+        {
+          "id": "rgps25_q6_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q6_o1", "text": "8 km 5 m" },
+            { "id": "rgps25_q6_o2", "text": "8 km 50 m" },
+            { "id": "rgps25_q6_o3", "text": "80 km 5 m" },
+            { "id": "rgps25_q6_o4", "text": "80 km 50 m" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q7",
+      "topics": ["Geometry"],
+      "concepts": ["Parallelogram Properties"],
+      "elements": [
+        { "id": "rgps25_q7_t", "type": "text", "text": "PQRS is a parallelogram.  Which of the following statement(s) is/are true?  A. ∠SPQ = ∠SRQ   B. ∠PSQ = ∠QSR   C. PQS is an isosceles triangle." },
+        { "id": "rgps25_q7_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q7_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q7_o1", "text": "A only" },
+            { "id": "rgps25_q7_o2", "text": "A and B" },
+            { "id": "rgps25_q7_o3", "text": "A and C" },
+            { "id": "rgps25_q7_o4", "text": "All of the above" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q8",
+      "topics": ["Geometry", "Nets and Solids"],
+      "concepts": ["Nets of Cubes"],
+      "elements": [
+        { "id": "rgps25_q8_t", "type": "text", "text": "The figure shows a cube.  Which of the following is a net of the cube?" },
+        { "id": "rgps25_q8_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q8_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q8_o1", "text": "Net (1)" },
+            { "id": "rgps25_q8_o2", "text": "Net (2)" },
+            { "id": "rgps25_q8_o3", "text": "Net (3)" },
+            { "id": "rgps25_q8_o4", "text": "Net (4)" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q9",
+      "topics": ["Geometry"],
+      "concepts": ["Perpendicular Lines"],
+      "elements": [
+        { "id": "rgps25_q9_t", "type": "text", "text": "Which two lines are perpendicular to each other?" },
+        { "id": "rgps25_q9_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q9_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q9_o1", "text": "DC and GH" },
+            { "id": "rgps25_q9_o2", "text": "DC and EF" },
+            { "id": "rgps25_q9_o3", "text": "AB and DC" },
+            { "id": "rgps25_q9_o4", "text": "AB and AD" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q10",
+      "topics": ["Fractions", "Data Analysis"],
+      "concepts": ["Pie Chart"],
+      "elements": [
+        { "id": "rgps25_q10_t", "type": "text", "text": "The pie chart shows the different ways a group of students goes to school.  What fraction of the students go to school by MRT?" },
+        { "id": "rgps25_q10_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q10_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q10_o1", "text": "1/6" },
+            { "id": "rgps25_q10_o2", "text": "1/4" },
+            { "id": "rgps25_q10_o3", "text": "1/3" },
+            { "id": "rgps25_q10_o4", "text": "5/12" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q11",
+      "topics": ["Ratio", "Data Analysis"],
+      "concepts": ["Pie Chart", "Ratio"],
+      "elements": [
+        { "id": "rgps25_q11_t", "type": "text", "text": "What is the ratio of the number of students who travel to school by bus to the number of students who walk to school?" },
+        { "id": "rgps25_q11_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q11_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q11_o1", "text": "1 : 5" },
+            { "id": "rgps25_q11_o2", "text": "1 : 6" },
+            { "id": "rgps25_q11_o3", "text": "5 : 1" },
+            { "id": "rgps25_q11_o4", "text": "6 : 1" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q12",
+      "topics": ["Measurement", "Fractions", "Decimals"],
+      "concepts": ["Comparing Mass", "Unit Conversion"],
+      "elements": [
+        { "id": "rgps25_q12_t", "type": "text", "text": "Arrange the mass from the heaviest to the lightest:  7.45 kg,  7 kg 95 g,  7 3/5 kg." },
+        {
+          "id": "rgps25_q12_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q12_o1", "text": "7 3/5 kg, 7 kg 95 g, 7.45 kg" },
+            { "id": "rgps25_q12_o2", "text": "7 3/5 kg, 7.45 kg, 7 kg 95 g" },
+            { "id": "rgps25_q12_o3", "text": "7.45 kg, 7 3/5 kg, 7 kg 95 g" },
+            { "id": "rgps25_q12_o4", "text": "7 kg 95 g, 7.45 kg, 7 3/5 kg" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q13",
+      "topics": ["Ratio", "Data Analysis"],
+      "concepts": ["Bar Graph", "Ratio"],
+      "elements": [
+        { "id": "rgps25_q13_t", "type": "text", "text": "The bar graphs show the sale of each type of stationery in a shop for two days.  The scale of the graphs is not shown.  The total number of items sold on Day 1 was twice the total number sold on Day 2.  What is the ratio of the number of pens sold on Day 1 to Day 2?" },
+        { "id": "rgps25_q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q13_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q13_o1", "text": "1 : 2" },
+            { "id": "rgps25_q13_o2", "text": "2 : 1" },
+            { "id": "rgps25_q13_o3", "text": "5 : 2" },
+            { "id": "rgps25_q13_o4", "text": "5 : 3" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q14",
+      "topics": ["Geometry", "Area and Perimeter"],
+      "concepts": ["Perimeter of Composite Figures", "Circles"],
+      "elements": [
+        { "id": "rgps25_q14_t", "type": "text", "text": "The figure shows a semi-circle and a square. The diameter of the semi-circle is 21 cm. What is the perimeter of the figure? (Take π = 22/7)" },
+        { "id": "rgps25_q14_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q14_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q14_o1", "text": "54 cm" },
+            { "id": "rgps25_q14_o2", "text": "66 cm" },
+            { "id": "rgps25_q14_o3", "text": "68 cm" },
+            { "id": "rgps25_q14_o4", "text": "101 cm" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q15",
+      "topics": ["Geometry"],
+      "concepts": ["Angles", "Symmetry / Folding"],
+      "elements": [
+        { "id": "rgps25_q15_t", "type": "text", "text": "A piece of paper in the shape of a trapezium is folded along dotted line EF. Find ∠x." },
+        { "id": "rgps25_q15_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rgps25_q15_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rgps25_q15_o1", "text": "20°" },
+            { "id": "rgps25_q15_o2", "text": "40°" },
+            { "id": "rgps25_q15_o3", "text": "60°" },
+            { "id": "rgps25_q15_o4", "text": "80°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q_b",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rgps25_qb_t",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q16",
+      "topics": ["Fractions"],
+      "concepts": ["Dividing a Fraction by a Whole Number"],
+      "elements": [
+        { "id": "rgps25_q16_t", "type": "text", "text": "Find the value of 8/9 ÷ 6.  Give your answer in the simplest form." },
+        { "id": "rgps25_q16_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q17",
+      "topics": ["Measurement"],
+      "concepts": ["Time Duration"],
+      "elements": [
+        { "id": "rgps25_q17_t", "type": "text", "text": "Jones started work at 9.30 a.m. and ended work at 5.50 p.m.  How long did he work?" },
+        { "id": "rgps25_q17_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q18",
+      "topics": ["Data Analysis"],
+      "concepts": ["Line Graph"],
+      "elements": [
+        { "id": "rgps25_q18_t", "type": "text", "text": "The graph shows the number of cars sold each month from January to May.  What was the increase in the number of cars sold from March to April?" },
+        { "id": "rgps25_q18_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q18_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q19",
+      "topics": ["Percentage"],
+      "concepts": ["Percentage Increase", "GST"],
+      "elements": [
+        { "id": "rgps25_q19_t", "type": "text", "text": "A watch costs $200 before 9% GST.  What is the cost of the watch including GST?" },
+        { "id": "rgps25_q19_a", "type": "answer", "label": "Ans : $", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q20",
+      "topics": ["Geometry"],
+      "concepts": ["Line Symmetry"],
+      "elements": [
+        { "id": "rgps25_q20_t", "type": "text", "text": "Figures X, Y and Z are each made up of 9 squares.  Name the figure(s) that has/have a line of symmetry." },
+        { "id": "rgps25_q20_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q20_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q_b2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rgps25_qb2_t",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rgps25_q21",
+      "topics": ["Algebra"],
+      "concepts": ["Evaluating Algebraic Expressions"],
+      "elements": [
+        { "id": "rgps25_q21_t", "type": "text", "text": "Find the value of 8w − 2w/3 + 5 when w = 3." },
+        { "id": "rgps25_q21_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q22",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Triangles", "Isosceles Triangle"],
+      "elements": [
+        { "id": "rgps25_q22_t", "type": "text", "text": "JKM is a right-angled triangle and JLM is an isosceles triangle.  Find ∠JKL." },
+        { "id": "rgps25_q22_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q22_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q23",
+      "topics": ["Fractions", "Decimals"],
+      "concepts": ["Converting Fractions to Decimals", "Rounding Decimals"],
+      "elements": [
+        { "id": "rgps25_q23_a_t", "type": "part", "label": "(a)", "text": "Express 1 3/25 as a decimal." },
+        { "id": "rgps25_q23_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_q23_b_t", "type": "part", "label": "(b)", "text": "Round 20.85 to the nearest tenth." },
+        { "id": "rgps25_q23_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q24",
+      "topics": ["Ratio"],
+      "concepts": ["Ratio with Overlapping Quantities"],
+      "elements": [
+        { "id": "rgps25_q24_t", "type": "text", "text": "The ratio of the length of rod M to the length of rod N is 8 : 5.  Find the length of rod N." },
+        { "id": "rgps25_q24_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q24_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q25",
+      "topics": ["Geometry", "Nets and Solids"],
+      "concepts": ["Front/Side/Top Views of Solids"],
+      "elements": [
+        { "id": "rgps25_q25_t", "type": "text", "text": "The solid shown is made up of 8 cubes." },
+        { "id": "rgps25_q25_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q25_a_t", "type": "part", "label": "(a)", "text": "Draw the front view of the solid on the grid." },
+        { "id": "rgps25_q25_a_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q25_b_t", "type": "part", "label": "(b)", "text": "Find the greatest number of cubes that can be added to the solid without changing the front view and the side view." },
+        { "id": "rgps25_q25_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q26",
+      "topics": ["Area and Perimeter"],
+      "concepts": ["Area of Triangles", "Area of Composite Figures"],
+      "elements": [
+        { "id": "rgps25_q26_t", "type": "text", "text": "AEGD and EBCG are two identical rectangles, each measuring 12 cm by 9 cm.  The length of EF is twice the length of FG.  Find the area of the shaded parts." },
+        { "id": "rgps25_q26_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q26_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q27",
+      "topics": ["Speed", "Fractions"],
+      "concepts": ["Average Speed"],
+      "elements": [
+        { "id": "rgps25_q27_t", "type": "text", "text": "At a competition, Yuta swam 4/5 of the distance in 5 min.  She swam the remaining 80 m in 3 min.  What was her average speed for the whole distance?" },
+        { "id": "rgps25_q27_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q28",
+      "topics": ["Average", "Whole Numbers"],
+      "concepts": ["Average", "Problem Solving"],
+      "elements": [
+        { "id": "rgps25_q28_t", "type": "text", "text": "The average of three different 3-digit numbers is 120.  The 1st number is 110.  The 2nd and 3rd numbers have the smallest possible difference.  What are the two numbers?" },
+        { "id": "rgps25_q28_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q29",
+      "topics": ["Patterns", "Whole Numbers"],
+      "concepts": ["Number Patterns", "Repeating Pattern"],
+      "elements": [
+        { "id": "rgps25_q29_t", "type": "text", "text": "The first 18 numbers of a number pattern are shown below.  2, 0, 1, 1, 0, 3, 2, 0, 1, 1, 0, 3, 2, 0, 1, 1, 0, 3 …  The sum of all the numbers in the pattern is 32.  What is the greatest possible number of digit \"0\" in the pattern?" },
+        { "id": "rgps25_q29_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q30",
+      "topics": ["Geometry", "Area and Perimeter"],
+      "concepts": ["Constructing Figures on a Grid", "Rhombus", "Triangle"],
+      "elements": [
+        { "id": "rgps25_q30_t", "type": "text", "text": "A rhombus VWXY is drawn on a square grid.  By joining dots on the grid with straight lines," },
+        { "id": "rgps25_q30_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_q30_a_t", "type": "part", "label": "(a)", "text": "draw a triangle WYZ such that its area is half of the rhombus VWXY." },
+        { "id": "rgps25_q30_b_t", "type": "part", "label": "(b)", "text": "draw a rhombus YSTU such that it has a longer perimeter than rhombus VWXY.  Rhombus YSTU must not overlap with triangle WYZ." }
+      ]
+    },
+    {
+      "id": "rgps25_q_p2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rgps25_qp2_t",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your workings clearly and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rgps25_p2q1",
+      "topics": ["Data Analysis"],
+      "concepts": ["Bar Graph"],
+      "elements": [
+        { "id": "rgps25_p2q1_t", "type": "text", "text": "A baker baked a total of 300 pies to sell.  The bar graph shows the number of each type of pie that was sold." },
+        { "id": "rgps25_p2q1_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q1_a_t", "type": "part", "label": "(a)", "text": "How many banana and lime pies were sold altogether?" },
+        { "id": "rgps25_p2q1_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q1_b_t", "type": "part", "label": "(b)", "text": "What was the total number of pies left unsold?" },
+        { "id": "rgps25_p2q1_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q2",
+      "topics": ["Rate", "Whole Numbers"],
+      "concepts": ["Rate", "Problem Solving"],
+      "elements": [
+        { "id": "rgps25_p2q2_t", "type": "text", "text": "Mr Johnson was paid for working as an assistant at the rate shown in the table.  He was paid a total of $646 for working 58 hours last week.  The rate for the first 50 hours was covered by an ink blot.  The rate for each additional hour after the first 50 hours is $12 per hour.  How much was he paid each hour for the first 50 hours?" },
+        { "id": "rgps25_p2q2_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q2_a", "type": "answer", "label": "Ans : $", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q3",
+      "topics": ["Fractions"],
+      "concepts": ["Fraction Problem Solving"],
+      "elements": [
+        { "id": "rgps25_p2q3_t", "type": "text", "text": "Mrs Lim has black, purple and red markers.  The number of black markers is 3 times the number of purple markers.  1/10 of the markers are red.  What fraction of Mrs Lim's markers are black?" },
+        { "id": "rgps25_p2q3_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q4",
+      "topics": ["Geometry"],
+      "concepts": ["Direction and Position", "Compass"],
+      "elements": [
+        { "id": "rgps25_p2q4_t", "type": "text", "text": "The square grid shows the position of seven points." },
+        { "id": "rgps25_p2q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q4_a_t", "type": "part", "label": "(a)", "text": "Raju stood at point X facing P.  He turned 90°.  Write down all the possible points that he could be facing." },
+        { "id": "rgps25_p2q4_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q4_b_t", "type": "part", "label": "(b)", "text": "Soo Yan stood at one of the points facing X.  She turned 45° clockwise and faced U.  Which point was Soo Yan at?" },
+        { "id": "rgps25_p2q4_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q5",
+      "topics": ["Fractions", "Area and Perimeter"],
+      "concepts": ["Fraction of a Figure"],
+      "elements": [
+        { "id": "rgps25_p2q5_t", "type": "text", "text": "A rectangle is divided into 6 parts, A, B, C, D, E and F.  D is a square and is 1/6 of the figure.  Triangles E and C are identical." },
+        { "id": "rgps25_p2q5_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q5_a_t", "type": "part", "label": "(a)", "text": "Which two parts will add up to form 1/2 of the rectangle?" },
+        { "id": "rgps25_p2q5_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q5_b_t", "type": "part", "label": "(b)", "text": "Which two parts will add up to form 5/12 of the figure?" },
+        { "id": "rgps25_p2q5_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_q_p2b",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rgps25_qp2b_t",
+          "type": "text",
+          "text": "For questions 6 to 17, show your workings clearly and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rgps25_p2q6",
+      "topics": ["Algebra"],
+      "concepts": ["Algebraic Expressions", "Word Problems with Algebra"],
+      "elements": [
+        { "id": "rgps25_p2q6_t", "type": "text", "text": "Jared is 5y years old now.  His sister is twice as old as him.  His brother is 8 years older than his sister." },
+        { "id": "rgps25_p2q6_a_t", "type": "part", "label": "(a)", "text": "How old is his brother now?  Give your answer in terms of y.  [1]" },
+        { "id": "rgps25_p2q6_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q6_b_t", "type": "part", "label": "(b)", "text": "What was the total age of the three siblings 2 years ago?  Give your answer in terms of y.  [2]" },
+        { "id": "rgps25_p2q6_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q7",
+      "topics": ["Average", "Measurement"],
+      "concepts": ["Average", "Mass"],
+      "elements": [
+        { "id": "rgps25_p2q7_t", "type": "text", "text": "The figure shows three boxes, X, Y, Z and a 50-gram weight on a balance scale.  The average mass of the 3 boxes is 140 g.  The mass of Box X is 40 g heavier than Box Y.  What is the mass of Box Y?" },
+        { "id": "rgps25_p2q7_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q7_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q8",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Isosceles and Equilateral Triangles", "Parallel Lines"],
+      "elements": [
+        { "id": "rgps25_p2q8_t", "type": "text", "text": "ABC is an isosceles triangle.  AB = AC.  DEF is an equilateral triangle.  AB is parallel to DF." },
+        { "id": "rgps25_p2q8_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q8_a_t", "type": "part", "label": "(a)", "text": "Find ∠w.  [2]" },
+        { "id": "rgps25_p2q8_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q8_b_t", "type": "part", "label": "(b)", "text": "Circle the words that describe DHBG correctly in the following statement:  DHBG ( is / is not ) a parallelogram because DH ( is / is not ) parallel to GB.  [1]" }
+      ]
+    },
+    {
+      "id": "rgps25_p2q9",
+      "topics": ["Area and Perimeter", "Ratio"],
+      "concepts": ["Area of Triangles", "Ratio in Geometry"],
+      "elements": [
+        { "id": "rgps25_p2q9_t", "type": "text", "text": "PQRS is a rectangle.  The length of PS is twice the length of ST.  The ratio of the lengths ST : TW : WR is 1 : 3 : 1.  The perimeter of the unshaded part of the figure is 56 cm longer than the shaded area TUVW.  Find the shaded area TUVW." },
+        { "id": "rgps25_p2q9_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q9_a_t", "type": "part", "label": "(a)", "text": "The perimeter of the unshaded part is 56 cm longer than the perimeter of the shaded part.  The ratio of SA : AB : BR is 1 : 3 : 1.  Find the length of AB.  [2]" },
+        { "id": "rgps25_p2q9_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q9_b_t", "type": "part", "label": "(b)", "text": "Find the area of the shaded part.  [1]" },
+        { "id": "rgps25_p2q9_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q10",
+      "topics": ["Ratio", "Fractions"],
+      "concepts": ["Ratio Before and After", "Equivalent Ratios"],
+      "elements": [
+        { "id": "rgps25_p2q10_t", "type": "text", "text": "Linda baked some blueberry and chocolate tarts.  At first, the number of blueberry tarts was 2/3 the number of chocolate tarts.  1/4 of the blueberry tarts and 4/9 of the chocolate tarts were given away.  The number of chocolate tarts left was 12 more than the number of blueberry tarts left.  How many tarts did Linda bake?  [3]" },
+        { "id": "rgps25_p2q10_a", "type": "answer", "label": "Ans : ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q11",
+      "topics": ["Ratio", "Measurement"],
+      "concepts": ["Equivalent Ratios", "Mass", "Problem Solving"],
+      "elements": [
+        { "id": "rgps25_p2q11_t", "type": "text", "text": "Mei and Ann each used the same amount of flour to bake some muffins and doughnuts.  Mei made 108 doughnuts and had 640 g of flour left.  Ann made 48 muffins and had 1.96 kg of flour left.  The mass of flour used to make 3 muffins was the same as that for making 4 doughnuts." },
+        { "id": "rgps25_p2q11_a_t", "type": "part", "label": "(a)", "text": "What was the mass of flour used to make 1 doughnut?  [2]" },
+        { "id": "rgps25_p2q11_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q11_b_t", "type": "part", "label": "(b)", "text": "Mei and Ann decided to combine both their remaining flour to make doughnuts.  What was the most number of doughnuts they could make altogether?  [1]" },
+        { "id": "rgps25_p2q11_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q12",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Triangles", "Angles in Trapezium", "Angles on a Straight Line"],
+      "elements": [
+        { "id": "rgps25_p2q12_t", "type": "text", "text": "JKM and NKM are triangles.  NKLM is a trapezium with NM parallel to KL." },
+        { "id": "rgps25_p2q12_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q12_a_t", "type": "part", "label": "(a)", "text": "Find ∠NML.  [2]" },
+        { "id": "rgps25_p2q12_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q12_b_t", "type": "part", "label": "(b)", "text": "Find ∠JMN.  [2]" },
+        { "id": "rgps25_p2q12_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q13",
+      "topics": ["Data Analysis", "Percentage", "Fractions"],
+      "concepts": ["Pie Chart", "Bar Graph", "Percentage of a Whole"],
+      "elements": [
+        { "id": "rgps25_p2q13_t", "type": "text", "text": "The pie chart shows the favourite sport of all the members of a sports club.  The information is also represented by a bar graph.  The bars for tennis and softball are not shown." },
+        { "id": "rgps25_p2q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q13_a_t", "type": "part", "label": "(a)", "text": "What is the total number of members in the sports club?  [1]" },
+        { "id": "rgps25_p2q13_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q13_b_t", "type": "part", "label": "(b)", "text": "What percentage of the members chose basketball as their favourite sport?  [1]" },
+        { "id": "rgps25_p2q13_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q13_c_t", "type": "part", "label": "(c)", "text": "The number of members who chose tennis as their favourite sport was 1/3 of the number of those who chose softball.  How many members chose tennis as their favourite sport?  [2]" },
+        { "id": "rgps25_p2q13_c_a", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q14",
+      "topics": ["Whole Numbers", "Percentage"],
+      "concepts": ["Word Problem Solving", "Discount"],
+      "elements": [
+        { "id": "rgps25_p2q14_t", "type": "text", "text": "The table shows the ticket prices for a theme park.  Child: $15.  Adult: $24.  Bundle deal A (1 adult and 1 child): $35.  Bundle deal B (2 adults and 1 child): $54." },
+        { "id": "rgps25_p2q14_a_t", "type": "part", "label": "(a)", "text": "Ramu bought 3 adult tickets and 5 children tickets.  What was the least amount he could have paid?  [1]" },
+        { "id": "rgps25_p2q14_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q14_b_t", "type": "part", "label": "(b)", "text": "Timothy purchased his tickets online and enjoyed a 10% discount.  He bought tickets for 4 adults and 3 children.  What was the least amount he could have paid?  [1]" },
+        { "id": "rgps25_p2q14_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q14_c_t", "type": "part", "label": "(c)", "text": "Mr and Mrs Tan went to the theme park with their children.  They spent $99 on tickets.  How many children went to the theme park?  [3]" },
+        { "id": "rgps25_p2q14_c_a", "type": "answer", "label": "Ans : (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q15",
+      "topics": ["Ratio", "Whole Numbers"],
+      "concepts": ["Ratio Before and After", "Problem Solving"],
+      "elements": [
+        { "id": "rgps25_p2q15_t", "type": "text", "text": "Nisa bought an equal number of apples and oranges.  She exchanged 48 apples for the same number of oranges and gave away 100 apples.  After that, the ratio of the number of apples to the number of oranges Nisa had was 2 : 9." },
+        { "id": "rgps25_p2q15_a_t", "type": "part", "label": "(a)", "text": "What was the total number of fruits Nisa had in the end?  [2]" },
+        { "id": "rgps25_p2q15_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q15_b_t", "type": "part", "label": "(b)", "text": "She then packed the remaining fruits into as many bags as possible.  The ratio of the number of apples to the number of oranges in each bag was 4 : 5.  How many oranges were left unpacked?  [2]" },
+        { "id": "rgps25_p2q15_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q16",
+      "topics": ["Volume", "Percentage"],
+      "concepts": ["Volume of Cuboids", "Percentage Decrease"],
+      "elements": [
+        { "id": "rgps25_p2q16_t", "type": "text", "text": "There was a total of 28 040 cm³ of water in rectangular tanks X and Y at first.  The height of the water level in tank X was 8 cm more than that of tank Y.  Tank X has base 35 cm by 22 cm and height 35 cm; tank Y has base 18 cm by 18 cm and height 35 cm." },
+        { "id": "rgps25_p2q16_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q16_a_t", "type": "part", "label": "(a)", "text": "Find the height of the water level in tank Y.  [3]" },
+        { "id": "rgps25_p2q16_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q16_b_t", "type": "part", "label": "(b)", "text": "Kenneth poured some water from tank X into tank Y to fill it to the brim.  What was the percentage decrease in the volume of water in tank X?  Round your answer to 1 decimal place.  [2]" },
+        { "id": "rgps25_p2q16_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rgps25_p2q17",
+      "topics": ["Area and Perimeter", "Geometry"],
+      "concepts": ["Area of Circles", "Quarter Circles", "Area of Composite Figures"],
+      "elements": [
+        { "id": "rgps25_p2q17_t", "type": "text", "text": "The figure shows three overlapping quarter circles and three overlapping squares of different sizes.  AB = BC = CD = DE = EF = FG." },
+        { "id": "rgps25_p2q17_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rgps25_p2q17_a_t", "type": "part", "label": "(a)", "text": "The area of the unshaded part in Figure DGHL is 48 cm².  Find the length of DE.  [2]" },
+        { "id": "rgps25_p2q17_a_a", "type": "answer", "label": "Ans : (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rgps25_p2q17_b_t", "type": "part", "label": "(b)", "text": "Find the area of the shaded part of the figure.  (Take π = 3.14)  [3]" },
+        { "id": "rgps25_p2q17_b_a", "type": "answer", "label": "Ans : (b) ", "answer": "", "lineLength": 30 }
+      ]
+    }
+  ]
+}
