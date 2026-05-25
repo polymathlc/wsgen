@@ -1,0 +1,209 @@
+{
+  "title": "PSLE 2018 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2018 — Science (0009/2 B).  Booklet B consists of 12 open-ended questions, Q29–Q40 (44 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "psle18b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle18b_intro_t",
+          "type": "text",
+          "text": "Booklet B.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (44 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle18b_q29",
+      "topics": ["Plants", "Photosynthesis", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q29_t", "type": "text", "text": "Question 29.  Unripe bananas are green and contain chlorophyll." },
+        { "id": "psle18b_q29_img", "type": "image", "dataUrl": "", "caption": "Banana plant with hanging bunch of bananas; arrow points to 'unripe bananas containing chlorophyll'" },
+        { "id": "psle18b_q29_pa", "type": "part", "label": "(a)", "text": "Bananas curve upwards when growing.  Suggest a reason why bananas grow upwards.  [1]" },
+        { "id": "psle18b_q29_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle18b_q29_pb", "type": "part", "label": "(b)", "text": "Ripe bananas are yellow and give out gas X.  Priya wants to investigate whether gas X will help unripe bananas to ripen more quickly.\n\nShe has only the items below.  She may use some or all of them.\n\nItem            Quantity\nripe banana     2\nunripe banana   2\n\nPriya used two identical clear containers for her investigation.  What item(s) should she put inside the container for each set-up?  [2]\n\nExperimental set-up: ____________________\nControl set-up:      ____________________" },
+        { "id": "psle18b_q29_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle18b_q30",
+      "topics": ["Life Cycles", "Interactions within the Environment", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q30_t", "type": "text", "text": "Question 30.  The adult of bird K lays its egg in the nest of another type of bird, L.  This only happens when the adult of bird L is not at its nest.  Bird K flies away after laying its egg and does not return." },
+        { "id": "psle18b_q30_img1", "type": "image", "dataUrl": "", "caption": "Nest of bird L containing the egg of bird K (single larger egg) alongside the eggs of bird L (smaller eggs)" },
+        { "id": "psle18b_q30_pa", "type": "part", "label": "(a)", "text": "The egg of bird K looks very similar to the eggs of bird L.  Explain how this similarity helps bird K to survive.  [1]" },
+        { "id": "psle18b_q30_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q30_t2", "type": "text", "text": "The young of bird K grows more quickly than the young of bird L.  Once it is big enough, it will push the smaller young of bird L out of the nest." },
+        { "id": "psle18b_q30_img2", "type": "image", "dataUrl": "", "caption": "Adult of bird L feeding the young of bird K in the nest, with the young of bird L pushed out" },
+        { "id": "psle18b_q30_pb", "type": "part", "label": "(b)", "text": "If more of bird K successfully lay their eggs in the nests of bird L, predict how the population size of bird L will change.  Give a reason for your answer.  [1]" },
+        { "id": "psle18b_q30_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q30_pc", "type": "part", "label": "(c)", "text": "The adults of bird L usually build their nests close together instead of far apart.  Predict how the population size of bird K will change.  Give a reason for your answer.  [1]" },
+        { "id": "psle18b_q30_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q31",
+      "topics": ["Photosynthesis", "Materials"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q31_t", "type": "text", "text": "Question 31.  A farmer measured the amount of light entering his greenhouse at four different times of the day.\n\nTime       Amount of light (units)\n12 am               25\n 6 am               50\n12 pm              260\n 6 pm              150" },
+        { "id": "psle18b_q31_pa", "type": "part", "label": "(a)", "text": "State at which time of the day the rate of photosynthesis is highest.  Explain your answer.  [1]" },
+        { "id": "psle18b_q31_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q31_pb", "type": "part", "label": "(b)", "text": "A greenhouse needs to be kept warm on cold days and cool on hot days.  Some greenhouses have pockets of air in their roofs in order not to become too cold or hot." },
+        { "id": "psle18b_q31_img", "type": "image", "dataUrl": "", "caption": "Diagram — roof made of two sheets of material F with pockets of air between them; left view shows 'air is pumped in' (large pocket); right view shows 'air is pumped out' (small pocket).  Plants visible below the roof" },
+        { "id": "psle18b_q31_pb2", "type": "part", "label": "(b)", "text": "Between two sheets of material F is a pocket of air.  The volume of each pocket could be changed as air is pumped into and out of the pocket.\n\nExplain how this set-up uses a property of air to allow greenhouses to keep warm on a cold day.  [2]" },
+        { "id": "psle18b_q31_ab", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle18b_q32",
+      "topics": ["Life Cycles", "Plant Reproduction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q32_t", "type": "text", "text": "Question 32.  Diagram 1 shows a process, R, that takes place in the life cycle of a coconut plant." },
+        { "id": "psle18b_q32_img1", "type": "image", "dataUrl": "", "caption": "Diagram 1 — coconut fruit in soil undergoing process R → produces a young coconut plant with structure J (shoot above soil) and structure K (roots below soil)" },
+        { "id": "psle18b_q32_pa", "type": "part", "label": "(a)", "text": "Name process R.  [1]" },
+        { "id": "psle18b_q32_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle18b_q32_pb", "type": "part", "label": "(b)", "text": "State all the conditions needed for process R to take place.  [1]" },
+        { "id": "psle18b_q32_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q32_pc", "type": "part", "label": "(c)", "text": "Diagram 2 below shows some parts of a coconut fruit.  The seed coat surrounds a fleshy solid, P." },
+        { "id": "psle18b_q32_img2", "type": "image", "dataUrl": "", "caption": "Diagram 2 — cross-section of coconut fruit with labels: fibrous husk (outermost), empty space, seed coat, fleshy solid P (innermost)" },
+        { "id": "psle18b_q32_pci", "type": "part", "label": "(c)(i)", "text": "Solid P serves an important function in process R.  Explain why this function is important before structure J as shown in Diagram 1 develops.  [1]" },
+        { "id": "psle18b_q32_aci", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q32_pcii", "type": "part", "label": "(c)(ii)", "text": "Explain how a characteristic of the coconut fruit as shown in Diagram 2 helps in its dispersal.  [1]" },
+        { "id": "psle18b_q32_acii", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q33",
+      "topics": ["Life Cycles", "Interactions within the Environment"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q33_t", "type": "text", "text": "Question 33.  The Aedes mosquito spreads dengue fever in humans." },
+        { "id": "psle18b_q33_pa", "type": "part", "label": "(a)", "text": "In Country X, the number of cases of dengue fever is affected by the amount of rainfall.\n\nStudy the graphs below." },
+        { "id": "psle18b_q33_img", "type": "image", "dataUrl": "", "caption": "Two line graphs vs months Jan–Dec.  Top: amount of rainfall (mm) — peaks around Jun/Jul (~250 mm), low at year ends.  Bottom: number of dengue cases — peaks around Aug/Sep (~500 cases), lower at year ends" },
+        { "id": "psle18b_q33_pai", "type": "part", "label": "(a)(i)", "text": "State the relationship between the amount of rainfall and number of dengue cases for March to August.  Explain why this relationship is observed.  [2]" },
+        { "id": "psle18b_q33_aai", "type": "openLines", "lines": 5 },
+        { "id": "psle18b_q33_paii", "type": "part", "label": "(a)(ii)", "text": "The number of dengue cases takes about three to four weeks to change after the amount of rainfall changes.\n\nDengue fever develops about two weeks after a person is bitten by an Aedes mosquito.  Give another reason why the number of dengue cases does not change immediately after the amount of rainfall changes.  [1]" },
+        { "id": "psle18b_q33_aaii", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q33_pb", "type": "part", "label": "(b)", "text": "Male mosquitoes do not bite and do not spread dengue fever.  When a male mosquito carrying bacteria W mates with a female mosquito, the eggs will not hatch.\n\nIn 2016, male mosquitoes carrying bacteria W were released into some housing estates in Singapore.  The number of dengue cases in these housing estates decreased after the release of these male mosquitoes.  Explain why.  [2]" },
+        { "id": "psle18b_q33_ab", "type": "openLines", "lines": 5 }
+      ]
+    },
+    {
+      "id": "psle18b_q34",
+      "topics": ["Plants", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q34_t", "type": "text", "text": "Question 34.  A farmer grew some young plants far apart from one another to prevent overcrowding." },
+        { "id": "psle18b_q34_pa", "type": "part", "label": "(a)", "text": "Explain why growing far apart from one another benefits the plants.  [1]" },
+        { "id": "psle18b_q34_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q34_pb", "type": "part", "label": "(b)", "text": "The farmer found many tiny insects feeding on the stems of his plants during the day.  These insects used their mouths to dig into the stems of the plants.  Explain why these insects fed on the stems.  [1]" },
+        { "id": "psle18b_q34_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q34_pc", "type": "part", "label": "(c)", "text": "The tiny insects produced drops of sweet, sticky substance from their bodies." },
+        { "id": "psle18b_q34_img", "type": "image", "dataUrl": "", "caption": "Tiny insects on a stem; sweet sticky substance dripping off; large ants approaching" },
+        { "id": "psle18b_q34_pci", "type": "part", "label": "(c)(i)", "text": "Large ants could be found near these tiny insects but do not feed on them.  Explain why it is an advantage for the large ants to be near the tiny insects.  [1]" },
+        { "id": "psle18b_q34_aci", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q34_pcii", "type": "part", "label": "(c)(ii)", "text": "The tiny insects do not have wings and cannot move far.  Explain why it is an advantage for the tiny insects to have the large ants near them.  [1]" },
+        { "id": "psle18b_q34_acii", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q35",
+      "topics": ["Energy", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q35_t", "type": "text", "text": "Question 35.  Peter has a toy train that runs on batteries.  He placed plates of food on the train as shown below." },
+        { "id": "psle18b_q35_img", "type": "image", "dataUrl": "", "caption": "Family scene with adults seated at a table; toy train carrying plates of food running around an oval track on the table; points G and H labelled on the track" },
+        { "id": "psle18b_q35_pa", "type": "part", "label": "(a)", "text": "When he switched on the toy train, it moved along the track.\n\nFill in the boxes below to show the energy conversion as the train is moving.  [2]\n\nBattery (____) → Wires (____) → Train (____ + ____)" },
+        { "id": "psle18b_q35_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q35_pb", "type": "part", "label": "(b)", "text": "Peter did not change the batteries.  Give a reason why the train moved faster as the food was removed.  [1]" },
+        { "id": "psle18b_q35_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q35_pc", "type": "part", "label": "(c)", "text": "Peter placed a wooden block under the track at point H." },
+        { "id": "psle18b_q35_img2", "type": "image", "dataUrl": "", "caption": "Side view of the track between G and H; a wooden block placed under the track at H so that the track rises slightly from G to H" },
+        { "id": "psle18b_q35_pc2", "type": "part", "label": "(c)", "text": "Explain why the train moved more slowly as it moved from G to H.  [1]" },
+        { "id": "psle18b_q35_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q36",
+      "topics": ["Heat and Temperature", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q36_t", "type": "text", "text": "Question 36." },
+        { "id": "psle18b_q36_pa", "type": "part", "label": "(a)", "text": "State what is temperature.  [1]" },
+        { "id": "psle18b_q36_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q36_t2", "type": "text", "text": "Susan heated a beaker of water.  She stopped heating when the water started to boil and recorded the temperature of the water every five minutes.  Her results are shown below." },
+        { "id": "psle18b_q36_img", "type": "image", "dataUrl": "", "caption": "Graph — Temperature (°C) vs Time (min).  Starts at 100 °C at 0 min, decreases steeply and levels off near 30 °C from about 40 min onwards" },
+        { "id": "psle18b_q36_pb", "type": "part", "label": "(b)", "text": "Based on the graph, state the room temperature.  [1]" },
+        { "id": "psle18b_q36_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle18b_q36_pc", "type": "part", "label": "(c)", "text": "Explain why it will be more accurate to record the temperature every minute for the first five minutes.  [1]" },
+        { "id": "psle18b_q36_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q37",
+      "topics": ["Materials", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q37_t", "type": "text", "text": "Question 37.  Seng Huat connected his phone to the electricity supply with a wire.  The plug of the wire fitted the phone properly." },
+        { "id": "psle18b_q37_img1", "type": "image", "dataUrl": "", "caption": "Diagram 1 — phone connected to electricity supply via a wire with a plug" },
+        { "id": "psle18b_q37_pa", "type": "part", "label": "(a)", "text": "The wire is covered with rubber.  State a property of rubber that makes it safe for this use.  [1]" },
+        { "id": "psle18b_q37_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle18b_q37_pb", "type": "part", "label": "(b)", "text": "Seng Huat held the phone by the wire." },
+        { "id": "psle18b_q37_img2", "type": "image", "dataUrl": "", "caption": "Diagram 2 — hand holding the wire with plug at the top; phone dangling at the bottom.  Diagram 3 — phone has dropped to the ground; plug still attached to wire in hand" },
+        { "id": "psle18b_q37_pbi", "type": "part", "label": "(b)(i)", "text": "The phone did not drop off immediately in Diagram 2.  Explain why the phone did not drop off.  [1]" },
+        { "id": "psle18b_q37_abi", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q37_pbii", "type": "part", "label": "(b)(ii)", "text": "The phone dropped to the ground after a few seconds as shown in Diagram 3.  Explain, in terms of forces, why the phone dropped.  [1]" },
+        { "id": "psle18b_q37_abii", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q38",
+      "topics": ["Electricity"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q38_t", "type": "text", "text": "Question 38.  Carol wanted to set up a circuit to light up a corridor using two special switches.  Each switch can be turned to position A or position B.\n\nShe set up the circuit so that the bulb will be lit as described in the table below.\n\nPosition of Switch\nSwitch 1   Switch 2   Bulb is lit\n   A          A          Yes\n   A          B          No\n   B          A          No\n   B          B          Yes" },
+        { "id": "psle18b_q38_pa", "type": "part", "label": "(a)", "text": "The diagram below shows part of the circuit.  Complete the circuit so that it will work as described.  [3]" },
+        { "id": "psle18b_q38_img", "type": "image", "dataUrl": "", "caption": "Partial circuit — bulb at top; Switch 1 on the left with positions A (top) and B (bottom) and a wire from the centre; Switch 2 on the right with positions A and B and a wire — student to complete the circuit so the bulb works as described" },
+        { "id": "psle18b_q38_aa", "type": "openLines", "lines": 6 },
+        { "id": "psle18b_q38_pb", "type": "part", "label": "(b)", "text": "Carol wanted to add a new bulb to the circuit without decreasing the brightness of the first bulb when the circuit is closed.\nDescribe how you would connect the new bulb to the circuit.  [1]" },
+        { "id": "psle18b_q38_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q39",
+      "topics": ["States of Matter", "Heat Transfer"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q39_t", "type": "text", "text": "Question 39.  A worker used a truck to deliver blocks of ice.  A mist was seen when ice was taken out of the truck as shown." },
+        { "id": "psle18b_q39_img", "type": "image", "dataUrl": "", "caption": "Worker pulling out a block of ice from the back of a truck.  Mist forms around the ice; thick plastic strips hang at the door of the truck" },
+        { "id": "psle18b_q39_pa", "type": "part", "label": "(a)", "text": "Explain how the mist was formed.  [2]" },
+        { "id": "psle18b_q39_aa", "type": "openLines", "lines": 4 },
+        { "id": "psle18b_q39_pb", "type": "part", "label": "(b)", "text": "The mist disappeared after a short time.  Explain why.  [1]" },
+        { "id": "psle18b_q39_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q39_pc", "type": "part", "label": "(c)", "text": "Thick plastic strips were hung at the door to prevent the ice inside the truck from melting.  Explain why.  [1]" },
+        { "id": "psle18b_q39_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle18b_q40",
+      "topics": ["Magnets", "Electricity", "Sound"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle18b_q40_t", "type": "text", "text": "Question 40.  Samy set up a doorbell as shown.\n\nThe iron cylinder and electric circuit are fixed in place.  The iron rod can swing about point P.  A spring is fixed to the iron rod.  The other end of the spring is fixed." },
+        { "id": "psle18b_q40_img", "type": "image", "dataUrl": "", "caption": "Doorbell set-up — bell on left; iron rod can swing about point P; fixed plate R near iron rod; wire coiled around a fixed iron cylinder connected to a battery and switch; spring (fixed to iron rod) at bottom" },
+        { "id": "psle18b_q40_t2", "type": "text", "text": "When Samy closed the switch, the iron rod hit the bell to produce a 'ding' sound.\nWhen he opened the switch, the iron rod hit plate R to produce a 'dong' sound." },
+        { "id": "psle18b_q40_pa", "type": "part", "label": "(a)", "text": "Explain how the 'ding' sound is produced when Samy closed the switch.  [1]" },
+        { "id": "psle18b_q40_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q40_pb", "type": "part", "label": "(b)", "text": "Suggest two changes to the set-up to produce a louder 'ding' sound.  [1]" },
+        { "id": "psle18b_q40_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle18b_q40_pc", "type": "part", "label": "(c)", "text": "Without changing the iron rod and plate R, suggest a change to the set-up to produce a louder 'dong' sound.  Explain your answer.  [2]" },
+        { "id": "psle18b_q40_ac", "type": "openLines", "lines": 4 }
+      ]
+    }
+  ]
+}
