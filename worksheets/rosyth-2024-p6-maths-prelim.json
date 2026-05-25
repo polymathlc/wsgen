@@ -1,0 +1,703 @@
+{
+  "title": "Rosyth School 2024 P6 Maths Prelim (Paper 1 Booklets A & B, Paper 2)",
+  "subtitle": "Rosyth School — Preliminary Examination 2024 — Primary 6 Mathematics.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "rsy24_q_a",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rsy24_1",
+          "type": "text",
+          "text": "Paper 1 Booklet A.  Questions 1 to 10 carry 1 mark each.  Questions 11 to 15 carry 2 marks each.  For each question, four options are given.  One of them is the correct answer.  Make your choice (1, 2, 3 or 4).  Shade the oval (1, 2, 3 or 4) on the Optical Answer Sheet.  All diagrams in this paper are not drawn to scale unless stated otherwise.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q1",
+      "topics": ["Whole Numbers"],
+      "concepts": ["Place Value", "Reading Numbers"],
+      "elements": [
+        { "id": "rsy24_q1_t", "type": "text", "text": "Which of the following is four hundred and two thousand and thirty-one?" },
+        {
+          "id": "rsy24_q1_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q1_o1", "text": "42 031" },
+            { "id": "rsy24_q1_o2", "text": "402 031" },
+            { "id": "rsy24_q1_o3", "text": "4 020 031" },
+            { "id": "rsy24_q1_o4", "text": "4 002 031" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q2",
+      "topics": ["Measurement"],
+      "concepts": ["Length Conversion"],
+      "elements": [
+        { "id": "rsy24_q2_t", "type": "text", "text": "Which of the following is the same as 9070 m?" },
+        {
+          "id": "rsy24_q2_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q2_o1", "text": "9 km 7 m" },
+            { "id": "rsy24_q2_o2", "text": "9 km 70 m" },
+            { "id": "rsy24_q2_o3", "text": "90 km 7 m" },
+            { "id": "rsy24_q2_o4", "text": "90 km 70 m" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q3",
+      "topics": ["Measurement"],
+      "concepts": ["Time Duration"],
+      "elements": [
+        { "id": "rsy24_q3_t", "type": "text", "text": "The opening hours of a shop are shown below.  Kovan Phone Repair Shop — Open Daily 10.15 a.m. to 5 p.m.  How long is the shop open each day?" },
+        { "id": "rsy24_q3_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q3_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q3_o1", "text": "6 h 15 min" },
+            { "id": "rsy24_q3_o2", "text": "6 h 45 min" },
+            { "id": "rsy24_q3_o3", "text": "7 h 15 min" },
+            { "id": "rsy24_q3_o4", "text": "7 h 45 min" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q4",
+      "topics": ["Data Analysis", "Volume"],
+      "concepts": ["Line Graph", "Rate"],
+      "elements": [
+        { "id": "rsy24_q4_t", "type": "text", "text": "A tank was filled with 50 litres of water at 08 00.  Water flowed out of the tank from 08 00 to 12 00.  The graph below shows the amount of water in the tank from 08 00 to 12 00.  Which one-hour period was the decrease in water the greatest?" },
+        { "id": "rsy24_q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q4_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q4_o1", "text": "Between 08 00 and 09 00" },
+            { "id": "rsy24_q4_o2", "text": "Between 09 00 and 10 00" },
+            { "id": "rsy24_q4_o3", "text": "Between 10 00 and 11 00" },
+            { "id": "rsy24_q4_o4", "text": "Between 11 00 and 12 00" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q5",
+      "topics": ["Percentage"],
+      "concepts": ["Percentage Increase"],
+      "elements": [
+        { "id": "rsy24_q5_t", "type": "text", "text": "The table below shows the number of participants in an art class on Saturday and Sunday.  Saturday: 16 children, 24 adults.  Sunday: 20 children, 24 adults.  What is the percentage increase in the number of participants from Saturday to Sunday?" },
+        {
+          "id": "rsy24_q5_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q5_o1", "text": "10%" },
+            { "id": "rsy24_q5_o2", "text": "20%" },
+            { "id": "rsy24_q5_o3", "text": "25%" },
+            { "id": "rsy24_q5_o4", "text": "4%" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q6",
+      "topics": ["Algebra"],
+      "concepts": ["Evaluating Algebraic Expressions"],
+      "elements": [
+        { "id": "rsy24_q6_t", "type": "text", "text": "What is the value of 31w/10 − w + 3 when w = 2?" },
+        {
+          "id": "rsy24_q6_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q6_o1", "text": "1.2" },
+            { "id": "rsy24_q6_o2", "text": "3.6" },
+            { "id": "rsy24_q6_o3", "text": "7.2" },
+            { "id": "rsy24_q6_o4", "text": "9.2" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q7",
+      "topics": ["Geometry"],
+      "concepts": ["Line Symmetry"],
+      "elements": [
+        { "id": "rsy24_q7_t", "type": "text", "text": "The figure below is made up of squares.  What is the least number of square(s) to be shaded so that the figure has one vertical line of symmetry?" },
+        { "id": "rsy24_q7_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q7_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q7_o1", "text": "1" },
+            { "id": "rsy24_q7_o2", "text": "2" },
+            { "id": "rsy24_q7_o3", "text": "3" },
+            { "id": "rsy24_q7_o4", "text": "4" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q8",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Isosceles Triangle", "Angles on a Straight Line"],
+      "elements": [
+        { "id": "rsy24_q8_t", "type": "text", "text": "In the figure below, PQR is a straight line.  AP = AQ = QR.  ∠APQ = 70°.  Find ∠RAQ." },
+        { "id": "rsy24_q8_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q8_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q8_o1", "text": "35°" },
+            { "id": "rsy24_q8_o2", "text": "40°" },
+            { "id": "rsy24_q8_o3", "text": "55°" },
+            { "id": "rsy24_q8_o4", "text": "70°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q9",
+      "topics": ["Geometry"],
+      "concepts": ["Direction", "Compass", "8-point Compass"],
+      "elements": [
+        { "id": "rsy24_q9_t", "type": "text", "text": "A, B and C are three points on the grid.  Point B is south of Point A and ∠ABC is 225°.  In what direction is Point C from Point B?" },
+        { "id": "rsy24_q9_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q9_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q9_o1", "text": "North-East" },
+            { "id": "rsy24_q9_o2", "text": "North-West" },
+            { "id": "rsy24_q9_o3", "text": "South-East" },
+            { "id": "rsy24_q9_o4", "text": "South-West" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q10",
+      "topics": ["Measurement", "Rate"],
+      "concepts": ["Rate", "Money"],
+      "elements": [
+        { "id": "rsy24_q10_t", "type": "text", "text": "Miss Lim travelled 3.2 km in a taxi from home to the mall.  Her taxi fare was based on the charges shown below.  First km: $4.80.  Every additional 400 m or less: $0.20.  How much was her taxi fare?" },
+        {
+          "id": "rsy24_q10_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q10_o1", "text": "$5.40" },
+            { "id": "rsy24_q10_o2", "text": "$5.80" },
+            { "id": "rsy24_q10_o3", "text": "$6.00" },
+            { "id": "rsy24_q10_o4", "text": "$6.40" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q11",
+      "topics": ["Fractions"],
+      "concepts": ["Fraction of Remainder", "Word Problem"],
+      "elements": [
+        { "id": "rsy24_q11_t", "type": "text", "text": "Sam spent $42 of his money on a gift and 2/5 of the remaining money on a book.  In the end, he had 1/4 of his money left.  How much money did Sam have at first?" },
+        {
+          "id": "rsy24_q11_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q11_o1", "text": "$42" },
+            { "id": "rsy24_q11_o2", "text": "$70" },
+            { "id": "rsy24_q11_o3", "text": "$72" },
+            { "id": "rsy24_q11_o4", "text": "$180" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q12",
+      "topics": ["Whole Numbers"],
+      "concepts": ["Money", "Working Backwards"],
+      "elements": [
+        { "id": "rsy24_q12_t", "type": "text", "text": "Limin, Ming and Raju each had some money at first.  Limin gave Ming $2.50.  Ming then gave Raju $1.80.  Raju then spent $3 on a pen.  In the end, they each had $5.  What was the difference between the amount Limin and Raju had at first?" },
+        {
+          "id": "rsy24_q12_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q12_o1", "text": "$0.50" },
+            { "id": "rsy24_q12_o2", "text": "$1.20" },
+            { "id": "rsy24_q12_o3", "text": "$1.30" },
+            { "id": "rsy24_q12_o4", "text": "$3.00" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q13",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Trapezium", "Angles in Triangle"],
+      "elements": [
+        { "id": "rsy24_q13_t", "type": "text", "text": "ABCD is a trapezium with AB parallel to DC.  ∠ADC = 100°, ∠AEC = 91° and ∠ABE = 52°.  Find ∠DAE." },
+        { "id": "rsy24_q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q13_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q13_o1", "text": "39°" },
+            { "id": "rsy24_q13_o2", "text": "41°" },
+            { "id": "rsy24_q13_o3", "text": "80°" },
+            { "id": "rsy24_q13_o4", "text": "89°" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q14",
+      "topics": ["Measurement", "Patterns"],
+      "concepts": ["Length", "Overlapping Pattern"],
+      "elements": [
+        { "id": "rsy24_q14_t", "type": "text", "text": "Mary glued some identical square papers in a straight line to form a length of 5.98 m as shown below.  She glued the papers by overlapping one paper on the other paper.  Each overlapping part was 3 cm long.  Each square paper was 10 cm by 10 cm.  What was the number of square papers she used?" },
+        { "id": "rsy24_q14_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q14_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q14_o1", "text": "59" },
+            { "id": "rsy24_q14_o2", "text": "60" },
+            { "id": "rsy24_q14_o3", "text": "84" },
+            { "id": "rsy24_q14_o4", "text": "85" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q15",
+      "topics": ["Area and Perimeter", "Geometry"],
+      "concepts": ["Perimeter of Composite Figures", "Equilateral Triangle", "Rectangle"],
+      "elements": [
+        { "id": "rsy24_q15_t", "type": "text", "text": "Bala used some wire to form the figure shown below.  In the figure, ABCD is a rectangle and the 4 identical triangles are equilateral triangles.  The area of ABCD is 162 cm².  What is the perimeter of the figure?" },
+        { "id": "rsy24_q15_img", "type": "image", "dataUrl": "", "caption": "" },
+        {
+          "id": "rsy24_q15_m",
+          "type": "mcq",
+          "options": [
+            { "id": "rsy24_q15_o1", "text": "72 cm" },
+            { "id": "rsy24_q15_o2", "text": "90 cm" },
+            { "id": "rsy24_q15_o3", "text": "99 cm" },
+            { "id": "rsy24_q15_o4", "text": "126 cm" }
+          ],
+          "correctId": null
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q_b",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rsy24_qb_t",
+          "type": "text",
+          "text": "Paper 1 Booklet B.  Questions 16 to 20 carry 1 mark each.  Write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams in this paper are not drawn to scale unless stated otherwise.  (5 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q16",
+      "topics": ["Fractions"],
+      "concepts": ["Fractions on Number Line"],
+      "elements": [
+        { "id": "rsy24_q16_t", "type": "text", "text": "In the number line below, P represents 1/8 and R represents 1/2.  PQ = QR.  What fraction is represented by Q?" },
+        { "id": "rsy24_q16_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q16_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q17",
+      "topics": ["Average", "Measurement"],
+      "concepts": ["Average", "Mass"],
+      "elements": [
+        { "id": "rsy24_q17_t", "type": "text", "text": "The total mass of 9 durians is 16.2 kg.  What is the average mass of the durians?" },
+        { "id": "rsy24_q17_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q18",
+      "topics": ["Volume", "Geometry"],
+      "concepts": ["Volume of Cube", "Cube Root"],
+      "elements": [
+        { "id": "rsy24_q18_t", "type": "text", "text": "The volume of a cube is 64 cm³.  Find the length of the cube." },
+        { "id": "rsy24_q18_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q18_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q19",
+      "topics": ["Data Analysis", "Fractions"],
+      "concepts": ["Pie Chart"],
+      "elements": [
+        { "id": "rsy24_q19_t", "type": "text", "text": "The pie chart below shows the number of pupils who chose their favourite sport in a survey.  Half of the pupils chose badminton and swimming.  Floorball: 15.  Swimming: 18.  Jogging: 10.  How many pupils chose badminton?" },
+        { "id": "rsy24_q19_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q19_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q20",
+      "topics": ["Geometry"],
+      "concepts": ["Angles", "Parallel Lines", "Isosceles Triangle"],
+      "elements": [
+        { "id": "rsy24_q20_t", "type": "text", "text": "In the figure below, AD is a straight line, AG is parallel to CF and CD is parallel to FE.  ∠ABG = 52° and AB = GB.  Find ∠DCF." },
+        { "id": "rsy24_q20_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q20_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q_b2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rsy24_qb2_t",
+          "type": "text",
+          "text": "Questions 21 to 30 carry 2 marks each.  Show your workings clearly in the space provided for each question and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams in this paper are not drawn to scale unless stated otherwise.  (20 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rsy24_q21",
+      "topics": ["Whole Numbers"],
+      "concepts": ["Word Problem", "Money"],
+      "elements": [
+        { "id": "rsy24_q21_t", "type": "text", "text": "Alice saves $2 every day.  Her mother gives her $1 for every 10 days that she saves.  What is the total amount of money she will have after 43 days?" },
+        { "id": "rsy24_q21_a", "type": "answer", "label": "Ans: $", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q22",
+      "topics": ["Geometry", "Nets and Solids"],
+      "concepts": ["Front/Side/Top Views", "Faces of Cubes"],
+      "elements": [
+        { "id": "rsy24_q22_t", "type": "text", "text": "The solid below is made up of 7 cubes." },
+        { "id": "rsy24_q22_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q22_a_t", "type": "part", "label": "(a)", "text": "Draw the top view of the solid on the grid below." },
+        { "id": "rsy24_q22_a_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q22_b_t", "type": "part", "label": "(b)", "text": "Tyler painted the whole solid including the base.  Then he took it apart into 7 cubes.  What is the total number of faces that are painted?" },
+        { "id": "rsy24_q22_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q23",
+      "topics": ["Whole Numbers"],
+      "concepts": ["Before and After", "Word Problem"],
+      "elements": [
+        { "id": "rsy24_q23_t", "type": "text", "text": "Judy and her brother had some stickers.  After Judy gave him 30 stickers, she had 14 stickers more than him.  How many more stickers did Judy have than her brother at first?" },
+        { "id": "rsy24_q23_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q24",
+      "topics": ["Fractions"],
+      "concepts": ["Fraction Word Problem"],
+      "elements": [
+        { "id": "rsy24_q24_t", "type": "text", "text": "A group of students took part in a Math competition.  3/8 of the boys and 1/6 of the girls went on to the final round of the competition.  There were 60 students who went on to the final round and 3/4 of them were boys.  What was the total number of students who took part in this competition?" },
+        { "id": "rsy24_q24_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q25",
+      "topics": ["Algebra", "Area and Perimeter"],
+      "concepts": ["Perimeter in Terms of Variable", "Rectangle and Square"],
+      "elements": [
+        { "id": "rsy24_q25_t", "type": "text", "text": "Rectangle PQRS below is made up of a rectangle and 2 squares, A and B.  Find the perimeter of rectangle PQRS in terms of y.  The width of square B is y cm and the length SR = 12 cm." },
+        { "id": "rsy24_q25_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q25_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q26",
+      "topics": ["Speed"],
+      "concepts": ["Speed in Opposite Directions"],
+      "elements": [
+        { "id": "rsy24_q26_t", "type": "text", "text": "Allyn and Baxter started jogging from the same place in opposite directions along a straight path.  They jogged for 45 min.  At the end of the jog, they were 15 km apart.  Allyn's average speed was 8 km/h.  What was Baxter's average speed?" },
+        { "id": "rsy24_q26_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q27",
+      "topics": ["Data Analysis"],
+      "concepts": ["Pie Chart", "Bar Graph"],
+      "elements": [
+        { "id": "rsy24_q27_t", "type": "text", "text": "The bar graph below shows the number of cups of milk, juice, coffee and tea sold at a shop on a Friday." },
+        { "id": "rsy24_q27_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q27_a_t", "type": "part", "label": "(a)", "text": "The pie chart represents the information in the bar graph.  Label the correct type of drink sold for each part." },
+        { "id": "rsy24_q27_a_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q27_b_t", "type": "part", "label": "(b)", "text": "84 cups of milk were sold.  Find the total number of cups of drinks sold on Friday." },
+        { "id": "rsy24_q27_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q28",
+      "topics": ["Area and Perimeter"],
+      "concepts": ["Area of Triangle", "Area of Rectangle"],
+      "elements": [
+        { "id": "rsy24_q28_t", "type": "text", "text": "In the figure below, rectangle EFGH has an area of 2250 cm² and triangle MNH has an area of 750 cm².  Find the area of the shaded triangle NFG." },
+        { "id": "rsy24_q28_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q28_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q29",
+      "topics": ["Geometry", "Area and Perimeter"],
+      "concepts": ["Area of Triangle", "Area of Parallelogram", "Constructing Figures on Grid"],
+      "elements": [
+        { "id": "rsy24_q29_t", "type": "text", "text": "The figure below shows a triangle PQR.  On the grid below, draw a parallelogram RQXY with the same area as triangle PQR without overlapping it." },
+        { "id": "rsy24_q29_img", "type": "image", "dataUrl": "", "caption": "" }
+      ]
+    },
+    {
+      "id": "rsy24_q30",
+      "topics": ["Nets and Solids", "Geometry"],
+      "concepts": ["Nets of Solids"],
+      "elements": [
+        { "id": "rsy24_q30_t", "type": "text", "text": "Match the net of each solid in the table below by writing the letter A, B, C or D on the blank.  (a) Prism, (b) Cube." },
+        { "id": "rsy24_q30_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_q30_a_t", "type": "part", "label": "(a)", "text": "Net for Prism" },
+        { "id": "rsy24_q30_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_q30_b_t", "type": "part", "label": "(b)", "text": "Net for Cube" },
+        { "id": "rsy24_q30_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q_p2",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rsy24_qp2_t",
+          "type": "text",
+          "text": "Paper 2.  Questions 1 to 5 carry 2 marks each.  Show your working clearly in the space provided for each question and write your answers in the spaces provided.  For questions which require units, give your answers in the units stated.  All diagrams in this paper are not drawn to scale unless stated otherwise.  (10 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rsy24_p2q1",
+      "topics": ["Algebra", "Area and Perimeter"],
+      "concepts": ["Perimeter of Triangle", "Solving Algebraic Equations"],
+      "elements": [
+        { "id": "rsy24_p2q1_t", "type": "text", "text": "The figure below shows a triangle EFG.  It has a perimeter of 84 cm.  EF = (8p − 9) cm, FG = (3p + 21) cm and EG = 39 cm.  Find the value of p." },
+        { "id": "rsy24_p2q1_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q1_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q2",
+      "topics": ["Measurement", "Whole Numbers"],
+      "concepts": ["Length", "Division with Remainder"],
+      "elements": [
+        { "id": "rsy24_p2q2_t", "type": "text", "text": "Mdm Rosnah needs some pieces of ribbons, each of length 36 cm, to tie gift bags for a party.  She bought 3 rolls of ribbon.  Each roll is 15 m long.  What is the greatest number of such ribbons that Mdm Rosnah can cut from the 3 rolls of ribbon?" },
+        { "id": "rsy24_p2q2_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q3",
+      "topics": ["Measurement", "Patterns"],
+      "concepts": ["Spacing Problems", "Length"],
+      "elements": [
+        { "id": "rsy24_p2q3_t", "type": "text", "text": "Chairs are arranged in straight rows in a hall.  There are 42 chairs in each row.  Each chair has a length of 0.5 m.  Every row is 1.5 m apart from the next row of chairs.  There are 1470 chairs altogether.  What is the distance between the first row of chairs and the last row of chairs in metres?" },
+        { "id": "rsy24_p2q3_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q3_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q4",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Equilateral Triangle", "Angles in Square", "Angles on a Straight Line"],
+      "elements": [
+        { "id": "rsy24_p2q4_t", "type": "text", "text": "In the figure below, ADE is an equilateral triangle and ABCD is a square.  EH, EC and BH are straight lines.  Find ∠AFC." },
+        { "id": "rsy24_p2q4_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q4_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q5",
+      "topics": ["Speed", "Fractions"],
+      "concepts": ["Constant Speed", "Distance/Speed/Time"],
+      "elements": [
+        { "id": "rsy24_p2q5_t", "type": "text", "text": "Dylan and Greg set off from their school at the same time and jogged towards the stadium using the same route.  They jogged at a constant speed throughout the whole journey.  When Greg covered 1/4 of the distance, Dylan was 300 m behind him.  Dylan reached the stadium at 9 a.m., jogging at a speed of 100 m/min.  What time did Greg reach the stadium?" },
+        { "id": "rsy24_p2q5_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_q_p2b",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "rsy24_qp2b_t",
+          "type": "text",
+          "text": "For Questions 6 to 17, show your working clearly in the space provided for each question and write your answers in the spaces provided.  The number of marks available is shown in brackets [ ] at the end of each question or part-question.  For questions which require units, give your answers in the units stated.  (45 marks)"
+        }
+      ]
+    },
+    {
+      "id": "rsy24_p2q6",
+      "topics": ["Fractions"],
+      "concepts": ["Fraction Word Problem", "Remainder"],
+      "elements": [
+        { "id": "rsy24_p2q6_t", "type": "text", "text": "Mr Tan had a total of 1370 oranges and pears at first.  He sold 4/7 of the oranges and 265 pears.  The number of oranges left was 1/2 the number of pears left.  How many more pears than oranges were there at first?  [3]" },
+        { "id": "rsy24_p2q6_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q7",
+      "topics": ["Percentage"],
+      "concepts": ["Discount", "Percentage Word Problem"],
+      "elements": [
+        { "id": "rsy24_p2q7_t", "type": "text", "text": "Mr Raj paid $3893 for two identical refrigerators using a savings coupon that offered the first refrigerator at 10% discount and the second one at 20% discount.  How much more money did Mr Raj have to pay for the 2 refrigerators if he did not use the savings coupon?  [3]" },
+        { "id": "rsy24_p2q7_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q7_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q8",
+      "topics": ["Ratio"],
+      "concepts": ["Ratio Before and After", "Money"],
+      "elements": [
+        { "id": "rsy24_p2q8_t", "type": "text", "text": "Minah saved some $2-notes and $5-notes in the ratio of 5 : 3.  When she took out 36 $2-notes and added the same number of $5-notes, the ratio became 2 : 3.  Find the total value of all the $5-notes Minah saved at first.  [3]" },
+        { "id": "rsy24_p2q8_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q9",
+      "topics": ["Volume", "Rate"],
+      "concepts": ["Volume of Cuboids", "Rate of Flow"],
+      "elements": [
+        { "id": "rsy24_p2q9_t", "type": "text", "text": "Two rectangular tanks are shown below.  Tank A: 30 cm by 20 cm by 40 cm.  Tank B: 40 cm by 25 cm by 36 cm.  At first, Tank A was completely filled with water and 1/3 of Tank B was filled with water.  Water flowed out of the tap at Tank A at a rate of 1.2 litres per minute.  Water from the tap at Tank B flowed in at a rate of 1.2 litres per minute.  How long did it take for the height of the water to be the same in both tanks?  [3]" },
+        { "id": "rsy24_p2q9_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q9_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q10",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Rhombus", "Angles on a Straight Line"],
+      "elements": [
+        { "id": "rsy24_p2q10_t", "type": "text", "text": "In the figure below, ABCD is a rhombus.  PQ and RS are 2 straight lines.  ∠BAD = 134°, ∠DCS = 15° and ∠RCP = 106°.  Find ∠CTD.  [3]" },
+        { "id": "rsy24_p2q10_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q10_a", "type": "answer", "label": "Ans: ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q11",
+      "topics": ["Percentage", "Whole Numbers"],
+      "concepts": ["Percentage Word Problem"],
+      "elements": [
+        { "id": "rsy24_p2q11_t", "type": "text", "text": "At a charity walkathon, there was an equal number of children who took part in either the 3-km walk or the 5-km walk.  There were 208 girls who took part in the 3-km walk and 162 girls who took part in the 5-km walk.  60% of the boys took part in the 5-km walk.  For every 1-km walked by the children, $10 was donated to charity." },
+        { "id": "rsy24_p2q11_a_t", "type": "part", "label": "(a)", "text": "How many boys took part in the 5-km walk?  [2]" },
+        { "id": "rsy24_p2q11_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q11_b_t", "type": "part", "label": "(b)", "text": "Find the total amount of money raised by the children in this charity walkathon.  [2]" },
+        { "id": "rsy24_p2q11_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q12",
+      "topics": ["Area and Perimeter", "Geometry"],
+      "concepts": ["Area of Circles", "Quarter Circles", "Semi-circles"],
+      "elements": [
+        { "id": "rsy24_p2q12_t", "type": "text", "text": "The figure shows a path of width 2 m in a rectangular garden of length 66 m.  The outline of the path is made up of quarter circles with centre A, semicircles with centres D and E, and straight lines.  AB = CD = EF." },
+        { "id": "rsy24_p2q12_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q12_a_t", "type": "part", "label": "(a)", "text": "What is the breadth of the rectangular garden?  [1]" },
+        { "id": "rsy24_p2q12_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q12_b_t", "type": "part", "label": "(b)", "text": "Find the area of the path.  Take π = 3.14.  [3]" },
+        { "id": "rsy24_p2q12_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q13",
+      "topics": ["Data Analysis", "Rate"],
+      "concepts": ["Line Graph", "Rate"],
+      "elements": [
+        { "id": "rsy24_p2q13_t", "type": "text", "text": "The graph below shows the rate at which two machines, Machine A and Machine B, were assembling toy cars over a period of 12 hours." },
+        { "id": "rsy24_p2q13_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q13_a_t", "type": "part", "label": "(a)", "text": "In the first 6 hours, both machines assembled an equal number of toy cars each.  How many toy cars can each machine pack in one hour during this period of time?  [1]" },
+        { "id": "rsy24_p2q13_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q13_b_t", "type": "part", "label": "(b)", "text": "During the last 6 hours, the rate at which Machine A was assembling toy cars was increased while Machine B continued assembling toy cars at the same rate.  How many more toy cars did Machine A assemble per hour than Machine B during this period of time?  [3]" },
+        { "id": "rsy24_p2q13_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q14",
+      "topics": ["Data Analysis", "Percentage"],
+      "concepts": ["Line Graph", "Percentage Increase"],
+      "elements": [
+        { "id": "rsy24_p2q14_t", "type": "text", "text": "Sherry baked cookies and packed them to sell.  The graphs below show the number of cookies she baked and the number of packets of cookies sold from Week 1 to Week 4.  Each packet was filled with the same number of cookies." },
+        { "id": "rsy24_p2q14_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q14_a_t", "type": "part", "label": "(a)", "text": "How many cookies did she pack in one packet?  [1]" },
+        { "id": "rsy24_p2q14_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q14_b_t", "type": "part", "label": "(b)", "text": "How many more packets of cookies did she sell in Week 3 than in Week 1?  [1]" },
+        { "id": "rsy24_p2q14_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q14_c_t", "type": "part", "label": "(c)", "text": "The number of packets of cookies Sherry sold in Week 5 increased by 30% compared to Week 4.  How many cookies did she sell in Week 5?  [2]" },
+        { "id": "rsy24_p2q14_c_a", "type": "answer", "label": "Ans: (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q15",
+      "topics": ["Geometry"],
+      "concepts": ["Angles in Isosceles Triangle", "Angles in Triangle"],
+      "elements": [
+        { "id": "rsy24_p2q15_t", "type": "text", "text": "In the figure below, ACE is a triangle where AF = AB and EF = ED.  The sum of ∠ABF and ∠EDF is 125°." },
+        { "id": "rsy24_p2q15_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q15_a_t", "type": "part", "label": "(a)", "text": "Find ∠BFD.  [2]" },
+        { "id": "rsy24_p2q15_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q15_b_t", "type": "part", "label": "(b)", "text": "Find the sum of ∠BAF and ∠AEC.  [2]" },
+        { "id": "rsy24_p2q15_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q16",
+      "topics": ["Patterns", "Algebra"],
+      "concepts": ["Number Patterns", "Sequence"],
+      "elements": [
+        { "id": "rsy24_p2q16_t", "type": "text", "text": "The pattern shown below is made up of squares and triangles.  The table below shows the number of squares and triangles for each figure.  Figure 1: 1 square, 4 triangles, 5 total.  Figure 2: 2 squares, 6 triangles, 8 total.  Figure 3: 3 squares, 8 triangles, 11 total.  Figure 4: 4 squares, 10 triangles, 14 total." },
+        { "id": "rsy24_p2q16_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q16_a_t", "type": "part", "label": "(a)", "text": "Fill in the table for Figure 6.  [1]" },
+        { "id": "rsy24_p2q16_a_a", "type": "answer", "label": "Ans: (a) Triangles ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q16_a_a2", "type": "answer", "label": "Total ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q16_b_t", "type": "part", "label": "(b)", "text": "Find the total number of squares and triangles in Figure 102.  [2]" },
+        { "id": "rsy24_p2q16_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q16_c_t", "type": "part", "label": "(c)", "text": "Find the Figure Number which has a total of 1742 squares and triangles.  [2]" },
+        { "id": "rsy24_p2q16_c_a", "type": "answer", "label": "Ans: (c) ", "answer": "", "lineLength": 30 }
+      ]
+    },
+    {
+      "id": "rsy24_p2q17",
+      "topics": ["Measurement", "Whole Numbers"],
+      "concepts": ["Length", "Word Problem with Two Variables"],
+      "elements": [
+        { "id": "rsy24_p2q17_t", "type": "text", "text": "Eunice packed 2 types of books into 4 identical shelves.  A big book had a thickness of 9 cm while a small book had a thickness of 5 cm, as shown in Figure 1.  The 4 shelves, W, X, Y and Z, were stacked on top of one another as shown in Figure 2.  The books were packed next to one another without any gaps.  Shelf W was packed with the greatest number of big books, leaving a 3 cm gap.  Shelf X was packed from end to end with the greatest number of small books.  Figure 3 shows the books in Shelf W and Shelf X.  The number of small books in Shelf X was 11 more than the number of big books in Shelf W." },
+        { "id": "rsy24_p2q17_img", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "rsy24_p2q17_a_t", "type": "part", "label": "(a)", "text": "What was the length of Shelf X?  [3]" },
+        { "id": "rsy24_p2q17_a_a", "type": "answer", "label": "Ans: (a) ", "answer": "", "lineLength": 30 },
+        { "id": "rsy24_p2q17_b_t", "type": "part", "label": "(b)", "text": "Eunice packed a total of 36 big and small books in Shelf Y and Shelf Z.  The books were packed from end to end in each shelf without any gaps as shown in Figure 4.  How many big books were packed in Shelf Y and Shelf Z?  [2]" },
+        { "id": "rsy24_p2q17_b_a", "type": "answer", "label": "Ans: (b) ", "answer": "", "lineLength": 30 }
+      ]
+    }
+  ]
+}
