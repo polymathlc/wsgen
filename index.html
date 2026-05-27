@@ -1202,6 +1202,21 @@
     font-size: var(--font-size-sm);
   }
 
+  .page-break-marker {
+    margin: var(--space-md) 0;
+    padding: 6px 0;
+    border-top: 1.5px dashed var(--border-strong);
+    border-bottom: 1.5px dashed var(--border-strong);
+    text-align: center;
+    color: var(--text-tertiary);
+  }
+  .page-break-marker-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   /* ============================ SOURCE CAPTION ============================ */
   .question-source {
     margin-top: var(--space-md);
@@ -1842,6 +1857,8 @@ function makeElement(type) {
       return { ...base, lines: 4 };
     case 'workingSpace':
       return { ...base, lines: 6 };
+    case 'pageBreak':
+      return { ...base };
   }
 }
 function nextPartLabel() {
@@ -1903,6 +1920,7 @@ function renderEditorQuestion(q, qIndex) {
   addRow.appendChild(makeAddBtn('+ Answer field', () => addElement(q, 'answer')));
   addRow.appendChild(makeAddBtn('+ Open-ended box', () => addElement(q, 'openLines')));
   addRow.appendChild(makeAddBtn('+ Working space', () => addElement(q, 'workingSpace')));
+  addRow.appendChild(makeAddBtn('+ Page break', () => addElement(q, 'pageBreak')));
   addRow.appendChild(makeAddBtn('+ Answer key', () => addElement(q, 'answerKey')));
   addRow.appendChild(makeAddBtn('+ Video (Dropbox)', () => addElement(q, 'video')));
   card.appendChild(addRow);
@@ -2258,7 +2276,15 @@ function renderElementEditor(q, el, elIndex) {
     case 'workingSpace': wrap.appendChild(buildWorkingSpaceEditor(el)); break;
     case 'answerKey':  wrap.appendChild(buildAnswerKeyEditor(el)); break;
     case 'video':      wrap.appendChild(buildVideoEditor(el)); break;
+    case 'pageBreak':  wrap.appendChild(buildPageBreakEditor()); break;
   }
+  return wrap;
+}
+
+function buildPageBreakEditor() {
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'font-size:var(--font-size-xs); color:var(--text-tertiary); line-height:1.4;';
+  wrap.textContent = 'When the worksheet is exported as PDF, anything below this break is pushed to a new page (still part of the same question). The new page is headed with "Continued from previous page" in italics. No effect in the on-screen preview or HTML export.';
   return wrap;
 }
 
@@ -3163,7 +3189,7 @@ function buildTagGroup(container, label, q, kind) {
 const INSERT_TYPES = [
   ['Text', 'text'], ['Image', 'image'], ['Part', 'part'], ['MCQ', 'mcq'],
   ['Answer field', 'answer'], ['Open-ended box', 'openLines'],
-  ['Working space', 'workingSpace'],
+  ['Working space', 'workingSpace'], ['Page break', 'pageBreak'],
   ['Answer key', 'answerKey'], ['Video', 'video']
 ];
 function buildInsertBar(q, afterIndex) {
@@ -3660,6 +3686,15 @@ function renderPreviewElement(el, ctx = {}) {
       }
       return wrap;
     }
+    case 'pageBreak': {
+      const wrap = document.createElement('div');
+      wrap.className = 'page-break-marker';
+      const label = document.createElement('span');
+      label.className = 'page-break-marker-label';
+      label.textContent = 'PDF page break — “Continued from previous page” on the next page';
+      wrap.appendChild(label);
+      return wrap;
+    }
   }
 }
 
@@ -3810,25 +3845,42 @@ function questionToPrintHtml(q, qIndex) {
 
   const firstTextIdx = q.elements.findIndex(e => e.type === 'text');
   const stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
-  const bodyParts = q.elements.map((el, j) => {
-    if (j === firstTextIdx) return '';
-    return elementToPrintHtml(el, qIndex, j);
-  }).join('\n');
 
-  return `
+  // Split the question's body into one chunk per PDF page, breaking at each
+  // pageBreak element so a long question can flow neatly across pages.
+  const pages = [[]];
+  q.elements.forEach((el, j) => {
+    if (j === firstTextIdx) return;
+    if (el.type === 'pageBreak') { pages.push([]); return; }
+    pages[pages.length - 1].push(elementToPrintHtml(el, qIndex, j));
+  });
+
+  const num = questionDisplayNumber(qIndex);
+  return pages.map((parts, pageIdx) => {
+    const header = pageIdx === 0
+      ? `<div class="question-header">
+      <div class="question-number">${num}</div>
+      <div class="question-stem">${formatTextWithFractions(stemText)}</div>
+    </div>`
+      : `<div class="question-header continued-header">
+      <div class="question-number">${num}</div>
+      <div class="continued-note">Continued from previous page</div>
+    </div>`;
+    const source = (pageIdx === pages.length - 1 && q.source)
+      ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>`
+      : '';
+    return `
 <section class="print-question">
   <article class="question-card">
-    <div class="question-header">
-      <div class="question-number">${questionDisplayNumber(qIndex)}</div>
-      <div class="question-stem">${formatTextWithFractions(stemText)}</div>
-    </div>
-    ${bodyParts}
-    ${q.source ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>` : ''}
+    ${header}
+    ${parts.join('\n')}
+    ${source}
   </article>
   <div class="working-space">
     <div class="working-space-label">Working</div>
   </div>
 </section>`;
+  }).join('\n');
 }
 
 function elementToPrintHtml(el, qIndex, elIndex) {
@@ -3864,6 +3916,9 @@ function elementToPrintHtml(el, qIndex, elIndex) {
     }
     case 'answerKey':
       // Answer keys are not printed on student worksheets.
+      return '';
+    case 'pageBreak':
+      // Handled by questionToPrintHtml splitting the body across pages.
       return '';
     case 'video': {
       const cap = el.caption ? escapeHtml(el.caption) : 'Video';
@@ -4022,6 +4077,17 @@ body { background: #fff !important; padding: 0 !important; }
   text-align: right;
 }
 
+.print-question .continued-header {
+  align-items: center;
+}
+.print-question .continued-note {
+  flex: 1;
+  font-style: italic;
+  color: #5C5C5C;
+  font-size: 0.95rem;
+  padding-top: 4px;
+}
+
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .print-question { height: 261mm; }
@@ -4178,6 +4244,9 @@ function elementToHtml(el, qIndex, elIndex) {
       }
       return `<div class="video-block"><iframe src="${escapeAttr(embed.url)}" allow="autoplay; fullscreen" allowfullscreen></iframe>${cap}</div>`;
     }
+    case 'pageBreak':
+      // Only meaningful in PDF export; show a subtle divider in standalone HTML.
+      return `<div class="page-break-marker"><span class="page-break-marker-label">Page break (PDF only)</span></div>`;
   }
   return '';
 }
@@ -4257,6 +4326,8 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .answer-key-export .answer-key-image{margin-top:8px; display:block; max-width:100%; border-radius:var(--radius-md); border:1px solid #C8E6C9; background:#fff;}
 .video-block{margin:var(--space-md) 0;}
 .video-block iframe, .video-block video{width:100%; aspect-ratio:16/9; border:none; border-radius:var(--radius-md); background:#000;}
+.page-break-marker{margin:var(--space-md) 0; padding:6px 0; border-top:1.5px dashed #B8B8B2; border-bottom:1.5px dashed #B8B8B2; text-align:center; color:var(--text-tertiary);}
+.page-break-marker-label{font-size:var(--font-size-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase;}
 .video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
 .video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
 .question-source{margin-top:var(--space-md); padding-top:var(--space-sm); border-top:1px dashed var(--border-subtle); font-size:0.75rem; color:var(--text-tertiary); font-style:italic; text-align:right;}
