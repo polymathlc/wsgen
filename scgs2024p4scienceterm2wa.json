@@ -1,0 +1,467 @@
+{
+  "title": "Singapore Chinese Girls' School 2024 P4 Science Term 2 WA",
+  "subtitle": "Singapore Chinese Girls' School — 2024 Term 2 Weighted Assessment — Primary 4 Science.  Diagrams left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.",
+  "questions": [
+    {
+      "id": "id_scgs24p4_1",
+      "elements": [
+        {
+          "id": "id_scgs24p4_2",
+          "type": "text",
+          "text": "Section A (14 marks).  For each question from 1 to 7, four options are given.  Choose the correct answer and write its number in the Answer Sheet on Page 6."
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_10",
+      "elements": [
+        {
+          "id": "id_scgs24p4_3",
+          "type": "text",
+          "text": "Ken poured 100 ml of water into three different types of containers as shown below (Container A: conical flask, Container B: shallow wide basin, Container C: tall narrow cylinder; each labelled 100 ml).  What property of water does the above experiment show?"
+        },
+        {
+          "id": "id_scgs24p4_4",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_9",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_5",
+              "text": "Water has mass."
+            },
+            {
+              "id": "id_scgs24p4_6",
+              "text": "Water occupies space."
+            },
+            {
+              "id": "id_scgs24p4_7",
+              "text": "Water does not have a definite shape."
+            },
+            {
+              "id": "id_scgs24p4_8",
+              "text": "Water does not have a definite volume."
+            }
+          ],
+          "correctId": "id_scgs24p4_7"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_18",
+      "elements": [
+        {
+          "id": "id_scgs24p4_11",
+          "type": "text",
+          "text": "June was given four containers as shown below (Container A: 50 cm³, Container B: 80 cm³, Container C: 100 cm³, Container D: 70 cm³).  Which of the containers would Aunty Jane be able to pump in 90 cm³ of air?"
+        },
+        {
+          "id": "id_scgs24p4_12",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_17",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_13",
+              "text": "Container C only"
+            },
+            {
+              "id": "id_scgs24p4_14",
+              "text": "Containers A and D only"
+            },
+            {
+              "id": "id_scgs24p4_15",
+              "text": "Containers B and C only"
+            },
+            {
+              "id": "id_scgs24p4_16",
+              "text": "All of the containers"
+            }
+          ],
+          "correctId": "id_scgs24p4_16"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_26",
+      "elements": [
+        {
+          "id": "id_scgs24p4_19",
+          "type": "text",
+          "text": "Joven filled a container with 50 cm³ of sand as shown below.  Next, he poured 100 cm³ of water into the container.  What will be the most likely total volume of the water and the sand in the container?"
+        },
+        {
+          "id": "id_scgs24p4_20",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_25",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_21",
+              "text": "50 cm³"
+            },
+            {
+              "id": "id_scgs24p4_22",
+              "text": "80 cm³"
+            },
+            {
+              "id": "id_scgs24p4_23",
+              "text": "130 cm³"
+            },
+            {
+              "id": "id_scgs24p4_24",
+              "text": "150 cm³"
+            }
+          ],
+          "correctId": "id_scgs24p4_23"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_34",
+      "elements": [
+        {
+          "id": "id_scgs24p4_27",
+          "type": "text",
+          "text": "The table below shows the properties of objects W, X, Y and Z (flow chart starting at 'Object' — 'Does it occupy space?': no → W; yes → 'Does it have a fixed shape?': yes → X; no → 'Can it be compressed?': yes → Z, no → Y).  Which of the following correctly represents objects W, X, Y and Z?"
+        },
+        {
+          "id": "id_scgs24p4_28",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_33",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_29",
+              "text": "W: light, X: book, Y: milk, Z: air"
+            },
+            {
+              "id": "id_scgs24p4_30",
+              "text": "W: air, X: shadow, Y: book, Z: light"
+            },
+            {
+              "id": "id_scgs24p4_31",
+              "text": "W: shadow, X: water bottle, Y: water, Z: milk"
+            },
+            {
+              "id": "id_scgs24p4_32",
+              "text": "W: air, X: light, Y: water, Z: milk"
+            }
+          ],
+          "correctId": "id_scgs24p4_29"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_42",
+      "elements": [
+        {
+          "id": "id_scgs24p4_35",
+          "type": "text",
+          "text": "Ali balanced two identical glass containers, each containing 200 ml of water, on a beam balance as shown in the diagram below.  After Ali pumps in another 100 cm³ of air into Container A, which of the following would happen?\nA  The beam balance tilted downwards at Container A.\nB  The volume of air in Container A increased.\nC  The volume of air in both containers remained the same."
+        },
+        {
+          "id": "id_scgs24p4_36",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_41",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_37",
+              "text": "A only"
+            },
+            {
+              "id": "id_scgs24p4_38",
+              "text": "B only"
+            },
+            {
+              "id": "id_scgs24p4_39",
+              "text": "A and C only"
+            },
+            {
+              "id": "id_scgs24p4_40",
+              "text": "B and C only"
+            }
+          ],
+          "correctId": "id_scgs24p4_39"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_50",
+      "elements": [
+        {
+          "id": "id_scgs24p4_43",
+          "type": "text",
+          "text": "The diagram below shows a glass of lemonade placed on the table (labelled parts: straw, ice cubes, lemonade).  Which of the following is correct?"
+        },
+        {
+          "id": "id_scgs24p4_44",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_49",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_45",
+              "text": "Ice cubes: gained heat, Lemonade: lost heat, Straw: gained heat"
+            },
+            {
+              "id": "id_scgs24p4_46",
+              "text": "Ice cubes: gained heat, Lemonade: lost heat, Straw: lost heat"
+            },
+            {
+              "id": "id_scgs24p4_47",
+              "text": "Ice cubes: lost heat, Lemonade: gained heat, Straw: lost heat"
+            },
+            {
+              "id": "id_scgs24p4_48",
+              "text": "Ice cubes: lost heat, Lemonade: gained heat, Straw: gained heat"
+            }
+          ],
+          "correctId": "id_scgs24p4_46"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_58",
+      "elements": [
+        {
+          "id": "id_scgs24p4_51",
+          "type": "text",
+          "text": "Sufian wanted to find out which type of soil green bean seeds grow best in.  He prepared four pots of bean seeds, A, B, C and D, as shown below (Set-up A: 5 seeds, garden soil, in sunlight; Set-up B: 7 seeds, garden soil, in sunlight; Set-up C: 5 seeds, sand, in sunlight; Set-up D: 7 seeds, sand, in the shade).  Which two pots should he use to ensure a fair test?"
+        },
+        {
+          "id": "id_scgs24p4_52",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_57",
+          "type": "mcq",
+          "options": [
+            {
+              "id": "id_scgs24p4_53",
+              "text": "A and B"
+            },
+            {
+              "id": "id_scgs24p4_54",
+              "text": "A and C"
+            },
+            {
+              "id": "id_scgs24p4_55",
+              "text": "B and C"
+            },
+            {
+              "id": "id_scgs24p4_56",
+              "text": "C and D"
+            }
+          ],
+          "correctId": "id_scgs24p4_54"
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_59",
+      "elements": [
+        {
+          "id": "id_scgs24p4_60",
+          "type": "text",
+          "text": "Section B (11 marks).  For questions 8 to 11, write your answers in this booklet.  The number of marks available is shown in the brackets at the end of each question or part question."
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_66",
+      "elements": [
+        {
+          "id": "id_scgs24p4_61",
+          "type": "text",
+          "text": "Helen has two cans, A and B, both filled with the same volume of milk.  She made different number of holes on the top of the cans (Can A has one small hole; Can B has two small holes).  Helen wants to pour the milk out of the cans."
+        },
+        {
+          "id": "id_scgs24p4_62",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_63",
+          "type": "part",
+          "label": "",
+          "text": "Which of the cans will allow the milk to flow out faster?  Explain why. [2]"
+        },
+        {
+          "id": "id_scgs24p4_64",
+          "type": "answer",
+          "label": "Ans : ",
+          "answer": "Can B.  Air enters through one of the holes and occupies space and pushes the milk out through the other hole.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_75",
+      "elements": [
+        {
+          "id": "id_scgs24p4_67",
+          "type": "text",
+          "text": "Diana set up the following experiment.  She pushed the plastic cup into the basin of water.  She noticed that water entered the plastic cup but the cotton wool at the bottom of the cup remained dry."
+        },
+        {
+          "id": "id_scgs24p4_68",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_69",
+          "type": "part",
+          "label": "(a)",
+          "text": "Explain why the cotton wool remained dry. [1]"
+        },
+        {
+          "id": "id_scgs24p4_70",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Air in the cup occupies space.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_scgs24p4_71",
+          "type": "part",
+          "label": "(b)",
+          "text": "Explain why some water in the basin could enter the plastic cup. [1]"
+        },
+        {
+          "id": "id_scgs24p4_72",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Air in the cup was compressed.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_scgs24p4_73",
+          "type": "part",
+          "label": "(c)",
+          "text": "Diana then removed the plastic cup and made a hole at the bottom of the cup before pushing the cup into the basin again.  She noticed that the water level in the cup rose.  Explain why. [2]"
+        },
+        {
+          "id": "id_scgs24p4_74",
+          "type": "answer",
+          "label": "Ans : (c) ",
+          "answer": "Air in the cup escaped through the hole, water in the basin entered and water took up the space which was previously occupied by air.",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_82",
+      "elements": [
+        {
+          "id": "id_scgs24p4_76",
+          "type": "text",
+          "text": "Jane used an instrument to measure the temperature of water in a glass beaker (instrument shown inside a beaker of water, with a magnified view of the scale reading between 20 and 30)."
+        },
+        {
+          "id": "id_scgs24p4_77",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_78",
+          "type": "part",
+          "label": "(a)",
+          "text": "Name the instrument used. [1]"
+        },
+        {
+          "id": "id_scgs24p4_79",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Thermometer",
+          "lineLength": 30
+        },
+        {
+          "id": "id_scgs24p4_80",
+          "type": "part",
+          "label": "(b)",
+          "text": "What is the temperature of the water in the glass? [1]"
+        },
+        {
+          "id": "id_scgs24p4_81",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "24 °C",
+          "lineLength": 30
+        }
+      ]
+    },
+    {
+      "id": "id_scgs24p4_89",
+      "elements": [
+        {
+          "id": "id_scgs24p4_83",
+          "type": "text",
+          "text": "Johari set up an experiment as shown below.  He used two identical syringes and filled each syringe with equal amounts of air and oil (Syringe X contains air, Syringe Y contains oil; both have sealed nozzles).  He then pushed the plunger of each syringe using the same force."
+        },
+        {
+          "id": "id_scgs24p4_84",
+          "type": "image",
+          "dataUrl": "",
+          "caption": ""
+        },
+        {
+          "id": "id_scgs24p4_85",
+          "type": "part",
+          "label": "(a)",
+          "text": "What would happen to the volumes of the substances in syringes X and Y when Johari pushed in the plungers? [1]"
+        },
+        {
+          "id": "id_scgs24p4_86",
+          "type": "answer",
+          "label": "Ans : (a) ",
+          "answer": "Syringe X: The volume of air would decrease.  Syringe Y: The volume of oil would remain the same.",
+          "lineLength": 30
+        },
+        {
+          "id": "id_scgs24p4_87",
+          "type": "part",
+          "label": "(b)",
+          "text": "What can Johari conclude about the two states of matter shown in his experiment? [2]"
+        },
+        {
+          "id": "id_scgs24p4_88",
+          "type": "answer",
+          "label": "Ans : (b) ",
+          "answer": "Gas can be compressed, but liquid cannot be compressed.",
+          "lineLength": 30
+        }
+      ]
+    }
+  ]
+}
