@@ -3895,9 +3895,6 @@ function questionToPrintHtml(q, qIndex) {
     ${header}
     ${parts.join('\n')}
     ${source}
-    <div class="working-space">
-      <div class="working-space-label">Working</div>
-    </div>
   </article>
 </section>`;
   }).join('\n');
@@ -4024,22 +4021,6 @@ body { background: #fff !important; padding: 0 !important; }
   font-size: 0.78rem;
   color: #5C5C5C;
   margin-top: 4px;
-}
-
-.working-space {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  min-height: 0;
-}
-.working-space-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #5C5C5C;
-  margin-bottom: 8px;
 }
 
 .answer-field-print-line {
