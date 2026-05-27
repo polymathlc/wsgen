@@ -1641,6 +1641,9 @@
         <label class="btn preview-toggle admin-only" style="cursor:pointer;">
           <input type="checkbox" id="showAnswersToggle" style="margin-right:6px;" /> Show answers
         </label>
+        <label class="btn preview-toggle admin-only" style="cursor:pointer;">
+          <input type="checkbox" id="showSourcesToggle" style="margin-right:6px;" /> Show sources
+        </label>
       </div>
       <div class="link-status admin-only" id="linkStatus"></div>
       <div class="filter-row admin-only">
@@ -1710,10 +1713,12 @@ let state = {
   questions: []
 };
 let showAnswers = false;
+let showSources = false;
 let revealedAnswers = new Set();
 let revealedVideos = new Set();
 // Sources are hidden by default; this set tracks questions whose source
-// the user has explicitly revealed via the per-question toggle.
+// the user has explicitly revealed via the per-question toggle. The global
+// `showSources` toggle reveals every source regardless.
 let revealedSources = new Set();
 
 /* Practice mode: students answer on screen, then check their score.
@@ -2973,7 +2978,7 @@ function renderPreviewQuestion(q, qIndex) {
   actions.appendChild(vidBtn);
 
   const hasSource = !!(q.source && q.source.trim());
-  const sourceShown = revealedSources.has(q.id);
+  const sourceShown = showSources || revealedSources.has(q.id);
   const srcBtn = document.createElement('button');
   srcBtn.className = 'btn btn-tiny';
   srcBtn.type = 'button';
@@ -3013,7 +3018,7 @@ function renderPreviewQuestion(q, qIndex) {
   });
 
   // Caption showing which school / year the question came from.
-  if (q.source && revealedSources.has(q.id)) {
+  if (q.source && (showSources || revealedSources.has(q.id))) {
     const src = document.createElement('div');
     src.className = 'question-source';
     src.textContent = 'From: ' + q.source;
@@ -3904,7 +3909,7 @@ function questionToPrintHtml(q, qIndex) {
       <div class="question-number">${num}</div>
       <div class="continued-note">Continued from previous page</div>
     </div>`;
-    const source = (pageIdx === pages.length - 1 && q.source)
+    const source = (pageIdx === pages.length - 1 && q.source && showSources)
       ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>`
       : '';
     return `
@@ -4214,7 +4219,7 @@ function questionToHtml(q, qIndex) {
     <div class="question-stem">${formatTextWithFractions(stemText)}</div>
   </div>
   ${bodyParts}
-  ${q.source ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>` : ''}
+  ${q.source && showSources ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>` : ''}
 </article>`;
 }
 
@@ -4436,6 +4441,10 @@ document.getElementById('showAnswersToggle').addEventListener('change', (e) => {
   showAnswers = e.target.checked;
   renderPreview();
 });
+document.getElementById('showSourcesToggle').addEventListener('change', (e) => {
+  showSources = e.target.checked;
+  renderPreview();
+});
 
 document.getElementById('practiceModeBtn').addEventListener('click', () => {
   practiceMode = !practiceMode;
@@ -4515,6 +4524,7 @@ function refreshAuthUi() {
   const titleInput = document.getElementById('worksheetTitle');
   const subtitleInput = document.getElementById('worksheetSubtitle');
   const showAnswersToggle = document.getElementById('showAnswersToggle');
+  const showSourcesToggle = document.getElementById('showSourcesToggle');
 
   // Body mode class drives most of the UI via CSS.
   document.body.classList.remove('mode-admin', 'mode-student', 'mode-anon');
@@ -4546,6 +4556,8 @@ function refreshAuthUi() {
   if (studentRO) {
     showAnswers = false;
     if (showAnswersToggle) showAnswersToggle.checked = false;
+    showSources = false;
+    if (showSourcesToggle) showSourcesToggle.checked = false;
   }
 
   saveSystemBtn.disabled = !isAdmin();
