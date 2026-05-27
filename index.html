@@ -166,6 +166,42 @@
     transition: border-color var(--transition-base);
   }
 
+  .cover-controls {
+    margin: 0 0 var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px dashed var(--border-medium);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+  }
+  .cover-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .cover-fields {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: var(--space-sm);
+  }
+  .cover-controls.cover-on .cover-fields { display: flex; }
+  .cover-field-input {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+  }
+  .cover-field-input:focus {
+    outline: none;
+    border-color: var(--accent-base);
+  }
+
   .title-input:focus {
     outline: none;
     border-color: var(--accent-base);
@@ -1623,6 +1659,16 @@
       <div id="authHint" class="auth-hint" style="display:none;"></div>
       <input type="text" id="worksheetTitle" class="title-input admin-only" placeholder="Worksheet title" value="New Worksheet" />
       <input type="text" id="worksheetSubtitle" class="title-input admin-only" placeholder="Subtitle / description (optional)" />
+      <div class="cover-controls admin-only" id="coverControls">
+        <label class="cover-toggle">
+          <input type="checkbox" id="coverEnabledToggle" /> Include cover page in exports
+        </label>
+        <div class="cover-fields" id="coverFields">
+          <input type="text" id="coverHeaderInput" class="cover-field-input" placeholder="Cover header (top)" />
+          <input type="text" id="coverSubheaderInput" class="cover-field-input" placeholder="Cover subheader (italic, e.g. Worksheet)" />
+          <input type="text" id="coverFooterInput" class="cover-field-input" placeholder="Cover footer (bottom, optional)" />
+        </div>
+      </div>
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
         <button class="btn admin-only" id="randomizeOrderBtn" title="Shuffle the order of questions in this worksheet (instruction blocks stay in place)">🔀 Randomize order</button>
@@ -1710,8 +1756,24 @@ const WORKSHEET_STORAGE_PREFIX = 'worksheets';
 let state = {
   title: 'New Worksheet',
   subtitle: '',
-  questions: []
+  questions: [],
+  cover: defaultCover()
 };
+
+function defaultCover() {
+  return {
+    enabled: false,
+    header: 'Polymath Learning Centre',
+    subheader: 'Worksheet',
+    footer: ''
+  };
+}
+// Older saved worksheets have no cover field. Reads through this helper so
+// every code path sees a populated object without needing a migration pass.
+function getCover() {
+  if (!state.cover) state.cover = defaultCover();
+  return state.cover;
+}
 let showAnswers = false;
 let showSources = false;
 let revealedAnswers = new Set();
@@ -3832,17 +3894,158 @@ async function exportPdf() {
   w.document.close();
 }
 
+function buildCoverHtml() {
+  const c = getCover();
+  if (!c.enabled) return '';
+  const title = escapeHtml((state.title || '').trim() || 'Worksheet');
+  const sub = (c.subheader || '').trim();
+  const hdr = (c.header || '').trim();
+  const ftr = (c.footer || '').trim();
+  return `
+<section class="cover-page">
+  ${hdr ? `<div class="cover-header">${escapeHtml(hdr)}</div>` : '<div class="cover-header"></div>'}
+  <div class="cover-center">
+    <img class="cover-logo" src="https://www.dropbox.com/scl/fi/2wc1ulpjuiaqlxk5qhc07/polymath-logo-sticker-copy.png?rlkey=jhutxqmdbwe0jgoqcwdxzwt55&raw=1" alt="" />
+    <h1 class="cover-title">${title}</h1>
+    ${sub ? `<div class="cover-subtitle">${escapeHtml(sub)}</div>` : ''}
+    <div class="cover-fields-grid">
+      <div class="cover-field">
+        <div class="cover-field-label">Name</div>
+        <div class="cover-field-line"></div>
+      </div>
+      <div class="cover-field">
+        <div class="cover-field-label">Date</div>
+        <div class="cover-field-line"></div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">${ftr ? escapeHtml(ftr) : ''}</div>
+</section>`;
+}
+
+function getCoverCss() {
+  return `
+/* ── Cover page ─────────────────────────────────────────── */
+.cover-page {
+  width: 100%;
+  min-height: 297mm;
+  padding: 25mm 22mm;
+  background: #fff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  box-sizing: border-box;
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.cover-page::before,
+.cover-page::after {
+  content: '';
+  position: absolute;
+  left: 22mm; right: 22mm;
+  height: 1px;
+  background: #111;
+}
+.cover-page::before { top: 18mm; }
+.cover-page::after  { bottom: 18mm; }
+.cover-header {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #111;
+}
+.cover-footer {
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #666;
+}
+.cover-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  padding-bottom: 40mm;
+}
+.cover-logo {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+.cover-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #111;
+  word-break: break-word;
+  padding: 0 1rem;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+.cover-subtitle {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: #666;
+  margin-top: -1.2rem;
+  padding: 0 1rem;
+  width: 100%;
+  text-align: center;
+  word-break: break-word;
+}
+.cover-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2rem;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 1.5rem;
+}
+.cover-field { text-align: left; }
+.cover-field-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+.cover-field-line {
+  border-bottom: 1px solid #111;
+  height: 1.6rem;
+}
+`;
+}
+
 function buildPrintableHtml() {
-  const css = getEmbeddedPreviewCss() + getPrintCss();
+  const css = getEmbeddedPreviewCss() + getPrintCss() + getCoverCss();
   const body = state.questions.map((q, qIndex) => questionToPrintHtml(q, qIndex)).join('\n');
+  const cover = buildCoverHtml();
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <title>${escapeHtml(state.title)} — Print</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>${css}</style>
 </head>
 <body>
+${cover}
 <div class="print-doc">
   <header class="print-header">
     <h2>${escapeHtml(state.title)}</h2>
@@ -4134,8 +4337,9 @@ function escapeHtml(s) {
 function escapeAttr(s) { return escapeHtml(s); }
 
 function buildStandaloneHtml() {
-  const css = getEmbeddedPreviewCss();
+  const css = getEmbeddedPreviewCss() + getCoverCss();
   const body = state.questions.map((q, qIndex) => questionToHtml(q, qIndex)).join('\n');
+  const cover = buildCoverHtml();
   const correctMap = {};
   state.questions.forEach((q, i) => {
     q.elements.forEach((el, j) => {
@@ -4152,9 +4356,11 @@ function buildStandaloneHtml() {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${escapeHtml(state.title)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>${css}</style>
 </head>
 <body>
+${cover}
 <div class="page">
   <header class="preview-header">
     <h2>${escapeHtml(state.title)}</h2>
@@ -4400,6 +4606,7 @@ function loadJson(file) {
       currentSavedTitle = null;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+syncCoverInputs();
       seedUploadCacheFromState(state);
       hydrateImageRefs(state);
       renderEditor();
@@ -4445,6 +4652,39 @@ document.getElementById('showSourcesToggle').addEventListener('change', (e) => {
   showSources = e.target.checked;
   renderPreview();
 });
+
+// ── Cover-page controls ──────────────────────────────────────────────
+function applyCoverEnabledClass() {
+  const wrap = document.getElementById('coverControls');
+  if (wrap) wrap.classList.toggle('cover-on', !!getCover().enabled);
+}
+// Copy state.cover → input UI. Called after every state assignment.
+function syncCoverInputs() {
+  const c = getCover();
+  document.getElementById('coverEnabledToggle').checked = !!c.enabled;
+  document.getElementById('coverHeaderInput').value = c.header || '';
+  document.getElementById('coverSubheaderInput').value = c.subheader || '';
+  document.getElementById('coverFooterInput').value = c.footer || '';
+  applyCoverEnabledClass();
+}
+document.getElementById('coverEnabledToggle').addEventListener('change', (e) => {
+  getCover().enabled = e.target.checked;
+  applyCoverEnabledClass();
+  scheduleAutoSave();
+});
+document.getElementById('coverHeaderInput').addEventListener('input', (e) => {
+  getCover().header = e.target.value;
+  scheduleAutoSave();
+});
+document.getElementById('coverSubheaderInput').addEventListener('input', (e) => {
+  getCover().subheader = e.target.value;
+  scheduleAutoSave();
+});
+document.getElementById('coverFooterInput').addEventListener('input', (e) => {
+  getCover().footer = e.target.value;
+  scheduleAutoSave();
+});
+syncCoverInputs();
 
 document.getElementById('practiceModeBtn').addEventListener('click', () => {
   practiceMode = !practiceMode;
@@ -5015,6 +5255,7 @@ async function loadFromSystem(id) {
     currentSavedTitle = state.title || 'Untitled';
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+syncCoverInputs();
     seedUploadCacheFromState(state);
     hydrateImageRefs(state);
     if (isAdmin()) renderEditor();
@@ -5179,6 +5420,7 @@ function newWorksheet() {
   currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
+  syncCoverInputs();
   addQuestion();
   updateLinkStatus();
   refreshSavedList();
@@ -5285,6 +5527,7 @@ function openDraft() {
   currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
+  syncCoverInputs();
   renderEditor();
   renderPreview();
   updateLinkStatus();
@@ -5355,6 +5598,7 @@ function restoreAutoSave() {
       state = parsed;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+syncCoverInputs();
       seedUploadCacheFromState(state);
       hydrateImageRefs(state);
       renderEditor();
@@ -5503,6 +5747,7 @@ function restoreActivityEntry(index) {
   currentSavedTitle = null;
   document.getElementById('worksheetTitle').value = state.title || '';
   document.getElementById('worksheetSubtitle').value = state.subtitle || '';
+syncCoverInputs();
   seedUploadCacheFromState(state);
   hydrateImageRefs(state);
   renderEditor();
@@ -5640,6 +5885,7 @@ async function searchAllWorksheets() {
     currentSavedTitle = null;
     document.getElementById('worksheetTitle').value = state.title;
     document.getElementById('worksheetSubtitle').value = state.subtitle;
+    syncCoverInputs();
     renderEditor();
     renderPreview();
     updateLinkStatus();
@@ -5722,6 +5968,7 @@ onAuthStateChanged(fbAuth, async (user) => {
     state = { title: '', subtitle: '', questions: [] };
     document.getElementById('worksheetTitle').value = '';
     document.getElementById('worksheetSubtitle').value = '';
+  syncCoverInputs();
   }
   refreshAuthUi();
   // Re-render so the preview reflects the current edit permissions
