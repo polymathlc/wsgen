@@ -1625,6 +1625,7 @@
       <input type="text" id="worksheetSubtitle" class="title-input admin-only" placeholder="Subtitle / description (optional)" />
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
+        <button class="btn admin-only" id="randomizeOrderBtn" title="Shuffle the order of questions in this worksheet (instruction blocks stay in place)">🔀 Randomize order</button>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account — updates the linked worksheet, or creates a new one if none is linked">☁ Save to System</button>
         <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
@@ -2746,6 +2747,25 @@ function buildMcqEditor(el) {
    ========================================================================= */
 function addQuestion() {
   state.questions.push(makeQuestion());
+  renderEditor(); renderPreview();
+}
+function randomizeQuestionOrder() {
+  // Shuffle only real questions; instruction blocks keep their slot so
+  // section headers don't get scattered through the worksheet.
+  const movableIdx = [];
+  state.questions.forEach((q, i) => { if (!isInstruction(q)) movableIdx.push(i); });
+  if (movableIdx.length < 2) {
+    alert('Need at least two questions to randomize.');
+    return;
+  }
+  if (!confirm('Shuffle the order of questions in this worksheet?')) return;
+  logActivity('before randomize order');
+  const picked = movableIdx.map(i => state.questions[i]);
+  for (let i = picked.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [picked[i], picked[j]] = [picked[j], picked[i]];
+  }
+  movableIdx.forEach((origIdx, k) => { state.questions[origIdx] = picked[k]; });
   renderEditor(); renderPreview();
 }
 function removeQuestion(i) {
@@ -4393,6 +4413,7 @@ function loadJson(file) {
    WIRE UP
    ========================================================================= */
 document.getElementById('addQuestionBtn').addEventListener('click', addQuestion);
+document.getElementById('randomizeOrderBtn').addEventListener('click', randomizeQuestionOrder);
 document.getElementById('exportHtmlBtn').addEventListener('click', exportHtml);
 document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
 document.getElementById('saveJsonBtn').addEventListener('click', saveJson);
