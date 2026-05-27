@@ -1712,9 +1712,9 @@ let state = {
 let showAnswers = false;
 let revealedAnswers = new Set();
 let revealedVideos = new Set();
-// Sources are shown by default; this set tracks questions whose source
-// the user has explicitly hidden via the per-question toggle.
-let hiddenSources = new Set();
+// Sources are hidden by default; this set tracks questions whose source
+// the user has explicitly revealed via the per-question toggle.
+let revealedSources = new Set();
 
 /* Practice mode: students answer on screen, then check their score.
    practiceResponses maps an element id → the student's response
@@ -2973,16 +2973,16 @@ function renderPreviewQuestion(q, qIndex) {
   actions.appendChild(vidBtn);
 
   const hasSource = !!(q.source && q.source.trim());
-  const sourceHidden = hiddenSources.has(q.id);
+  const sourceShown = revealedSources.has(q.id);
   const srcBtn = document.createElement('button');
   srcBtn.className = 'btn btn-tiny';
   srcBtn.type = 'button';
-  srcBtn.textContent = sourceHidden ? 'Show source' : 'Hide source';
+  srcBtn.textContent = sourceShown ? 'Hide source' : 'Show source';
   srcBtn.disabled = !hasSource;
   if (!hasSource) srcBtn.title = 'No source recorded for this question';
   srcBtn.addEventListener('click', () => {
-    if (hiddenSources.has(q.id)) hiddenSources.delete(q.id);
-    else hiddenSources.add(q.id);
+    if (revealedSources.has(q.id)) revealedSources.delete(q.id);
+    else revealedSources.add(q.id);
     renderPreview();
   });
   actions.appendChild(srcBtn);
@@ -3013,7 +3013,7 @@ function renderPreviewQuestion(q, qIndex) {
   });
 
   // Caption showing which school / year the question came from.
-  if (q.source && !hiddenSources.has(q.id)) {
+  if (q.source && revealedSources.has(q.id)) {
     const src = document.createElement('div');
     src.className = 'question-source';
     src.textContent = 'From: ' + q.source;
