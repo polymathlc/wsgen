@@ -1681,6 +1681,42 @@
     border-color: var(--accent-light);
   }
 
+  /* Sort-questions dropdown (toolbar) */
+  .sort-menu { position: relative; display: inline-block; }
+  .sort-menu-list {
+    display: none;
+    position: absolute;
+    z-index: 60;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    min-width: 240px;
+    padding: 4px;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+  }
+  .sort-menu.open .sort-menu-list { display: flex; }
+  .sort-menu-item {
+    text-align: left;
+    padding: 7px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .sort-menu-item:hover {
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+  }
+
   /* ============================ PREVIEW QUESTION / ELEMENT CONTROLS ============================ */
   .pv-q-controls {
     display: flex;
@@ -1808,6 +1844,14 @@
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
         <button class="btn admin-only" id="randomizeOrderBtn" title="Shuffle the order of questions in this worksheet (instruction blocks stay in place)">🔀 Randomize order</button>
+        <div class="sort-menu admin-only" id="sortMenu">
+          <button class="btn" id="sortQuestionsBtn" title="Group and reorder questions by topic (instruction blocks stay in place)">↕ Sort questions ▾</button>
+          <div class="sort-menu-list" id="sortMenuList">
+            <button type="button" class="sort-menu-item" data-sort="syllabus">By syllabus topic (P3 → P6)</button>
+            <button type="button" class="sort-menu-item" data-sort="topic-az">Alphabetical by topic (A–Z)</button>
+            <button type="button" class="sort-menu-item" data-sort="concept-az">Alphabetical by concept (A–Z)</button>
+          </div>
+        </div>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account — updates the linked worksheet, or creates a new one if none is linked">☁ Save to System</button>
         <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
@@ -2974,6 +3018,90 @@ function randomizeQuestionOrder() {
   movableIdx.forEach((origIdx, k) => { state.questions[origIdx] = picked[k]; });
   renderEditor(); renderPreview();
 }
+
+/* =========================================================================
+   SORT QUESTIONS BY TOPIC
+
+   Singapore Primary Science Syllabus 2023 (Primary 3 to 6) — the topics in
+   their teaching sequence, from the first P3 topic (Diversity of living and
+   non-living things) through to the last P6 topic (Interactions within the
+   environment). Each entry carries lower-case keywords that map a question's
+   free-text topic / concept onto its syllabus topic, so a worksheet can be
+   grouped to follow this progression. Questions that don't match any topic
+   (e.g. maths, exam-skill tags) keep their relative order and sit at the end.
+   ========================================================================= */
+const SYLLABUS_TOPICS = [
+  { level: 'P3', theme: 'Diversity',    name: 'Diversity of living and non-living things', kw: ['living and non-living', 'living and non living', 'non-living', 'non living', 'living things', 'diversity of living', 'general characteristics', 'classification', 'classify'] },
+  { level: 'P3', theme: 'Diversity',    name: 'Diversity of materials',                    kw: ['material'] },
+  { level: 'P3', theme: 'Cycles',       name: 'Cycles in plants and animals (Life cycles)',kw: ['life cycle', 'lifecycle'] },
+  { level: 'P3', theme: 'Interactions', name: 'Interaction of forces (Magnets)',           kw: ['magnet'] },
+  { level: 'P4', theme: 'Systems',      name: 'Plant system (Plant parts and functions)',  kw: ['plant parts', 'plant part', 'parts and function', 'plant system', 'plants'] },
+  { level: 'P4', theme: 'Systems',      name: 'Human system (Digestive system)',           kw: ['digestive', 'digestion'] },
+  { level: 'P4', theme: 'Cycles',       name: 'Cycles in matter and water (Matter)',       kw: ['states of matter', 'state of matter', 'three states', 'matter'] },
+  { level: 'P4', theme: 'Energy',       name: 'Energy forms and uses (Light)',             kw: ['light', 'shadow', 'reflection'] },
+  { level: 'P4', theme: 'Energy',       name: 'Energy forms and uses (Heat)',              kw: ['heat', 'temperature', 'thermal'] },
+  { level: 'P5', theme: 'Cycles',       name: 'Cycles in plants and animals (Reproduction)', kw: ['reproduction', 'reproductive', 'pollination', 'seed dispersal', 'germination'] },
+  { level: 'P5', theme: 'Cycles',       name: 'Cycles in matter and water (Water)',        kw: ['water cycle', 'evaporation', 'condensation', 'boiling', 'freezing', 'water'] },
+  { level: 'P5', theme: 'Systems',      name: 'Plant system (Respiratory and circulatory systems)', kw: ['plant transport', 'transport system', 'plant respiratory', 'plant circulatory'] },
+  { level: 'P5', theme: 'Systems',      name: 'Human system (Respiratory and circulatory systems)', kw: ['respiratory', 'circulatory', 'circulation', 'breathing', 'blood', 'lungs'] },
+  { level: 'P5', theme: 'Systems',      name: 'Electrical system',                          kw: ['electric', 'circuit', 'conductor of electricity', 'current'] },
+  { level: 'P5', theme: 'Energy',       name: 'Energy forms and uses (Photosynthesis)',     kw: ['photosynthesis'] },
+  { level: 'P6', theme: 'Energy',       name: 'Energy conversion',                          kw: ['energy conversion', 'energy change', 'energy transfer', 'forms of energy', 'energy'] },
+  { level: 'P6', theme: 'Interactions', name: 'Interaction of forces (Frictional, gravitational, elastic spring force)', kw: ['friction', 'gravitational', 'gravity', 'elastic spring', 'spring force', 'force'] },
+  { level: 'P6', theme: 'Interactions', name: 'Interactions within the environment',        kw: ['environment', 'food chain', 'food web', 'adaptation', 'adapt', 'habitat', 'ecosystem'] },
+];
+
+// Position of a question in the syllabus sequence. Builds a haystack from the
+// question's topics + concepts and picks the syllabus topic whose longest
+// keyword matches (longest = most specific). Unmatched questions sort last.
+function syllabusRank(q) {
+  const hay = [...topicsOf(q), ...conceptsOf(q)].join(' | ').toLowerCase();
+  let best = -1, bestLen = 0;
+  SYLLABUS_TOPICS.forEach((t, idx) => {
+    t.kw.forEach(k => {
+      if (k.length > bestLen && hay.includes(k)) { bestLen = k.length; best = idx; }
+    });
+  });
+  return best === -1 ? SYLLABUS_TOPICS.length : best;
+}
+
+// Reorder only real questions using rankFn; instruction blocks keep their slot
+// (same behaviour as Randomize order) so section headers stay put. The sort is
+// stable — questions with an equal key keep their original relative order.
+function reorderMovable(label, rankFn) {
+  const movableIdx = [];
+  state.questions.forEach((q, i) => { if (!isInstruction(q)) movableIdx.push(i); });
+  if (movableIdx.length < 2) {
+    alert('Need at least two questions to sort.');
+    return;
+  }
+  logActivity('before ' + label);
+  const decorated = movableIdx.map((i, k) => ({ q: state.questions[i], key: rankFn(state.questions[i]), k }));
+  decorated.sort((a, b) => {
+    if (a.key < b.key) return -1;
+    if (a.key > b.key) return 1;
+    return a.k - b.k;
+  });
+  movableIdx.forEach((origIdx, k) => { state.questions[origIdx] = decorated[k].q; });
+  renderEditor(); renderPreview();
+}
+
+function sortQuestions(mode) {
+  if (mode === 'syllabus') {
+    reorderMovable('sort by syllabus topic', syllabusRank);
+  } else if (mode === 'topic-az') {
+    reorderMovable('sort alphabetically by topic', q => {
+      const t = topicsOf(q);
+      return t.length ? t.slice().sort()[0].toLowerCase() : '￿';
+    });
+  } else if (mode === 'concept-az') {
+    reorderMovable('sort alphabetically by concept', q => {
+      const c = conceptsOf(q);
+      return c.length ? c.slice().sort()[0].toLowerCase() : '￿';
+    });
+  }
+}
+
 function removeQuestion(i) {
   state.questions.splice(i, 1);
   renderEditor(); renderPreview();
@@ -4786,6 +4914,25 @@ syncCoverInputs();
    ========================================================================= */
 document.getElementById('addQuestionBtn').addEventListener('click', addQuestion);
 document.getElementById('randomizeOrderBtn').addEventListener('click', randomizeQuestionOrder);
+(() => {
+  const sortMenu = document.getElementById('sortMenu');
+  const sortBtn = document.getElementById('sortQuestionsBtn');
+  if (sortMenu && sortBtn) {
+    sortBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sortMenu.classList.toggle('open');
+    });
+    sortMenu.querySelectorAll('.sort-menu-item').forEach(b => {
+      b.addEventListener('click', () => {
+        sortMenu.classList.remove('open');
+        sortQuestions(b.dataset.sort);
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!sortMenu.contains(e.target)) sortMenu.classList.remove('open');
+    });
+  }
+})();
 document.getElementById('exportHtmlBtn').addEventListener('click', exportHtml);
 document.getElementById('exportPdfBtn').addEventListener('click', exportPdf);
 document.getElementById('saveJsonBtn').addEventListener('click', saveJson);
