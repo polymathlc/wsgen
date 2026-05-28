@@ -1,0 +1,216 @@
+{
+  "title": "PSLE 2017 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2017 — Science (0009/02 B).  Booklet B consists of 12 open-ended questions, Q29–Q40 (44 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.  Open-ended boxes have the same number of writing lines as the answer spaces in the original paper.",
+  "questions": [
+    {
+      "id": "psle17b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle17b_intro_t",
+          "type": "text",
+          "text": "Booklet B.  For questions 29 to 40, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (44 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle17b_q29",
+      "topics": ["Plants", "Life Cycles", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q29_t", "type": "text", "text": "Question 29.  The diagram shows half a seed.  Part Q protects the baby plant." },
+        { "id": "psle17b_q29_img1", "type": "image", "dataUrl": "", "caption": "Cross-section of half a seed — outer layer labelled part Q (seed coat), with the baby plant labelled inside" },
+        { "id": "psle17b_q29_pa", "type": "part", "label": "(a)", "text": "State another function of part Q.  [1]" },
+        { "id": "psle17b_q29_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q29_pb", "type": "part", "label": "(b)", "text": "Melvin observed stages in the life of fish T and fish W as shown." },
+        { "id": "psle17b_q29_img2", "type": "image", "dataUrl": "", "caption": "Fish T: egg → young (stage 1, with stored food attached) → young (stage 2) → adult.  Fish W: young → adult (gives birth to young)" },
+        { "id": "psle17b_q29_pbi", "type": "part", "label": "(b)(i)", "text": "Based on Melvin's observation, state a characteristic of the young of fish T that helps it to survive in stage 1.  [1]" },
+        { "id": "psle17b_q29_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q29_pbii", "type": "part", "label": "(b)(ii)", "text": "State a characteristic of the young of fish W which gives it an advantage to survive compared to the young of fish T at stage 1.  Explain your answer.  [1]" },
+        { "id": "psle17b_q29_abii", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q29_pbiii", "type": "part", "label": "(b)(iii)", "text": "Fish T lays its eggs inside a cave as shown.  It is known to protect its eggs." },
+        { "id": "psle17b_q29_img3", "type": "image", "dataUrl": "", "caption": "Fish T at the mouth of a dome-shaped cave in the water, where it lays its eggs" },
+        { "id": "psle17b_q29_pbiii2", "type": "part", "label": "(b)(iii)", "text": "Explain how laying eggs in a cave helps fish T to protect its eggs.  [1]" },
+        { "id": "psle17b_q29_abiii", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle17b_q30",
+      "topics": ["Microorganisms", "Experimental Design", "Heat and Temperature"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q30_t", "type": "text", "text": "Question 30.  Bacteria M can cause illness when it is present in large numbers.  Rahim conducted an experiment to find out how quickly bacteria M can reproduce when it is kept at different temperatures.  His results are shown below." },
+        { "id": "psle17b_q30_img1", "type": "image", "dataUrl": "", "caption": "Table — Temperature at which bacteria M is kept (°C): 30, 35, 40, 45.  Amount of bacteria M (unit) at the start of experiment: 1, 1, 1, 1.  Amount of bacteria M (unit) 24 hours later: 120, 250, 130, 60" },
+        { "id": "psle17b_q30_pai", "type": "part", "label": "(a)(i)", "text": "Describe how the amount of bacteria M changes with temperature.  [1]" },
+        { "id": "psle17b_q30_aai", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q30_paii", "type": "part", "label": "(a)(ii)", "text": "Bacteria M can be found on raw food.  The human body temperature is 37 °C.  Based on the information given, suggest why bacteria M will reproduce quickly in the human intestines when raw food is eaten.  [1]" },
+        { "id": "psle17b_q30_aaii", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q30_pb", "type": "part", "label": "(b)", "text": "Rahim carried out a second experiment to find out if bacteria M can be killed at high temperatures.  He heated the same amount of bacteria at different temperatures for 15 seconds and recorded his results below." },
+        { "id": "psle17b_q30_img2", "type": "image", "dataUrl": "", "caption": "Bar graph — Amount of bacteria M left after 15 seconds (y-axis) vs Temperature (°C) (x-axis: 80, 90, 100).  The bars decrease as temperature increases" },
+        { "id": "psle17b_q30_pb2", "type": "part", "label": "(b)", "text": "He cooked some raw food to 100 °C.  The cooked food was left at 30 °C for several hours.  Based on the results of Rahim's two experiments, explain why the cooked food may no longer be safe to eat.  [2]" },
+        { "id": "psle17b_q30_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q31",
+      "topics": ["Interactions within the Environment", "Food Chains", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q31_t", "type": "text", "text": "Question 31.  A farmer observed a food relationship on his farm:\n\nplant E  ⟶  insect B\n\nThe farmer learnt that another insect, L, is a predator of insect B.  Insect L also likes to feed on pollen.  Using this information, he grew plant E between rows of plant D, as shown." },
+        { "id": "psle17b_q31_img", "type": "image", "dataUrl": "", "caption": "Field layout — rows of plant D (flowering plants with flowers and leaves) with plant E (smaller leafy plants) grown in between the rows of plant D" },
+        { "id": "psle17b_q31_p", "type": "part", "label": "", "text": "Based on the information above, explain how this farming method allows the farmer to grow plant E without pesticides.  [2]" },
+        { "id": "psle17b_q31_a", "type": "openLines", "lines": 4 }
+      ]
+    },
+    {
+      "id": "psle17b_q32",
+      "topics": ["Reproduction", "Cells", "Plant Reproduction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q32_t", "type": "text", "text": "Question 32.  The diagram shows cells during a process H in the reproduction of an animal." },
+        { "id": "psle17b_q32_img1", "type": "image", "dataUrl": "", "caption": "Diagram of reproductive cells during process H — one large rounded cell with part C labelled (the nucleus), surrounded by several smaller sperm cells" },
+        { "id": "psle17b_q32_pa", "type": "part", "label": "(a)", "text": "Part C controls all the activities of the cell.  Name part C.  [1]" },
+        { "id": "psle17b_q32_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle17b_q32_pb", "type": "part", "label": "(b)", "text": "Process H also occurs in plant P.  The diagram shows how a fruit is formed from the flower of plant P.  The fruit of plant P has been cut open." },
+        { "id": "psle17b_q32_img2", "type": "image", "dataUrl": "", "caption": "Flower of plant P → Process G → Process H → fruit J (shown cut open with a seed inside)" },
+        { "id": "psle17b_q32_pbi", "type": "part", "label": "(b)(i)", "text": "Describe process G.  [1]" },
+        { "id": "psle17b_q32_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q32_pbii", "type": "part", "label": "(b)(ii)", "text": "State the part of the flower that J developed from.  [1]" },
+        { "id": "psle17b_q32_abii", "type": "openLines", "lines": 1 },
+        { "id": "psle17b_q32_pc", "type": "part", "label": "(c)", "text": "In a population of plant K, each plant has only red flowers or only white flowers.  A farmer collected seeds from plant K with red flowers to grow new plants.  Explain why the new plants will have only red flowers.  [1]" },
+        { "id": "psle17b_q32_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle17b_q33",
+      "topics": ["Human Body Systems", "Respiratory System", "Digestive System"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q33_t", "type": "text", "text": "Question 33.  A scientist carried out an experiment to measure the volume of blood supplied per minute to different parts of the human body during two activities: resting and running." },
+        { "id": "psle17b_q33_img", "type": "image", "dataUrl": "", "caption": "Bar graph — Volume of blood supplied per minute (cm³) for the legs and the small intestine, with one bar for resting and one bar for running.  Legs: resting low, running very high.  Small intestine: resting low, running lower than resting" },
+        { "id": "psle17b_q33_pa", "type": "part", "label": "(a)", "text": "Describe how oxygen in the environment reaches the legs.  [2]" },
+        { "id": "psle17b_q33_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle17b_q33_pb", "type": "part", "label": "(b)", "text": "Using the graph above, explain how running after a meal affects the absorption of digested food in the small intestine.  [1]" },
+        { "id": "psle17b_q33_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle17b_q34",
+      "topics": ["Plants", "Photosynthesis", "Transport in Plants", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q34_t", "type": "text", "text": "Question 34." },
+        { "id": "psle17b_q34_pa", "type": "part", "label": "(a)", "text": "Four parts of a plant are shown below.  Draw arrows (⟶) in the diagram below to show how water is transported in a plant.  [1]" },
+        { "id": "psle17b_q34_img1", "type": "image", "dataUrl": "", "caption": "Four boxes labelled: stem, leaves, roots, flowers — to be joined with arrows showing the path of water transport" },
+        { "id": "psle17b_q34_pbi", "type": "part", "label": "(b)(i)", "text": "Describe the process of photosynthesis in green plants.  [1]" },
+        { "id": "psle17b_q34_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q34_pbii", "type": "part", "label": "(b)(ii)", "text": "Insect R eats its way into a tree trunk.  This affects the growth of the roots of the tree.  Explain why.  [1]" },
+        { "id": "psle17b_q34_abii", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q34_pc", "type": "part", "label": "(c)", "text": "Plant T grows in a desert.  It is able to store air in the leaves.  Carl observed the cells of a leaf of plant T during the day and at night as shown." },
+        { "id": "psle17b_q34_img2", "type": "image", "dataUrl": "", "caption": "Two microscope views of leaf cells of plant T — Day (45 °C): the tiny openings are closed.  Night (9 °C): the tiny openings are open" },
+        { "id": "psle17b_q34_pc2", "type": "part", "label": "(c)", "text": "Based on Carl's observations, explain how plant T is adapted for photosynthesis in a desert.  [2]" },
+        { "id": "psle17b_q34_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q35",
+      "topics": ["Heat and Temperature", "Materials", "Expansion and Contraction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q35_t", "type": "text", "text": "Question 35.  A metal lid was fitted tightly onto an empty glass jar.  Mary placed the lid in hot water." },
+        { "id": "psle17b_q35_img1", "type": "image", "dataUrl": "", "caption": "An empty glass jar held upside down with its metal lid dipped into a basin of hot water" },
+        { "id": "psle17b_q35_pa", "type": "part", "label": "(a)", "text": "After a while, she found it easier to remove the lid.  Explain why.  [1]" },
+        { "id": "psle17b_q35_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q35_img2", "type": "image", "dataUrl": "", "caption": "A thick-walled glass (with the thick glass wall labelled) standing in a basin of boiling water" },
+        { "id": "psle17b_q35_pb", "type": "part", "label": "(b)", "text": "When Mary took a cold thick-walled glass from a refrigerator and placed it in boiling water as shown above, the glass cracked.  Explain why.  [2]" },
+        { "id": "psle17b_q35_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q36",
+      "topics": ["States of Matter", "Evaporation and Boiling", "Condensation"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q36_t", "type": "text", "text": "Question 36." },
+        { "id": "psle17b_q36_pa", "type": "part", "label": "(a)", "text": "State a difference between evaporation and boiling.  [1]" },
+        { "id": "psle17b_q36_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q36_pb", "type": "part", "label": "(b)", "text": "Fatimah fried some bananas and put two pieces each in box R and box S as shown below." },
+        { "id": "psle17b_q36_img", "type": "image", "dataUrl": "", "caption": "Box R — closed box of hot fried bananas with no holes.  Box S — box of hot fried bananas with several holes in the lid" },
+        { "id": "psle17b_q36_pb2", "type": "part", "label": "(b)", "text": "She observed that the bananas in box R became slightly wet after some time, but not those in box S.  Explain why the bananas in box R became wet.  [2]" },
+        { "id": "psle17b_q36_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q37",
+      "topics": ["Magnets", "Electricity", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q37_t", "type": "text", "text": "Question 37.  Dingwei wanted to investigate how the number of batteries affects the number of paper clips attracted by a rod using the set-up below." },
+        { "id": "psle17b_q37_img1", "type": "image", "dataUrl": "", "caption": "Set-up — batteries and a switch connected by wires to a rod wound with a coil of wire; the rod is held 1 cm above some paper clips on the ground" },
+        { "id": "psle17b_q37_t2", "type": "text", "text": "He placed the rod 1 cm from some paper clips and counted the number of paper clips that were attracted to it.  His results are shown below." },
+        { "id": "psle17b_q37_img2", "type": "image", "dataUrl": "", "caption": "Bar graph — number of paper clips (y-axis) vs number of batteries (x-axis: 3 and 4).  Both bars are about the same height (around 6)" },
+        { "id": "psle17b_q37_pa", "type": "part", "label": "(a)", "text": "Name one suitable material for the rod.  [1]" },
+        { "id": "psle17b_q37_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle17b_q37_pb", "type": "part", "label": "(b)", "text": "Suggest two reasons why the number of paper clips attracted did not increase when the number of batteries was increased from three to four.  [2]" },
+        { "id": "psle17b_q37_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q38",
+      "topics": ["Forces", "Energy", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q38_t", "type": "text", "text": "Question 38.  Muthu performed an experiment on two different types of springs, P and Q, of the same length using the set-up shown in Diagram 1." },
+        { "id": "psle17b_q38_img1", "type": "image", "dataUrl": "", "caption": "Diagram 1 — a spring hung from a fixed support next to a ruler; a pin (taped to the spring) points at the ruler; a mass hangs from the bottom of the spring" },
+        { "id": "psle17b_q38_t2", "type": "text", "text": "He measured the extension of the spring after adding a mass.  His results are shown in Table 1 below." },
+        { "id": "psle17b_q38_img2", "type": "image", "dataUrl": "", "caption": "Table 1 — Mass (g): 100, 200, 300, 400.  Spring P extension (cm): 2.9, 6.1, 9.0, 12.1.  Spring Q extension (cm): 1.9, 4.0, 5.9, 8.1" },
+        { "id": "psle17b_q38_pa", "type": "part", "label": "(a)", "text": "Based on his results, state the relationship between the mass and extension of spring P.  [1]" },
+        { "id": "psle17b_q38_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q38_pb", "type": "part", "label": "(b)", "text": "Explain the purpose of the pin in the set-up.  [1]" },
+        { "id": "psle17b_q38_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q38_t3", "type": "text", "text": "Muthu used spring P to make a dish rack as shown in Diagram 2." },
+        { "id": "psle17b_q38_img3", "type": "image", "dataUrl": "", "caption": "Diagram 2 — a dish rack made from the stretched spring P standing on a metal disc; plates are stacked on top.  Three positions are labelled along the spring: A (bottom), B (middle), C (top)" },
+        { "id": "psle17b_q38_pc", "type": "part", "label": "(c)", "text": "When Muthu removed a few plates quickly from the top, the metal disc moved up continuously from A to C.  Name the main forms of energy of the metal disc at B.  [1]" },
+        { "id": "psle17b_q38_ac", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q38_pd", "type": "part", "label": "(d)", "text": "Next, Muthu changed all the spring P to spring Q.  He put back all the plates onto the metal disc.\n\nBased on the results in Table 1, describe one difference Muthu will observe of the new dish rack with spring Q when he removes a plate from the top.  Explain your answer.  [2]" },
+        { "id": "psle17b_q38_ad", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle17b_q39",
+      "topics": ["Energy", "Forces", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q39_t", "type": "text", "text": "Question 39.  John wanted to compare how fast a wooden block can move on different planks using the set-up below.  He released the block, measured the distance moved by the block down the plank and the time taken." },
+        { "id": "psle17b_q39_img1", "type": "image", "dataUrl": "", "caption": "Set-up — a wooden block at the top of a sloping plastic plank R; the height of the top of the plank is labelled h" },
+        { "id": "psle17b_q39_pa", "type": "part", "label": "(a)", "text": "A shorter plank made of the same material as R was placed at the same height, h.  Will the block take a shorter, longer or the same time to reach the bottom of the plank?  Explain your answer in terms of energy changes.  [2]" },
+        { "id": "psle17b_q39_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle17b_q39_pb", "type": "part", "label": "(b)", "text": "John's results for plank R are shown below." },
+        { "id": "psle17b_q39_img2", "type": "image", "dataUrl": "", "caption": "Graph for plank R — distance (cm) on the y-axis (up to 80) vs time (s) on the x-axis (up to about 2.0); the curve rises and levels off near 80 cm" },
+        { "id": "psle17b_q39_t2", "type": "text", "text": "John repeated the experiment with a wooden plank of the same length.  The wooden block moved down the plank more slowly." },
+        { "id": "psle17b_q39_img3", "type": "image", "dataUrl": "", "caption": "Graph showing four curves labelled J, K, L and M of distance (cm) vs time (s); the curves reach 80 cm at different times" },
+        { "id": "psle17b_q39_pbi", "type": "part", "label": "(b)(i)", "text": "State which graph, J, K, L or M shows the correct results for the wooden plank.  [1]\n\nGraph: ____________" },
+        { "id": "psle17b_q39_abi", "type": "openLines", "lines": 1 },
+        { "id": "psle17b_q39_pbii", "type": "part", "label": "(b)(ii)", "text": "Besides the height, h and the length of the plank, state two other variables that John must keep constant for the comparison.  [1]" },
+        { "id": "psle17b_q39_abii", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle17b_q40",
+      "topics": ["Materials", "Forces", "Electricity"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle17b_q40_t", "type": "text", "text": "Question 40.  Poh Lee wants to remove water from the ground using a water pump when it rains heavily.  He uses the set-up shown below to turn on the water pump." },
+        { "id": "psle17b_q40_img", "type": "image", "dataUrl": "", "caption": "Set-up — a water pump connected by metal rods to a piece of rubber.  Below the rubber is a metal container (with a hole at G) sitting on a metal sheet, which rests on a wooden block in the ground.  As water collects in the container it lifts and completes the action on the pump" },
+        { "id": "psle17b_q40_t2", "type": "text", "text": "Rain water enters the container through a hole at G." },
+        { "id": "psle17b_q40_pa", "type": "part", "label": "(a)", "text": "State a property of rubber that allows the set-up to work properly.  [1]" },
+        { "id": "psle17b_q40_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle17b_q40_pb", "type": "part", "label": "(b)", "text": "Describe and explain how the water pump is turned on when it rains heavily.  [2]" },
+        { "id": "psle17b_q40_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle17b_q40_pc", "type": "part", "label": "(c)", "text": "Without using different apparatus, suggest one way to turn on the water pump when it rains less heavily.  Explain your answer.  [1]" },
+        { "id": "psle17b_q40_ac", "type": "openLines", "lines": 2 }
+      ]
+    }
+  ]
+}
