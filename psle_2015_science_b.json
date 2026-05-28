@@ -1,0 +1,241 @@
+{
+  "title": "PSLE 2015 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2015 — Science (0009/2 B).  Part II consists of 14 open-ended questions, Q31–Q44 (40 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 31 to 44, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.  Open-ended boxes have the same number of writing lines as the answer spaces in the original paper.",
+  "questions": [
+    {
+      "id": "psle15b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle15b_intro_t",
+          "type": "text",
+          "text": "Part II.  For questions 31 to 44, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (40 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle15b_q31",
+      "topics": ["Respiratory System", "Human Body Systems", "Air"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q31_t", "type": "text", "text": "Question 31.  Six people were trapped in a small lift.  Some adults started kicking the door and a child started crying.\n\nThe graph shows the amount of two different gases in the lift at different times." },
+        { "id": "psle15b_q31_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q31_pa", "type": "part", "label": "(a)", "text": "Name the two gases.  [1]\n\ngas R: ____________   gas S: ____________" },
+        { "id": "psle15b_q31_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle15b_q31_pb", "type": "part", "label": "(b)", "text": "If the adults had kept still without kicking the door and the child did not cry, would the amount of gas R at 30 minutes be higher, the same or lower than that shown in the graph above?  Explain your answer.  [1]" },
+        { "id": "psle15b_q31_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q32",
+      "topics": ["Germination", "Plants", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q32_t", "type": "text", "text": "Question 32.  Junlong wanted to find out whether germinating seeds produce heat.  He soaked some seeds in water before placing them in a glass container as shown." },
+        { "id": "psle15b_q32_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q32_t2", "type": "text", "text": "He measured the temperature in the container and concluded that germinating seeds produce heat." },
+        { "id": "psle15b_q32_pa", "type": "part", "label": "(a)", "text": "Give a reason why Junlong did not fill the container completely with seeds.  [1]" },
+        { "id": "psle15b_q32_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q32_pb", "type": "part", "label": "(b)", "text": "Explain how using a double-layered glass container with air in between helps to make the results of the experiment more accurate.  [1]" },
+        { "id": "psle15b_q32_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q32_pc", "type": "part", "label": "(c)", "text": "Suggest a control set-up to show that the rise in temperature was caused by the germinating seeds.  [1]" },
+        { "id": "psle15b_q32_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q33",
+      "topics": ["Plants", "Seed Dispersal", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q33_t", "type": "text", "text": "Question 33.  Meifen conducted an experiment to find out how the height at which seed T is dropped affects the distance it travels.  Seed T has a 4 cm wing as shown." },
+        { "id": "psle15b_q33_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q33_t2", "type": "text", "text": "She dropped seed T from a height (H) in front of a fan as shown.  She measured the distance (D) travelled by seed T." },
+        { "id": "psle15b_q33_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q33_t3", "type": "text", "text": "Seed T was dropped from different heights and Meifen's readings are shown below." },
+        { "id": "psle15b_q33_img3", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q33_pa", "type": "part", "label": "(a)", "text": "Based on Meifen's results, why is it an advantage for seed T to be found on a tall tree?  [1]" },
+        { "id": "psle15b_q33_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q33_pb", "type": "part", "label": "(b)", "text": "Meifen used the same seed throughout the experiment.  Give two reasons how using the same seed helps to make the experiment a fair test.  [1]" },
+        { "id": "psle15b_q33_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q33_pc", "type": "part", "label": "(c)", "text": "Meifen also wanted to find out if the size of the wing on seed T affects the distance it travels.  Suggest two variables that she has to keep constant when conducting this experiment.  [1]" },
+        { "id": "psle15b_q33_ac", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle15b_q34",
+      "topics": ["Plants", "Transport in Plants", "Photosynthesis"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q34_t", "type": "text", "text": "Question 34.  Bryan conducted an experiment using two similar plants.  He removed an outer ring from the stem of one of the plants, as shown below.  The food-carrying tubes were removed while the water-carrying tubes remained in the stem." },
+        { "id": "psle15b_q34_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q34_t2", "type": "text", "text": "After some time, the two plants produced fruits as shown below." },
+        { "id": "psle15b_q34_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q34_pa", "type": "part", "label": "(a)", "text": "Bryan observed that the plant with the outer ring of stem removed produced bigger fruits compared to the other plant.  Suggest why bigger fruits were produced.  [2]" },
+        { "id": "psle15b_q34_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle15b_q34_pb", "type": "part", "label": "(b)", "text": "After some time, the plant with the cut stem died.  Give a reason why removing the outer ring of the stem caused the plant to die.  [1]" },
+        { "id": "psle15b_q34_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q35",
+      "topics": ["Forces", "Adaptations", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q35_t", "type": "text", "text": "Question 35.  Mohan conducted an experiment using three identical pieces of paper, L, M and N.  Paper L was not folded while papers M and N were folded as shown." },
+        { "id": "psle15b_q35_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q35_t2", "type": "text", "text": "Mohan dropped each of the pieces of paper from the same height and measured the time taken for each piece to reach the ground.\n\nThe table below shows his results." },
+        { "id": "psle15b_q35_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q35_t3", "type": "text", "text": "Study the features of two frogs, P and Q, shown below.  They are of similar sizes." },
+        { "id": "psle15b_q35_img3", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q35_pa", "type": "part", "label": "(a)", "text": "Frogs P and Q jumped down from the same height of a tree.  Using the findings from Mohan's experiment, explain why frog P took a longer time to reach the ground.  [1]" },
+        { "id": "psle15b_q35_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q35_pb", "type": "part", "label": "(b)", "text": "Frog P is found in forests.  Suggest two advantages of having stretched webbed feet when frog P jumps from trees.  [2]" },
+        { "id": "psle15b_q35_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle15b_q36",
+      "topics": ["Plants", "Photosynthesis", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q36_t", "type": "text", "text": "Question 36.  A farmer conducted an experiment to investigate the effect of temperature of surrounding air on the growth of plant L over a period of time.\n\nThe graph below shows the result of the experiment." },
+        { "id": "psle15b_q36_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q36_t2", "type": "text", "text": "He then conducted another experiment to investigate the effect of the amount of light on the growth of plant L over a period of time.\n\nThe graph below shows the result of the experiment." },
+        { "id": "psle15b_q36_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q36_pa", "type": "part", "label": "(a)", "text": "Based on the results of his experiments, explain how the farmer could produce the largest mass of plant L.  [2]" },
+        { "id": "psle15b_q36_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle15b_q36_pb", "type": "part", "label": "(b)", "text": "Besides the factors investigated by the farmer, name and explain how another factor could help plant L to grow well.  [1]" },
+        { "id": "psle15b_q36_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q37",
+      "topics": ["Heat and Temperature", "Materials", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q37_t", "type": "text", "text": "Question 37.  Ah Yong conducted an experiment using two identical flasks as shown below.  Flask C was covered with feathers while flask D was not.  Both flasks were filled with 200 cm³ of water at 25 °C." },
+        { "id": "psle15b_q37_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q37_t2", "type": "text", "text": "Ah Yong placed both flasks into a tank of hot water at 90 °C.  He recorded the temperature of water in both flasks at different times.  His results are shown in the graph below." },
+        { "id": "psle15b_q37_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q37_pa", "type": "part", "label": "(a)", "text": "Based on Ah Yong's results, what can he conclude about feathers?  Explain your answer.  [1]" },
+        { "id": "psle15b_q37_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q37_t3", "type": "text", "text": "Diagrams A and B show bird S at two different times of the year.  When the feathers become old and worn, they are replaced by new feathers.  In Diagram B, bird S has no feathers as it is in the process of replacing old feathers with new ones." },
+        { "id": "psle15b_q37_img3", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q37_pb", "type": "part", "label": "(b)", "text": "Based on Ah Yong's findings, would bird S replace its feathers during the hotter or colder months of the year?  Explain your answer.  [1]" },
+        { "id": "psle15b_q37_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q37_pc", "type": "part", "label": "(c)", "text": "In a family of bird S, the female adult replaces its feathers a few weeks after the young have hatched.  The male adult only replaces its feathers after the female has grown new feathers.\n\nSuggest why the female and male adults replace their feathers at different times.  [1]" },
+        { "id": "psle15b_q37_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q38",
+      "topics": ["Heat and Temperature", "Evaporation and Boiling", "States of Matter"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q38_t", "type": "text", "text": "Question 38.  Wenhao went for a swim.  When he came out of the water, he felt cold." },
+        { "id": "psle15b_q38_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q38_t2", "type": "text", "text": "At that moment, a strong wind blew, and he felt even colder." },
+        { "id": "psle15b_q38_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q38_p", "type": "part", "label": "", "text": "Explain why he felt even colder when a strong wind blew.  [2]" },
+        { "id": "psle15b_q38_a", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle15b_q39",
+      "topics": ["Magnets", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q39_t", "type": "text", "text": "Question 39.  Jasmine hung four magnets, P, Q, R and S, above a tray of identical iron pins.  Her observation is shown below." },
+        { "id": "psle15b_q39_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q39_pa", "type": "part", "label": "(a)", "text": "Based on her observation, name the strongest magnet.  Explain how you arrived at your answer.  [1]" },
+        { "id": "psle15b_q39_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q39_pb", "type": "part", "label": "(b)", "text": "Based on her observation, can you conclude which magnet is the weakest?  Explain how you arrived at your answer.  [2]" },
+        { "id": "psle15b_q39_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle15b_q40",
+      "topics": ["Materials", "Electricity", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q40_t", "type": "text", "text": "Question 40.  In an amusement park, people drive bumper cars and try to bump one another at part W." },
+        { "id": "psle15b_q40_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q40_pa", "type": "part", "label": "(a)", "text": "Suggest a property of the material used to make part W.  Explain how this property is suitable for bumping.  [1]" },
+        { "id": "psle15b_q40_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q40_t2", "type": "text", "text": "The diagram below shows the circuit for a bumper car." },
+        { "id": "psle15b_q40_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q40_t3", "type": "text", "text": "The car uses electricity to move.  The contacts can move along the ceiling and the ground." },
+        { "id": "psle15b_q40_pb", "type": "part", "label": "(b)", "text": "The ceiling is made of material Z.  State the property of material Z that enables the bumper car to work.  [1]" },
+        { "id": "psle15b_q40_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q41",
+      "topics": ["Energy", "Forces", "Friction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q41_t", "type": "text", "text": "Question 41.  The diagrams show how a platform can move a man on a wheelchair up or down the stairs." },
+        { "id": "psle15b_q41_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q41_t2", "type": "text", "text": "The platform uses electrical energy to move." },
+        { "id": "psle15b_q41_pa", "type": "part", "label": "(a)", "text": "Explain why the platform uses more electrical energy when it moves the man up the stairs than when it moves him down the stairs.  [1]" },
+        { "id": "psle15b_q41_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q41_pb", "type": "part", "label": "(b)", "text": "The platform is made of a surface with many raised parts as shown below." },
+        { "id": "psle15b_q41_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q41_pb2", "type": "part", "label": "(b)", "text": "Suggest a reason for using such a surface.  Explain your answer.  [1]" },
+        { "id": "psle15b_q41_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle15b_q42",
+      "topics": ["Light", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q42_t", "type": "text", "text": "Question 42.  Ridzwan set up a light source and a light sensor to count the number of balls going through a hole as shown." },
+        { "id": "psle15b_q42_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q42_t2", "type": "text", "text": "Ridzwan threw a few identical balls one at a time, and recorded the following results." },
+        { "id": "psle15b_q42_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q42_pa", "type": "part", "label": "(a)", "text": "Explain how Ridzwan could count the number of balls going through the hole using the set-up.  [2]" },
+        { "id": "psle15b_q42_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle15b_q42_pb", "type": "part", "label": "(b)", "text": "Based on the above results, how many balls went through the hole?  [1]" },
+        { "id": "psle15b_q42_ab", "type": "openLines", "lines": 1 },
+        { "id": "psle15b_q42_pc", "type": "part", "label": "(c)", "text": "Based on the above results, did all the balls go through the hole at the same speed?  Explain your answer.  [1]" },
+        { "id": "psle15b_q42_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle15b_q43",
+      "topics": ["Materials", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q43_t", "type": "text", "text": "Question 43.  Yen Ling set up an experiment as shown below to compare a property of three strips, P, Q and R, which are made of different materials." },
+        { "id": "psle15b_q43_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q43_t2", "type": "text", "text": "For each strip, she added 50 cm³ of water into the container and measured the distance d.  Her results are shown below." },
+        { "id": "psle15b_q43_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q43_pa", "type": "part", "label": "(a)", "text": "Based on Yen Ling's experiment, which strip, P, Q or R, is most suitable for making a food tray?  Explain your answer.  [1]" },
+        { "id": "psle15b_q43_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q43_pb", "type": "part", "label": "(b)", "text": "State two variables of the strips that were fixed so that the experiment was a fair test.  [1]" },
+        { "id": "psle15b_q43_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q43_pc", "type": "part", "label": "(c)", "text": "Yen Ling repeated her experiment with strips P, Q and R.  This time, to keep the distance d the same, she added different amounts of water into the container.\n\nName the strip with the most and least amount of water added.  [1]\n\nMost amount of water: Strip ____________\n\nLeast amount of water: Strip ____________" },
+        { "id": "psle15b_q43_ac", "type": "openLines", "lines": 1 }
+      ]
+    },
+    {
+      "id": "psle15b_q44",
+      "topics": ["States of Matter", "Heat and Temperature", "Melting and Freezing"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle15b_q44_t", "type": "text", "text": "Question 44.  John placed a solid made of substances J and T in the set-up as shown below.  Substance J had a lower melting point than substance T." },
+        { "id": "psle15b_q44_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q44_pa", "type": "part", "label": "(a)", "text": "He wanted to obtain a solid made of substance J only." },
+        { "id": "psle15b_q44_pai", "type": "part", "label": "(a)(i)", "text": "Explain how he could use the set-up to do so.  [2]" },
+        { "id": "psle15b_q44_aai", "type": "openLines", "lines": 3 },
+        { "id": "psle15b_q44_paii", "type": "part", "label": "(a)(ii)", "text": "In order to ensure that the solid does not contain substance T, at what temperature should he set the heater?  [1]" },
+        { "id": "psle15b_q44_aaii", "type": "openLines", "lines": 2 },
+        { "id": "psle15b_q44_pb", "type": "part", "label": "(b)", "text": "Suggest one change in the above set-up that would allow John to obtain a bar as shown.  Explain your answer.  [1]" },
+        { "id": "psle15b_q44_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle15b_q44_ab", "type": "openLines", "lines": 2 }
+      ]
+    }
+  ]
+}
