@@ -1949,6 +1949,7 @@
         <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
         <button class="btn btn-newws admin-only" id="newWorksheetBtn" title="Start a brand-new blank worksheet — then use Load JSON to import a file into it">＋ New Worksheet</button>
+        <button class="btn admin-only" id="addAllToDraftBtn" title="Copy every question in this worksheet into the draft at once">📋＋ Add all to Draft</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
@@ -6311,6 +6312,27 @@ function copyQuestionToDraft(qIndex) {
   saveDraft(draft);
   updateDraftBadge();
 }
+// Copy every item in the current worksheet (questions and instruction blocks)
+// into the draft in one go, so they don't have to be added one by one.
+function copyWorksheetToDraft() {
+  const qs = state.questions || [];
+  if (qs.length === 0) {
+    alert('This worksheet has no questions to add to the draft.');
+    return;
+  }
+  const draft = loadDraft();
+  const src = deriveSource(state.title);
+  let added = 0;
+  qs.forEach(q => {
+    const clone = reidQuestion(q);
+    if (!clone.source) clone.source = src;
+    draft.push(clone);
+    if (!isInstruction(q)) added++;
+  });
+  saveDraft(draft);
+  updateDraftBadge();
+  alert(`Added ${added} question(s) from this worksheet to the draft (now ${draft.length} item(s) total). Click "Open Draft" to build a worksheet from them.`);
+}
 function openDraft() {
   const draft = loadDraft();
   if (draft.length === 0) {
@@ -6728,6 +6750,7 @@ window.addEventListener('offline', () => {
 document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
+document.getElementById('addAllToDraftBtn').addEventListener('click', copyWorksheetToDraft);
 document.getElementById('openDraftBtn').addEventListener('click', openDraft);
 document.getElementById('clearDraftBtn').addEventListener('click', clearDraft);
 updateDraftBadge();
