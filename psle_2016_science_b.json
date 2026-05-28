@@ -1,0 +1,233 @@
+{
+  "title": "PSLE 2016 Science (Booklet B)",
+  "subtitle": "Ministry of Education, Singapore — Primary School Leaving Examination 2016 — Science (0009/02 B).  Part II consists of 14 open-ended questions, Q31–Q44 (40 marks).  Total time for Booklets A and B: 1 hour 45 minutes.  For questions 31 to 44, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  Diagrams have been left blank — click each paste-zone and Ctrl/⌘+V the corresponding image from the original paper.  Open-ended boxes have the same number of writing lines as the answer spaces in the original paper.",
+  "questions": [
+    {
+      "id": "psle16b_intro",
+      "topics": [],
+      "concepts": [],
+      "elements": [
+        {
+          "id": "psle16b_intro_t",
+          "type": "text",
+          "text": "Part II.  For questions 31 to 44, write your answers in this booklet.  The number of marks available is shown in brackets [ ] at the end of each question or part question.  (40 marks)"
+        }
+      ]
+    },
+    {
+      "id": "psle16b_q31",
+      "topics": ["Interactions within the Environment", "Adaptations", "Living Together"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q31_t", "type": "text", "text": "Question 31.  An animal M grows on the shell of a crab as shown below." },
+        { "id": "psle16b_q31_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q31_pa", "type": "part", "label": "(a)", "text": "Animal M has a poisonous sting.  Explain how the crab would benefit from its relationship with animal M.  [1]" },
+        { "id": "psle16b_q31_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q31_pb", "type": "part", "label": "(b)", "text": "Animal M can also grow on a rock.  Explain why it is an advantage for animal M to grow on the crab instead of growing on a rock.  [1]" },
+        { "id": "psle16b_q31_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q32",
+      "topics": ["Plants", "Germination", "Microorganisms"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q32_t", "type": "text", "text": "Question 32.  To store seeds for long periods of time, a farmer placed them in a large underground hole as shown.\n\nThe hole was filled completely with seeds and the opening was sealed to prevent rainwater and air from entering." },
+        { "id": "psle16b_q32_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q32_pa", "type": "part", "label": "(a)", "text": "After some time, the farmer found that seeds in the outer layer of the hole germinated but the seeds at the centre of the hole did not germinate.  Explain why.  [2]" },
+        { "id": "psle16b_q32_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle16b_q32_pb", "type": "part", "label": "(b)", "text": "Would the seeds at the centre of the hole decompose after some time?  Explain your answer.  [1]" },
+        { "id": "psle16b_q32_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q33",
+      "topics": ["Interactions within the Environment", "Food Chains", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q33_t", "type": "text", "text": "Question 33.  At the beginning, island Q had plants and animals but island R had no plants and no animals." },
+        { "id": "psle16b_q33_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q33_t2", "type": "text", "text": "A few years later, island R started to have plants.  Later on, animals were also found there." },
+        { "id": "psle16b_q33_pa", "type": "part", "label": "(a)", "text": "Suggest one way how island R started to have plants.  [1]" },
+        { "id": "psle16b_q33_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q33_pb", "type": "part", "label": "(b)", "text": "Give a reason why animals could be found living on island R only after plants were found growing there.  [1]" },
+        { "id": "psle16b_q33_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q33_pc", "type": "part", "label": "(c)", "text": "After some time, a scientist observed that the population of animals on island Q remained constant but the population of animals on island R increased rapidly.\n\nExplain why the population on island R increased rapidly.  [1]" },
+        { "id": "psle16b_q33_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q34",
+      "topics": ["Adaptations", "Life Cycles", "Interactions within the Environment"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q34_t", "type": "text", "text": "Question 34.  The diagram shows white and black moths.  The moths frequently rest on tree trunks." },
+        { "id": "psle16b_q34_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q34_t2", "type": "text", "text": "The bark of tree trunks in Town A was light in colour." },
+        { "id": "psle16b_q34_pa", "type": "part", "label": "(a)", "text": "Which moth would survive better in Town A?  Explain your answer.  [1]" },
+        { "id": "psle16b_q34_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q34_pb", "type": "part", "label": "(b)", "text": "After several years, air pollution caused the bark of tree trunks in Town A to turn dark in colour.\n\nBased on this information, what would happen to the population size of both moths in Town A after several years?  Explain your answer.  [2]" },
+        { "id": "psle16b_q34_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle16b_q34_pc", "type": "part", "label": "(c)", "text": "The life cycle of the moth is similar to that of the butterfly.  The graph shows the mass of a moth during different stages of its life cycle." },
+        { "id": "psle16b_q34_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q34_pc2", "type": "part", "label": "(c)", "text": "Name stage C of the life cycle of the moth.  Suggest a reason why there is no gain in mass during stage C.  [1]" },
+        { "id": "psle16b_q34_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q35",
+      "topics": ["Plants", "Experimental Design", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q35_t", "type": "text", "text": "Question 35.  Samy conducted an experiment using the set-ups below.  He placed four similar test tubes A, B, C and D in different corners of a dim room." },
+        { "id": "psle16b_q35_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q35_pa", "type": "part", "label": "(a)", "text": "The graph shows the amount of water in the test tubes over a period of time." },
+        { "id": "psle16b_q35_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q35_pa2", "type": "part", "label": "(a)", "text": "Based on the graph," },
+        { "id": "psle16b_q35_pai", "type": "part", "label": "(a)(i)", "text": "explain why different distances of light from the plant affect the amount of water lost.  [1]" },
+        { "id": "psle16b_q35_aai", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q35_paii", "type": "part", "label": "(a)(ii)", "text": "which variable, light or wind, has a greater effect on the amount of water lost?  Give a reason for your answer.  [1]" },
+        { "id": "psle16b_q35_aaii", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q35_pb", "type": "part", "label": "(b)", "text": "Samy observed that a plant P growing in a sunny area has smaller leaves than the same type of plant growing in a shaded area." },
+        { "id": "psle16b_q35_img3", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q35_pb2", "type": "part", "label": "(b)", "text": "Based on Samy's experiment, suggest a reason why leaf A is smaller in size than leaf B.  [1]" },
+        { "id": "psle16b_q35_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q36",
+      "topics": ["Plants", "Photosynthesis", "Interactions within the Environment"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q36_t", "type": "text", "text": "Question 36.  A greenhouse provides a suitable environment for growing certain crops.\n\nA farmer planted some strawberries in his greenhouse.  To produce sweet strawberries, he must ensure that the plants get at least 8 hours of sunlight daily." },
+        { "id": "psle16b_q36_pa", "type": "part", "label": "(a)", "text": "Suggest how having at least 8 hours of sunlight daily may help in producing sweet strawberries.  [1]" },
+        { "id": "psle16b_q36_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q36_pb", "type": "part", "label": "(b)", "text": "In some cold countries, greenhouses are built next to a power station.  There are pipes to transport the waste gases and heat produced by the power station to the greenhouses.\n\nSuggest one benefit of this arrangement to the environment.  [1]" },
+        { "id": "psle16b_q36_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q37",
+      "topics": ["Plants", "Photosynthesis", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q37_t", "type": "text", "text": "Question 37.  Liwen conducted an experiment using four identical tubes as shown." },
+        { "id": "psle16b_q37_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q37_t2", "type": "text", "text": "After a few hours, a drop of liquid Y was added to each tube.  When liquid Y was added, the colour of water changed according to the amount of carbon dioxide present." },
+        { "id": "psle16b_q37_pa", "type": "part", "label": "(a)", "text": "Each number below represents a different colour.  The number for the colour of the water in tube A is 4." },
+        { "id": "psle16b_q37_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q37_pa2", "type": "part", "label": "(a)", "text": "Suggest a number for the colour of the water in tubes B and D.  [1]\n\nTube B: ____________   Tube D: ____________" },
+        { "id": "psle16b_q37_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle16b_q37_pb", "type": "part", "label": "(b)", "text": "Liwen predicted that tube C has more carbon dioxide than tube A.  However, her friend Santhi said that this may not be true.  Explain why tube C may not have more carbon dioxide than tube A.  [2]" },
+        { "id": "psle16b_q37_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle16b_q38",
+      "topics": ["Heat and Temperature", "Materials", "Expansion and Contraction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q38_t", "type": "text", "text": "Question 38.  When air became very cold suddenly, cracks appeared on the pavement." },
+        { "id": "psle16b_q38_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q38_p", "type": "part", "label": "", "text": "Explain how the change in temperature caused the pavement to crack.  [2]" },
+        { "id": "psle16b_q38_a", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle16b_q39",
+      "topics": ["Heat and Temperature", "Materials", "Adaptations"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q39_t", "type": "text", "text": "Question 39.  Xiaoming conducted an experiment using the set-ups shown.  The two beakers were identical and contained hot water at the same temperature." },
+        { "id": "psle16b_q39_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q39_pa", "type": "part", "label": "(a)", "text": "After some time, Xiaoming found that the temperature of water in set-up B was higher than that in set-up A.  Explain why.  [2]" },
+        { "id": "psle16b_q39_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle16b_q39_pb", "type": "part", "label": "(b)", "text": "Animal Q below lives in cold countries.  It has a thick layer of fur on its body." },
+        { "id": "psle16b_q39_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q39_pb2", "type": "part", "label": "(b)", "text": "Based on the results of Xiaoming's experiment, explain how the thick layer of fur of animal Q would help to keep it warm.  [1]" },
+        { "id": "psle16b_q39_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q40",
+      "topics": ["Magnets", "Forces", "Friction"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q40_t", "type": "text", "text": "Question 40.  Jiaxian used the set-up shown to investigate the magnetic force between two magnets." },
+        { "id": "psle16b_q40_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q40_pa", "type": "part", "label": "(a)", "text": "Explain why magnet A stayed in the same position above magnet B as shown in Diagram 1.  [1]" },
+        { "id": "psle16b_q40_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q40_pb", "type": "part", "label": "(b)", "text": "Jiaxian pushed magnet A towards magnet B as shown in Diagram 2.  He found that he needed to push harder as distance P decreased.  Explain why.  [1]" },
+        { "id": "psle16b_q40_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q40_pc", "type": "part", "label": "(c)", "text": "A toy ball, G, floated above a base because of magnetic force as shown in Diagram 3.\n\nA second toy ball, H, had a rod through its centre that was connected to a base as shown in Diagram 4.  Both balls were made of the same material and of the same size." },
+        { "id": "psle16b_q40_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q40_pc2", "type": "part", "label": "(c)", "text": "Jiaxian rotated both balls with the same amount of force.  Explain why H stopped rotating around the rod after a few rounds but G continued to rotate many more rounds before stopping.  [1]" },
+        { "id": "psle16b_q40_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q41",
+      "topics": ["Materials", "Forces", "Experimental Design"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q41_t", "type": "text", "text": "Question 41." },
+        { "id": "psle16b_q41_pa", "type": "part", "label": "(a)", "text": "Huiting's mother bought a new pot that has a layer of material that prevents food from sticking to its surface during cooking.\n\nHuiting's mother stopped her when she wanted to use a metal scrub to clean the pot." },
+        { "id": "psle16b_q41_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q41_pa2", "type": "part", "label": "(a)", "text": "Explain how the metal scrub will damage the pot.  [1]" },
+        { "id": "psle16b_q41_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q41_pb", "type": "part", "label": "(b)", "text": "Huiting wanted to find out the hardness of two materials H and F.  She used a rounded object made of material G and forced it into each material with the same force.  The results of her experiment are shown below." },
+        { "id": "psle16b_q41_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q41_pb2", "type": "part", "label": "(b)", "text": "List materials F, G, H in increasing order of hardness.  Explain your answer.  [2]" },
+        { "id": "psle16b_q41_ab", "type": "openLines", "lines": 3 }
+      ]
+    },
+    {
+      "id": "psle16b_q42",
+      "topics": ["Energy", "Heat and Temperature", "Electricity"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q42_t", "type": "text", "text": "Question 42.  Haziq used the set-up shown to find out how the type of bulb affects the temperature of its surrounding." },
+        { "id": "psle16b_q42_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q42_t2", "type": "text", "text": "Bulb R was lit up.  He covered the box and recorded the temperature of the air in the box over a period of 10 minutes.  Then he removed bulb R and left the box uncovered for 15 minutes before repeating the experiment with bulb S and then bulb T.  The results are shown in the table." },
+        { "id": "psle16b_q42_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q42_pa", "type": "part", "label": "(a)", "text": "Fill in the boxes to show the energy changes in the bulb.  [1]" },
+        { "id": "psle16b_q42_img3", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q42_pb", "type": "part", "label": "(b)", "text": "Give a reason why Haziq left the box uncovered for 15 minutes before repeating the experiment with the next bulb.  [1]" },
+        { "id": "psle16b_q42_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q42_pc", "type": "part", "label": "(c)", "text": "Which bulb, R, S or T should Haziq use to light up his room so as to reduce the amount of energy used by the air conditioner?  Give a reason for your answer.  [1]" },
+        { "id": "psle16b_q42_ac", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q43",
+      "topics": ["Forces", "Energy"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q43_t", "type": "text", "text": "Question 43." },
+        { "id": "psle16b_q43_pa", "type": "part", "label": "(a)", "text": "An inflated balloon was placed in a toy rocket as shown below.  When air was released from the balloon, the toy rocket moved upwards." },
+        { "id": "psle16b_q43_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q43_pa2", "type": "part", "label": "(a)", "text": "After moving some distance, no more air was released from the balloon at G.  Explain why the toy rocket was still able to move from point G to the highest point H and then fell downwards.  [2]" },
+        { "id": "psle16b_q43_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle16b_q43_pb", "type": "part", "label": "(b)", "text": "The diagram below shows the path of a balloon moving in many different directions when air escapes from it." },
+        { "id": "psle16b_q43_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q43_pb2", "type": "part", "label": "(b)", "text": "If there is no wind in the room, suggest a reason why the balloon does not move in a straight line.  [1]" },
+        { "id": "psle16b_q43_ab", "type": "openLines", "lines": 2 }
+      ]
+    },
+    {
+      "id": "psle16b_q44",
+      "topics": ["Electricity", "Materials", "Forces"],
+      "concepts": [],
+      "elements": [
+        { "id": "psle16b_q44_t", "type": "text", "text": "Question 44.  A ride at an amusement park for children becomes unsafe when the mass of a child is too high.  Therefore, a child can board the ride only if his/her mass is less than 40 kg.\n\nSet-up A is used to detect a child with mass of 40 kg or more." },
+        { "id": "psle16b_q44_img1", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle16b_q44_pa", "type": "part", "label": "(a)", "text": "What type of material are the contacts made of?  Why?  [1]" },
+        { "id": "psle16b_q44_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q44_pb", "type": "part", "label": "(b)", "text": "An engineer says that the design of set-up A is not safe.  He says it will be safer if the bulb lights up when a child of acceptable mass stands on it.  Give a reason why the design of set-up A is not safe.  [1]" },
+        { "id": "psle16b_q44_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle16b_q44_pc", "type": "part", "label": "(c)", "text": "How should set-up A be changed to allow a child who is 50 kg and below to board the ride?  [1]" },
+        { "id": "psle16b_q44_ac", "type": "openLines", "lines": 2 }
+      ]
+    }
+  ]
+}
