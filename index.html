@@ -881,8 +881,24 @@
     background: #c0392b; color: #fff; font-size: 0.8rem; font-weight: 700;
   }
   .sa-body { padding: 14px 16px; line-height: 1.55; white-space: pre-wrap; font-style: italic; color: #374151; }
-  .sa-note { padding: 10px 16px 14px; border-top: 1px dashed #f1c4cb; font-size: 0.9rem; line-height: 1.5; color: #7a2e25; background: #fdf4f5; }
-  .sa-note-label { font-weight: 700; }
+  .sa-write { padding: 12px 16px 14px; border-top: 1px dashed #f1c4cb; background: #fff; }
+  .sa-write-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .sa-write-label { font-weight: 700; color: #7a2e25; font-size: 0.9rem; }
+  .sa-write-box { margin-top: 0; }
+  .sa-add-corrected {
+    display: inline-block; margin: 0 16px 14px;
+    padding: 5px 12px; font-size: var(--font-size-xs); font-weight: 600;
+    color: #c0392b; background: #fff; border: 1px dashed #e0909a;
+    border-radius: var(--radius-sm); cursor: pointer;
+  }
+  .sa-add-corrected:hover { background: #fdf4f5; border-color: #c0392b; }
+  .sa-remove-corrected {
+    margin-left: auto; width: 20px; height: 20px; padding: 0;
+    font-size: 11px; line-height: 1; color: var(--text-tertiary);
+    background: transparent; border: 1px solid var(--border-subtle);
+    border-radius: 50%; cursor: pointer;
+  }
+  .sa-remove-corrected:hover { color: #c0392b; border-color: #c0392b; }
 
   .part-stem {
     margin-top: var(--space-md);
@@ -2190,7 +2206,7 @@ function makeElement(type) {
     case 'commonMistake':
       return { ...base, title: 'Common Mistake', text: '', color: 'teal' };
     case 'studentAnswer':
-      return { ...base, label: "Student's Answer", answer: '', note: '' };
+      return { ...base, label: "Student's Answer", answer: '', whyLines: 2, corrected: false, correctedLines: 2 };
   }
 }
 function nextPartLabel() {
@@ -3683,13 +3699,27 @@ function commonMistakeHtml(el) {
   const body = `<div class="cm-body">${formatTextWithFractions(el.text || '')}</div>`;
   return `<div class="common-mistake cm-${mistakeColor(el)}">${title}${body}</div>`;
 }
-function studentAnswerHtml(el) {
+// A labelled writing block for the exported Student's-answer card. When
+// `interactive` (standalone HTML) it's a typeable textarea; otherwise (print /
+// PDF) it's blank ruled lines for handwriting.
+function saWriteHtml(title, lines, interactive) {
+  const n = clampLines(lines || 2);
+  let box;
+  if (interactive) {
+    const heightPx = n * 30 + 12;
+    box = `<div class="open-lines-box sa-write-box"><textarea class="open-lines-textarea" rows="${n}" style="height:${heightPx}px;" placeholder=""></textarea></div>`;
+  } else {
+    const rows = Array.from({ length: n }, () => '<div class="open-lines-row">&nbsp;</div>').join('');
+    box = `<div class="open-lines-box sa-write-box">${rows}</div>`;
+  }
+  return `<div class="sa-write"><div class="sa-write-head"><span class="sa-write-label">${escapeHtml(title)}</span></div>${box}</div>`;
+}
+function studentAnswerHtml(el, interactive) {
   const label = formatTextWithFractions(el.label || "Student's Answer");
   const ans = `<div class="sa-body">${formatTextWithFractions(el.answer || '')}</div>`;
-  const note = (el.note && el.note.trim())
-    ? `<div class="sa-note"><span class="sa-note-label">Why it loses marks: </span><span class="sa-note-text">${formatTextWithFractions(el.note)}</span></div>`
-    : '';
-  return `<div class="student-answer"><div class="sa-header"><span class="sa-icon">✗</span><span class="sa-label">${label}</span></div>${ans}${note}</div>`;
+  const why = saWriteHtml('Why it loses marks:', el.whyLines, interactive);
+  const corrected = el.corrected ? saWriteHtml('Corrected answer:', el.correctedLines, interactive) : '';
+  return `<div class="student-answer"><div class="sa-header"><span class="sa-icon">✗</span><span class="sa-label">${label}</span></div>${ans}${why}${corrected}</div>`;
 }
 function buildInsertBar(q, afterIndex) {
   const bar = document.createElement('div');
@@ -4242,28 +4272,111 @@ function renderPreviewElement(el, ctx = {}) {
       if (editable) attachInlineText(body, () => el.answer || '', (v) => { el.answer = v; }, "Type the student's (often wrong) answer here…");
       card.appendChild(body);
 
-      // Optional teacher note explaining why the answer loses marks. Always
-      // editable in the editor; on a student worksheet it appears only when set.
-      if (editable || (el.note && el.note.trim())) {
-        const note = document.createElement('div');
-        note.className = 'sa-note';
-        const noteLabel = document.createElement('span');
-        noteLabel.className = 'sa-note-label';
-        noteLabel.textContent = 'Why it loses marks: ';
-        note.appendChild(noteLabel);
-        const noteText = document.createElement('span');
-        noteText.className = 'sa-note-text';
-        noteText.innerHTML = formatTextWithFractions(el.note || '');
-        if (editable) attachInlineText(noteText, () => el.note || '', (v) => { el.note = v; }, 'Explain the mistake (optional)…');
-        note.appendChild(noteText);
-        card.appendChild(note);
+      // Blank ruled lines where students write WHY the answer is wrong.
+      card.appendChild(buildSaWritingSection(el, {
+        key: 'why', title: 'Why it loses marks:', linesProp: 'whyLines', fallback: 2,
+        editable, placeholder: 'Explain why this answer is wrong…'
+      }));
+
+      // Optional corrected-answer section, also with student writing lines.
+      if (el.corrected) {
+        card.appendChild(buildSaWritingSection(el, {
+          key: 'corrected', title: 'Corrected answer:', linesProp: 'correctedLines', fallback: 2,
+          editable, removable: true, placeholder: 'Write the corrected answer…'
+        }));
+      } else if (editable) {
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'sa-add-corrected';
+        add.textContent = '+ Add corrected answer';
+        add.addEventListener('click', () => {
+          el.corrected = true;
+          if (!el.correctedLines) el.correctedLines = 2;
+          renderPreview();
+        });
+        card.appendChild(add);
       }
       return card;
     }
   }
 }
 
-// Editor-only swatch row for choosing a Common-mistake card colour.
+// A labelled block of blank ruled writing lines inside a Student's-answer card
+// (used for "Why it loses marks" and the optional "Corrected answer"). Mirrors
+// the open-ended box: real textareas in practice mode, ruled lines otherwise,
+// with a +/- line stepper while editing.
+function buildSaWritingSection(el, opts) {
+  const sec = document.createElement('div');
+  sec.className = 'sa-write';
+
+  const head = document.createElement('div');
+  head.className = 'sa-write-head';
+  const label = document.createElement('span');
+  label.className = 'sa-write-label';
+  label.textContent = opts.title;
+  head.appendChild(label);
+
+  const n = clampLines(el[opts.linesProp] || opts.fallback);
+
+  if (opts.editable) {
+    const ctrl = document.createElement('span');
+    ctrl.className = 'open-lines-inline-ctrl';
+    const mk = (txt, title, delta) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'open-lines-step-btn';
+      b.textContent = txt;
+      b.title = title;
+      b.addEventListener('click', () => {
+        el[opts.linesProp] = clampLines((el[opts.linesProp] || opts.fallback) + delta);
+        renderPreview();
+      });
+      return b;
+    };
+    const cnt = document.createElement('span');
+    cnt.className = 'open-lines-inline-label';
+    cnt.textContent = `${n} line${n === 1 ? '' : 's'}`;
+    ctrl.appendChild(mk('−', 'Remove a line', -1));
+    ctrl.appendChild(cnt);
+    ctrl.appendChild(mk('+', 'Add a line', +1));
+    head.appendChild(ctrl);
+
+    if (opts.removable) {
+      const rm = document.createElement('button');
+      rm.type = 'button';
+      rm.className = 'sa-remove-corrected';
+      rm.textContent = '✕';
+      rm.title = 'Remove corrected answer';
+      rm.addEventListener('click', () => { el.corrected = false; renderPreview(); });
+      head.appendChild(rm);
+    }
+  }
+  sec.appendChild(head);
+
+  const box = document.createElement('div');
+  box.className = 'open-lines-box sa-write-box';
+  const respKey = el.id + ':' + opts.key;
+  if (practiceMode) {
+    const ta = document.createElement('textarea');
+    ta.className = 'open-lines-textarea';
+    ta.rows = n;
+    ta.style.height = (n * 30) + 'px';
+    ta.placeholder = opts.placeholder || '';
+    ta.value = practiceResponses.get(respKey) || '';
+    ta.disabled = practiceChecked;
+    ta.addEventListener('input', () => { practiceResponses.set(respKey, ta.value); });
+    box.appendChild(ta);
+  } else {
+    for (let i = 0; i < n; i++) {
+      const row = document.createElement('div');
+      row.className = 'open-lines-row';
+      box.appendChild(row);
+    }
+  }
+  sec.appendChild(box);
+  return sec;
+}
+
 // Editor-only dropdown that fills a Common-mistake card from a ready-made
 // preset. The values are copied in, so the card can still be edited freely.
 function buildMistakePresetPicker(el) {
@@ -4711,7 +4824,7 @@ function elementToPrintHtml(el, qIndex, elIndex) {
     case 'commonMistake':
       return commonMistakeHtml(el);
     case 'studentAnswer':
-      return studentAnswerHtml(el);
+      return studentAnswerHtml(el, false);
   }
   return '';
 }
@@ -5020,7 +5133,7 @@ function elementToHtml(el, qIndex, elIndex) {
     case 'commonMistake':
       return commonMistakeHtml(el);
     case 'studentAnswer':
-      return studentAnswerHtml(el);
+      return studentAnswerHtml(el, true);
   }
   return '';
 }
@@ -5116,8 +5229,10 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .sa-header{display:flex; align-items:center; gap:8px; background:#fbe9ec; color:#c0392b; font-weight:700; padding:8px 14px; font-size:0.92rem; border-bottom:1.5px solid #f1c4cb;}
 .sa-icon{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#c0392b; color:#fff; font-size:0.8rem; font-weight:700;}
 .sa-body{padding:14px 16px; line-height:1.55; white-space:pre-wrap; font-style:italic; color:#374151;}
-.sa-note{padding:10px 16px 14px; border-top:1px dashed #f1c4cb; font-size:0.9rem; line-height:1.5; color:#7a2e25; background:#fdf4f5;}
-.sa-note-label{font-weight:700;}
+.sa-write{padding:12px 16px 14px; border-top:1px dashed #f1c4cb; background:#fff;}
+.sa-write-head{margin-bottom:6px;}
+.sa-write-label{font-weight:700; color:#7a2e25; font-size:0.9rem;}
+.sa-write-box{margin-top:0;}
 .video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
 .question-source{margin-top:var(--space-md); padding-top:var(--space-sm); border-top:1px dashed var(--border-subtle); font-size:0.75rem; color:var(--text-tertiary); font-style:italic; text-align:right;}
 .frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.85em; line-height:1; margin:0 0.18em; position:relative; top:-0.05em;}
