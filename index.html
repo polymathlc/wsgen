@@ -839,7 +839,18 @@
   .cm-orange .cm-header { background: #f5b97f; } .cm-orange .cm-body { background: #fdeedd; }
   .cm-purple .cm-header { background: #c4ace9; } .cm-purple .cm-body { background: #efe7fb; }
 
-  .cm-color-picker { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
+  .cm-editor-tools { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; }
+  .cm-preset-picker { display: flex; justify-content: center; }
+  .cm-preset-select {
+    font-size: var(--font-size-xs);
+    padding: 4px 10px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .cm-color-picker { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 0; }
   .cm-color-label { font-size: var(--font-size-xs); color: var(--text-tertiary); }
   .cm-swatch {
     width: 18px; height: 18px; padding: 0; border-radius: 50%;
@@ -3645,6 +3656,26 @@ function mistakeColor(el) {
   return MISTAKE_COLORS.includes(el && el.color) ? el.color : 'teal';
 }
 
+// Ready-made common mistakes a teacher can drop into a Common-mistake card and
+// then tweak. Title / description / colour are copied into the element, so the
+// card stays fully editable afterwards.
+const COMMON_MISTAKE_PRESETS = [
+  { title: 'No / Wrong Comparison', color: 'teal',
+    text: 'When 2 or more objects are involved in the question, a comparison is needed. Students often leave out comparative words such as more, better or slower, and superlative words such as most, best or slowest — and so they lose marks.' },
+  { title: 'Lack of Keywords', color: 'blue',
+    text: 'A scientific answer requires scientific keywords. An explanation answer that contains no keywords is awarded 0 marks.' },
+  { title: 'Gap in Explanation', color: 'yellow',
+    text: 'Gaps in an explanation cost marks. If the missing keyword or concept is the main idea being tested, students lose all the marks for that question.' },
+  { title: 'Lack of Evidence', color: 'pink',
+    text: 'When results are given in a diagram, table or graph, students must quote those results as evidence to support their conclusion or suggestion. An answer that leaves out the evidence loses a mark.' },
+  { title: 'Unclear Language', color: 'orange',
+    text: 'A teacher cannot guess what an answer is meant to say, so students must make sure their answer cannot be misinterpreted. Use the object–action format to keep answers clear.' },
+  { title: 'Identified Wrong Question Type', color: 'purple',
+    text: 'Students answered the wrong type of question — for example, explaining when asked only to state, or describing a trend when asked to give a reason. Read the command word carefully and answer what is actually being asked.' },
+  { title: 'Did Not Identify Linked Question', color: 'teal',
+    text: 'Students did not realise that an earlier part of the question gives a clue needed to answer this part. The parts of a multi-part question are often linked — missing this connection makes the question harder than it needs to be and can cost marks.' },
+];
+
 // Shared static markup for the two new elements, reused by both export paths
 // (print/PDF and standalone HTML) so they match the on-screen preview.
 function commonMistakeHtml(el) {
@@ -4179,7 +4210,13 @@ function renderPreviewElement(el, ctx = {}) {
       if (editable) attachInlineText(body, () => el.text || '', (v) => { el.text = v; }, 'Describe the common mistake…');
       card.appendChild(body);
 
-      if (editable) card.appendChild(buildMistakeColorPicker(el));
+      if (editable) {
+        const tools = document.createElement('div');
+        tools.className = 'cm-editor-tools';
+        tools.appendChild(buildMistakePresetPicker(el));
+        tools.appendChild(buildMistakeColorPicker(el));
+        card.appendChild(tools);
+      }
       return card;
     }
     case 'studentAnswer': {
@@ -4227,6 +4264,36 @@ function renderPreviewElement(el, ctx = {}) {
 }
 
 // Editor-only swatch row for choosing a Common-mistake card colour.
+// Editor-only dropdown that fills a Common-mistake card from a ready-made
+// preset. The values are copied in, so the card can still be edited freely.
+function buildMistakePresetPicker(el) {
+  const row = document.createElement('div');
+  row.className = 'cm-preset-picker';
+  const sel = document.createElement('select');
+  sel.className = 'cm-preset-select';
+  const def = document.createElement('option');
+  def.value = '';
+  def.textContent = 'Use a ready-made mistake…';
+  sel.appendChild(def);
+  COMMON_MISTAKE_PRESETS.forEach((p, i) => {
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = p.title;
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', () => {
+    const i = parseInt(sel.value, 10);
+    if (isNaN(i) || !COMMON_MISTAKE_PRESETS[i]) return;
+    const p = COMMON_MISTAKE_PRESETS[i];
+    el.title = p.title;
+    el.text = p.text;
+    el.color = p.color;
+    renderPreview();
+  });
+  row.appendChild(sel);
+  return row;
+}
+
 function buildMistakeColorPicker(el) {
   const row = document.createElement('div');
   row.className = 'cm-color-picker';
