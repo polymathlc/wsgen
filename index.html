@@ -807,6 +807,72 @@
     white-space: pre-wrap;
   }
 
+  /* ===== Common-mistake card (header pill + tinted body) ===== */
+  .common-mistake { margin: var(--space-md) 0; text-align: center; }
+  .cm-header {
+    display: inline-block;
+    max-width: 92%;
+    padding: 7px 24px;
+    border-radius: 999px;
+    border: 2.5px solid #1f2937;
+    color: #1f2937;
+    font-weight: 800;
+    font-size: 1.02rem;
+    line-height: 1.3;
+    position: relative;
+    z-index: 2;
+    transform: translateY(14px);
+  }
+  .cm-body {
+    border: 2.5px solid #1f2937;
+    border-radius: 18px;
+    padding: 26px 20px 16px;
+    color: #1f2937;
+    line-height: 1.55;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+  .cm-teal   .cm-header { background: #86dcd2; } .cm-teal   .cm-body { background: #e2f7f4; }
+  .cm-blue   .cm-header { background: #93c0ea; } .cm-blue   .cm-body { background: #e3eefb; }
+  .cm-yellow .cm-header { background: #f4dd76; } .cm-yellow .cm-body { background: #fdf6da; }
+  .cm-pink   .cm-header { background: #f3a3c0; } .cm-pink   .cm-body { background: #fde2ec; }
+  .cm-orange .cm-header { background: #f5b97f; } .cm-orange .cm-body { background: #fdeedd; }
+  .cm-purple .cm-header { background: #c4ace9; } .cm-purple .cm-body { background: #efe7fb; }
+
+  .cm-color-picker { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
+  .cm-color-label { font-size: var(--font-size-xs); color: var(--text-tertiary); }
+  .cm-swatch {
+    width: 18px; height: 18px; padding: 0; border-radius: 50%;
+    border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25); cursor: pointer;
+  }
+  .cm-swatch.selected { box-shadow: 0 0 0 2px var(--accent-deep); }
+  .cm-swatch.cm-teal { background: #86dcd2; } .cm-swatch.cm-blue { background: #93c0ea; }
+  .cm-swatch.cm-yellow { background: #f4dd76; } .cm-swatch.cm-pink { background: #f3a3c0; }
+  .cm-swatch.cm-orange { background: #f5b97f; } .cm-swatch.cm-purple { background: #c4ace9; }
+
+  /* ===== Student's-answer card (shows an example mistake) ===== */
+  .student-answer {
+    margin: var(--space-md) 0;
+    border: 1.5px solid #f1c4cb;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #fff;
+  }
+  .sa-header {
+    display: flex; align-items: center; gap: 8px;
+    background: #fbe9ec; color: #c0392b; font-weight: 700;
+    padding: 8px 14px; font-size: 0.92rem;
+    border-bottom: 1.5px solid #f1c4cb;
+  }
+  .sa-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #c0392b; color: #fff; font-size: 0.8rem; font-weight: 700;
+  }
+  .sa-body { padding: 14px 16px; line-height: 1.55; white-space: pre-wrap; font-style: italic; color: #374151; }
+  .sa-note { padding: 10px 16px 14px; border-top: 1px dashed #f1c4cb; font-size: 0.9rem; line-height: 1.5; color: #7a2e25; background: #fdf4f5; }
+  .sa-note-label { font-weight: 700; }
+
   .part-stem {
     margin-top: var(--space-md);
     display: flex;
@@ -2110,6 +2176,10 @@ function makeElement(type) {
       return { ...base, lines: 6 };
     case 'pageBreak':
       return { ...base };
+    case 'commonMistake':
+      return { ...base, title: 'Common Mistake', text: '', color: 'teal' };
+    case 'studentAnswer':
+      return { ...base, label: "Student's Answer", answer: '', note: '' };
   }
 }
 function nextPartLabel() {
@@ -3565,8 +3635,31 @@ const INSERT_TYPES = [
   ['Text', 'text'], ['Image', 'image'], ['Part', 'part'], ['MCQ', 'mcq'],
   ['Answer field', 'answer'], ['Open-ended box', 'openLines'],
   ['Working space', 'workingSpace'], ['Page break', 'pageBreak'],
-  ['Answer key', 'answerKey'], ['Video', 'video']
+  ['Answer key', 'answerKey'], ['Video', 'video'],
+  ['Common mistake', 'commonMistake'], ["Student's answer", 'studentAnswer']
 ];
+
+// Colour themes for the "Common mistake" card (header pill + body tint).
+const MISTAKE_COLORS = ['teal', 'blue', 'yellow', 'pink', 'orange', 'purple'];
+function mistakeColor(el) {
+  return MISTAKE_COLORS.includes(el && el.color) ? el.color : 'teal';
+}
+
+// Shared static markup for the two new elements, reused by both export paths
+// (print/PDF and standalone HTML) so they match the on-screen preview.
+function commonMistakeHtml(el) {
+  const title = (el.title && el.title.trim()) ? `<div class="cm-header">${formatTextWithFractions(el.title)}</div>` : '';
+  const body = `<div class="cm-body">${formatTextWithFractions(el.text || '')}</div>`;
+  return `<div class="common-mistake cm-${mistakeColor(el)}">${title}${body}</div>`;
+}
+function studentAnswerHtml(el) {
+  const label = formatTextWithFractions(el.label || "Student's Answer");
+  const ans = `<div class="sa-body">${formatTextWithFractions(el.answer || '')}</div>`;
+  const note = (el.note && el.note.trim())
+    ? `<div class="sa-note"><span class="sa-note-label">Why it loses marks: </span><span class="sa-note-text">${formatTextWithFractions(el.note)}</span></div>`
+    : '';
+  return `<div class="student-answer"><div class="sa-header"><span class="sa-icon">✗</span><span class="sa-label">${label}</span></div>${ans}${note}</div>`;
+}
 function buildInsertBar(q, afterIndex) {
   const bar = document.createElement('div');
   bar.className = 'insert-bar';
@@ -4070,7 +4163,90 @@ function renderPreviewElement(el, ctx = {}) {
       wrap.appendChild(label);
       return wrap;
     }
+    case 'commonMistake': {
+      const card = document.createElement('div');
+      card.className = 'common-mistake cm-' + mistakeColor(el);
+
+      const header = document.createElement('div');
+      header.className = 'cm-header';
+      header.innerHTML = formatTextWithFractions(el.title || '');
+      if (editable) attachInlineText(header, () => el.title || '', (v) => { el.title = v; }, 'Mistake title…');
+      card.appendChild(header);
+
+      const body = document.createElement('div');
+      body.className = 'cm-body';
+      body.innerHTML = formatTextWithFractions(el.text || '');
+      if (editable) attachInlineText(body, () => el.text || '', (v) => { el.text = v; }, 'Describe the common mistake…');
+      card.appendChild(body);
+
+      if (editable) card.appendChild(buildMistakeColorPicker(el));
+      return card;
+    }
+    case 'studentAnswer': {
+      const card = document.createElement('div');
+      card.className = 'student-answer';
+
+      const header = document.createElement('div');
+      header.className = 'sa-header';
+      const icon = document.createElement('span');
+      icon.className = 'sa-icon';
+      icon.textContent = '✗';
+      header.appendChild(icon);
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'sa-label';
+      labelSpan.innerHTML = formatTextWithFractions(el.label || "Student's Answer");
+      if (editable) attachInlineText(labelSpan, () => el.label || '', (v) => { el.label = v; }, "Student's Answer");
+      header.appendChild(labelSpan);
+      card.appendChild(header);
+
+      const body = document.createElement('div');
+      body.className = 'sa-body';
+      body.innerHTML = formatTextWithFractions(el.answer || '');
+      if (editable) attachInlineText(body, () => el.answer || '', (v) => { el.answer = v; }, "Type the student's (often wrong) answer here…");
+      card.appendChild(body);
+
+      // Optional teacher note explaining why the answer loses marks. Always
+      // editable in the editor; on a student worksheet it appears only when set.
+      if (editable || (el.note && el.note.trim())) {
+        const note = document.createElement('div');
+        note.className = 'sa-note';
+        const noteLabel = document.createElement('span');
+        noteLabel.className = 'sa-note-label';
+        noteLabel.textContent = 'Why it loses marks: ';
+        note.appendChild(noteLabel);
+        const noteText = document.createElement('span');
+        noteText.className = 'sa-note-text';
+        noteText.innerHTML = formatTextWithFractions(el.note || '');
+        if (editable) attachInlineText(noteText, () => el.note || '', (v) => { el.note = v; }, 'Explain the mistake (optional)…');
+        note.appendChild(noteText);
+        card.appendChild(note);
+      }
+      return card;
+    }
   }
+}
+
+// Editor-only swatch row for choosing a Common-mistake card colour.
+function buildMistakeColorPicker(el) {
+  const row = document.createElement('div');
+  row.className = 'cm-color-picker';
+  const lbl = document.createElement('span');
+  lbl.className = 'cm-color-label';
+  lbl.textContent = 'Colour:';
+  row.appendChild(lbl);
+  MISTAKE_COLORS.forEach(c => {
+    const sw = document.createElement('button');
+    sw.type = 'button';
+    sw.className = 'cm-swatch cm-' + c + (mistakeColor(el) === c ? ' selected' : '');
+    sw.title = c;
+    sw.addEventListener('click', (e) => {
+      e.stopPropagation();
+      el.color = c;
+      renderPreview();
+    });
+    row.appendChild(sw);
+  });
+  return row;
 }
 
 /* Turn Dropbox / Google Drive share links into something playable in-page.
@@ -4465,6 +4641,10 @@ function elementToPrintHtml(el, qIndex, elIndex) {
   <img class="video-print-qr" src="${escapeAttr(qrSrc)}" alt="QR code for video link" />
 </div>`;
     }
+    case 'commonMistake':
+      return commonMistakeHtml(el);
+    case 'studentAnswer':
+      return studentAnswerHtml(el);
   }
   return '';
 }
@@ -4770,6 +4950,10 @@ function elementToHtml(el, qIndex, elIndex) {
     case 'pageBreak':
       // Only meaningful in PDF export; show a subtle divider in standalone HTML.
       return `<div class="page-break-marker"><span class="page-break-marker-label">Page break (PDF only)</span></div>`;
+    case 'commonMistake':
+      return commonMistakeHtml(el);
+    case 'studentAnswer':
+      return studentAnswerHtml(el);
   }
   return '';
 }
@@ -4852,6 +5036,21 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .page-break-marker{margin:var(--space-md) 0; padding:6px 0; border-top:1.5px dashed #B8B8B2; border-bottom:1.5px dashed #B8B8B2; text-align:center; color:var(--text-tertiary);}
 .page-break-marker-label{font-size:var(--font-size-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase;}
 .video-caption{margin-top:6px; font-size:var(--font-size-sm); color:var(--text-secondary); text-align:center;}
+.common-mistake{margin:var(--space-md) 0; text-align:center;}
+.cm-header{display:inline-block; max-width:92%; padding:7px 24px; border-radius:999px; border:2.5px solid #1f2937; color:#1f2937; font-weight:800; font-size:1.02rem; line-height:1.3; position:relative; z-index:2; transform:translateY(14px);}
+.cm-body{border:2.5px solid #1f2937; border-radius:18px; padding:26px 20px 16px; color:#1f2937; line-height:1.55; text-align:center; white-space:pre-wrap;}
+.cm-teal .cm-header{background:#86dcd2;} .cm-teal .cm-body{background:#e2f7f4;}
+.cm-blue .cm-header{background:#93c0ea;} .cm-blue .cm-body{background:#e3eefb;}
+.cm-yellow .cm-header{background:#f4dd76;} .cm-yellow .cm-body{background:#fdf6da;}
+.cm-pink .cm-header{background:#f3a3c0;} .cm-pink .cm-body{background:#fde2ec;}
+.cm-orange .cm-header{background:#f5b97f;} .cm-orange .cm-body{background:#fdeedd;}
+.cm-purple .cm-header{background:#c4ace9;} .cm-purple .cm-body{background:#efe7fb;}
+.student-answer{margin:var(--space-md) 0; border:1.5px solid #f1c4cb; border-radius:var(--radius-md); overflow:hidden; background:#fff;}
+.sa-header{display:flex; align-items:center; gap:8px; background:#fbe9ec; color:#c0392b; font-weight:700; padding:8px 14px; font-size:0.92rem; border-bottom:1.5px solid #f1c4cb;}
+.sa-icon{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#c0392b; color:#fff; font-size:0.8rem; font-weight:700;}
+.sa-body{padding:14px 16px; line-height:1.55; white-space:pre-wrap; font-style:italic; color:#374151;}
+.sa-note{padding:10px 16px 14px; border-top:1px dashed #f1c4cb; font-size:0.9rem; line-height:1.5; color:#7a2e25; background:#fdf4f5;}
+.sa-note-label{font-weight:700;}
 .video-placeholder{padding:var(--space-lg); border:2px dashed var(--border-medium); border-radius:var(--radius-md); color:var(--text-tertiary); text-align:center;}
 .question-source{margin-top:var(--space-md); padding-top:var(--space-sm); border-top:1px dashed var(--border-subtle); font-size:0.75rem; color:var(--text-tertiary); font-style:italic; text-align:right;}
 .frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.85em; line-height:1; margin:0 0.18em; position:relative; top:-0.05em;}
