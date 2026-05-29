@@ -6281,12 +6281,42 @@ function loadDraft() {
     return [];
   }
 }
+// Serialize the draft for localStorage, dropping the inline base64 `dataUrl`
+// from any image that already lives in Cloud Storage (it carries an
+// `imageRef`). This keeps the draft tiny — base64 images are what blow past
+// the localStorage quota — and the image is rehydrated from Storage when the
+// draft is opened.
+function serializeDraft(arr) {
+  return JSON.stringify(arr, function (key, value) {
+    if (key === 'dataUrl' && this && this.imageRef && this.imageRef.path) return undefined;
+    return value;
+  });
+}
 function saveDraft(arr) {
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(arr));
+    localStorage.setItem(DRAFT_KEY, serializeDraft(arr));
   } catch (e) {
     alert('Could not save to draft (storage may be full): ' + e.message);
   }
+}
+// Upload any inline base64 images on these draft questions to Cloud Storage so
+// the draft stores a small reference instead of megabytes of base64. Best
+// effort: if an upload fails the image stays inline and is retried later.
+async function uploadDraftImages(questions) {
+  if (!currentUser || !isAdmin()) return;
+  const tasks = [];
+  for (const q of questions) {
+    for (const el of (q.elements || [])) {
+      if ((el.type === 'image' || el.type === 'answerKey') &&
+          el.dataUrl && el.dataUrl.startsWith('data:') &&
+          !(el.imageRef && el.imageRef.path)) {
+        tasks.push(ensureImageUploaded(el).catch((e) => {
+          console.warn('draft image upload failed:', e && (e.message || e));
+        }));
+      }
+    }
+  }
+  if (tasks.length) await Promise.all(tasks);
 }
 function reidQuestion(q) {
   const clone = JSON.parse(JSON.stringify(q));
@@ -6335,34 +6365,42 @@ function deriveSource(rawTitle) {
   return parts.join(' ').trim();
 }
 
-function copyQuestionToDraft(qIndex) {
+async function copyQuestionToDraft(qIndex) {
   const q = state.questions[qIndex];
   if (!q) return;
-  const draft = loadDraft();
   const clone = reidQuestion(q);
   // Tag the question with where it came from so the draft worksheet shows it.
   if (!clone.source) clone.source = deriveSource(state.title);
+  // Offload images to Storage first so the draft stays small (avoids the
+  // localStorage quota error when questions carry base64 images).
+  await uploadDraftImages([clone]);
+  const draft = loadDraft();
   draft.push(clone);
   saveDraft(draft);
   updateDraftBadge();
 }
 // Copy every item in the current worksheet (questions and instruction blocks)
 // into the draft in one go, so they don't have to be added one by one.
-function copyWorksheetToDraft() {
+async function copyWorksheetToDraft() {
   const qs = state.questions || [];
   if (qs.length === 0) {
     alert('This worksheet has no questions to add to the draft.');
     return;
   }
-  const draft = loadDraft();
   const src = deriveSource(state.title);
   let added = 0;
+  const clones = [];
   qs.forEach(q => {
     const clone = reidQuestion(q);
     if (!clone.source) clone.source = src;
-    draft.push(clone);
+    clones.push(clone);
     if (!isInstruction(q)) added++;
   });
+  // Offload images to Storage first so the draft stays small (avoids the
+  // localStorage quota error when questions carry base64 images).
+  await uploadDraftImages(clones);
+  const draft = loadDraft();
+  clones.forEach(c => draft.push(c));
   saveDraft(draft);
   updateDraftBadge();
   alert(`Added ${added} question(s) from this worksheet to the draft (now ${draft.length} item(s) total). Click "Open Draft" to build a worksheet from them.`);
@@ -6388,6 +6426,9 @@ function openDraft() {
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   syncCoverInputs();
+  // Draft images are stored as Storage refs (no inline base64) — fetch them
+  // back so they show up in the editor/preview.
+  hydrateImageRefs(state);
   renderEditor();
   renderPreview();
   updateLinkStatus();
