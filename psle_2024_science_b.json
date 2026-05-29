@@ -16,187 +16,201 @@
     },
     {
       "id": "psle24b_q29",
-      "topics": ["Human Body Systems", "Skeletal System"],
+      "topics": ["Plants", "Transport in Plants", "Adaptations"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q29_t", "type": "text", "text": "Question 29.  The diagram shows a human system." },
+        { "id": "psle24b_q29_t", "type": "text", "text": "Question 29." },
+        { "id": "psle24b_q29_pa", "type": "part", "label": "(a)", "text": "State two functions of roots.  [2]" },
+        { "id": "psle24b_q29_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q29_pb", "type": "part", "label": "(b)", "text": "The diagram shows two plants, E and H." },
         { "id": "psle24b_q29_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q29_pa", "type": "part", "label": "(a)", "text": "Name the system.  [1]" },
-        { "id": "psle24b_q29_aa", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q29_pb", "type": "part", "label": "(b)", "text": "State two functions of the system.  [2]" },
-        { "id": "psle24b_q29_ab", "type": "openLines", "lines": 2 }
+        { "id": "psle24b_q29_pbi", "type": "part", "label": "(b)(i)", "text": "State the difference between the structure of roots of plant E and plant H.  [1]" },
+        { "id": "psle24b_q29_abi", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q29_pbii", "type": "part", "label": "(b)(ii)", "text": "Plant E grows in a place with little rain.  Explain why plant E has an advantage in such conditions.  [1]" },
+        { "id": "psle24b_q29_abii", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q30",
-      "topics": ["Interactions within the Environment", "Food Chains"],
+      "topics": ["Plant Reproduction", "Seed Dispersal", "Life Cycles"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q30_t", "type": "text", "text": "Question 30.  Study the food web in Diagram 1." },
+        { "id": "psle24b_q30_t", "type": "text", "text": "Question 30.  The diagram shows a bird feeding on the nectar of a flower of plant K." },
         { "id": "psle24b_q30_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q30_pa", "type": "part", "label": "(a)", "text": "Based on Diagram 1," },
-        { "id": "psle24b_q30_pai", "type": "part", "label": "(a)(i)", "text": "state the food producer(s).  [1]" },
-        { "id": "psle24b_q30_aai", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q30_paii", "type": "part", "label": "(a)(ii)", "text": "state the organism(s) that is/are both a prey and a predator.  [1]" },
-        { "id": "psle24b_q30_aaii", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q30_t2", "type": "text", "text": "When a population of M was introduced into the community, the population of Q decreased while the population of T increased." },
-        { "id": "psle24b_q30_pb", "type": "part", "label": "(b)", "text": "In the food web in Diagram 2, use a pencil to draw arrows to show the food relationships of M with Q and T.  [1]" },
-        { "id": "psle24b_q30_img2", "type": "image", "dataUrl": "", "caption": "" }
+        { "id": "psle24b_q30_pa", "type": "part", "label": "(a)", "text": "The bird helps in a process of the reproduction in plant K.  Name this process.  [1]" },
+        { "id": "psle24b_q30_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle24b_q30_t2", "type": "text", "text": "The diagram shows the life cycle of plant K." },
+        { "id": "psle24b_q30_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q30_pbi", "type": "part", "label": "(b)(i)", "text": "Name process R.  [1]" },
+        { "id": "psle24b_q30_abi", "type": "openLines", "lines": 1 },
+        { "id": "psle24b_q30_pbii", "type": "part", "label": "(b)(ii)", "text": "State how dispersal of seeds benefits young plant K.  [1]" },
+        { "id": "psle24b_q30_abii", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q31",
-      "topics": ["Human Body Systems", "Digestive System"],
+      "topics": ["Microorganisms", "Interactions within the Environment", "Adaptations"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q31_t", "type": "text", "text": "Question 31.  The diagram shows the human digestive system." },
+        { "id": "psle24b_q31_t", "type": "text", "text": "Question 31.  Insect P builds its underground nest in a sunny area of a forest.  It carries small pieces of leaves back to its nest for storage.  The diagram shows the area where the leaves are stored." },
         { "id": "psle24b_q31_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q31_pa", "type": "part", "label": "(a)", "text": "State which organ, A, B, C or D, absorbs digested food into the bloodstream.  [1]" },
-        { "id": "psle24b_q31_aa", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q31_pb", "type": "part", "label": "(b)", "text": "State how the amount of undigested food changes as it moves through:" },
-        { "id": "psle24b_q31_pbi", "type": "part", "label": "(b)(i)", "text": "organ C  [1]" },
-        { "id": "psle24b_q31_abi", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q31_pbii", "type": "part", "label": "(b)(ii)", "text": "organ D  [1]" },
-        { "id": "psle24b_q31_abii", "type": "openLines", "lines": 1 }
+        { "id": "psle24b_q31_t2", "type": "text", "text": "The young of insect P feeds on fungus L, which grows on the stored leaves." },
+        { "id": "psle24b_q31_pa", "type": "part", "label": "(a)", "text": "Explain how the location of the nest helps fungus L in its growth.  [2]" },
+        { "id": "psle24b_q31_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle24b_q31_pb", "type": "part", "label": "(b)", "text": "The eggs of insect P are laid among the stored leaves.  State two benefits for insect P to lay its eggs among the stored leaves.  [2]" },
+        { "id": "psle24b_q31_ab", "type": "openLines", "lines": 3 }
       ]
     },
     {
       "id": "psle24b_q32",
-      "topics": ["Plants", "Photosynthesis", "Experimental Design"],
+      "topics": ["Interactions within the Environment", "Food Chains", "Photosynthesis"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q32_t", "type": "text", "text": "Question 32.  Plants remove carbon dioxide from the air through photosynthesis." },
-        { "id": "psle24b_q32_pa", "type": "part", "label": "(a)", "text": "State two other functions of photosynthesis.  [2]" },
-        { "id": "psle24b_q32_aa", "type": "openLines", "lines": 2 },
-        { "id": "psle24b_q32_t2", "type": "text", "text": "Nadia wanted to measure the amount of carbon dioxide taken in or given out by a plant.  She prepared a set-up of a well-watered plant in a pot of garden soil as shown.  She placed the set-up in the garden on a sunny day.  The sun set at 6 pm on that day." },
+        { "id": "psle24b_q32_t", "type": "text", "text": "Question 32.  Diagram 1 shows two types of plants, F and G, growing in a pond." },
         { "id": "psle24b_q32_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q32_pb", "type": "part", "label": "(b)", "text": "Describe how the amount of carbon dioxide inside the glass jar changed with time from 1 pm to 9 pm.  [2]" },
-        { "id": "psle24b_q32_ab", "type": "openLines", "lines": 3 },
-        { "id": "psle24b_q32_pc", "type": "part", "label": "(c)", "text": "Suggest a reason for wrapping a plastic bag around the pot of garden soil.  [1]" },
-        { "id": "psle24b_q32_ac", "type": "openLines", "lines": 2 }
+        { "id": "psle24b_q32_t2", "type": "text", "text": "A large amount of fertiliser from a nearby farm flowed into the pond, causing the population of plant F to increase." },
+        { "id": "psle24b_q32_pa", "type": "part", "label": "(a)", "text": "As the population of plant F increased, the population of plant G decreased.  Explain why.  [1]" },
+        { "id": "psle24b_q32_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q32_t3", "type": "text", "text": "Diagram 2 shows a food web in the pond habitat." },
+        { "id": "psle24b_q32_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q32_pb", "type": "part", "label": "(b)", "text": "How would the population of bird A change when the population of plant F increased?  Explain your answer.  [1]" },
+        { "id": "psle24b_q32_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q32_pc", "type": "part", "label": "(c)", "text": "The population of bird B remained the same.  Give two reasons why the decrease in population of plant G caused a decrease in the population of fish C.  [2]" },
+        { "id": "psle24b_q32_ac", "type": "openLines", "lines": 3 }
       ]
     },
     {
       "id": "psle24b_q33",
-      "topics": ["Life Cycles", "Experimental Design", "Adaptations"],
+      "topics": ["Plants", "Photosynthesis", "Experimental Design"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q33_t", "type": "text", "text": "Question 33." },
-        { "id": "psle24b_q33_pa", "type": "part", "label": "(a)", "text": "Fill in the boxes to complete the life cycle of a mosquito.  [1]" },
+        { "id": "psle24b_q33_t", "type": "text", "text": "Question 33.  Raj knows that the amount of light can affect the size of tiny openings found on leaves." },
+        { "id": "psle24b_q33_pa", "type": "part", "label": "(a)", "text": "State the function of tiny openings found on leaves.  [1]" },
+        { "id": "psle24b_q33_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q33_t2", "type": "text", "text": "Raj carried out an investigation to find out if pollutant S can also affect the size of tiny openings on leaves in three different towns that are located near one another.  His results are shown in the table." },
         { "id": "psle24b_q33_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q33_t2", "type": "text", "text": "A scientist used the set-up below to find out which insect repellent, E, F or G, is most effective to prevent mosquito bites." },
-        { "id": "psle24b_q33_img2", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q33_t3", "type": "text", "text": "The scientist applied insect repellent E to his hand.  He then put his hand into the tank and counted the number of mosquitoes that stayed on the hand for more than one minute.\n\nAfter cleaning his hand, he repeated the experiment using a different repellent each time.  His results are shown in the table." },
-        { "id": "psle24b_q33_img3", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q33_pb", "type": "part", "label": "(b)", "text": "Identify the repellent that is most effective.  [1]" },
-        { "id": "psle24b_q33_ab", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q33_pc", "type": "part", "label": "(c)", "text": "Using the same set-up, state how the scientist should carry out a control experiment.  [1]" },
-        { "id": "psle24b_q33_ac", "type": "openLines", "lines": 2 },
-        { "id": "psle24b_q33_pd", "type": "part", "label": "(d)", "text": "Besides preventing mosquitoes from escaping, suggest another function of the net.  [1]" },
-        { "id": "psle24b_q33_ad", "type": "openLines", "lines": 2 }
+        { "id": "psle24b_q33_pb", "type": "part", "label": "(b)", "text": "State the effect of pollutant S on the size of tiny openings.  [1]" },
+        { "id": "psle24b_q33_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q33_pc", "type": "part", "label": "(c)", "text": "To ensure a fair investigation, the size of the tiny openings on leaves in all three towns was measured at the same time.  Explain why.  [1]" },
+        { "id": "psle24b_q33_ac", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q34",
-      "topics": ["Plant Reproduction", "Seed Dispersal", "Plants"],
+      "topics": ["Experimental Design", "Life Cycles", "Materials"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q34_t", "type": "text", "text": "Question 34." },
-        { "id": "psle24b_q34_pa", "type": "part", "label": "(a)", "text": "Name the process that must happen after pollination to produce seeds.  [1]" },
-        { "id": "psle24b_q34_aa", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q34_t2", "type": "text", "text": "John found two fruits X and Y growing on plants in a forest.  Fruit X has hooks and fruit Y has wing-like structures." },
+        { "id": "psle24b_q34_t", "type": "text", "text": "Question 34.  Joel investigated the effect of substance X on the eggshell of animal Y.  He placed three similar pieces of eggshell in 40 ml of water in each of tubes A, B and C.  He added different masses of substance X to tubes A, B and C, and recorded his findings after some time." },
         { "id": "psle24b_q34_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q34_pb", "type": "part", "label": "(b)", "text": "Suggest the zone where each fruit was more likely to be found growing.  Explain your answer.  [3]\n\nFruit X — Zone: ____________\n\nExplanation:" },
-        { "id": "psle24b_q34_abx", "type": "openLines", "lines": 3 },
-        { "id": "psle24b_q34_pby", "type": "part", "label": "", "text": "Fruit Y — Zone: ____________\n\nExplanation:" },
-        { "id": "psle24b_q34_aby", "type": "openLines", "lines": 3 }
+        { "id": "psle24b_q34_pa", "type": "part", "label": "(a)", "text": "State the effect of X on the thickness of the eggshell.  [1]" },
+        { "id": "psle24b_q34_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q34_pb", "type": "part", "label": "(b)", "text": "The female adult animal Y lays its eggs in a nest made of dead plants.  When the dead plants decompose, substance X is produced.  Suggest how this behaviour of adult Y helps the developing animal Y in the egg.  [1]" },
+        { "id": "psle24b_q34_ab", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q34_pc", "type": "part", "label": "(c)", "text": "The graph shows the percentage of female and male animal Y that hatch from eggs which are kept at different temperatures." },
+        { "id": "psle24b_q34_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q34_pc2", "type": "part", "label": "(c)", "text": "State the temperature at which the eggs of animal Y should be kept to ensure the continuity of its kind.  Explain your answer.  [2]" },
+        { "id": "psle24b_q34_ac", "type": "openLines", "lines": 3 }
       ]
     },
     {
       "id": "psle24b_q35",
-      "topics": ["Electricity"],
+      "topics": ["Forces", "Energy", "Experimental Design"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q35_t", "type": "text", "text": "Question 35.  Junjie sets up an electric circuit using identical bulbs and batteries as shown.  All the circuit components are working." },
+        { "id": "psle24b_q35_t", "type": "text", "text": "Question 35.  Hock Seng moved part L to compress a spring for launching a ball as shown in the set-up.  There was no wind." },
         { "id": "psle24b_q35_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q35_t2", "type": "text", "text": "When he closed the switch, the bulbs did not light up.\n\nUse a pencil to complete the circuit below:\n•  correct the mistake(s) in Junjie's circuit\n•  use '+' to mark the positive terminal of the remaining two batteries\n•  connect the bulbs such that if one blows, the other will still be lit  [3]" },
-        { "id": "psle24b_q35_img2", "type": "image", "dataUrl": "", "caption": "" }
+        { "id": "psle24b_q35_t2", "type": "text", "text": "He measured the distance moved by the ball as shown.  His results are shown below." },
+        { "id": "psle24b_q35_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q35_pa", "type": "part", "label": "(a)", "text": "State how the distance moved by the ball changed with the launching angle.  [2]" },
+        { "id": "psle24b_q35_aa", "type": "openLines", "lines": 3 },
+        { "id": "psle24b_q35_pb", "type": "part", "label": "(b)", "text": "Name a force acting on the ball at X.  [1]" },
+        { "id": "psle24b_q35_ab", "type": "openLines", "lines": 1 },
+        { "id": "psle24b_q35_pc", "type": "part", "label": "(c)", "text": "Suggest why it is difficult to measure the distance moved.  [1]" },
+        { "id": "psle24b_q35_ac", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q35_pd", "type": "part", "label": "(d)", "text": "Hock Seng repeated the investigation using the same set of launching angles when there was no wind.  He used the same set-up but a similar ball of higher mass.  State a variable that he must keep constant for a fair comparison of distance moved.  [1]" },
+        { "id": "psle24b_q35_ad", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q36",
-      "topics": ["Materials", "Heat and Temperature", "Expansion and Contraction"],
+      "topics": ["Heat and Temperature", "Materials", "Expansion and Contraction"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q36_t", "type": "text", "text": "Question 36.  Aisha squeezed a plastic bottle to put some sauce on her food." },
+        { "id": "psle24b_q36_t", "type": "text", "text": "Question 36.  The graph shows how a length of wire made of material S changes with temperature." },
         { "id": "psle24b_q36_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q36_pa", "type": "part", "label": "(a)", "text": "State the property of the plastic to explain why Aisha can squeeze the bottle.  [1]" },
+        { "id": "psle24b_q36_pa", "type": "part", "label": "(a)", "text": "State the length of the wire at 0 °C.  [1]" },
         { "id": "psle24b_q36_aa", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q36_pb", "type": "part", "label": "(b)", "text": "Aisha took a jar out from a refrigerator.  She could not remove the plastic lid at first." },
+        { "id": "psle24b_q36_pb", "type": "part", "label": "(b)", "text": "State the increase in the length of the wire when it is heated from 0 °C to 80 °C.  [1]" },
+        { "id": "psle24b_q36_ab", "type": "openLines", "lines": 1 },
+        { "id": "psle24b_q36_t2", "type": "text", "text": "Fadil built a model of telephone lines in the day as shown." },
         { "id": "psle24b_q36_img2", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q36_pb2", "type": "part", "label": "(b)", "text": "Explain why she was able to remove the lid easily after leaving the jar at room temperature for some time.  [2]" },
-        { "id": "psle24b_q36_ab", "type": "openLines", "lines": 3 }
+        { "id": "psle24b_q36_t3", "type": "text", "text": "During the night, Fadil heard a crack and found that the wires snapped.  There was no wind, and the model was not disturbed by any person or animal." },
+        { "id": "psle24b_q36_pc", "type": "part", "label": "(c)", "text": "Explain why the wires snapped at night.  [2]" },
+        { "id": "psle24b_q36_ac", "type": "openLines", "lines": 3 },
+        { "id": "psle24b_q36_pd", "type": "part", "label": "(d)", "text": "Using the same type of wires and equipment, suggest how Fadil can build the model at the same place so that the wires will not snap.  [1]" },
+        { "id": "psle24b_q36_ad", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q37",
-      "topics": ["Matter", "Experimental Design"],
+      "topics": ["States of Matter", "Heat and Temperature", "Matter"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q37_t", "type": "text", "text": "Question 37.  Priya wants to find the volume of object S which floats in water.  She has some apparatus as shown and can get water from a tap." },
+        { "id": "psle24b_q37_t", "type": "text", "text": "Question 37.  The freezing points and boiling points of three substances, P, Q and R, are as shown." },
         { "id": "psle24b_q37_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q37_p", "type": "part", "label": "", "text": "Describe how the volume of object S can be measured using the apparatus selected.  You may use a labelled diagram in your answer.  [Do not draw the scale on the beaker and measuring cylinder if used.]  [3]" },
-        { "id": "psle24b_q37_a", "type": "openLines", "lines": 4 }
+        { "id": "psle24b_q37_pa", "type": "part", "label": "(a)", "text": "State what freezing means.  [1]" },
+        { "id": "psle24b_q37_aa", "type": "openLines", "lines": 2 },
+        { "id": "psle24b_q37_t2", "type": "text", "text": "Meimei has a closed container of volume 100 cm³.  She stored 150 cm³ of a substance in the container at 30 °C." },
+        { "id": "psle24b_q37_pb", "type": "part", "label": "(b)", "text": "State which substance, P, Q or R, she stored in the container.  Explain your answer.  [2]" },
+        { "id": "psle24b_q37_ab", "type": "openLines", "lines": 3 },
+        { "id": "psle24b_q37_t3", "type": "text", "text": "Meimei has a plastic tray as shown." },
+        { "id": "psle24b_q37_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q37_pc", "type": "part", "label": "(c)", "text": "State if she can store substance Q in the tray at 30 °C.  Explain your answer.  [1]" },
+        { "id": "psle24b_q37_ac", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q38",
-      "topics": ["Energy", "Forces", "Sound"],
+      "topics": ["Magnets", "Electricity", "Forces"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q38_t", "type": "text", "text": "Question 38.  Peiling has a toy.  As the toy moves forward, a drum rotates with the wheels and pushes the handle and spring down as shown in Diagram 1." },
+        { "id": "psle24b_q38_t", "type": "text", "text": "Question 38.  Mariam set up the circuit in a toy boat as shown.  The metal contacts, A and B, touched the magnet but are not fixed to it.  The magnet is resting on a wooden support." },
         { "id": "psle24b_q38_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q38_t2", "type": "text", "text": "As the drum rotates further, it releases the handle to hit the cardboard and the ball bounces up as shown in Diagram 2." },
-        { "id": "psle24b_q38_pa", "type": "part", "label": "(a)", "text": "Fill in the boxes to show the energy conversion in the toy when it is moving as shown in Diagram 1 and Diagram 2.  [2]" },
-        { "id": "psle24b_q38_img2", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q38_pb", "type": "part", "label": "(b)", "text": "Name the force exerted by the spring on the handle.  [1]" },
-        { "id": "psle24b_q38_ab", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q38_t3", "type": "text", "text": "When the handle hits the cardboard, a sound is produced and recorded by a sensor.  The results are as shown." },
-        { "id": "psle24b_q38_img3", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q38_pc", "type": "part", "label": "(c)", "text": "State the number of times the handle hits the cardboard in the first two seconds.  [1]" },
-        { "id": "psle24b_q38_ac", "type": "openLines", "lines": 1 },
-        { "id": "psle24b_q38_pd", "type": "part", "label": "(d)", "text": "Suggest how the graph will change if the toy moves faster.  [1]" },
-        { "id": "psle24b_q38_ad", "type": "openLines", "lines": 2 }
+        { "id": "psle24b_q38_t2", "type": "text", "text": "When Mariam closed the switch, the plastic captain moved up and down continuously." },
+        { "id": "psle24b_q38_pa", "type": "part", "label": "(a)", "text": "Explain why the captain moved up and down.  [2]" },
+        { "id": "psle24b_q38_aa", "type": "openLines", "lines": 5 },
+        { "id": "psle24b_q38_t3", "type": "text", "text": "Mariam played with the toy for a few hours.  The captain moved slower than before." },
+        { "id": "psle24b_q38_pb", "type": "part", "label": "(b)", "text": "State another change to the movement of the captain.  Explain your answer.  [2]" },
+        { "id": "psle24b_q38_ab", "type": "openLines", "lines": 4 }
       ]
     },
     {
       "id": "psle24b_q39",
-      "topics": ["States of Matter", "Condensation", "Heat and Temperature"],
+      "topics": ["Measurement", "Experimental Design"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q39_t", "type": "text", "text": "Question 39.  Hassan used an electrical appliance to press a shirt that was still damp and saw white fumes rising above the shirt." },
+        { "id": "psle24b_q39_t", "type": "text", "text": "Question 39.  A boy has his height measured with a measuring tape as shown." },
         { "id": "psle24b_q39_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q39_pa", "type": "part", "label": "(a)", "text": "Explain how the white fumes were formed.  [2]" },
-        { "id": "psle24b_q39_aa", "type": "openLines", "lines": 3 },
-        { "id": "psle24b_q39_pb", "type": "part", "label": "(b)", "text": "Explain why the white fumes could no longer be seen after a short time.  [1]" },
-        { "id": "psle24b_q39_ab", "type": "openLines", "lines": 2 },
-        { "id": "psle24b_q39_pc", "type": "part", "label": "(c)", "text": "State a suitable material for the plate of the appliance.  Explain your answer.  [1]" },
-        { "id": "psle24b_q39_ac", "type": "openLines", "lines": 2 }
+        { "id": "psle24b_q39_pa", "type": "part", "label": "(a)", "text": "State the reading on the measuring tape.  [1]\n\nReading: ____________" },
+        { "id": "psle24b_q39_aa", "type": "openLines", "lines": 1 },
+        { "id": "psle24b_q39_pb", "type": "part", "label": "(b)", "text": "Without using other apparatus and materials, describe one way to obtain an accurate measurement of his height.  [1]" },
+        { "id": "psle24b_q39_ab", "type": "openLines", "lines": 2 }
       ]
     },
     {
       "id": "psle24b_q40",
-      "topics": ["Magnets", "Electricity", "Forces"],
+      "topics": ["Materials", "Matter", "Floating and Sinking"],
       "concepts": [],
       "elements": [
-        { "id": "psle24b_q40_t", "type": "text", "text": "Question 40.  Samy set up an experiment as shown.  When the switch was closed, the fixed iron bar could just carry an iron block with sides of equal length as shown." },
+        { "id": "psle24b_q40_t", "type": "text", "text": "Question 40." },
+        { "id": "psle24b_q40_pa", "type": "part", "label": "(a)", "text": "Carol glued two types of blocks of the same size, A and B, and placed them in water as shown." },
         { "id": "psle24b_q40_img1", "type": "image", "dataUrl": "", "caption": "" },
-        { "id": "psle24b_q40_pa", "type": "part", "label": "(a)", "text": "The iron block was dropped to hit object P and drive it further into the sand.  Explain how the iron bar was able to drop the iron block.  [1]" },
+        { "id": "psle24b_q40_pa2", "type": "part", "label": "(a)", "text": "Based on the diagram, state the difference in a physical property between the two types of blocks.  [1]" },
         { "id": "psle24b_q40_aa", "type": "openLines", "lines": 2 },
-        { "id": "psle24b_q40_pb", "type": "part", "label": "(b)", "text": "The circuit and fixed iron bar were moved up to drop the iron block from a greater height.  Explain why object P went deeper into the sand when hit by the iron block.  [1]" },
-        { "id": "psle24b_q40_ab", "type": "openLines", "lines": 2 },
-        { "id": "psle24b_q40_pc", "type": "part", "label": "(c)", "text": "Using the same box of sand, object P and the fixed iron bar without changing its height, suggest changes to the set-up to drive object P deeper into the sand.  [2]" },
-        { "id": "psle24b_q40_ac", "type": "openLines", "lines": 3 }
+        { "id": "psle24b_q40_pb", "type": "part", "label": "(b)", "text": "Carol next placed another two blocks of the same size in water as shown." },
+        { "id": "psle24b_q40_img2", "type": "image", "dataUrl": "", "caption": "" },
+        { "id": "psle24b_q40_pb2", "type": "part", "label": "(b)", "text": "She concluded that the two blocks are made of the same material.\n\nState if you agree with Carol's conclusion.  Explain your answer.  [1]" },
+        { "id": "psle24b_q40_ab", "type": "openLines", "lines": 3 }
       ]
     }
   ]
