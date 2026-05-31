@@ -2268,6 +2268,27 @@
   .rt-swatch:hover { transform: scale(1.12); }
   .rt-swatch-none { background: #fff; color: var(--text-tertiary, #8A8A8A); font-size: 0.7rem; line-height: 16px; }
 
+  /* ===== Global loading bar ===== */
+  .app-loader {
+    position: fixed; inset: 0; z-index: 4000; display: none;
+    align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.62); backdrop-filter: blur(1.5px);
+  }
+  .app-loader.show { display: flex; }
+  .app-loader-card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .app-loader-label { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary, #5C5C5C); letter-spacing: 0.01em; }
+  .app-loader-bar {
+    position: relative; width: min(62vw, 380px); height: 9px;
+    border-radius: 999px; background: var(--bg-tertiary, #F3F3F0); overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+  }
+  .app-loader-fill {
+    position: absolute; inset: 0 auto 0 0; width: 0%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-base, #64B5F6), var(--accent-deep, #1E88E5));
+    transition: width 0.22s ease;
+  }
+  .app-loader-pct { font-size: 0.82rem; font-weight: 700; color: var(--text-primary, #1A1A1A); font-variant-numeric: tabular-nums; }
+
   /* ===== Design / Layout view (A4 design surface in an isolated iframe) ===== */
   .dv-overlay { position: fixed; inset: 0; z-index: 1900; background: #71777d; display: none; }
   .dv-overlay.open { display: block; }
@@ -5325,11 +5346,65 @@ function toEmbeddableVideoUrl(raw) {
 // some images are still Storage refs (just URLs), pull the bytes and inline
 // them before building the export. No-op when every image is already a
 // proper data URL.
-async function resolveImagesForExport() {
+/* =========================================================================
+   GLOBAL LOADING BAR — a slim rounded progress pill with a percentage,
+   shown while the app is busy (opening a worksheet, exporting, entering the
+   design view, the initial boot, …). Tasks with real progress call set();
+   everything else uses a gentle creep that finishes when done() is called.
+   ========================================================================= */
+const Loader = (function () {
+  let el, fillEl, pctEl, labelEl, creep = null, pct = 0, real = false, depth = 0;
+  function ensure() {
+    if (el) return;
+    el = document.createElement('div');
+    el.className = 'app-loader';
+    el.innerHTML = '<div class="app-loader-card">'
+      + '<div class="app-loader-label"></div>'
+      + '<div class="app-loader-bar"><div class="app-loader-fill"></div></div>'
+      + '<div class="app-loader-pct">0%</div></div>';
+    document.body.appendChild(el);
+    fillEl = el.querySelector('.app-loader-fill');
+    pctEl = el.querySelector('.app-loader-pct');
+    labelEl = el.querySelector('.app-loader-label');
+  }
+  function render() { fillEl.style.width = pct.toFixed(1) + '%'; pctEl.textContent = Math.round(pct) + '%'; }
+  function stopCreep() { if (creep) { clearInterval(creep); creep = null; } }
+  return {
+    show(label) {
+      ensure(); depth++;
+      labelEl.textContent = label || 'Loading…';
+      pct = 0; real = false; render();
+      el.classList.add('show');
+      stopCreep();
+      creep = setInterval(() => { if (real) return; pct += (90 - pct) * 0.08; if (pct > 89.5) pct = 89.5; render(); }, 180);
+    },
+    set(frac, label) {
+      ensure(); real = true;
+      pct = Math.max(0, Math.min(99, frac * 100));
+      if (label != null) labelEl.textContent = label;
+      render();
+    },
+    done() {
+      if (!el) return;
+      depth = Math.max(0, depth - 1);
+      if (depth > 0) return;            // keep showing until the last task finishes
+      stopCreep(); pct = 100; render();
+      setTimeout(() => { if (depth === 0) el.classList.remove('show'); }, 300);
+    }
+  };
+})();
+async function withLoader(label, fn) {
+  Loader.show(label);
+  try { return await fn(); }
+  finally { Loader.done(); }
+}
+
+async function resolveImagesForExport(onProgress) {
   const els = imageElements(state).filter((el) =>
     el.imageRef && el.imageRef.path && (!el.dataUrl || !el.dataUrl.startsWith('data:'))
   );
-  if (els.length === 0) return;
+  if (els.length === 0) { if (onProgress) onProgress(1); return; }
+  let done = 0;
   await Promise.allSettled(els.map(async (el) => {
     try {
       const bytes = await retrying('export: fetch image bytes',
@@ -5341,6 +5416,8 @@ async function resolveImagesForExport() {
       el.dataUrl = `data:${el.imageRef.mime || 'image/png'};base64,${btoa(bin)}`;
     } catch (e) {
       console.warn('Could not inline image for export:', e && (e.message || e));
+    } finally {
+      done++; if (onProgress) onProgress(done / els.length);
     }
   }));
 }
@@ -5364,16 +5441,19 @@ async function exportHtml() {
    ruled working space) and triggers the browser's print-to-PDF dialog.
    ========================================================================= */
 async function exportPdf() {
-  await resolveImagesForExport();
-  const html = buildPrintableHtml();
-  const w = window.open('', '_blank');
-  if (!w) {
-    alert('Please allow pop-ups to export PDF.');
-    return;
-  }
-  w.document.open();
-  w.document.write(html);
-  w.document.close();
+  await withLoader('Preparing PDF…', async () => {
+    await resolveImagesForExport((f) => Loader.set(f * 0.85, 'Preparing images…'));
+    Loader.set(0.92, 'Building pages…');
+    const html = buildPrintableHtml();
+    const w = window.open('', '_blank');
+    if (!w) {
+      alert('Please allow pop-ups to export PDF.');
+      return;
+    }
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+  });
 }
 
 function buildCoverHtml() {
@@ -5652,7 +5732,9 @@ function elementToPrintHtml(el, qIndex, elIndex) {
     case 'workingSpace': {
       const n = clampLines(el.lines);
       const heightPx = n * 30;
-      return `<div class="working-space-box" style="min-height:${heightPx}px;"></div>`;
+      // Expose the base height as a custom property so the Design view's size
+      // control can scale the box's vertical thickness (see DV_CHROME_CSS).
+      return `<div class="working-space-box" style="--wsh:${heightPx}px; min-height:var(--wsh);"></div>`;
     }
     case 'answerKey':
       // Answer keys are not printed on student worksheets.
@@ -6946,6 +7028,7 @@ function seedUploadCacheFromState(s) {
 
 async function loadFromSystem(id) {
   if (!currentUser) return;
+  Loader.show('Loading worksheet…');
   try {
     const ref = doc(fbDb, 'worksheets', id);
     const snap = await getDoc(ref);
@@ -6954,7 +7037,9 @@ async function loadFromSystem(id) {
       return;
     }
     const data = snap.data();
+    Loader.set(0.4, 'Loading questions…');
     const parsed = await fetchWorksheetState(data);
+    Loader.set(0.8, 'Rendering…');
     if (isAdmin()) logActivity('before opening: ' + (data.title || 'worksheet'));
     state = parsed;
     resetHistory();
@@ -6982,6 +7067,8 @@ syncCoverInputs();
   } catch (e) {
     console.error(e);
     alert('Load failed: ' + (e.message || e));
+  } finally {
+    Loader.done();
   }
 }
 
@@ -8165,7 +8252,7 @@ function dvWrap(eid, qkey, inner, opts) {
   opts = opts || {};
   var scale = dvScaleOf(eid);
   var broken = !!dvLayout().breaks[eid];
-  var cls = 'dv-elem' + (broken ? ' break-after' : '') + (opts.media ? ' dv-media' : '');
+  var cls = 'dv-elem' + (broken ? ' break-after' : '') + (opts.media ? ' dv-media' : '') + (opts.vbox ? ' dv-vbox' : '');
   var qattr = (qkey != null && qkey !== '') ? ' data-q="' + escapeAttr(qkey) + '"' : '';
   return '<div class="' + cls + '" id="dv-' + escapeAttr(eid) + '" data-eid="' + escapeAttr(eid) + '"' + qattr
        + ' style="--escale:' + (scale / 100) + ';">'
@@ -8203,7 +8290,11 @@ function dvContentHtml() {
       if (el.type === 'pageBreak') return; // breaks are managed by the per-block toggle here
       var inner = elementToPrintHtml(el, qIndex, j);
       if (!inner) return;
-      parts.push(dvWrap(el.id, q.id, inner, { label: dvElemLabel(el), media: el.type === 'image' }));
+      parts.push(dvWrap(el.id, q.id, inner, {
+        label: dvElemLabel(el),
+        media: el.type === 'image',
+        vbox: el.type === 'workingSpace'
+      }));
     });
   });
   return '<div class="print-doc print-question dv-flow">' + parts.join('') + '</div>';
@@ -8257,6 +8348,8 @@ html,body{ background:#71777d; margin:0; padding:0; }
 .dv-line.short{ min-width:70px; }
 .dv-elem .question-sub,.dv-elem .question-stem,.dv-elem .part-stem,.dv-elem .answer-field,.dv-elem .options-list,.dv-elem .open-lines-box,.dv-elem .working-space-box,.dv-elem .sa-body,.dv-elem .sa-reason,.dv-elem .sa-correct-text,.dv-elem .cm-body,.dv-elem .cm-header,.dv-elem .video-print,.dv-elem .img-caption,.dv-elem .question-header,.dv-elem .dv-doc-header,.dv-elem .data-table{ font-size:calc(1em * var(--escale)); }
 .dv-elem.dv-media{ width:calc(100% * var(--escale)); margin-left:auto; margin-right:auto; }
+/* Working space: the size control adjusts the box's vertical thickness. */
+.dv-elem.dv-vbox .working-space-box{ min-height:calc(var(--wsh, 180px) * var(--escale)) !important; }
 .page-logo{ display:none; }
 @page{ @bottom-center{ content:"\\2013\\00A0\\00A0" counter(page) "\\00A0\\00A0\\2013"; font-family:'Century Gothic',CenturyGothic,sans-serif; font-size:9pt; font-weight:700; letter-spacing:0.34em; color:#9A9A9A; } }
 @media print{
@@ -8369,10 +8462,13 @@ function dvBuildDoc() {
 }
 
 async function dvOpen() {
-  try { await resolveImagesForExport(); } catch (e) { /* render anyway */ }
+  Loader.show('Opening design view…');
+  try { await resolveImagesForExport((f) => Loader.set(f * 0.85, 'Preparing images…')); } catch (e) { /* render anyway */ }
+  Loader.set(0.92, 'Laying out pages…');
   var frame = document.getElementById('dvFrame');
   frame.srcdoc = dvBuildDoc();
   document.getElementById('dvOverlay').classList.add('open');
+  Loader.done();
   // Focus the iframe so its element keyboard shortcuts ([ ] / + - / b) work
   // as soon as the surface opens.
   frame.addEventListener('load', function once() {
@@ -8843,9 +8939,14 @@ async function searchAllWorksheets() {
   const original = btn.textContent;
   btn.textContent = '⏳ Searching…';
   btn.disabled = true;
+  Loader.show('Searching all worksheets…');
   try {
     const matches = [];
+    const total = savedItemsCache.length || 1;
+    let scanned = 0;
     for (const meta of savedItemsCache) {
+      Loader.set(scanned / total, 'Searching all worksheets…');
+      scanned++;
       if (!meta || !meta.id) continue;
       let ws;
       try {
@@ -8886,6 +8987,7 @@ async function searchAllWorksheets() {
   } finally {
     btn.textContent = original;
     btn.disabled = false;
+    Loader.done();
   }
 }
 
@@ -9041,7 +9143,8 @@ onAuthStateChanged(fbAuth, async (user) => {
   // (inline editing turns on once the admin is signed in).
   renderEditor();
   renderPreview();
-  await refreshSavedList();
+  try { await refreshSavedList(); }
+  finally { if (!bootDone) { bootDone = true; Loader.done(); } }
   // If admin, one-shot migrate any worksheets saved before the shared collection was introduced.
   if (currentUser && isAdmin()) migrateLegacyWorksheets();
 });
@@ -9061,6 +9164,12 @@ document.getElementById('panelExpandBtn').addEventListener('click', () => setPan
 try {
   if (localStorage.getItem(PANEL_KEY) === '1') document.body.classList.add('panel-collapsed');
 } catch (_) {}
+
+// Show the loading bar until the first sign-in + worksheet-list load resolves
+// (with a safety timeout in case auth never fires, e.g. offline).
+let bootDone = false;
+Loader.show('Starting up…');
+setTimeout(() => { if (!bootDone) { bootDone = true; Loader.done(); } }, 8000);
 
 // Restore the last auto-saved worksheet if there is one; otherwise seed a
 // single empty question so the workflow is obvious. (Students get reset to an
