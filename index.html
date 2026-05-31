@@ -1234,6 +1234,16 @@
   .saved-item.worksheet-hidden .saved-item-name { color: var(--text-tertiary); }
   .icon-btn.eye-off { opacity: 0.35; }
   .icon-btn.eye-off:hover { opacity: 0.7; }
+  .icon-btn.lock-on { opacity: 1; }
+
+  /* A locked worksheet is read-only even for the admin: hide the controls that
+     would edit it in place or save over it. "Save as New" stays available so a
+     locked worksheet can still be branched into an editable copy. */
+  body.ws-locked.mode-admin #addQuestionBtn,
+  body.ws-locked.mode-admin #randomizeOrderBtn,
+  body.ws-locked.mode-admin #sortMenu,
+  body.ws-locked.mode-admin #saveSystemBtn,
+  body.ws-locked.mode-admin #addAllToDraftBtn { display: none !important; }
 
   /* ============================ ANSWER FIELD / KEY / VIDEO ============================ */
   .answer-field {
@@ -1733,6 +1743,11 @@
     color: #6D4C41;
     background: #FFF8E1;
     border-color: #FFE082;
+  }
+  .link-status.locked {
+    color: #4A148C;
+    background: #F3E5F5;
+    border-color: #CE93D8;
   }
 
   /* ============================ PREVIEW INSERT BAR ============================ */
@@ -3521,7 +3536,9 @@ function renderInstructionBlock(q, qIndex) {
 function previewEditingEnabled() {
   // Matches the left-hand editor: only the admin can author worksheets.
   // Practice mode is always read-only, even for the admin.
-  return isAdmin() && !practiceMode;
+  // A locked worksheet is read-only too — even for the admin — until it is
+  // unlocked or duplicated via "Save as New".
+  return isAdmin() && !practiceMode && !currentSavedLocked;
 }
 
 function applyImageFile(file, onDone) {
@@ -5309,9 +5326,11 @@ function loadJson(file) {
       // cloud worksheet that happened to be open before.
       currentSavedId = null;
       currentSavedTitle = null;
+      currentSavedLocked = false;
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
 syncCoverInputs();
+      applyLockedUi();
       seedUploadCacheFromState(state);
       hydrateImageRefs(state);
       renderEditor();
@@ -5550,6 +5569,7 @@ const ALLOWED_EMAIL = 'chungzhikai@gmail.com';
 let currentUser = null; // Firebase User object (or null)
 let currentSavedId = null; // id of the worksheet currently loaded from cloud, if any
 let currentSavedTitle = null; // title of that worksheet AS LOADED — guards against overwriting the wrong one
+let currentSavedLocked = false; // whether the loaded worksheet is locked — locked worksheets are read-only and cannot be saved over
 let savedItemsCache = []; // cached list for re-render
 let savedOrder = []; // stable display order of worksheet ids — editing a worksheet must not reshuffle the list
 
@@ -5630,8 +5650,8 @@ function refreshAuthUi() {
 
   // Students see a read-only worksheet preview, no admin controls.
   const studentRO = currentUser && !isAdmin();
-  titleInput.readOnly = studentRO;
-  subtitleInput.readOnly = studentRO;
+  titleInput.readOnly = studentRO || currentSavedLocked;
+  subtitleInput.readOnly = studentRO || currentSavedLocked;
   if (studentRO) {
     showAnswers = false;
     if (showAnswersToggle) showAnswersToggle.checked = false;
@@ -5823,11 +5843,19 @@ async function persistToSystem() {
   // 1. Find out how many chunks the previous version had so we can clear
   //    any orphans if the new version is shorter.
   let prevChunkCount = 0;
+  let prevHidden = false;
+  let prevLocked = false;
   try {
     const prevSnap = await retrying('read prev metadata',
       () => getDoc(doc(fbDb, 'worksheets', id)),
       { attempts: 2, timeoutMs: 8000 });
-    if (prevSnap.exists()) prevChunkCount = prevSnap.data().chunkCount || 0;
+    if (prevSnap.exists()) {
+      const pd = prevSnap.data();
+      prevChunkCount = pd.chunkCount || 0;
+      // The full-document write below would otherwise drop these flags.
+      prevHidden = !!pd.hidden;
+      prevLocked = !!pd.locked;
+    }
   } catch (_) { /* best-effort */ }
 
   // 2. Write every chunk doc in parallel (each with its own retry/timeout).
@@ -5852,7 +5880,9 @@ async function persistToSystem() {
     savedAt: serverTimestamp(),
     savedAtClient: new Date().toISOString(),
     sizeBytes: json.length,
-    schemaVersion: STATE_FORMAT_VERSION
+    schemaVersion: STATE_FORMAT_VERSION,
+    hidden: prevHidden,
+    locked: prevLocked
   }));
 
   // 4. Drop any leftover chunk docs from a longer previous save (parallel,
@@ -5943,6 +5973,17 @@ async function runSaveLoop() {
   if (forceNew) {
     currentSavedId = null;
     currentSavedTitle = null;
+    // "Save as New" always produces a fresh, editable (unlocked) worksheet.
+    currentSavedLocked = false;
+    applyLockedUi();
+  } else if (currentSavedLocked && currentSavedId) {
+    // The loaded worksheet is locked — never overwrite it. The admin must
+    // unlock it first, or use "Save as New" to branch an editable copy.
+    setSaveStatus('paused', { label: 'Locked — read-only' });
+    saveInFlight = false;
+    waiters.forEach((r) => r({ ok: false, reason: 'locked' }));
+    updateLinkStatus();
+    return;
   } else if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
     // Title changed since we opened this worksheet. Don't silently overwrite
     // a different worksheet — pause auto-save until the admin confirms.
@@ -5983,6 +6024,12 @@ async function saveToSystem(forceNew = false) {
   if (!currentUser) { alert('Please sign in with Google first.'); return; }
   if (!isAdmin()) {
     alert(`Cloud saving is restricted to ${ALLOWED_EMAIL}.`);
+    return;
+  }
+  if (!forceNew && currentSavedId && currentSavedLocked) {
+    alert('This worksheet is locked and cannot be saved over.\n\n' +
+          'Unlock it from the worksheet list first, or use "Save as New" to ' +
+          'create an editable copy.');
     return;
   }
   if (!forceNew && currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
@@ -6092,9 +6139,11 @@ async function loadFromSystem(id) {
     state = parsed;
     currentSavedId = id;
     currentSavedTitle = state.title || 'Untitled';
+    currentSavedLocked = !!data.locked;
     document.getElementById('worksheetTitle').value = state.title || '';
     document.getElementById('worksheetSubtitle').value = state.subtitle || '';
 syncCoverInputs();
+    applyLockedUi();
     seedUploadCacheFromState(state);
     hydrateImageRefs(state);
     if (isAdmin()) renderEditor();
@@ -6144,7 +6193,12 @@ async function deleteFromSystem(id) {
       }
     }
     await deleteDoc(doc(fbDb, 'worksheets', id));
-    if (currentSavedId === id) { currentSavedId = null; currentSavedTitle = null; }
+    if (currentSavedId === id) {
+      currentSavedId = null;
+      currentSavedTitle = null;
+      currentSavedLocked = false;
+      applyLockedUi();
+    }
     await refreshSavedList();
   } catch (e) {
     alert('Delete failed: ' + (e.message || e));
@@ -6213,10 +6267,13 @@ async function refreshSavedList() {
     const row = document.createElement('div');
     row.className = 'saved-item'
       + (it.hidden ? ' worksheet-hidden' : '')
+      + (it.locked ? ' worksheet-locked' : '')
       + (it.id === currentSavedId ? ' saved-item-current' : '');
     const name = document.createElement('div');
     name.className = 'saved-item-name';
-    name.textContent = (it.title || '(untitled)') + (it.hidden ? '  (hidden)' : '');
+    name.textContent = (it.locked ? '🔒 ' : '')
+      + (it.title || '(untitled)')
+      + (it.hidden ? '  (hidden)' : '');
     name.addEventListener('click', () => loadFromSystem(it.id));
     const meta = document.createElement('span');
     meta.className = 'saved-item-meta';
@@ -6233,6 +6290,13 @@ async function refreshSavedList() {
         () => toggleWorksheetHidden(it.id, !!it.hidden));
       if (it.hidden) eye.classList.add('eye-off');
       row.appendChild(eye);
+      const lock = makeIconBtn(it.locked ? '🔒' : '🔓',
+        it.locked
+          ? 'Locked — read-only. Click to unlock and allow edits / saving over it.'
+          : 'Unlocked — click to lock so it cannot be edited or saved over.',
+        () => toggleWorksheetLocked(it.id, !!it.locked));
+      if (it.locked) lock.classList.add('lock-on');
+      row.appendChild(lock);
       const del = makeIconBtn('✕', 'Delete', () => deleteFromSystem(it.id), true);
       row.appendChild(del);
     }
@@ -6251,15 +6315,37 @@ async function toggleWorksheetHidden(id, currentlyHidden) {
   }
 }
 
+// Toggle whether a saved worksheet is locked. A locked worksheet is read-only:
+// it cannot be saved over or edited until it is unlocked again.
+async function toggleWorksheetLocked(id, currentlyLocked) {
+  if (!isAdmin()) return;
+  try {
+    await setDoc(doc(fbDb, 'worksheets', id), { locked: !currentlyLocked }, { merge: true });
+    // Keep the open worksheet's UI in sync if it is the one being toggled.
+    if (currentSavedId === id) {
+      currentSavedLocked = !currentlyLocked;
+      applyLockedUi();
+      renderPreview();
+      updateLinkStatus();
+      setSaveStatus('idle');
+    }
+    await refreshSavedList();
+  } catch (e) {
+    alert('Could not change worksheet lock: ' + (e.message || e));
+  }
+}
+
 function newWorksheet() {
   if (state.questions.length > 0 && !confirm('Discard the current worksheet and start fresh?')) return;
   logActivity('before new worksheet');
   state = { title: 'New Worksheet', subtitle: '', questions: [] };
   currentSavedId = null;
   currentSavedTitle = null;
+  currentSavedLocked = false;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   syncCoverInputs();
+  applyLockedUi();
   addQuestion();
   updateLinkStatus();
   refreshSavedList();
@@ -6423,9 +6509,11 @@ function openDraft() {
   };
   currentSavedId = null;
   currentSavedTitle = null;
+  currentSavedLocked = false;
   document.getElementById('worksheetTitle').value = state.title;
   document.getElementById('worksheetSubtitle').value = '';
   syncCoverInputs();
+  applyLockedUi();
   // Draft images are stored as Storage refs (no inline base64) — fetch them
   // back so they show up in the editor/preview.
   hydrateImageRefs(state);
@@ -6485,6 +6573,8 @@ function runAutoSave() {
 
 function scheduleCloudAutoSave() {
   if (!isAdmin() || !currentSavedId) return;
+  // A locked worksheet never auto-saves — it is read-only.
+  if (currentSavedLocked) return;
   clearTimeout(cloudAutoSaveTimer);
   cloudAutoSaveTimer = setTimeout(() => requestCloudSave(), 1500);
 }
@@ -6646,9 +6736,11 @@ function restoreActivityEntry(index) {
   // Never auto-relink — the admin decides where the restored copy is saved.
   currentSavedId = null;
   currentSavedTitle = null;
+  currentSavedLocked = false;
   document.getElementById('worksheetTitle').value = state.title || '';
   document.getElementById('worksheetSubtitle').value = state.subtitle || '';
 syncCoverInputs();
+  applyLockedUi();
   seedUploadCacheFromState(state);
   hydrateImageRefs(state);
   renderEditor();
@@ -6656,9 +6748,30 @@ syncCoverInputs();
   updateLinkStatus();
 }
 
+/* Reflect the lock state of the loaded worksheet in the UI. A locked
+   worksheet is read-only for everyone: the body `ws-locked` class hides the
+   editing/overwrite controls (via CSS), and the title/subtitle inputs become
+   read-only. Callers that change the lock state of the OPEN worksheet should
+   also re-render the preview so inline editing handles appear/disappear. */
+function applyLockedUi() {
+  document.body.classList.toggle('ws-locked', !!currentSavedLocked);
+  const titleInput = document.getElementById('worksheetTitle');
+  const subtitleInput = document.getElementById('worksheetSubtitle');
+  // Don't fight the student read-only handling in refreshAuthUi.
+  const studentRO = currentUser && !isAdmin();
+  if (titleInput) titleInput.readOnly = studentRO || !!currentSavedLocked;
+  if (subtitleInput) subtitleInput.readOnly = studentRO || !!currentSavedLocked;
+}
+
 function updateLinkStatus() {
   const el = document.getElementById('linkStatus');
   if (!el) return;
+  if (currentSavedId && currentSavedLocked) {
+    el.textContent = '🔒 This worksheet is LOCKED — it is read-only and cannot be ' +
+      'saved over. Unlock it from the list to edit, or use "Save as New" to make an editable copy.';
+    el.className = 'link-status locked admin-only';
+    return;
+  }
   if (currentSavedId && (state.title || '') !== (currentSavedTitle || '')) {
     el.textContent = '⚠ Title changed since opening "' + currentSavedTitle + '". ' +
       'Auto cloud-save is PAUSED so it cannot overwrite that worksheet. ' +
@@ -6784,9 +6897,11 @@ async function searchAllWorksheets() {
     };
     currentSavedId = null;
     currentSavedTitle = null;
+    currentSavedLocked = false;
     document.getElementById('worksheetTitle').value = state.title;
     document.getElementById('worksheetSubtitle').value = state.subtitle;
     syncCoverInputs();
+    applyLockedUi();
     renderEditor();
     renderPreview();
     updateLinkStatus();
@@ -6865,6 +6980,8 @@ onAuthStateChanged(fbAuth, async (user) => {
   currentUser = user || null;
   currentSavedId = null;
   currentSavedTitle = null;
+  currentSavedLocked = false;
+  applyLockedUi();
   // For students, clear any in-progress editor state and let them pick from the library.
   if (currentUser && !isAdmin()) {
     state = { title: '', subtitle: '', questions: [] };
