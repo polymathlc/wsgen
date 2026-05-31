@@ -2267,6 +2267,11 @@
   }
   .rt-swatch:hover { transform: scale(1.12); }
   .rt-swatch-none { background: #fff; color: var(--text-tertiary, #8A8A8A); font-size: 0.7rem; line-height: 16px; }
+  /* Cells picked via Row / Col / All — tinted over any existing fill. */
+  .data-table td.dt-sel, .data-table th.dt-sel {
+    outline: 2px solid var(--accent-deep, #1E88E5); outline-offset: -2px;
+    box-shadow: inset 0 0 0 100vmax rgba(30,136,229,0.12);
+  }
 
   /* ===== Global loading bar ===== */
   .app-loader {
@@ -3885,6 +3890,7 @@ const previewSubtitleEl = document.getElementById('previewSubtitle');
 
 function renderPreview() {
   scheduleAutoSave();
+  if (typeof dtSelected !== 'undefined' && dtSelected) hideRtBar(); // selection points at DOM we're about to discard
   ensureCoverPreview();
   const coverOn = !!getCover().enabled;
   // The cover page replaces the worksheet's own title row — hide the h2
@@ -4213,14 +4219,85 @@ function attachInlineText(displayEl, getRaw, setRaw, placeholder) {
 const RT_HIGHLIGHTS = ['#FFF59D', '#C8E6C9', '#F8BBD0', '#BBDEFB', '#FFE0B2'];
 const RT_TEXTCOLORS = ['#1A1A1A', '#E53935', '#1E88E5', '#43A047', '#FB8C00'];
 const RT_CELLFILLS  = ['', '#F3F3F0', '#FFF59D', '#C8E6C9', '#F8BBD0', '#BBDEFB', '#FFE0B2'];
-let rtCurrent = null;   // { host, save, align(fn), fill(fn)|null }
+let rtCurrent = null;   // { host, save, align(fn), fill(fn)|null, tableSel:{el,table,r,c}|null }
 let rtBarEl = null;
 let rtHideTimer = null;
+// When a Row / Col / All selection is active, formatting applies to every cell
+// in it instead of the single focused cell. { el, table, cells:Set<"r,c"> }
+let dtSelected = null;
+
+function dtTd(table, r, c) {
+  return table.querySelector('td[data-r="' + r + '"][data-c="' + c + '"], th[data-r="' + r + '"][data-c="' + c + '"]');
+}
+function dtClearSelection() {
+  if (dtSelected && dtSelected.table) dtSelected.table.querySelectorAll('.dt-sel').forEach(td => td.classList.remove('dt-sel'));
+  dtSelected = null;
+}
+function dtHighlight() {
+  if (!dtSelected) return;
+  dtSelected.table.querySelectorAll('.dt-sel').forEach(td => td.classList.remove('dt-sel'));
+  dtSelected.cells.forEach(k => { const [r, c] = k.split(',').map(Number); const td = dtTd(dtSelected.table, r, c); if (td) td.classList.add('dt-sel'); });
+}
+// Pick the focused cell's whole row / column / table for bulk formatting.
+function dtSelectScope(scope) {
+  const ctx = rtCurrent && rtCurrent.tableSel;
+  if (!ctx) return;
+  normalizeTable(ctx.el);
+  const cols = tableColCount(ctx.el), rows = ctx.el.rows.length, cells = [];
+  if (scope === 'row') { for (let c = 0; c < cols; c++) cells.push(ctx.r + ',' + c); }
+  else if (scope === 'col') { for (let r = 0; r < rows; r++) cells.push(r + ',' + ctx.c); }
+  else { for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) cells.push(r + ',' + c); }
+  if (ctx.host) ctx.host.blur();           // leave edit mode; we're now formatting a group
+  dtSelected = { el: ctx.el, table: ctx.table, cells: new Set(cells) };
+  dtHighlight();
+  if (rtBarEl) rtBarEl.classList.add('open');
+  positionRtBarTo(ctx.table);
+}
+function dtForEachSelected(fn) {
+  if (!dtSelected) return;
+  dtSelected.cells.forEach(k => {
+    const [r, c] = k.split(',').map(Number);
+    const cell = dtSelected.el.rows[r] && dtSelected.el.rows[r][c];
+    const td = dtTd(dtSelected.table, r, c);
+    if (cell && td) fn(cell, td);
+  });
+  scheduleAutoSave();
+}
 
 function rtExec(cmd, val, useCss) {
   try { document.execCommand('styleWithCSS', false, !!useCss); } catch (_) {}
   try { document.execCommand(cmd, false, val); } catch (_) {}
   if (rtCurrent && rtCurrent.host) rtCurrent.host.dispatchEvent(new Event('input'));
+}
+// Toolbar actions: act on the whole selection if one is active, else the cell.
+function rtWrap(before, after) {
+  dtForEachSelected((cell, td) => {
+    const t = cell.t || '';
+    if (t.replace(/<[^>]*>/g, '').trim() === '') return;
+    cell.t = before + t + after;
+    td.innerHTML = formatTextWithFractions(cell.t);
+  });
+}
+function rtInline(tag, cmd) { if (dtSelected) rtWrap('<' + tag + '>', '</' + tag + '>'); else rtExec(cmd, null, false); }
+function rtTextColor(col) { if (dtSelected) rtWrap('<span style="color:' + col + '">', '</span>'); else rtExec('foreColor', col, true); }
+function rtHilite(col) { if (dtSelected) rtWrap('<span style="background-color:' + col + '">', '</span>'); else rtExec('hiliteColor', col, true); }
+function rtAlign(a) {
+  if (dtSelected) { dtForEachSelected((cell, td) => { cell.align = a; td.style.textAlign = a; }); }
+  else if (rtCurrent) rtCurrent.align(a);
+}
+function rtFill(col) {
+  if (dtSelected) { dtForEachSelected((cell, td) => { cell.bg = col || ''; td.style.backgroundColor = col || ''; }); dtHighlight(); }
+  else if (rtCurrent && rtCurrent.fill) rtCurrent.fill(col);
+}
+function rtClear() {
+  if (dtSelected) {
+    dtForEachSelected((cell, td) => {
+      const tmp = document.createElement('template'); tmp.innerHTML = cell.t || '';
+      cell.t = tmp.content.textContent; cell.bg = ''; cell.align = '';
+      td.innerHTML = formatTextWithFractions(cell.t); td.style.backgroundColor = ''; td.style.textAlign = '';
+    });
+    dtHighlight();
+  } else rtExec('removeFormat', null, false);
 }
 
 function buildRtBar() {
@@ -4278,12 +4355,12 @@ function buildRtBar() {
   return bar;
 }
 
-function positionRtBar(host) {
+function positionRtBarTo(anchorEl) {
   const bar = buildRtBar();
   bar.classList.add('open');
-  // Cell tools only make sense inside a table.
-  bar.classList.toggle('rt-show-cell', !!(rtCurrent && rtCurrent.fill));
-  const r = host.getBoundingClientRect();
+  // Cell-only tools (fill + Row/Col/All) show only for table cells.
+  bar.classList.toggle('rt-show-cell', !!((rtCurrent && rtCurrent.fill) || dtSelected));
+  const r = anchorEl.getBoundingClientRect();
   bar.style.visibility = 'hidden';
   const bw = bar.offsetWidth, bh = bar.offsetHeight;
   let top = r.top - bh - 8;
@@ -4293,20 +4370,43 @@ function positionRtBar(host) {
   bar.style.left = left + 'px';
   bar.style.visibility = '';
 }
-function hideRtBar() { if (rtBarEl) rtBarEl.classList.remove('open'); rtCurrent = null; }
+function positionRtBar(host) { positionRtBarTo(host); }
+function rtAnchorEl() {
+  if (dtSelected && dtSelected.table) return dtSelected.table;
+  if (rtCurrent && rtCurrent.host) return rtCurrent.host;
+  return null;
+}
+function hideRtBar() {
+  if (rtBarEl) rtBarEl.classList.remove('open');
+  rtCurrent = null;
+  dtClearSelection();
+}
 (function () {
-  const reflow = () => { if (rtCurrent && rtBarEl && rtBarEl.classList.contains('open')) positionRtBar(rtCurrent.host); };
+  const reflow = () => { const a = rtAnchorEl(); if (a && rtBarEl && rtBarEl.classList.contains('open')) positionRtBarTo(a); };
   window.addEventListener('scroll', reflow, true);
   window.addEventListener('resize', reflow);
 })();
 function scheduleHideRtBar() {
   clearTimeout(rtHideTimer);
   rtHideTimer = setTimeout(() => {
+    if (dtSelected) return;            // a Row/Col/All selection keeps the bar open
     const a = document.activeElement;
     if (a && (a.classList.contains('pv-rich') || (rtBarEl && rtBarEl.contains(a)))) return;
     hideRtBar();
   }, 200);
 }
+// Dismiss a Row/Col/All selection by clicking away or pressing Escape.
+(function () {
+  document.addEventListener('mousedown', (e) => {
+    if (!dtSelected) return;
+    if (rtBarEl && rtBarEl.contains(e.target)) return;          // using the toolbar
+    if (dtSelected.table && dtSelected.table.contains(e.target)) return; // re-clicking the table
+    hideRtBar();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (dtSelected && e.key === 'Escape') hideRtBar();
+  });
+})();
 
 // Rich contenteditable bound to a string field. opts: { align(fn), fill(fn) }.
 function attachRichText(host, getRaw, setRaw, placeholder, opts) {
@@ -4319,10 +4419,12 @@ function attachRichText(host, getRaw, setRaw, placeholder, opts) {
   host.addEventListener('focus', () => {
     // Edit on the raw form (literal "n/d"), not the rendered fraction spans.
     host.innerHTML = getRaw() || '';
+    dtClearSelection();                 // clicking a cell exits any Row/Col/All selection
     rtCurrent = {
       host, save,
       align: (a) => { opts.align ? opts.align(a) : (host.style.textAlign = a); save(); },
-      fill: opts.fill || null
+      fill: opts.fill || null,
+      tableSel: opts.tableSel || null
     };
     positionRtBar(host);
   });
@@ -5137,10 +5239,12 @@ function buildTablePreview(el, editable) {
       if (cell.bg) td.style.backgroundColor = cell.bg;
       if (cell.align) td.style.textAlign = cell.align;
       if (editable) {
+        td.dataset.r = ri; td.dataset.c = ci;
         attachRichText(td, () => cell.t || '', (v) => { cell.t = v; },
           isHead ? 'Heading' : 'Cell',
           { align: (a) => { cell.align = a; td.style.textAlign = a; },
-            fill: (col) => { cell.bg = col; td.style.backgroundColor = col || ''; scheduleAutoSave(); } });
+            fill: (col) => { cell.bg = col; td.style.backgroundColor = col || ''; scheduleAutoSave(); },
+            tableSel: { el, table, r: ri, c: ci } });
       }
       tr.appendChild(td);
     });
