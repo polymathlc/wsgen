@@ -4263,6 +4263,38 @@ function dtForEachSelected(fn) {
   });
   scheduleAutoSave();
 }
+// The cell last clicked/focused — the anchor for Shift-click range selection.
+let dtAnchor = null;   // { el, table, r, c }
+// Mark a multi-cell selection active and show the toolbar over the table.
+function dtSetSelection(el, table, cells) {
+  dtSelected = { el, table, cells: new Set(cells) };
+  dtHighlight();
+  // Give the toolbar's cell tools a context cell (the first selected).
+  if (cells.length) {
+    const [r, c] = cells[0].split(',').map(Number);
+    rtCurrent = rtCurrent || {};
+    rtCurrent.tableSel = { el, table, r, c, host: null };
+    if (!rtCurrent.fill) rtCurrent.fill = () => {};
+  }
+  if (rtBarEl) rtBarEl.classList.add('open');
+  positionRtBarTo(table);
+}
+// Select the rectangular block between two cells (inclusive, any direction).
+function dtSelectRange(el, table, r1, c1, r2, c2) {
+  normalizeTable(el);
+  const rlo = Math.min(r1, r2), rhi = Math.max(r1, r2);
+  const clo = Math.min(c1, c2), chi = Math.max(c1, c2);
+  const cells = [];
+  for (let r = rlo; r <= rhi; r++) for (let c = clo; c <= chi; c++) cells.push(r + ',' + c);
+  dtSetSelection(el, table, cells);
+}
+// Select every cell in the table.
+function dtSelectAll(el, table) {
+  normalizeTable(el);
+  const cols = tableColCount(el), cells = [];
+  for (let r = 0; r < el.rows.length; r++) for (let c = 0; c < cols; c++) cells.push(r + ',' + c);
+  dtSetSelection(el, table, cells);
+}
 
 function rtExec(cmd, val, useCss) {
   try { document.execCommand('styleWithCSS', false, !!useCss); } catch (_) {}
@@ -4323,32 +4355,39 @@ function buildRtBar() {
   };
 
   const g1 = group();
-  btn(g1, '<b>B</b>', 'Bold (Ctrl+B)', () => rtExec('bold', null, false));
-  btn(g1, '<i>I</i>', 'Italic (Ctrl+I)', () => rtExec('italic', null, false));
-  btn(g1, '<u>U</u>', 'Underline (Ctrl+U)', () => rtExec('underline', null, false));
-  btn(g1, 'x<sup>2</sup>', 'Superscript', () => rtExec('superscript', null, false));
-  btn(g1, 'x<sub>2</sub>', 'Subscript', () => rtExec('subscript', null, false));
+  btn(g1, '<b>B</b>', 'Bold (Ctrl+B)', () => rtInline('b', 'bold'));
+  btn(g1, '<i>I</i>', 'Italic (Ctrl+I)', () => rtInline('i', 'italic'));
+  btn(g1, '<u>U</u>', 'Underline (Ctrl+U)', () => rtInline('u', 'underline'));
+  btn(g1, 'x<sup>2</sup>', 'Superscript', () => rtInline('sup', 'superscript'));
+  btn(g1, 'x<sub>2</sub>', 'Subscript', () => rtInline('sub', 'subscript'));
 
   const g2 = group();
-  btn(g2, '⯇', 'Align left', () => { if (rtCurrent) rtCurrent.align('left'); });
-  btn(g2, '≡', 'Align centre', () => { if (rtCurrent) rtCurrent.align('center'); });
-  btn(g2, '⯈', 'Align right', () => { if (rtCurrent) rtCurrent.align('right'); });
-  btn(g2, '☰', 'Justify', () => { if (rtCurrent) rtCurrent.align('justify'); });
+  btn(g2, '⯇', 'Align left', () => rtAlign('left'));
+  btn(g2, '≡', 'Align centre', () => rtAlign('center'));
+  btn(g2, '⯈', 'Align right', () => rtAlign('right'));
+  btn(g2, '☰', 'Justify', () => rtAlign('justify'));
 
   const g3 = group();
   const aLbl = document.createElement('span'); aLbl.className = 'rt-lbl'; aLbl.textContent = 'A'; g3.appendChild(aLbl);
-  RT_TEXTCOLORS.forEach(c => swatch(g3, c, 'Text colour', (col) => rtExec('foreColor', col, true)));
+  RT_TEXTCOLORS.forEach(c => swatch(g3, c, 'Text colour', (col) => rtTextColor(col)));
 
   const g4 = group();
   const hLbl = document.createElement('span'); hLbl.className = 'rt-lbl'; hLbl.textContent = '🖍'; g4.appendChild(hLbl);
-  RT_HIGHLIGHTS.forEach(c => swatch(g4, c, 'Highlight', (col) => rtExec('hiliteColor', col, true)));
+  RT_HIGHLIGHTS.forEach(c => swatch(g4, c, 'Highlight', (col) => rtHilite(col)));
 
   const g5 = group(); g5.classList.add('rt-cellgroup');
   const fLbl = document.createElement('span'); fLbl.className = 'rt-lbl'; fLbl.textContent = 'Cell'; g5.appendChild(fLbl);
-  RT_CELLFILLS.forEach(c => swatch(g5, c, c ? 'Cell fill' : 'No fill', (col) => { if (rtCurrent && rtCurrent.fill) rtCurrent.fill(col); }));
+  RT_CELLFILLS.forEach(c => swatch(g5, c, c ? 'Cell fill' : 'No fill', (col) => rtFill(col)));
+
+  // Select the focused cell's whole row / column / table (table cells only).
+  const gs = group(); gs.classList.add('rt-cellgroup');
+  const sLbl = document.createElement('span'); sLbl.className = 'rt-lbl'; sLbl.textContent = 'Select'; gs.appendChild(sLbl);
+  btn(gs, 'Row', 'Select this row, then format', () => dtSelectScope('row'));
+  btn(gs, 'Col', 'Select this column, then format', () => dtSelectScope('col'));
+  btn(gs, 'All', 'Select all cells, then format', () => dtSelectScope('all'));
 
   const g6 = group();
-  btn(g6, '⌫', 'Clear inline formatting', () => { rtExec('removeFormat', null, false); });
+  btn(g6, '⌫', 'Clear formatting', () => rtClear());
 
   document.body.appendChild(bar);
   rtBarEl = bar;
@@ -4395,6 +4434,18 @@ function scheduleHideRtBar() {
     hideRtBar();
   }, 200);
 }
+// Dismiss a multi-cell selection by clicking outside the table/toolbar, or Esc.
+(function () {
+  document.addEventListener('mousedown', (e) => {
+    if (!dtSelected) return;
+    if (rtBarEl && rtBarEl.contains(e.target)) return;                 // using the toolbar
+    if (dtSelected.table && dtSelected.table.contains(e.target)) return; // re-clicking the table
+    hideRtBar();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (dtSelected && e.key === 'Escape') hideRtBar();
+  });
+})();
 // Dismiss a Row/Col/All selection by clicking away or pressing Escape.
 (function () {
   document.addEventListener('mousedown', (e) => {
@@ -5240,6 +5291,25 @@ function buildTablePreview(el, editable) {
       if (cell.align) td.style.textAlign = cell.align;
       if (editable) {
         td.dataset.r = ri; td.dataset.c = ci;
+        // Shift-click extends a rectangular selection from the anchor cell.
+        // A plain click (mousedown without Shift) sets a fresh anchor.
+        td.addEventListener('mousedown', (e) => {
+          if (e.shiftKey && dtAnchor && dtAnchor.el === el) {
+            e.preventDefault();
+            dtSelectRange(el, table, dtAnchor.r, dtAnchor.c, ri, ci);
+          } else {
+            dtAnchor = { el, table, r: ri, c: ci };
+            if (dtSelected) dtClearSelection();
+          }
+        });
+        // Ctrl/Cmd+A inside a cell selects every cell instead of the text.
+        td.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && (e.key || '').toLowerCase() === 'a') {
+            e.preventDefault();
+            td.blur();
+            dtSelectAll(el, table);
+          }
+        });
         attachRichText(td, () => cell.t || '', (v) => { cell.t = v; },
           isHead ? 'Heading' : 'Cell',
           { align: (a) => { cell.align = a; td.style.textAlign = a; },
@@ -5270,6 +5340,15 @@ function buildTablePreview(el, editable) {
     tools.appendChild(mk('− Row', 'Remove the last row', () => tableDelRow(el)));
     tools.appendChild(mk(el.headerRow ? '✓ Header' : 'Header',
       'Toggle a bold header row', () => { el.headerRow = !el.headerRow; }));
+    // Select-all button: doesn't re-render (that would drop the selection) —
+    // it just marks every cell and opens the formatting toolbar.
+    const selAllBtn = document.createElement('button');
+    selAllBtn.type = 'button';
+    selAllBtn.className = 'dt-tool-btn';
+    selAllBtn.textContent = '▦ Select all';
+    selAllBtn.title = 'Select every cell, then format them together (or press Ctrl+A inside a cell)';
+    selAllBtn.addEventListener('click', (e) => { e.stopPropagation(); dtSelectAll(el, table); });
+    tools.appendChild(selAllBtn);
     wrap.appendChild(tools);
   }
   return wrap;
