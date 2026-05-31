@@ -1990,6 +1990,99 @@
   .cs-btn.cs-close { margin-left: auto; }
   .cs-toolbar-spacer { flex: 1; }
 
+  .cs-main { flex: 1; display: flex; min-height: 0; }
+
+  /* ---- left sidebar: the draft-question picker ---- */
+  .cs-sidebar {
+    width: 300px; flex-shrink: 0;
+    display: flex; flex-direction: column; min-height: 0;
+    background: var(--bg-primary, #fff);
+    border-right: 1px solid var(--border-medium, #D4D4CF);
+  }
+  .cs-sidebar-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px 6px;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-secondary, #5C5C5C);
+  }
+  .cs-qcount {
+    background: var(--accent-bg, #E3F2FD); color: var(--accent-deep, #1E88E5);
+    border-radius: 10px; padding: 1px 8px; font-size: 0.72rem;
+  }
+  .cs-search {
+    margin: 0 12px 8px; padding: 7px 10px;
+    border: 1px solid var(--border-medium, #D4D4CF); border-radius: 8px;
+    font-size: 0.85rem; font-family: inherit;
+  }
+  .cs-search:focus { outline: none; border-color: var(--accent-dark, #42A5F5); }
+  .cs-qlist { flex: 1; overflow-y: auto; padding: 0 8px 8px; min-height: 80px; }
+  .cs-qitem {
+    display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center;
+    padding: 8px 10px; margin-bottom: 6px;
+    border: 1px solid var(--border-subtle, #E8E8E4); border-radius: 8px;
+    background: var(--bg-secondary, #FAFAFA); cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease;
+  }
+  .cs-qitem:hover { border-color: var(--accent-base, #64B5F6); }
+  .cs-qitem.selected { border-color: var(--accent-deep, #1E88E5); background: var(--accent-bg, #E3F2FD); }
+  .cs-qitem.added { opacity: 0.62; }
+  .cs-qitem-main { min-width: 0; }
+  .cs-qitem-src {
+    font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--text-tertiary, #8A8A8A);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .cs-qitem-text {
+    font-size: 0.8rem; color: var(--text-primary, #1A1A1A);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cs-qitem-text .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1; font-size: 0.85em; }
+  .cs-qitem-badges { font-size: 0.6rem; color: var(--accent-deep, #1E88E5); margin-top: 2px; }
+  .cs-qitem-add {
+    width: 30px; height: 30px; flex-shrink: 0; border-radius: 7px;
+    border: 1px solid var(--accent-dark, #42A5F5); background: var(--accent-deep, #1E88E5);
+    color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .cs-qitem-add:hover { background: var(--accent-dark, #42A5F5); }
+  .cs-qitem.added .cs-qitem-add {
+    background: var(--correct-bg, #F1F8E9); color: var(--correct-dark, #43A047);
+    border-color: var(--correct-base, #66BB6A);
+  }
+  .cs-qlist-empty { padding: 18px 12px; color: var(--text-tertiary, #8A8A8A); font-size: 0.82rem; font-style: italic; text-align: center; }
+
+  /* ---- preview pane (selected question, full) ---- */
+  .cs-preview {
+    flex-shrink: 0; max-height: 42%; overflow-y: auto;
+    border-top: 1px solid var(--border-medium, #D4D4CF);
+    background: var(--bg-soft, #F7F9FC);
+    padding: 12px;
+  }
+  .cs-preview-empty { color: var(--text-tertiary, #8A8A8A); font-size: 0.82rem; font-style: italic; text-align: center; padding: 16px 8px; }
+  .cs-preview-card {
+    background: #fff; border: 1px solid var(--border-subtle, #E8E8E4);
+    border-radius: 8px; padding: 10px 12px; font-size: 0.82rem; line-height: 1.4;
+  }
+  .cs-preview-card .cs-q-img { text-align: center; margin-top: 6px; }
+  .cs-preview-card .cs-q-img img { max-width: 100%; max-height: 180px; margin: 0 auto; }
+  .cs-preview-ans {
+    margin-top: 8px; padding: 6px 8px; border-radius: 6px;
+    background: var(--correct-bg, #F1F8E9); font-size: 0.82rem;
+  }
+  .cs-preview-ans .cs-ans-label { font-weight: 700; color: var(--correct-dark, #43A047); }
+  .cs-preview .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1; font-size: 0.9em; }
+  .cs-preview .frac-num { border-bottom: 1.2px solid currentColor; padding: 0 3px; }
+  .cs-preview .frac-den { padding: 0 3px; }
+  .cs-preview-btn {
+    margin-top: 10px; width: 100%; padding: 9px;
+    border: none; border-radius: 8px; background: var(--accent-deep, #1E88E5);
+    color: #fff; font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: inherit;
+  }
+  .cs-preview-btn:hover { background: var(--accent-dark, #42A5F5); }
+  .cs-preview-btn.added { background: var(--correct-dark, #43A047); }
+  .cs-preview-btn.added:hover { background: var(--correct-base, #66BB6A); }
+
   .cs-canvas {
     flex: 1; overflow: auto;
     padding: 24px;
@@ -2133,7 +2226,8 @@
   @media print {
     body.cs-printing > *:not(.cs-overlay) { display: none !important; }
     body.cs-printing .cs-overlay { position: static; background: #fff; }
-    body.cs-printing .cs-toolbar { display: none !important; }
+    body.cs-printing .cs-toolbar, body.cs-printing .cs-sidebar { display: none !important; }
+    body.cs-printing .cs-main { display: block; }
     body.cs-printing .cs-canvas { padding: 0; gap: 0; display: block; overflow: visible; }
     body.cs-printing .cs-page {
       box-shadow: none; border-radius: 0; background-image: none;
@@ -2248,7 +2342,7 @@
 <div class="cs-overlay" id="cheatSheetOverlay">
   <div class="cs-toolbar">
     <h2>🧾 Cheat Sheet
-      <small>Drag &amp; resize the draft questions onto a printable page</small>
+      <small>Add questions from the left · drag &amp; resize to fit (hold Shift for free positioning)</small>
     </h2>
     <div class="cs-tool-group">
       <label>Page</label>
@@ -2266,14 +2360,28 @@
       <label>Columns</label>
       <input type="number" id="csCols" min="1" max="6" step="1" value="2" />
     </div>
-    <button class="cs-btn" id="csRepackBtn" title="Auto-arrange every tile back into a tidy grid">▦ Auto-pack</button>
-    <button class="cs-btn" id="csReloadDraftBtn" title="Rebuild the cheat sheet from the current draft questions">↻ Rebuild from draft</button>
+    <button class="cs-btn" id="csAddAllBtn" title="Add every draft question that isn't on the sheet yet">➕ Add all</button>
+    <button class="cs-btn" id="csRepackBtn" title="Re-arrange the tiles already on the sheet back into a tidy grid">▦ Auto-pack</button>
+    <button class="cs-btn" id="csReloadDraftBtn" title="Refresh the text of the placed tiles from the draft (keeps your edits)">↻ Sync from draft</button>
     <button class="cs-btn" id="csToggleAnswersBtn" title="Show or hide every answer at once">👁 Show all answers</button>
     <div class="cs-toolbar-spacer"></div>
     <button class="cs-btn cs-btn-primary" id="csPrintBtn">🖨 Print / PDF</button>
     <button class="cs-btn cs-close" id="csCloseBtn">✕ Close</button>
   </div>
-  <div class="cs-canvas" id="csCanvas"></div>
+  <div class="cs-main">
+    <aside class="cs-sidebar">
+      <div class="cs-sidebar-head">
+        <span>Draft questions</span>
+        <span class="cs-qcount" id="csQCount">0</span>
+      </div>
+      <input type="text" class="cs-search" id="csSearch" placeholder="🔍 Search questions…" />
+      <div class="cs-qlist" id="csQList"></div>
+      <div class="cs-preview" id="csPreview">
+        <div class="cs-preview-empty">Click a question to preview it, then add it to the sheet.</div>
+      </div>
+    </aside>
+    <div class="cs-canvas" id="csCanvas"></div>
+  </div>
 </div>
 
 <script type="module">
@@ -6902,66 +7010,147 @@ function csExtract(q, idx) {
   };
 }
 
-/* Place every tile into a uniform grid; pages are added as the grid fills.
-   Tiles that have a saved layout (same qId) keep their position/size. */
-function csAutoPack(force) {
+/* The canonical layout grid. Auto-pack, the per-question "add", and the
+   drag/resize snapping ALL derive their geometry from this single source, so
+   a dragged tile lands exactly where auto-pack would put it. */
+function csGrid() {
   const dims = csPageDims();
   const cols = Math.max(1, Math.min(6, cheat.cols | 0 || 2));
   const usableW = dims.w - CS_MARGIN * 2;
   const colW = (usableW - (cols - 1) * CS_GAP) / cols;
-  const rowH = 60; // mm default tile height
+  const rowH = 60; // mm default tile height (one grid row)
   const usableH = dims.h - CS_TOP - CS_MARGIN;
   const rowsPerPage = Math.max(1, Math.floor((usableH + CS_GAP) / (rowH + CS_GAP)));
-  const perPage = cols * rowsPerPage;
+  return {
+    dims, cols, colW, rowH, rowsPerPage,
+    ox: CS_MARGIN, oy: CS_TOP,
+    stepX: colW + CS_GAP, stepY: rowH + CS_GAP,
+    perPage: cols * rowsPerPage,
+  };
+}
+
+/* Grid cell (page/x/y) for the n-th tile in reading order. */
+function csCellFor(n) {
+  const g = csGrid();
+  const page = Math.floor(n / g.perPage);
+  const slot = n % g.perPage;
+  const row = Math.floor(slot / g.cols);
+  const col = slot % g.cols;
+  return {
+    page,
+    x: round1cs(g.ox + col * g.stepX),
+    y: round1cs(g.oy + row * g.stepY),
+    w: round1cs(g.colW),
+    h: g.rowH,
+  };
+}
+
+/* Place tiles into the uniform grid; pages are added as it fills.
+   With force=false, only tiles that have never been placed are positioned. */
+function csAutoPack(force) {
   cheat.tiles.forEach((t, i) => {
     if (!force && t._placed) return;
-    const page = Math.floor(i / perPage);
-    const slot = i % perPage;
-    const row = Math.floor(slot / cols);
-    const col = slot % cols;
-    t.page = page;
-    t.x = round1cs(CS_MARGIN + col * (colW + CS_GAP));
-    t.y = round1cs(CS_TOP + row * (rowH + CS_GAP));
-    t.w = round1cs(colW);
-    t.h = rowH;
+    const cell = csCellFor(i);
+    t.page = cell.page; t.x = cell.x; t.y = cell.y; t.w = cell.w; t.h = cell.h;
     t._placed = true;
   });
 }
 
 function round1cs(n) { return Math.round(n * 10) / 10; }
 
-/* Build the tile list from the live draft, applying any saved layout. */
-function csBuildTiles() {
-  const draft = loadDraft();
+/* All real (non-instruction) draft questions, in draft order. */
+function csDraftQuestions() {
+  return loadDraft().filter(q => !isInstruction(q));
+}
+
+/* Make a tile object from a draft question, applying any saved layout/edits. */
+function csMakeTile(q, idx, lay) {
+  const ext = csExtract(q, idx);
+  const qEdited = !!(lay && typeof lay.q === 'string');
+  const aEdited = !!(lay && typeof lay.a === 'string');
+  return {
+    id: newId(),
+    qId: ext.qId,
+    num: ext.num,
+    src: ext.src,
+    // Prefer the cheat-sheet edit (if any); otherwise the live draft text.
+    questionHtml: qEdited ? lay.q : ext.questionHtml,
+    imgUrl: ext.imgUrl,
+    answerHtml: aEdited ? lay.a : ext.answerHtml,
+    qEdited, aEdited,
+    showAnswer: lay ? !!lay.showAnswer : false,
+    page: lay ? (lay.page | 0) : 0,
+    x: lay ? lay.x : 0,
+    y: lay ? lay.y : 0,
+    w: lay ? lay.w : 0,
+    h: lay ? lay.h : 0,
+    _placed: !!lay,
+  };
+}
+
+/* On open: re-create the tiles that were previously placed on the sheet.
+   A question is "on the sheet" iff it has a saved layout entry — questions
+   are otherwise added one at a time from the sidebar. */
+function csBuildFromSaved() {
   const saved = csLoadLayout();
   const layout = (saved && saved.layout) || {};
-  cheat.tiles = draft
-    .filter(q => !isInstruction(q))
-    .map((q, i) => {
-      const ext = csExtract(q, i);
-      const lay = layout[ext.qId];
-      const qEdited = !!(lay && typeof lay.q === 'string');
-      const aEdited = !!(lay && typeof lay.a === 'string');
-      return {
-        id: newId(),
-        qId: ext.qId,
-        num: ext.num,
-        src: ext.src,
-        // Prefer the cheat-sheet edit (if any); otherwise the live draft text.
-        questionHtml: qEdited ? lay.q : ext.questionHtml,
-        imgUrl: ext.imgUrl,
-        answerHtml: aEdited ? lay.a : ext.answerHtml,
-        qEdited, aEdited,
-        showAnswer: lay ? !!lay.showAnswer : false,
-        page: lay ? (lay.page | 0) : 0,
-        x: lay ? lay.x : 0,
-        y: lay ? lay.y : 0,
-        w: lay ? lay.w : 0,
-        h: lay ? lay.h : 0,
-        _placed: !!lay,
-      };
-    });
+  cheat.tiles = csDraftQuestions()
+    .map((q, i) => ({ q, i }))
+    .filter(({ q }) => layout[q.id])
+    .map(({ q, i }) => csMakeTile(q, i, layout[q.id]));
   csAutoPack(false);
+}
+
+/* Add one draft question to the sheet (no-op if it's already there). */
+function csAddQuestion(qId, { silent } = {}) {
+  if (cheat.tiles.some(t => t.qId === qId)) return false;
+  const qs = csDraftQuestions();
+  const idx = qs.findIndex(q => q.id === qId);
+  if (idx < 0) return false;
+  const t = csMakeTile(qs[idx], idx, null);
+  const cell = csCellFor(cheat.tiles.length); // append to the next free grid cell
+  t.page = cell.page; t.x = cell.x; t.y = cell.y; t.w = cell.w; t.h = cell.h; t._placed = true;
+  cheat.tiles.push(t);
+  if (!silent) {
+    csSaveLayout();
+    csRenderCanvas();
+    csRenderSidebar();
+    csHydrateImages();
+  }
+  return true;
+}
+
+/* Add every draft question that isn't on the sheet yet. */
+function csAddAll() {
+  let added = 0;
+  csDraftQuestions().forEach(q => { if (csAddQuestion(q.id, { silent: true })) added++; });
+  csSaveLayout();
+  csRenderCanvas();
+  csRenderSidebar();
+  csHydrateImages();
+  return added;
+}
+
+/* Refresh the text of the placed tiles from the draft, preserving manual
+   edits, position and size. */
+function csSyncFromDraft() {
+  const qs = csDraftQuestions();
+  cheat.tiles.forEach(t => {
+    const idx = qs.findIndex(q => q.id === t.qId);
+    if (idx < 0) return;
+    const ext = csExtract(qs[idx], idx);
+    t.num = ext.num;
+    t.src = ext.src;
+    if (ext.imgUrl) t.imgUrl = ext.imgUrl;
+    if (!t.qEdited) t.questionHtml = ext.questionHtml;
+    if (!t.aEdited) t.answerHtml = ext.answerHtml;
+  });
+  // Drop tiles whose question no longer exists in the draft.
+  cheat.tiles = cheat.tiles.filter(t => qs.some(q => q.id === t.qId));
+  csSaveLayout();
+  csRenderCanvas();
+  csRenderSidebar();
+  csHydrateImages();
 }
 
 /* Re-fetch images that live in Cloud Storage (draft stores refs, not base64),
@@ -7000,7 +7189,81 @@ function csHydrateImages() {
         else csRenderCanvas();
       }
     });
+    // The sidebar/preview also show thumbnails, so refresh them too.
+    csRenderSidebar();
+    csRenderPreview();
   });
+}
+
+/* ---- sidebar: list of draft questions to add one at a time ---- */
+let csPreviewQid = null;
+let csSearchTerm = '';
+
+function csStrip(html) {
+  return (html || '').replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ').trim();
+}
+
+function csRenderSidebar() {
+  const list = document.getElementById('csQList');
+  const count = document.getElementById('csQCount');
+  if (!list) return;
+  const qs = csDraftQuestions();
+  const added = new Set(cheat.tiles.map(t => t.qId));
+  if (count) count.textContent = `${added.size}/${qs.length}`;
+  const term = csSearchTerm.trim().toLowerCase();
+  list.innerHTML = '';
+  let shown = 0;
+  qs.forEach((q, i) => {
+    const ext = csExtract(q, i);
+    const plain = csStrip(ext.questionHtml);
+    if (term && !(plain.toLowerCase().includes(term) || (ext.src || '').toLowerCase().includes(term))) return;
+    shown++;
+    const isAdded = added.has(q.id);
+    const badges = [];
+    if (ext.imgUrl) badges.push('📷 picture');
+    if (ext.answerHtml) badges.push('✔ answer');
+    const row = document.createElement('div');
+    row.className = 'cs-qitem' + (isAdded ? ' added' : '') + (csPreviewQid === q.id ? ' selected' : '');
+    row.dataset.qid = q.id;
+    row.innerHTML = `
+      <div class="cs-qitem-main">
+        <div class="cs-qitem-src">${escapeHtml(ext.src || ('Question ' + ext.num))}</div>
+        <div class="cs-qitem-text">${ext.num}. ${escapeHtml(plain || '(no text)')}</div>
+        ${badges.length ? `<div class="cs-qitem-badges">${badges.join(' · ')}</div>` : ''}
+      </div>
+      <button class="cs-qitem-add" data-cs-add="${q.id}" title="${isAdded ? 'Already on the sheet' : 'Add to the sheet'}">${isAdded ? '✓' : '+'}</button>`;
+    list.appendChild(row);
+  });
+  if (shown === 0) {
+    list.innerHTML = `<div class="cs-qlist-empty">${qs.length ? 'No questions match your search.' : 'The draft is empty — collect questions with 📋 first.'}</div>`;
+  }
+}
+
+function csRenderPreview() {
+  const pane = document.getElementById('csPreview');
+  if (!pane) return;
+  const qs = csDraftQuestions();
+  const i = csPreviewQid ? qs.findIndex(q => q.id === csPreviewQid) : -1;
+  if (i < 0) {
+    csPreviewQid = null;
+    pane.innerHTML = `<div class="cs-preview-empty">Click a question to preview it, then add it to the sheet.</div>`;
+    return;
+  }
+  const ext = csExtract(qs[i], i);
+  const isAdded = cheat.tiles.some(t => t.qId === csPreviewQid);
+  let html = `<div class="cs-preview-card">`;
+  html += `<div class="cs-qitem-src" style="margin-bottom:4px;">${escapeHtml(ext.src || ('Question ' + ext.num))}</div>`;
+  html += `<div><span class="cs-q-num">${ext.num}.</span> ${ext.questionHtml}</div>`;
+  if (ext.imgUrl) html += `<div class="cs-q-img"><img src="${ext.imgUrl}" alt="" /></div>`;
+  if (ext.answerHtml) html += `<div class="cs-preview-ans"><span class="cs-ans-label">Ans:</span> ${ext.answerHtml}</div>`;
+  html += `</div>`;
+  html += isAdded
+    ? `<button class="cs-preview-btn added" disabled>✓ Already on the cheat sheet</button>`
+    : `<button class="cs-preview-btn" data-cs-add="${csPreviewQid}">➕ Add to cheat sheet</button>`;
+  pane.innerHTML = html;
 }
 
 function csRenderCanvas() {
@@ -7013,9 +7276,9 @@ function csRenderCanvas() {
     empty.className = 'cs-empty-state';
     empty.innerHTML = `
       <div class="cs-empty-icon">🧾</div>
-      <h3>Your draft is empty</h3>
-      <div>Click 📋 on any question (or “Add all to Draft”) to collect questions,
-      then reopen the cheat sheet to lay them out.</div>`;
+      <h3>No questions on the sheet yet</h3>
+      <div>Pick questions from the list on the left with the <b>+</b> button to
+      drop them onto the page — or use <b>➕ Add all</b> in the toolbar.</div>`;
     canvas.appendChild(empty);
     return;
   }
@@ -7137,18 +7400,30 @@ function csOnPointerMove(e) {
   if (!d) return;
   const dxMm = (e.clientX - d.startX) / d.pxPerMm;
   const dyMm = (e.clientY - d.startY) / d.pxPerMm;
-  const snap = v => Math.round(v / CS_SNAP) * CS_SNAP;
+  // Snap to the SAME grid auto-pack uses, so dragged/resized tiles line up
+  // exactly with the default layout. Hold Shift for free (fine) positioning.
+  const g = csGrid();
+  const free = e.shiftKey;
+  const fine = v => Math.round(v / CS_SNAP) * CS_SNAP;
+  // nearest grid line for a tile edge
+  const snapTo = (v, origin, step) => origin + Math.round((v - origin) / step) * step;
+  // nearest whole-span size (k cells incl. inter-cell gaps)
+  const snapSpan = (v, cell, step, max) => {
+    let k = Math.max(1, Math.round((v + CS_GAP) / step));
+    if (max) k = Math.min(k, max);
+    return k * cell + (k - 1) * CS_GAP;
+  };
   if (d.mode === 'drag') {
-    let nx = snap(d.ox + dxMm);
-    let ny = snap(d.oy + dyMm);
+    let nx = free ? fine(d.ox + dxMm) : snapTo(d.ox + dxMm, g.ox, g.stepX);
+    let ny = free ? fine(d.oy + dyMm) : snapTo(d.oy + dyMm, g.oy, g.stepY);
     nx = Math.max(0, Math.min(nx, d.dims.w - d.t.w));
     ny = Math.max(0, Math.min(ny, d.dims.h - d.t.h));
     d.t.x = round1cs(nx); d.t.y = round1cs(ny);
     d.tileEl.style.left = d.t.x + 'mm';
     d.tileEl.style.top = d.t.y + 'mm';
   } else {
-    let nw = snap(d.ow + dxMm);
-    let nh = snap(d.oh + dyMm);
+    let nw = free ? fine(d.ow + dxMm) : snapSpan(d.ow + dxMm, g.colW, g.stepX, g.cols);
+    let nh = free ? fine(d.oh + dyMm) : snapSpan(d.oh + dyMm, g.rowH, g.stepY, 0);
     nw = Math.max(25, Math.min(nw, d.dims.w - d.t.x));
     nh = Math.max(20, Math.min(nh, d.dims.h - d.t.y));
     d.t.w = round1cs(nw); d.t.h = round1cs(nh);
@@ -7168,6 +7443,8 @@ function csRemoveTile(tileId) {
   cheat.tiles = cheat.tiles.filter(t => t.id !== tileId);
   csSaveLayout();
   csRenderCanvas();
+  csRenderSidebar();
+  csRenderPreview();
 }
 
 /* ---- inline editing of the question / answer (cheat-sheet only) ---- */
@@ -7228,8 +7505,14 @@ function csOpen() {
   document.getElementById('csOrient').value = cheat.orientation;
   document.getElementById('csCols').value = String(cheat.cols);
   csSyncAnswerBtn();
-  csBuildTiles();
+  csPreviewQid = null;
+  csSearchTerm = '';
+  const searchEl = document.getElementById('csSearch');
+  if (searchEl) searchEl.value = '';
+  csBuildFromSaved();
   csRenderCanvas();
+  csRenderSidebar();
+  csRenderPreview();
   csHydrateImages();
   document.getElementById('cheatSheetOverlay').classList.add('open');
 }
@@ -7672,16 +7955,30 @@ document.getElementById('cheatSheetBtn').addEventListener('click', () => {
 });
 document.getElementById('csCloseBtn').addEventListener('click', csClose);
 document.getElementById('csPrintBtn').addEventListener('click', csPrint);
+document.getElementById('csAddAllBtn').addEventListener('click', () => {
+  const n = csAddAll();
+  if (n === 0) alert('Every draft question is already on the cheat sheet.');
+});
 document.getElementById('csRepackBtn').addEventListener('click', () => {
   cheat.cols = Math.max(1, Math.min(6, parseInt(document.getElementById('csCols').value, 10) || 2));
   csAutoPack(true);
   csSaveLayout();
   csRenderCanvas();
 });
-document.getElementById('csReloadDraftBtn').addEventListener('click', () => {
-  csBuildTiles();
-  csRenderCanvas();
-  csHydrateImages();
+document.getElementById('csReloadDraftBtn').addEventListener('click', csSyncFromDraft);
+document.getElementById('csQList').addEventListener('click', (e) => {
+  const addBtn = e.target.closest('[data-cs-add]');
+  if (addBtn) { csAddQuestion(addBtn.dataset.csAdd); return; }
+  const row = e.target.closest('.cs-qitem');
+  if (row) { csPreviewQid = row.dataset.qid; csRenderSidebar(); csRenderPreview(); }
+});
+document.getElementById('csPreview').addEventListener('click', (e) => {
+  const addBtn = e.target.closest('[data-cs-add]');
+  if (addBtn) csAddQuestion(addBtn.dataset.csAdd);
+});
+document.getElementById('csSearch').addEventListener('input', (e) => {
+  csSearchTerm = e.target.value || '';
+  csRenderSidebar();
 });
 document.getElementById('csToggleAnswersBtn').addEventListener('click', () => {
   cheat.showAll = !cheat.showAll;
