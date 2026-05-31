@@ -2221,6 +2221,19 @@
   .cs-guide.v { width: 1px; top: 0; bottom: 0; }
   .cs-guide.h { height: 1px; left: 0; right: 0; }
 
+  /* ===== Design / Layout view (A4 design surface in an isolated iframe) ===== */
+  .dv-overlay { position: fixed; inset: 0; z-index: 1900; background: #71777d; display: none; }
+  .dv-overlay.open { display: block; }
+  .dv-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #71777d; }
+  .dv-close {
+    position: absolute; top: 12px; right: 16px; z-index: 5;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border: none; border-radius: 999px; cursor: pointer;
+    background: #1A1A1A; color: #fff; font-family: inherit; font-size: 0.85rem; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .dv-close:hover { background: #000; }
+
   .cs-empty-state {
     margin: auto; text-align: center; color: var(--text-tertiary, #8A8A8A);
     max-width: 360px;
@@ -2303,6 +2316,7 @@
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="cheatSheetBtn" title="Lay out the draft questions as drag-and-resize tiles on a printable cheat sheet">🧾 Cheat Sheet (0)</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
+        <button class="btn admin-only" id="designViewBtn" title="Open the A4 design surface: see page breaks, resize blocks, add manual breaks, then export the exact pages to PDF">🎨 Design view</button>
         <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
         <button class="btn" id="practiceModeBtn" title="Try the worksheet on screen — select answers and check your score">✏️ Practice mode</button>
         <button class="btn admin-only" id="saveJsonBtn">Save JSON</button>
@@ -2388,6 +2402,12 @@
     </aside>
     <div class="cs-canvas" id="csCanvas"></div>
   </div>
+</div>
+
+<!-- ===================== DESIGN / LAYOUT VIEW ===================== -->
+<div class="dv-overlay" id="dvOverlay">
+  <button class="dv-close" id="dvCloseBtn" title="Close the design view">✕ Close design</button>
+  <iframe class="dv-frame" id="dvFrame" title="A4 design surface"></iframe>
 </div>
 
 <script type="module">
@@ -7627,6 +7647,288 @@ function csPrint() {
   window.addEventListener('afterprint', cleanup);
   setTimeout(() => window.print(), 120);
 }
+
+/* =========================================================================
+   DESIGN / LAYOUT VIEW
+   -------------------------------------------------------------------------
+   An A4 design surface rendered inside an isolated <iframe>. The iframe
+   document reuses the SAME stylesheets as the PDF export (getEmbeddedPreviewCss
+   + getPrintCss), so what you design is exactly what prints — but laid out as
+   a continuous A4 sheet with:
+     • dotted page-break guides (computed from real rendered heights)
+     • a hover rail on every block: size −/+ (50–100%, scales font + width)
+       and a "break after" toggle (manual page break + "…continued" note)
+     • a first-page-number control and a per-page corner logo for print
+   The layout (per-element scales + breaks + first page) lives in state.layout,
+   which is serialised with the worksheet, so it saves to the cloud / autosave
+   like everything else. The iframe posts changes up; the parent persists them.
+   ========================================================================= */
+function dvLayout() {
+  if (!state.layout || typeof state.layout !== 'object') state.layout = {};
+  if (!state.layout.scales || typeof state.layout.scales !== 'object') state.layout.scales = {};
+  if (!state.layout.breaks || typeof state.layout.breaks !== 'object') state.layout.breaks = {};
+  if (typeof state.layout.firstPage !== 'number' || state.layout.firstPage < 1) state.layout.firstPage = 1;
+  return state.layout;
+}
+function dvScaleOf(eid) {
+  var s = dvLayout().scales[eid];
+  s = (typeof s === 'number') ? s : 100;
+  return Math.max(50, Math.min(100, s));
+}
+function dvElemLabel(el) {
+  switch (el.type) {
+    case 'text': return 'Text';
+    case 'image': return 'Diagram';
+    case 'part': return 'Part';
+    case 'mcq': return 'Options';
+    case 'answer': return 'Answer line';
+    case 'openLines': return 'Writing lines';
+    case 'workingSpace': return 'Working space';
+    case 'video': return 'Video';
+    case 'commonMistake': return 'Mistake note';
+    case 'studentAnswer': return "Student answer";
+  }
+  return 'Block';
+}
+function dvToolsHtml(eid, scale, resizable) {
+  var dminus = scale <= 50 ? ' disabled' : '';
+  var dplus = scale >= 100 ? ' disabled' : '';
+  var broken = !!dvLayout().breaks[eid];
+  var h = '<div class="dv-tools" contenteditable="false">';
+  if (resizable) {
+    h += '<span class="lab">size</span>'
+       + '<button class="dv-tb" data-act="down" data-eid="' + escapeAttr(eid) + '"' + dminus + '>−</button>'
+       + '<span class="dv-val">' + scale + '%</span>'
+       + '<button class="dv-tb" data-act="up" data-eid="' + escapeAttr(eid) + '"' + dplus + '>+</button>'
+       + '<span class="dv-sep"></span>';
+  }
+  h += '<button class="dv-pb' + (broken ? ' active' : '') + '" data-act="break" data-eid="' + escapeAttr(eid) + '" title="Start a new page after this block">'
+     + '✂ <span class="t">' + (broken ? 'break after ✓' : 'break after') + '</span></button>';
+  h += '</div>';
+  return h;
+}
+/* wrap one block as a controllable .dv-elem (eid = stable element/question id) */
+function dvWrap(eid, qkey, inner, opts) {
+  opts = opts || {};
+  var scale = dvScaleOf(eid);
+  var broken = !!dvLayout().breaks[eid];
+  var cls = 'dv-elem' + (broken ? ' break-after' : '') + (opts.media ? ' dv-media' : '');
+  var qattr = (qkey != null && qkey !== '') ? ' data-q="' + escapeAttr(qkey) + '"' : '';
+  return '<div class="' + cls + '" id="dv-' + escapeAttr(eid) + '" data-eid="' + escapeAttr(eid) + '"' + qattr
+       + ' style="--escale:' + (scale / 100) + ';">'
+       + '<div class="dv-continued">…continued from previous page</div>'
+       + '<span class="dv-tag">' + escapeHtml(opts.label || 'Block') + '</span>'
+       + dvToolsHtml(eid, scale, opts.resizable !== false)
+       + inner
+       + '</div>';
+}
+function dvContentHtml() {
+  var parts = [];
+  // document header block (title + subtitle + name/date)
+  var headInner = '<div class="dv-doc-header"><h2 class="dv-doc-title">' + escapeHtml(state.title || 'Worksheet') + '</h2>'
+    + (state.subtitle ? '<p class="dv-doc-sub">' + escapeHtml(state.subtitle) + '</p>' : '')
+    + '<div class="dv-student-row"><span>Name: <span class="dv-line"></span></span>'
+    + '<span>Class: <span class="dv-line short"></span></span>'
+    + '<span>Date: <span class="dv-line short"></span></span></div></div>';
+  parts.push(dvWrap('doc-header', '', headInner, { label: 'Title / header' }));
+
+  state.questions.forEach(function (q, qIndex) {
+    if (isInstruction(q)) {
+      var t = (q.elements || []).find(function (e) { return e.type === 'text'; });
+      var instr = '<div class="question-sub" style="font-weight:700;">' + formatTextWithFractions(t ? t.text : '') + '</div>';
+      parts.push(dvWrap(q.id + '__hdr', q.id, instr, { label: 'Instruction' }));
+      return;
+    }
+    var firstTextIdx = (q.elements || []).findIndex(function (e) { return e.type === 'text'; });
+    var stemText = firstTextIdx >= 0 ? q.elements[firstTextIdx].text : '';
+    var num = questionDisplayNumber(qIndex);
+    var hdr = '<div class="question-header"><div class="question-number">' + num + '</div>'
+            + '<div class="question-stem">' + formatTextWithFractions(stemText) + '</div></div>';
+    parts.push(dvWrap(q.id + '__hdr', q.id, hdr, { label: 'Q' + num + ' header' }));
+    (q.elements || []).forEach(function (el, j) {
+      if (j === firstTextIdx) return;
+      if (el.type === 'pageBreak') return; // breaks are managed by the per-block toggle here
+      var inner = elementToPrintHtml(el, qIndex, j);
+      if (!inner) return;
+      parts.push(dvWrap(el.id, q.id, inner, { label: dvElemLabel(el), media: el.type === 'image' }));
+    });
+  });
+  return '<div class="print-doc print-question dv-flow">' + parts.join('') + '</div>';
+}
+
+var DV_CHROME_CSS = `
+:root{ --dv-content-w:178mm; }
+html,body{ background:#71777d; margin:0; padding:0; }
+.dv-bar{ position:sticky; top:0; z-index:30; display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+  padding:10px 16px; background:#fff; border-bottom:1px solid #D4D4CF; box-shadow:0 1px 4px rgba(0,0,0,.15); }
+.dv-bar h1{ font-size:1rem; font-weight:700; margin-right:8px; color:#1A1A1A; }
+.dv-spacer{ flex:1; }
+.dv-btn{ padding:7px 13px; border:1px solid #D4D4CF; border-radius:8px; background:#fff; font-size:.85rem; font-weight:700; cursor:pointer; font-family:inherit; color:#1A1A1A; }
+.dv-btn:hover{ border-color:#42A5F5; color:#1E88E5; }
+.dv-btn-primary{ background:#1E88E5; color:#fff; border-color:#1E88E5; }
+.dv-btn-primary:hover{ background:#42A5F5; }
+.dv-pagestart{ display:inline-flex; align-items:center; gap:6px; font-size:.82rem; font-weight:700; color:#5C5C5C; }
+.dv-pagestart input{ width:54px; padding:5px 7px; border:1px solid #E8E8E4; border-radius:6px; text-align:center; font-weight:700; font-family:inherit; }
+.desk{ padding:28px 20px 80px; display:flex; flex-direction:column; align-items:center; }
+.sheet{ position:relative; width:var(--dv-content-w); max-width:100%; background:#fff; box-shadow:0 8px 30px rgba(0,0,0,.28); }
+.page{ position:relative; z-index:1; }
+.print-question.dv-flow{ display:block!important; height:auto!important; overflow:visible!important;
+  page-break-inside:auto!important; break-inside:auto!important; page-break-after:auto!important; break-after:auto!important; box-sizing:border-box; }
+.page-guides{ position:absolute; inset:0; z-index:4; pointer-events:none; }
+.guides-hidden .page-guides{ display:none; }
+.page-guides .margin-line{ position:absolute; top:0; bottom:0; width:0; border-left:1px dashed rgba(216,67,67,.45); }
+.page-guides .page-break-line{ position:absolute; left:-20px; right:-20px; height:0; border-top:2px dashed rgba(216,67,67,.55); }
+.page-guides .pb-tag{ position:absolute; right:0; top:-9px; font-size:.62rem; font-weight:800; color:#fff; background:#E57373; padding:1px 8px; border-radius:999px; white-space:nowrap; }
+.dv-elem{ position:relative; --escale:1; border-radius:6px; outline:2px solid transparent; outline-offset:3px; transition:outline-color .15s; break-inside:avoid; page-break-inside:avoid; }
+.dv-tools-on .dv-elem:hover{ outline-color:#E57373; background:rgba(229,115,115,.05); }
+.dv-tools-on .dv-elem:hover > .dv-tag{ opacity:1; }
+.dv-elem.break-after{ box-shadow:0 2px 0 -1px #E57373; }
+.dv-tag{ position:absolute; top:-11px; left:0; z-index:7; opacity:0; pointer-events:none; font-size:.6rem; font-weight:800; text-transform:uppercase; color:#fff; background:#E57373; border-radius:999px; padding:1px 9px; white-space:nowrap; transition:opacity .15s; }
+.dv-tools{ position:absolute; top:-12px; right:0; z-index:8; display:none; align-items:center; gap:6px; padding:3px 5px; border-radius:999px; background:rgba(255,255,255,.97); border:1px solid #E8E8E4; box-shadow:0 2px 8px rgba(0,0,0,.18); font-size:.7rem; color:#5C5C5C; }
+.dv-tools-on .dv-elem:hover > .dv-tools, .dv-tools-on .dv-elem:focus-within > .dv-tools{ display:inline-flex; }
+.dv-tools .lab{ font-size:.62rem; color:#8A8A8A; text-transform:uppercase; }
+.dv-tb{ width:22px; height:22px; border-radius:50%; border:1.5px solid #D4D4CF; background:#fff; color:#5C5C5C; font-size:.95rem; font-weight:800; cursor:pointer; line-height:1; font-family:inherit; }
+.dv-tb:hover{ border-color:#E57373; color:#D84343; }
+.dv-tb:disabled{ opacity:.4; cursor:not-allowed; }
+.dv-val{ min-width:38px; text-align:center; font-weight:700; color:#1A1A1A; }
+.dv-sep{ width:1px; height:18px; background:#E8E8E4; }
+.dv-pb{ display:inline-flex; align-items:center; gap:5px; cursor:pointer; padding:3px 9px; border-radius:999px; border:1.5px solid #D4D4CF; background:#fff; color:#5C5C5C; font-weight:700; font-size:.66rem; font-family:inherit; }
+.dv-pb.active{ border-color:#D84343; background:#FFEBEE; color:#D84343; }
+.dv-continued{ display:none; font-style:italic; color:#8A8A8A; font-size:.82rem; margin:0 0 8px; padding-bottom:6px; border-bottom:1px dotted #D4D4CF; }
+.dv-elem.show-continued > .dv-continued{ display:block; }
+.dv-doc-header{ border-bottom:1.5px solid #1A1A1A; padding-bottom:10px; margin-bottom:8px; }
+.dv-doc-title{ font-size:1.5rem; font-weight:700; }
+.dv-doc-sub{ color:#5C5C5C; font-size:.92rem; margin-top:3px; }
+.dv-student-row{ display:flex; gap:20px; flex-wrap:wrap; margin-top:8px; font-size:.85rem; }
+.dv-line{ display:inline-block; min-width:160px; border-bottom:1px solid #1A1A1A; }
+.dv-line.short{ min-width:70px; }
+.dv-elem .question-sub,.dv-elem .question-stem,.dv-elem .part-stem,.dv-elem .answer-field,.dv-elem .options-list,.dv-elem .open-lines-box,.dv-elem .working-space-box,.dv-elem .sa-body,.dv-elem .sa-reason,.dv-elem .sa-correct-text,.dv-elem .cm-body,.dv-elem .cm-header,.dv-elem .video-print,.dv-elem .img-caption,.dv-elem .question-header,.dv-elem .dv-doc-header{ font-size:calc(1em * var(--escale)); }
+.dv-elem.dv-media{ width:calc(100% * var(--escale)); margin-left:auto; margin-right:auto; }
+.page-logo{ display:none; }
+@page{ @bottom-center{ content:"\\2013\\00A0\\00A0" counter(page) "\\00A0\\00A0\\2013"; font-family:'Century Gothic',CenturyGothic,sans-serif; font-size:9pt; font-weight:700; letter-spacing:0.34em; color:#9A9A9A; } }
+@media print{
+  html,body{ background:#fff!important; }
+  .dv-bar{ display:none!important; }
+  .desk{ padding:0; display:block; }
+  .sheet{ width:auto!important; max-width:none!important; box-shadow:none!important; }
+  .page-guides{ display:none!important; }
+  .dv-elem{ outline:none!important; background:none!important; box-shadow:none!important; }
+  .dv-tag,.dv-tools{ display:none!important; }
+  .dv-elem.break-after{ page-break-after:always; break-after:page; }
+  .dv-elem.show-continued > .dv-continued{ display:block; }
+  .page-logo{ display:block; position:fixed; right:5mm; bottom:3mm; height:11mm; width:auto; opacity:.9; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+`;
+
+var DV_ENGINE = `
+(function(){
+  var DV = window.__DV || { scales:{}, breaks:{}, firstPage:1 };
+  var MIN=50, MAX=100, STEP=10;
+  var guidesVisible = true;
+  function scaleOf(eid){ var s=DV.scales[eid]; s=(typeof s==='number')?s:100; return Math.max(MIN,Math.min(MAX,s)); }
+  function post(){ try{ parent.postMessage({ type:'dvLayout', scales:DV.scales, breaks:DV.breaks, firstPage:DV.firstPage }, '*'); }catch(e){} }
+  var _ppm=null;
+  function mmToPx(mm){ if(_ppm) return mm*_ppm; var p=document.createElement('div'); p.style.cssText='position:absolute;visibility:hidden;height:100mm;'; document.body.appendChild(p); _ppm=(p.getBoundingClientRect().height/100)||3.7795; document.body.removeChild(p); return mm*_ppm; }
+  function elems(){ return Array.prototype.slice.call(document.querySelectorAll('.page .dv-elem')); }
+  function drawGuides(){
+    var sheet=document.getElementById('sheet'), guides=document.getElementById('pageGuides');
+    if(!sheet||!guides) return;
+    var pageH=mmToPx(261); if(!pageH||pageH<50){ guides.innerHTML=''; return; }
+    var top=sheet.getBoundingClientRect().top;
+    var blocks=elems().map(function(el){ var r=el.getBoundingClientRect(); return { top:r.top-top, bottom:r.bottom-top, broken:el.classList.contains('break-after') }; });
+    blocks.sort(function(a,b){ return a.top-b.top; });
+    var bounds=[], pageStart=0;
+    blocks.forEach(function(b){
+      if(b.bottom>pageStart+pageH && b.top>pageStart){ bounds.push(pageStart+pageH); pageStart=b.top; while(b.bottom>pageStart+pageH){ bounds.push(pageStart+pageH); pageStart+=pageH; } }
+      if(b.broken){ bounds.push(b.bottom); pageStart=b.bottom; }
+    });
+    var html='<div class="margin-line" style="left:0;"></div><div class="margin-line" style="right:0;left:auto;"></div>';
+    var pno=1; bounds.forEach(function(y){ html+='<div class="page-break-line" style="top:'+y+'px;"><span class="pb-tag">Page '+pno+' ends</span></div>'; pno++; });
+    guides.innerHTML=html;
+  }
+  var _gt=null; function scheduleGuides(){ if(_gt) clearTimeout(_gt); _gt=setTimeout(function(){ _gt=null; requestAnimationFrame(drawGuides); }, 30); }
+  function refreshContinued(){
+    var prevBroken=false, prevQ=null;
+    elems().forEach(function(el){ var q=el.getAttribute('data-q')||''; var cont=prevBroken && q && q===prevQ; el.classList.toggle('show-continued', cont); prevBroken=el.classList.contains('break-after'); prevQ=q; });
+  }
+  function byEid(eid){ return document.getElementById('dv-'+eid); }
+  function updateReadout(el,eid){ var s=scaleOf(eid); var v=el.querySelector('.dv-val'); if(v) v.textContent=s+'%'; var d=el.querySelector('[data-act=down]'), u=el.querySelector('[data-act=up]'); if(d) d.disabled=(s<=MIN); if(u) u.disabled=(s>=MAX); }
+  function setScale(eid, ns){ ns=Math.max(MIN,Math.min(MAX,ns)); if(scaleOf(eid)===ns) return; DV.scales[eid]=ns; var el=byEid(eid); if(el){ el.style.setProperty('--escale', String(ns/100)); updateReadout(el,eid); } scheduleGuides(); post(); }
+  function toggleBreak(eid){ var on=!DV.breaks[eid]; if(on) DV.breaks[eid]=true; else delete DV.breaks[eid]; var el=byEid(eid); if(el){ el.classList.toggle('break-after',on); var b=el.querySelector('.dv-pb'); if(b){ b.classList.toggle('active',on); var t=b.querySelector('.t'); if(t) t.textContent=on?'break after \\u2713':'break after'; } } refreshContinued(); scheduleGuides(); post(); }
+  document.addEventListener('click', function(e){
+    var btn=e.target.closest('[data-act]'); if(!btn) return;
+    var act=btn.getAttribute('data-act'), eid=btn.getAttribute('data-eid');
+    if(act==='down') setScale(eid, scaleOf(eid)-STEP);
+    else if(act==='up') setScale(eid, scaleOf(eid)+STEP);
+    else if(act==='break') toggleBreak(eid);
+    else if(act==='toggle-guides'){ guidesVisible=!guidesVisible; document.body.classList.toggle('guides-hidden', !guidesVisible); var l=document.getElementById('dvGuidesLbl'); if(l) l.textContent=guidesVisible?'Hide page guides':'Show page guides'; if(guidesVisible) scheduleGuides(); }
+    else if(act==='print') window.print();
+  });
+  var ps=document.getElementById('dvPageStart');
+  function applyPS(){ var v=parseInt(ps.value,10); if(isNaN(v)||v<1) v=1; DV.firstPage=v; document.body.style.counterReset='page '+(v-1); post(); }
+  if(ps){ ps.addEventListener('input', applyPS); ps.addEventListener('change', applyPS); }
+  document.body.style.counterReset='page '+((DV.firstPage||1)-1);
+  document.body.classList.add('dv-tools-on');
+  window.addEventListener('resize', function(){ _ppm=null; scheduleGuides(); });
+  window.addEventListener('load', function(){ _ppm=null; scheduleGuides(); });
+  Array.prototype.forEach.call(document.images, function(img){ if(!img.complete) img.addEventListener('load', scheduleGuides, { once:true }); });
+  refreshContinued(); scheduleGuides();
+})();
+`;
+
+function dvBuildDoc() {
+  var L = dvLayout();
+  var css = getEmbeddedPreviewCss() + getPrintCss() + DV_CHROME_CSS;
+  var inject = 'window.__DV=' + JSON.stringify({ scales: L.scales, breaks: L.breaks, firstPage: L.firstPage }) + ';';
+  var logo = 'https://www.dropbox.com/scl/fi/2wc1ulpjuiaqlxk5qhc07/polymath-logo-sticker-copy.png?rlkey=jhutxqmdbwe0jgoqcwdxzwt55&raw=1';
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+    + '<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">'
+    + '<style>' + css + '</style></head><body>'
+    + '<div class="dv-bar"><h1>\u{1F3A8} Design — ' + escapeHtml(state.title || 'Worksheet') + '</h1>'
+      + '<span class="dv-pagestart">First page # <input type="number" id="dvPageStart" min="1" step="1" value="' + (L.firstPage || 1) + '"></span>'
+      + '<button class="dv-btn" data-act="toggle-guides"><span id="dvGuidesLbl">Hide page guides</span></button>'
+      + '<span class="dv-spacer"></span>'
+      + '<button class="dv-btn dv-btn-primary" data-act="print">\u{1F5A8} Export PDF</button>'
+    + '</div>'
+    + '<div class="desk"><div class="sheet"><div class="page-guides" id="pageGuides"></div>'
+      + '<div class="page" id="page">' + dvContentHtml() + '</div></div></div>'
+    + '<img class="page-logo" src="' + logo + '" alt="">'
+    + '<scr' + 'ipt>' + inject + DV_ENGINE + '</scr' + 'ipt>'
+    + '</body></html>';
+}
+
+async function dvOpen() {
+  try { await resolveImagesForExport(); } catch (e) { /* render anyway */ }
+  var frame = document.getElementById('dvFrame');
+  frame.srcdoc = dvBuildDoc();
+  document.getElementById('dvOverlay').classList.add('open');
+}
+function dvClose() {
+  document.getElementById('dvOverlay').classList.remove('open');
+  var f = document.getElementById('dvFrame');
+  if (f) f.srcdoc = '';
+}
+
+/* persist layout changes the iframe reports back */
+window.addEventListener('message', function (e) {
+  var d = e.data;
+  if (!d || d.type !== 'dvLayout') return;
+  var L = dvLayout();
+  if (d.scales && typeof d.scales === 'object') L.scales = d.scales;
+  if (d.breaks && typeof d.breaks === 'object') L.breaks = d.breaks;
+  if (typeof d.firstPage === 'number') L.firstPage = d.firstPage;
+  scheduleAutoSave();
+});
+
+(function () {
+  var b = document.getElementById('designViewBtn');
+  if (b) b.addEventListener('click', dvOpen);
+  var c = document.getElementById('dvCloseBtn');
+  if (c) c.addEventListener('click', dvClose);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.getElementById('dvOverlay').classList.contains('open')) dvClose();
+  });
+})();
 
 /* =========================================================================
    AUTO-SAVE — persist work after every action (typing, pasting an image,
