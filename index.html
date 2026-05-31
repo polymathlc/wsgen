@@ -2216,6 +2216,11 @@
   }
   .cs-tile.selected .cs-resize, .cs-tile:hover .cs-resize { opacity: 1; }
 
+  /* Alignment guide lines shown while dragging/resizing a tile. */
+  .cs-guide { position: absolute; z-index: 40; pointer-events: none; background: #FB8C00; }
+  .cs-guide.v { width: 1px; top: 0; bottom: 0; }
+  .cs-guide.h { height: 1px; left: 0; right: 0; }
+
   .cs-empty-state {
     margin: auto; text-align: center; color: var(--text-tertiary, #8A8A8A);
     max-width: 360px;
@@ -2235,7 +2240,7 @@
     }
     body.cs-printing .cs-page:last-child { page-break-after: auto; }
     body.cs-printing .cs-page-label, body.cs-printing .cs-tile-bar,
-    body.cs-printing .cs-resize { display: none !important; }
+    body.cs-printing .cs-resize, body.cs-printing .cs-guide { display: none !important; }
     body.cs-printing .cs-tile { box-shadow: none !important; border-color: #BBB; }
     body.cs-printing .cs-tile.selected { box-shadow: none !important; }
     /* Don't print editor affordances (focus ring, hover tint, placeholders). */
@@ -2342,7 +2347,7 @@
 <div class="cs-overlay" id="cheatSheetOverlay">
   <div class="cs-toolbar">
     <h2>🧾 Cheat Sheet
-      <small>Add questions from the left · drag &amp; resize to fit (hold Shift for free positioning)</small>
+      <small>Add questions from the left · drag &amp; resize to fit — tiles snap to align (hold Shift to disable)</small>
     </h2>
     <div class="cs-tool-group">
       <label>Page</label>
@@ -6915,6 +6920,7 @@ const CS_MARGIN = 8;   // mm page margin
 const CS_GAP = 4;      // mm gap between tiles
 const CS_TOP = 10;     // mm reserved at the top of each page (page label)
 const CS_SNAP = 5;     // mm snap grid while dragging/resizing
+const CS_SNAP_THRESH_MM = 3.5;  // how close an edge must get before a line grabs it
 
 const cheat = {
   pageSizeId: 'a4',
@@ -7414,32 +7420,42 @@ function csOnPointerMove(e) {
   if (!d) return;
   const dxMm = (e.clientX - d.startX) / d.pxPerMm;
   const dyMm = (e.clientY - d.startY) / d.pxPerMm;
-  // Snap to the SAME grid auto-pack uses, so dragged/resized tiles line up
-  // exactly with the default layout. Hold Shift for free (fine) positioning.
-  const g = csGrid();
-  const free = e.shiftKey;
-  const fine = v => Math.round(v / CS_SNAP) * CS_SNAP;
-  // nearest grid line for a tile edge
-  const snapTo = (v, origin, step) => origin + Math.round((v - origin) / step) * step;
-  // nearest whole-span size (k cells incl. inter-cell gaps)
-  const snapSpan = (v, cell, step, max) => {
-    let k = Math.max(1, Math.round((v + CS_GAP) / step));
-    if (max) k = Math.min(k, max);
-    return k * cell + (k - 1) * CS_GAP;
-  };
+  const free = e.shiftKey;              // hold Shift = no snapping at all
+  const thr = CS_SNAP_THRESH_MM;        // how close (mm) before a line grabs
+  csClearGuides(d.pageEl);
+
   if (d.mode === 'drag') {
-    let nx = free ? fine(d.ox + dxMm) : snapTo(d.ox + dxMm, g.ox, g.stepX);
-    let ny = free ? fine(d.oy + dyMm) : snapTo(d.oy + dyMm, g.oy, g.stepY);
+    let nx = d.ox + dxMm, ny = d.oy + dyMm;
+    if (!free) {
+      const xc = csCandidatesX(d.t);
+      const yc = csCandidatesY(d.t);
+      // Tile's left / centre / right (and top / middle / bottom) all hunt for
+      // a nearby line — whichever is closest wins, so the tile stays free but
+      // gently aligns when an edge gets near a grid line or another tile.
+      const bx = csNearestSnap([nx, nx + d.t.w / 2, nx + d.t.w], xc, thr);
+      const by = csNearestSnap([ny, ny + d.t.h / 2, ny + d.t.h], yc, thr);
+      if (bx) { nx += bx.delta; csShowGuide(d.pageEl, 'v', bx.line); }
+      if (by) { ny += by.delta; csShowGuide(d.pageEl, 'h', by.line); }
+    }
     nx = Math.max(0, Math.min(nx, d.dims.w - d.t.w));
     ny = Math.max(0, Math.min(ny, d.dims.h - d.t.h));
     d.t.x = round1cs(nx); d.t.y = round1cs(ny);
     d.tileEl.style.left = d.t.x + 'mm';
     d.tileEl.style.top = d.t.y + 'mm';
   } else {
-    let nw = free ? fine(d.ow + dxMm) : snapSpan(d.ow + dxMm, g.colW, g.stepX, g.cols);
-    let nh = free ? fine(d.oh + dyMm) : snapSpan(d.oh + dyMm, g.rowH, g.stepY, 0);
-    nw = Math.max(25, Math.min(nw, d.dims.w - d.t.x));
-    nh = Math.max(20, Math.min(nh, d.dims.h - d.t.y));
+    // Resize from the bottom-right; the right/bottom edges snap to lines.
+    let right = d.t.x + d.ow + dxMm;
+    let bottom = d.t.y + d.oh + dyMm;
+    if (!free) {
+      const xc = csCandidatesX(d.t);
+      const yc = csCandidatesY(d.t);
+      const bx = csNearestSnap([right], xc, thr);
+      const by = csNearestSnap([bottom], yc, thr);
+      if (bx) { right += bx.delta; csShowGuide(d.pageEl, 'v', bx.line); }
+      if (by) { bottom += by.delta; csShowGuide(d.pageEl, 'h', by.line); }
+    }
+    let nw = Math.max(25, Math.min(right - d.t.x, d.dims.w - d.t.x));
+    let nh = Math.max(20, Math.min(bottom - d.t.y, d.dims.h - d.t.y));
     d.t.w = round1cs(nw); d.t.h = round1cs(nh);
     d.tileEl.style.width = d.t.w + 'mm';
     d.tileEl.style.height = d.t.h + 'mm';
@@ -7447,10 +7463,72 @@ function csOnPointerMove(e) {
 }
 function csOnPointerUp() {
   if (!csDrag) return;
+  csClearGuides(csDrag.pageEl);
   csDrag = null;
   window.removeEventListener('pointermove', csOnPointerMove);
   window.removeEventListener('pointerup', csOnPointerUp);
   csSaveLayout();
+}
+
+/* ---- snapping helpers: candidate alignment lines + nearest-line search ---- */
+// Pick the candidate line closest to any of the given edge values, within the
+// threshold. Returns { delta, line } to shift by, or null if nothing is near.
+function csNearestSnap(edges, candidates, thr) {
+  let best = null;
+  for (const line of candidates) {
+    for (const v of edges) {
+      const diff = line - v;
+      if (Math.abs(diff) <= thr && (!best || Math.abs(diff) < Math.abs(best.delta))) {
+        best = { delta: diff, line };
+      }
+    }
+  }
+  return best;
+}
+// Vertical alignment lines: page edges/margins, every grid column's left and
+// right, and the left/centre/right of the other tiles on the same page.
+function csCandidatesX(selfTile) {
+  const g = csGrid();
+  const xs = [0, CS_MARGIN, g.dims.w - CS_MARGIN, g.dims.w];
+  for (let c = 0; c < g.cols; c++) {
+    const o = round1cs(g.ox + c * g.stepX);
+    xs.push(o, round1cs(o + g.colW));
+  }
+  cheat.tiles.forEach(t => {
+    if (t.id === selfTile.id || t.page !== selfTile.page) return;
+    xs.push(t.x, round1cs(t.x + t.w / 2), round1cs(t.x + t.w));
+  });
+  return xs;
+}
+// Horizontal alignment lines: page edges/margins, every grid row's top and
+// bottom, and the top/middle/bottom of the other tiles on the same page.
+function csCandidatesY(selfTile) {
+  const g = csGrid();
+  const ys = [0, CS_TOP, g.dims.h - CS_MARGIN, g.dims.h];
+  const rows = g.rowsPerPage + 1;
+  for (let r = 0; r < rows; r++) {
+    const o = round1cs(g.oy + r * g.stepY);
+    ys.push(o, round1cs(o + g.rowH));
+  }
+  cheat.tiles.forEach(t => {
+    if (t.id === selfTile.id || t.page !== selfTile.page) return;
+    ys.push(t.y, round1cs(t.y + t.h / 2), round1cs(t.y + t.h));
+  });
+  return ys;
+}
+
+/* ---- transient alignment guide lines drawn on the page while dragging ---- */
+function csClearGuides(pageEl) {
+  if (!pageEl) return;
+  pageEl.querySelectorAll('.cs-guide').forEach(n => n.remove());
+}
+function csShowGuide(pageEl, orient, mm) {
+  if (!pageEl) return;
+  const g = document.createElement('div');
+  g.className = 'cs-guide ' + orient;
+  if (orient === 'v') g.style.left = mm + 'mm';
+  else g.style.top = mm + 'mm';
+  pageEl.appendChild(g);
 }
 
 function csRemoveTile(tileId) {
