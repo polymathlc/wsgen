@@ -2361,6 +2361,7 @@
       <input type="number" id="csCols" min="1" max="6" step="1" value="2" />
     </div>
     <button class="cs-btn" id="csAddAllBtn" title="Add every draft question that isn't on the sheet yet">➕ Add all</button>
+    <button class="cs-btn" id="csClearSheetBtn" title="Remove every question from the sheet (they stay in the list so you can re-add them)">🗑 Clear sheet</button>
     <button class="cs-btn" id="csRepackBtn" title="Re-arrange the tiles already on the sheet back into a tidy grid">▦ Auto-pack</button>
     <button class="cs-btn" id="csReloadDraftBtn" title="Refresh the text of the placed tiles from the draft (keeps your edits)">↻ Sync from draft</button>
     <button class="cs-btn" id="csToggleAnswersBtn" title="Show or hide every answer at once">👁 Show all answers</button>
@@ -7131,6 +7132,19 @@ function csAddAll() {
   return added;
 }
 
+/* Remove every tile from the sheet. The questions stay in the draft (and the
+   sidebar), so they can be re-added one at a time. */
+function csClearSheet() {
+  if (cheat.tiles.length === 0) return;
+  if (!confirm(`Remove all ${cheat.tiles.length} question(s) from the cheat sheet? They stay in the list so you can re-add them.`)) return;
+  cheat.tiles = [];
+  cheat.selectedId = null;
+  csSaveLayout();
+  csRenderCanvas();
+  csRenderSidebar();
+  csRenderPreview();
+}
+
 /* Refresh the text of the placed tiles from the draft, preserving manual
    edits, position and size. */
 function csSyncFromDraft() {
@@ -7959,6 +7973,7 @@ document.getElementById('csAddAllBtn').addEventListener('click', () => {
   const n = csAddAll();
   if (n === 0) alert('Every draft question is already on the cheat sheet.');
 });
+document.getElementById('csClearSheetBtn').addEventListener('click', csClearSheet);
 document.getElementById('csRepackBtn').addEventListener('click', () => {
   cheat.cols = Math.max(1, Math.min(6, parseInt(document.getElementById('csCols').value, 10) || 2));
   csAutoPack(true);
