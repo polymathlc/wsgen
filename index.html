@@ -3284,6 +3284,25 @@ document.addEventListener('keydown', (e) => {
   renderPreview();
 });
 
+// Quick-insert shortcuts: hover the in-preview "+" bar, then press a letter
+// (T text, I image, B table, …) to drop that block in without opening the menu.
+document.addEventListener('keydown', (e) => {
+  if (!isAdmin() || !activeInsert) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target;
+  if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName || ''))) return;
+  const cs = document.getElementById('cheatSheetOverlay');
+  const dv = document.getElementById('dvOverlay');
+  if ((cs && cs.classList.contains('open')) || (dv && dv.classList.contains('open'))) return;
+  const type = INSERT_KEY_TYPE[(e.key || '').toLowerCase()];
+  if (!type) return;
+  e.preventDefault();
+  const { q, afterIndex } = activeInsert;
+  q.elements.splice(afterIndex + 1, 0, makeElement(type));
+  renderEditor();
+  renderPreview();
+});
+
 function clampImgScale(v) {
   const n = parseFloat(v);
   if (!Number.isFinite(n)) return 1.0;
@@ -3937,8 +3956,11 @@ function renderPreviewQuestion(q, qIndex) {
       wrap.appendChild(buildElementControls(q, idx, el));
       // Remember which resizable block the pointer is over, so the keyboard
       // resize shortcuts ([ ] or +/-) know what to act on.
+      wrap.addEventListener('mouseenter', () => {
+        activeInsert = null; // pointer is over a block, not an insert "+"
+        resizeTarget = (el.type === 'image' || el.type === 'answerKey') ? el : null;
+      });
       if (el.type === 'image' || el.type === 'answerKey') {
-        wrap.addEventListener('mouseenter', () => { resizeTarget = el; });
         wrap.addEventListener('focusin', () => { resizeTarget = el; });
       }
       card.appendChild(wrap);
@@ -4172,6 +4194,19 @@ const INSERT_TYPES = [
   ['Table', 'table']
 ];
 
+// Single-key shortcuts for the in-preview "+" insert bar: hover the "+" and
+// press the letter to drop that block in (PowerPoint-style quick insert).
+const INSERT_TYPE_KEY = {
+  text: 't', image: 'i', table: 'b', part: 'p', mcq: 'm', answer: 'a',
+  openLines: 'o', workingSpace: 'w', video: 'v', pageBreak: 'k',
+  answerKey: 'y', commonMistake: 'c', studentAnswer: 's'
+};
+const INSERT_KEY_TYPE = Object.fromEntries(
+  Object.entries(INSERT_TYPE_KEY).map(([type, key]) => [key, type])
+);
+// The "+" bar the pointer is currently over, so the shortcuts know where to insert.
+let activeInsert = null;
+
 // Colour themes for the "Common mistake" card (header pill + body tint).
 const MISTAKE_COLORS = ['teal', 'blue', 'yellow', 'pink', 'orange', 'purple'];
 function mistakeColor(el) {
@@ -4239,16 +4274,20 @@ function buildInsertBar(q, afterIndex) {
   toggle.type = 'button';
   toggle.className = 'insert-toggle';
   toggle.textContent = '+';
-  toggle.title = 'Add an element here';
+  toggle.title = 'Add an element here — or hover and press: '
+    + 'T text · I image · B table · P part · M MCQ · A answer · O lines · W working · V video';
   toggle.addEventListener('click', () => bar.classList.toggle('open'));
   bar.appendChild(toggle);
+  // Track this insert point for the keyboard shortcuts while the pointer is over it.
+  bar.addEventListener('mouseenter', () => { activeInsert = { q, afterIndex }; resizeTarget = null; });
   const menu = document.createElement('div');
   menu.className = 'insert-menu';
   INSERT_TYPES.forEach(([label, type]) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'insert-menu-btn';
-    b.textContent = '+ ' + label;
+    const key = INSERT_TYPE_KEY[type];
+    b.textContent = '+ ' + label + (key ? '  (' + key.toUpperCase() + ')' : '');
     b.addEventListener('click', () => {
       q.elements.splice(afterIndex + 1, 0, makeElement(type));
       renderEditor();
@@ -8000,22 +8039,29 @@ var DV_ENGINE = `
     if(!sheet||!guides) return;
     var pageH=mmToPx(261); if(!pageH||pageH<50){ guides.innerHTML=''; return; }
     var top=sheet.getBoundingClientRect().top;
-    var blocks=elems().map(function(el){ var r=el.getBoundingClientRect(); return { top:r.top-top, bottom:r.bottom-top, broken:el.classList.contains('break-after') }; });
-    blocks.sort(function(a,b){ return a.top-b.top; });
-    var bounds=[], pageStart=0;
-    blocks.forEach(function(b){
-      if(b.bottom>pageStart+pageH && b.top>pageStart){ bounds.push(pageStart+pageH); pageStart=b.top; while(b.bottom>pageStart+pageH){ bounds.push(pageStart+pageH); pageStart+=pageH; } }
-      if(b.broken){ bounds.push(b.bottom); pageStart=b.bottom; }
-    });
+    var m=elems().map(function(el){ var r=el.getBoundingClientRect(); return { el:el, top:r.top-top, bottom:r.bottom-top, q:el.getAttribute('data-q')||'', broken:el.classList.contains('break-after') }; });
+    m.sort(function(a,b){ return a.top-b.top; });
+    var bounds=[], pageStart=0, prevForced=false;
+    for(var i=0;i<m.length;i++){
+      var b=m[i], newPage=false;
+      if(prevForced){ newPage=true; }
+      else if(b.bottom>pageStart+pageH && b.top>pageStart){
+        bounds.push(pageStart+pageH); pageStart=b.top; newPage=true;
+        while(b.bottom>pageStart+pageH){ bounds.push(pageStart+pageH); pageStart+=pageH; }
+      }
+      // "continued from previous page" only when a break (manual or natural)
+      // splits ONE question — never across a Q15 → Q16 boundary.
+      var cont = newPage && i>0 && b.q && b.q===m[i-1].q;
+      b.el.classList.toggle('show-continued', cont);
+      prevForced=false;
+      if(b.broken){ bounds.push(b.bottom); pageStart=b.bottom; prevForced=true; }
+    }
     var html='<div class="margin-line" style="left:0;"></div><div class="margin-line" style="right:0;left:auto;"></div>';
     var pno=1; bounds.forEach(function(y){ html+='<div class="page-break-line" style="top:'+y+'px;"><span class="pb-tag">Page '+pno+' ends</span></div>'; pno++; });
     guides.innerHTML=html;
   }
   var _gt=null; function scheduleGuides(){ if(_gt) clearTimeout(_gt); _gt=setTimeout(function(){ _gt=null; requestAnimationFrame(drawGuides); }, 30); }
-  function refreshContinued(){
-    var prevBroken=false, prevQ=null;
-    elems().forEach(function(el){ var q=el.getAttribute('data-q')||''; var cont=prevBroken && q && q===prevQ; el.classList.toggle('show-continued', cont); prevBroken=el.classList.contains('break-after'); prevQ=q; });
-  }
+  function refreshContinued(){ drawGuides(); }
   function byEid(eid){ return document.getElementById('dv-'+eid); }
   function updateReadout(el,eid){ var s=scaleOf(eid); var v=el.querySelector('.dv-val'); if(v) v.textContent=s+'%'; var d=el.querySelector('[data-act=down]'), u=el.querySelector('[data-act=up]'); if(d) d.disabled=(s<=MIN); if(u) u.disabled=(s>=MAX); }
   function setScale(eid, ns){ ns=Math.max(MIN,Math.min(MAX,ns)); if(scaleOf(eid)===ns) return; DV.scales[eid]=ns; var el=byEid(eid); if(el){ el.style.setProperty('--escale', String(ns/100)); updateReadout(el,eid); } scheduleGuides(); post(); }
@@ -8023,7 +8069,7 @@ var DV_ENGINE = `
   // Keyboard resize / break: hover a block, then press [ / ] (or - / +) to
   // resize and 'b' to toggle a page break — no need to aim at the tiny rail.
   var hoverEid=null;
-  document.addEventListener('mouseover', function(e){ var el=e.target.closest('.dv-elem'); if(el) hoverEid=el.getAttribute('data-eid'); });
+  document.addEventListener('mouseover', function(e){ var el=e.target.closest('.dv-elem'); if(!el) return; var id=el.getAttribute('data-eid'); if(id!==hoverEid){ hoverEid=id; try{ window.focus(); }catch(_){} } });
   document.addEventListener('keydown', function(e){
     if(!hoverEid) return;
     var t=e.target; if(t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName||''))) return;
@@ -8078,6 +8124,12 @@ async function dvOpen() {
   var frame = document.getElementById('dvFrame');
   frame.srcdoc = dvBuildDoc();
   document.getElementById('dvOverlay').classList.add('open');
+  // Focus the iframe so its element keyboard shortcuts ([ ] / + - / b) work
+  // as soon as the surface opens.
+  frame.addEventListener('load', function once() {
+    frame.removeEventListener('load', once);
+    try { frame.contentWindow.focus(); } catch (_) {}
+  });
 }
 function dvClose() {
   document.getElementById('dvOverlay').classList.remove('open');
