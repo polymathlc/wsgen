@@ -2244,6 +2244,30 @@
   }
   .dt-tool-btn:hover { border-color: var(--accent-dark, #42A5F5); color: var(--accent-deep, #1E88E5); }
 
+  /* ===== Rich-text formatting toolbar ===== */
+  .rt-bar {
+    position: fixed; z-index: 2000; display: none; align-items: center; gap: 4px;
+    padding: 5px 7px; background: #fff; border: 1px solid var(--border-medium, #D4D4CF);
+    border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,0.18); font-family: inherit;
+    max-width: 96vw; flex-wrap: wrap;
+  }
+  .rt-bar.open { display: flex; }
+  .rt-group { display: inline-flex; align-items: center; gap: 3px; padding: 0 4px; }
+  .rt-group + .rt-group { border-left: 1px solid var(--border-subtle, #E8E8E4); }
+  .rt-group.rt-cellgroup { display: none; }
+  .rt-bar.rt-show-cell .rt-cellgroup { display: inline-flex; }
+  .rt-lbl { font-size: 0.7rem; color: var(--text-tertiary, #8A8A8A); font-weight: 700; padding-right: 2px; }
+  .rt-btn {
+    min-width: 26px; height: 26px; padding: 0 6px; border: 1px solid transparent; border-radius: 6px;
+    background: transparent; color: var(--text-primary, #1A1A1A); font-size: 0.85rem; cursor: pointer; line-height: 1;
+  }
+  .rt-btn:hover { background: var(--bg-tertiary, #F3F3F0); border-color: var(--border-medium, #D4D4CF); }
+  .rt-swatch {
+    width: 18px; height: 18px; border-radius: 5px; border: 1px solid rgba(0,0,0,0.18); cursor: pointer; padding: 0;
+  }
+  .rt-swatch:hover { transform: scale(1.12); }
+  .rt-swatch-none { background: #fff; color: var(--text-tertiary, #8A8A8A); font-size: 0.7rem; line-height: 16px; }
+
   /* ===== Design / Layout view (A4 design surface in an isolated iframe) ===== */
   .dv-overlay { position: fixed; inset: 0; z-index: 1900; background: #71777d; display: none; }
   .dv-overlay.open { display: block; }
@@ -2651,7 +2675,10 @@ function makeElement(type) {
     case 'studentAnswer':
       return { ...base, label: "Student's Answer", answer: '', whyLines: 2, corrected: false, correctedLines: 2 };
     case 'table':
-      return { ...base, headerRow: true, rows: [['', '', ''], ['', '', '']] };
+      return { ...base, headerRow: true, align: '', rows: [
+        [emptyCell(), emptyCell(), emptyCell()],
+        [emptyCell(), emptyCell(), emptyCell()]
+      ] };
   }
 }
 
@@ -2659,26 +2686,40 @@ function makeElement(type) {
 function tableColCount(el) {
   return (el.rows && el.rows[0]) ? el.rows[0].length : 0;
 }
+// A cell is { t:<rich html>, bg:<fill colour>, align:<text-align> }. Old saved
+// tables stored bare strings — coerce them so every renderer can trust the shape.
+function cellNorm(c) {
+  if (c && typeof c === 'object') return { t: c.t || '', bg: c.bg || '', align: c.align || '' };
+  return { t: (c == null ? '' : String(c)), bg: '', align: '' };
+}
+function emptyCell() { return { t: '', bg: '', align: '' }; }
+function cellStyleAttr(cell) {
+  const s = [];
+  const bg = safeColor(cell.bg);
+  if (bg) s.push('background-color:' + bg);
+  if (cell.align && cell.align !== 'left') s.push('text-align:' + cell.align);
+  return s.length ? ` style="${s.join(';')}"` : '';
+}
 function normalizeTable(el) {
-  // Guarantee a rectangular, non-empty grid so every renderer can trust it.
-  if (!Array.isArray(el.rows) || el.rows.length === 0) el.rows = [['', '']];
+  // Guarantee a rectangular, non-empty grid of cell objects.
+  if (!Array.isArray(el.rows) || el.rows.length === 0) el.rows = [[emptyCell(), emptyCell()]];
   const cols = Math.max(1, ...el.rows.map(r => (Array.isArray(r) ? r.length : 0)));
   el.rows = el.rows.map(r => {
-    const row = Array.isArray(r) ? r.slice() : [];
-    while (row.length < cols) row.push('');
+    const row = (Array.isArray(r) ? r : []).map(cellNorm);
+    while (row.length < cols) row.push(emptyCell());
     return row;
   });
   return el;
 }
-function tableAddRow(el) { normalizeTable(el); el.rows.push(Array(tableColCount(el)).fill('')); }
-function tableAddCol(el) { normalizeTable(el); el.rows.forEach(r => r.push('')); }
+function tableAddRow(el) { normalizeTable(el); el.rows.push(Array.from({ length: tableColCount(el) }, emptyCell)); }
+function tableAddCol(el) { normalizeTable(el); el.rows.forEach(r => r.push(emptyCell())); }
 function tableDelRow(el) { normalizeTable(el); if (el.rows.length > 1) el.rows.pop(); }
 function tableDelCol(el) { normalizeTable(el); if (tableColCount(el) > 1) el.rows.forEach(r => r.pop()); }
 function tableToHtml(el) {
   normalizeTable(el);
   const body = el.rows.map((row, ri) => {
     const tag = (el.headerRow && ri === 0) ? 'th' : 'td';
-    return '<tr>' + row.map(c => `<${tag}>${formatTextWithFractions(c || '')}</${tag}>`).join('') + '</tr>';
+    return '<tr>' + row.map(c => `<${tag}${cellStyleAttr(c)}>${formatTextWithFractions(c.t || '')}</${tag}>`).join('') + '</tr>';
   }).join('');
   return `<div class="data-table-wrap"><table class="data-table">${body}</table></div>`;
 }
@@ -2770,11 +2811,80 @@ function makeIconBtn(label, title, onClick, danger=false) {
    ========================================================================= */
 const FRACTION_REGEX = /(^|[^0-9./])(\d+)\/(\d+)(?![0-9./])/g;
 
-function formatTextWithFractions(raw) {
-  const escaped = escapeHtml(raw || '');
+function applyFractions(escaped) {
   return escaped.replace(FRACTION_REGEX, (_, pre, n, d) =>
     `${pre}<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`
   );
+}
+
+// ── Rich text ────────────────────────────────────────────────────────────
+// Text boxes and table cells may carry a small, safe set of inline formatting
+// (bold / italic / underline / super- & subscript / text & highlight colour).
+// We store the sanitised HTML in el.text / cell.t and render it everywhere.
+// Plain text (no tags) takes the original fast path, so nothing else changes.
+const RICH_TAG_RE = /<(?:b|strong|i|em|u|sub|sup|mark|br|span)\b/i;
+const RICH_TAGS = { B: 'b', STRONG: 'strong', I: 'i', EM: 'em', U: 'u', SUB: 'sub', SUP: 'sup' };
+// Tags whose entire contents are discarded (never unwrapped to text).
+const RICH_DROP = { SCRIPT: 1, STYLE: 1, IFRAME: 1, OBJECT: 1, EMBED: 1, LINK: 1, META: 1, NOSCRIPT: 1, TEMPLATE: 1, HEAD: 1, TITLE: 1 };
+function looksRich(raw) { return RICH_TAG_RE.test(raw); }
+
+// Keep only `color` / `background-color` with a safe colour value.
+function safeColor(v) {
+  v = String(v || '').trim();
+  return /^#[0-9a-f]{3,8}$|^rgba?\([0-9.,\s%]+\)$|^[a-z]+$/i.test(v) ? v : '';
+}
+function safeColorStyle(style) {
+  const out = [];
+  String(style || '').split(';').forEach(decl => {
+    const i = decl.indexOf(':'); if (i < 0) return;
+    const prop = decl.slice(0, i).trim().toLowerCase();
+    const val = safeColor(decl.slice(i + 1));
+    if (val && (prop === 'color' || prop === 'background-color')) out.push(prop + ':' + val);
+  });
+  return out.join(';');
+}
+function sanitizeNodes(parent, withFrac) {
+  let html = '';
+  parent.childNodes.forEach(node => {
+    if (node.nodeType === 3) {
+      const esc = escapeHtml(node.nodeValue);
+      html += withFrac ? applyFractions(esc) : esc;
+    } else if (node.nodeType === 1) {
+      const tag = node.tagName;
+      if (RICH_DROP[tag]) return;          // strip script/style/etc. entirely
+      if (tag === 'BR') { html += '<br>'; return; }
+      const inner = sanitizeNodes(node, withFrac);
+      if (tag === 'SPAN' || tag === 'MARK') {
+        let style = safeColorStyle(node.getAttribute('style'));
+        if (tag === 'MARK' && !/background-color/.test(style)) {
+          style = (style ? style + ';' : '') + 'background-color:#FFF59D';
+        }
+        html += style ? `<span style="${style}">${inner}</span>` : inner;
+      } else if (RICH_TAGS[tag]) {
+        html += `<${RICH_TAGS[tag]}>${inner}</${RICH_TAGS[tag]}>`;
+      } else {
+        html += inner; // unwrap anything we don't explicitly allow
+      }
+    }
+  });
+  return html;
+}
+// Sanitise a stored / pasted rich string. withFrac=true also renders fractions
+// (for display); withFrac=false keeps "n/d" as text (for storage while editing).
+function sanitizeRich(raw, withFrac) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = raw || '';
+  return sanitizeNodes(tpl.content, withFrac);
+}
+
+function formatTextWithFractions(raw) {
+  if (raw && looksRich(raw)) return sanitizeRich(raw, true);
+  return applyFractions(escapeHtml(raw || ''));
+}
+
+// Inline style="text-align:…" for an aligned text element (left is the default).
+function alignStyleAttr(align) {
+  return (align && align !== 'left') ? ` style="text-align:${align}"` : '';
 }
 
 function insertFractionAtCursor(input) {
@@ -4074,6 +4184,138 @@ function attachInlineText(displayEl, getRaw, setRaw, placeholder) {
   return displayEl;
 }
 
+/* =========================================================================
+   RICH INLINE EDITING — bold / italic / underline / super- & subscript /
+   text & highlight colour, plus per-block alignment and per-cell fill.
+   A single floating toolbar follows whichever rich field has focus.
+   ========================================================================= */
+const RT_HIGHLIGHTS = ['#FFF59D', '#C8E6C9', '#F8BBD0', '#BBDEFB', '#FFE0B2'];
+const RT_TEXTCOLORS = ['#1A1A1A', '#E53935', '#1E88E5', '#43A047', '#FB8C00'];
+const RT_CELLFILLS  = ['', '#F3F3F0', '#FFF59D', '#C8E6C9', '#F8BBD0', '#BBDEFB', '#FFE0B2'];
+let rtCurrent = null;   // { host, save, align(fn), fill(fn)|null }
+let rtBarEl = null;
+let rtHideTimer = null;
+
+function rtExec(cmd, val, useCss) {
+  try { document.execCommand('styleWithCSS', false, !!useCss); } catch (_) {}
+  try { document.execCommand(cmd, false, val); } catch (_) {}
+  if (rtCurrent && rtCurrent.host) rtCurrent.host.dispatchEvent(new Event('input'));
+}
+
+function buildRtBar() {
+  if (rtBarEl) return rtBarEl;
+  const bar = document.createElement('div');
+  bar.className = 'rt-bar';
+  // Keep focus/selection in the editable when a control is pressed.
+  bar.addEventListener('mousedown', (e) => e.preventDefault());
+  const group = () => { const g = document.createElement('span'); g.className = 'rt-group'; bar.appendChild(g); return g; };
+  const btn = (parent, label, title, fn, cls) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'rt-btn' + (cls ? ' ' + cls : '');
+    b.innerHTML = label; b.title = title;
+    b.addEventListener('click', (e) => { e.preventDefault(); fn(); });
+    parent.appendChild(b); return b;
+  };
+  const swatch = (parent, color, title, fn) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'rt-swatch'; b.title = title;
+    if (color) b.style.background = color; else { b.classList.add('rt-swatch-none'); b.textContent = '∅'; }
+    b.addEventListener('click', (e) => { e.preventDefault(); fn(color); });
+    parent.appendChild(b); return b;
+  };
+
+  const g1 = group();
+  btn(g1, '<b>B</b>', 'Bold (Ctrl+B)', () => rtExec('bold', null, false));
+  btn(g1, '<i>I</i>', 'Italic (Ctrl+I)', () => rtExec('italic', null, false));
+  btn(g1, '<u>U</u>', 'Underline (Ctrl+U)', () => rtExec('underline', null, false));
+  btn(g1, 'x<sup>2</sup>', 'Superscript', () => rtExec('superscript', null, false));
+  btn(g1, 'x<sub>2</sub>', 'Subscript', () => rtExec('subscript', null, false));
+
+  const g2 = group();
+  btn(g2, '⯇', 'Align left', () => { if (rtCurrent) rtCurrent.align('left'); });
+  btn(g2, '≡', 'Align centre', () => { if (rtCurrent) rtCurrent.align('center'); });
+  btn(g2, '⯈', 'Align right', () => { if (rtCurrent) rtCurrent.align('right'); });
+  btn(g2, '☰', 'Justify', () => { if (rtCurrent) rtCurrent.align('justify'); });
+
+  const g3 = group();
+  const aLbl = document.createElement('span'); aLbl.className = 'rt-lbl'; aLbl.textContent = 'A'; g3.appendChild(aLbl);
+  RT_TEXTCOLORS.forEach(c => swatch(g3, c, 'Text colour', (col) => rtExec('foreColor', col, true)));
+
+  const g4 = group();
+  const hLbl = document.createElement('span'); hLbl.className = 'rt-lbl'; hLbl.textContent = '🖍'; g4.appendChild(hLbl);
+  RT_HIGHLIGHTS.forEach(c => swatch(g4, c, 'Highlight', (col) => rtExec('hiliteColor', col, true)));
+
+  const g5 = group(); g5.classList.add('rt-cellgroup');
+  const fLbl = document.createElement('span'); fLbl.className = 'rt-lbl'; fLbl.textContent = 'Cell'; g5.appendChild(fLbl);
+  RT_CELLFILLS.forEach(c => swatch(g5, c, c ? 'Cell fill' : 'No fill', (col) => { if (rtCurrent && rtCurrent.fill) rtCurrent.fill(col); }));
+
+  const g6 = group();
+  btn(g6, '⌫', 'Clear inline formatting', () => { rtExec('removeFormat', null, false); });
+
+  document.body.appendChild(bar);
+  rtBarEl = bar;
+  return bar;
+}
+
+function positionRtBar(host) {
+  const bar = buildRtBar();
+  bar.classList.add('open');
+  // Cell tools only make sense inside a table.
+  bar.classList.toggle('rt-show-cell', !!(rtCurrent && rtCurrent.fill));
+  const r = host.getBoundingClientRect();
+  bar.style.visibility = 'hidden';
+  const bw = bar.offsetWidth, bh = bar.offsetHeight;
+  let top = r.top - bh - 8;
+  if (top < 6) top = r.bottom + 8;
+  let left = Math.min(Math.max(8, r.left), window.innerWidth - bw - 8);
+  bar.style.top = top + 'px';
+  bar.style.left = left + 'px';
+  bar.style.visibility = '';
+}
+function hideRtBar() { if (rtBarEl) rtBarEl.classList.remove('open'); rtCurrent = null; }
+(function () {
+  const reflow = () => { if (rtCurrent && rtBarEl && rtBarEl.classList.contains('open')) positionRtBar(rtCurrent.host); };
+  window.addEventListener('scroll', reflow, true);
+  window.addEventListener('resize', reflow);
+})();
+function scheduleHideRtBar() {
+  clearTimeout(rtHideTimer);
+  rtHideTimer = setTimeout(() => {
+    const a = document.activeElement;
+    if (a && (a.classList.contains('pv-rich') || (rtBarEl && rtBarEl.contains(a)))) return;
+    hideRtBar();
+  }, 200);
+}
+
+// Rich contenteditable bound to a string field. opts: { align(fn), fill(fn) }.
+function attachRichText(host, getRaw, setRaw, placeholder, opts) {
+  opts = opts || {};
+  host.classList.add('pv-editable', 'pv-rich');
+  host.setAttribute('contenteditable', 'true');
+  host.setAttribute('spellcheck', 'false');
+  if (placeholder) host.dataset.placeholder = placeholder;
+  const save = () => { setRaw(sanitizeRich(host.innerHTML, false)); scheduleAutoSave(); };
+  host.addEventListener('focus', () => {
+    // Edit on the raw form (literal "n/d"), not the rendered fraction spans.
+    host.innerHTML = getRaw() || '';
+    rtCurrent = {
+      host, save,
+      align: (a) => { opts.align ? opts.align(a) : (host.style.textAlign = a); save(); },
+      fill: opts.fill || null
+    };
+    positionRtBar(host);
+  });
+  host.addEventListener('input', save);
+  host.addEventListener('blur', () => {
+    save();
+    host.innerHTML = formatTextWithFractions(getRaw());
+    renderEditor();
+    scheduleHideRtBar();
+  });
+  host.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); host.blur(); } });
+  return host;
+}
+
 // Turn an element into an image paste / drop target writing to el.dataUrl.
 function attachImagePaste(zoneEl, el) {
   zoneEl.classList.add('pv-image-zone');
@@ -4375,7 +4617,10 @@ function renderPreviewElement(el, ctx = {}) {
       const d = document.createElement('div');
       d.className = 'question-sub';
       d.innerHTML = formatTextWithFractions(el.text);
-      if (editable) attachInlineText(d, () => el.text || '', (v) => { el.text = v; }, 'Empty text — click to edit');
+      if (el.align) d.style.textAlign = el.align;
+      if (editable) attachRichText(d, () => el.text || '', (v) => { el.text = v; },
+        'Empty text — click to edit',
+        { align: (a) => { el.align = a; d.style.textAlign = a; } });
       return d;
     }
     case 'image': {
@@ -4864,17 +5109,19 @@ function buildTablePreview(el, editable) {
   table.className = 'data-table';
   el.rows.forEach((row, ri) => {
     const tr = document.createElement('tr');
-    row.forEach((cellText, ci) => {
+    row.forEach((cell, ci) => {
       const isHead = el.headerRow && ri === 0;
-      const cell = document.createElement(isHead ? 'th' : 'td');
-      cell.innerHTML = formatTextWithFractions(cellText || '');
+      const td = document.createElement(isHead ? 'th' : 'td');
+      td.innerHTML = formatTextWithFractions(cell.t || '');
+      if (cell.bg) td.style.backgroundColor = cell.bg;
+      if (cell.align) td.style.textAlign = cell.align;
       if (editable) {
-        attachInlineText(cell,
-          () => (el.rows[ri] && el.rows[ri][ci]) || '',
-          (v) => { if (el.rows[ri]) el.rows[ri][ci] = v; },
-          isHead ? 'Heading' : 'Cell');
+        attachRichText(td, () => cell.t || '', (v) => { cell.t = v; },
+          isHead ? 'Heading' : 'Cell',
+          { align: (a) => { cell.align = a; td.style.textAlign = a; },
+            fill: (col) => { cell.bg = col; td.style.backgroundColor = col || ''; scheduleAutoSave(); } });
       }
-      tr.appendChild(cell);
+      tr.appendChild(td);
     });
     table.appendChild(tr);
   });
@@ -5379,7 +5626,7 @@ function questionToPrintHtml(q, qIndex) {
 function elementToPrintHtml(el, qIndex, elIndex) {
   switch (el.type) {
     case 'text':
-      return `<div class="question-sub">${formatTextWithFractions(el.text)}</div>`;
+      return `<div class="question-sub"${alignStyleAttr(el.align)}>${formatTextWithFractions(el.text)}</div>`;
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
@@ -5443,6 +5690,8 @@ function elementToPrintHtml(el, qIndex, elIndex) {
 function getPrintCss() {
   return `
 @page { size: A4; margin: 18mm 16mm; }
+/* Print cell fills and text highlights, not just borders. */
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 body { background: #fff !important; padding: 0 !important; }
 .print-doc { max-width: 100%; margin: 0; }
 .print-header {
@@ -5692,7 +5941,7 @@ function questionToHtml(q, qIndex) {
 function elementToHtml(el, qIndex, elIndex) {
   switch (el.type) {
     case 'text':
-      return `<div class="question-sub">${formatTextWithFractions(el.text)}</div>`;
+      return `<div class="question-sub"${alignStyleAttr(el.align)}>${formatTextWithFractions(el.text)}</div>`;
     case 'image': {
       if (!el.dataUrl) return '';
       const cap = el.caption ? `<div class="img-caption">${escapeHtml(el.caption)}</div>` : '';
