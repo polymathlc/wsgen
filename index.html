@@ -2069,6 +2069,24 @@
   }
   .cs-q-text { word-break: break-word; overflow-wrap: anywhere; }
   .cs-q-text p { margin: 0 0 3px; }
+  .cs-q-num-row { line-height: 1; }
+  /* Inline editors for the question and answer — edits stay on the cheat
+     sheet and never touch the original draft questions. */
+  .cs-q-edit, .cs-a-edit {
+    outline: none; border-radius: 3px;
+    word-break: break-word; overflow-wrap: anywhere;
+    cursor: text; min-height: 1em;
+    transition: box-shadow 0.12s ease, background 0.12s ease;
+  }
+  .cs-a-edit { display: inline-block; min-width: 12px; }
+  .cs-q-edit:hover, .cs-a-edit:hover { background: rgba(30,136,229,0.05); }
+  .cs-q-edit:focus, .cs-a-edit:focus {
+    background: #fff; box-shadow: 0 0 0 2px var(--accent-light, #BBDEFB);
+  }
+  .cs-q-edit:empty::before, .cs-a-edit:empty::before {
+    content: attr(data-ph); color: var(--text-tertiary, #B0B0B0); font-style: italic;
+  }
+  .cs-edited-dot { color: var(--accent-deep, #1E88E5); font-weight: 700; }
   .cs-q-img { text-align: center; }
   .cs-q-img img { max-width: 100%; max-height: 100%; margin: 0 auto; object-fit: contain; }
   .cs-q-answer {
@@ -2126,6 +2144,12 @@
     body.cs-printing .cs-resize { display: none !important; }
     body.cs-printing .cs-tile { box-shadow: none !important; border-color: #BBB; }
     body.cs-printing .cs-tile.selected { box-shadow: none !important; }
+    /* Don't print editor affordances (focus ring, hover tint, placeholders). */
+    body.cs-printing .cs-q-edit, body.cs-printing .cs-a-edit {
+      box-shadow: none !important; background: transparent !important;
+    }
+    body.cs-printing .cs-q-edit:empty::before,
+    body.cs-printing .cs-a-edit:empty::before { content: '' !important; }
   }
 </style>
 </head>
@@ -6810,7 +6834,12 @@ function csLoadLayout() {
 function csSaveLayout() {
   const layout = {};
   cheat.tiles.forEach(t => {
-    layout[t.qId] = { page: t.page, x: t.x, y: t.y, w: t.w, h: t.h, showAnswer: t.showAnswer };
+    const entry = { page: t.page, x: t.x, y: t.y, w: t.w, h: t.h, showAnswer: t.showAnswer };
+    // Edits made on the cheat sheet are stored here (keyed by question id) and
+    // never written back to the original draft questions.
+    if (t.qEdited) entry.q = t.questionHtml;
+    if (t.aEdited) entry.a = t.answerHtml;
+    layout[t.qId] = entry;
   });
   const payload = {
     pageSizeId: cheat.pageSizeId,
@@ -6911,14 +6940,18 @@ function csBuildTiles() {
     .map((q, i) => {
       const ext = csExtract(q, i);
       const lay = layout[ext.qId];
+      const qEdited = !!(lay && typeof lay.q === 'string');
+      const aEdited = !!(lay && typeof lay.a === 'string');
       return {
         id: newId(),
         qId: ext.qId,
         num: ext.num,
         src: ext.src,
-        questionHtml: ext.questionHtml,
+        // Prefer the cheat-sheet edit (if any); otherwise the live draft text.
+        questionHtml: qEdited ? lay.q : ext.questionHtml,
         imgUrl: ext.imgUrl,
-        answerHtml: ext.answerHtml,
+        answerHtml: aEdited ? lay.a : ext.answerHtml,
+        qEdited, aEdited,
         showAnswer: lay ? !!lay.showAnswer : false,
         page: lay ? (lay.page | 0) : 0,
         x: lay ? lay.x : 0,
@@ -7020,24 +7053,26 @@ function csRenderTile(t) {
   el.style.height = t.h + 'mm';
 
   const showAns = cheat.showAll || t.showAnswer;
-  const hasAns = !!(t.answerHtml && t.answerHtml.trim());
+  const edited = t.qEdited || t.aEdited;
 
   const bar = document.createElement('div');
   bar.className = 'cs-tile-bar';
   bar.dataset.role = 'drag';
   bar.innerHTML = `
-    <span class="cs-tile-src">${escapeHtml(t.src || ('Q' + t.num))}</span>
+    <span class="cs-tile-src">${escapeHtml(t.src || ('Q' + t.num))}${edited ? ' <span class="cs-edited-dot" title="Edited on this cheat sheet">✎</span>' : ''}</span>
     <span class="cs-tile-bar-actions">
-      <button class="cs-mini ${showAns ? 'on' : ''}" data-cs-act="answer" title="Show/hide answer" ${hasAns ? '' : 'disabled style="opacity:.3;cursor:default;"'}>👁</button>
+      <button class="cs-mini" data-cs-act="revert" title="Revert question &amp; answer to the original draft text" ${edited ? '' : 'disabled style="opacity:.3;cursor:default;"'}>↺</button>
+      <button class="cs-mini ${showAns ? 'on' : ''}" data-cs-act="answer" title="Show/hide answer">👁</button>
       <button class="cs-mini danger" data-cs-act="remove" title="Remove this tile from the cheat sheet">✕</button>
     </span>`;
   el.appendChild(bar);
 
   const body = document.createElement('div');
   body.className = 'cs-tile-body';
-  let html = `<div class="cs-q-text"><span class="cs-q-num">${t.num}.</span></div>${t.questionHtml}`;
+  let html = `<div class="cs-q-num-row"><span class="cs-q-num">${t.num}.</span></div>`;
+  html += `<div class="cs-q-edit" contenteditable="true" data-cs-edit="q" data-ph="Type the question…">${t.questionHtml}</div>`;
   if (t.imgUrl) html += `<div class="cs-q-img"><img src="${t.imgUrl}" alt="" /></div>`;
-  if (hasAns) html += `<div class="cs-q-answer${showAns ? '' : ' hidden'}"><span class="cs-ans-label">Ans:</span> ${t.answerHtml}</div>`;
+  html += `<div class="cs-q-answer${showAns ? '' : ' hidden'}"><span class="cs-ans-label">Ans:</span> <span class="cs-a-edit" contenteditable="true" data-cs-edit="a" data-ph="Type the answer…">${t.answerHtml || ''}</span></div>`;
   body.innerHTML = html;
   el.appendChild(body);
 
@@ -7068,6 +7103,8 @@ function csOnPointerDown(e) {
       csRenderCanvas();
     } else if (act === 'remove') {
       csRemoveTile(tileId);
+    } else if (act === 'revert') {
+      if (t.qEdited || t.aEdited) csRevertTile(t);
     }
     return;
   }
@@ -7129,6 +7166,50 @@ function csOnPointerUp() {
 
 function csRemoveTile(tileId) {
   cheat.tiles = cheat.tiles.filter(t => t.id !== tileId);
+  csSaveLayout();
+  csRenderCanvas();
+}
+
+/* ---- inline editing of the question / answer (cheat-sheet only) ---- */
+let csEditSaveTimer = null;
+function csOnEditInput(e) {
+  const ed = e.target.closest('[data-cs-edit]');
+  if (!ed) return;
+  const tileEl = ed.closest('.cs-tile');
+  if (!tileEl) return;
+  const t = cheat.tiles.find(x => x.id === tileEl.dataset.tileId);
+  if (!t) return;
+  if (ed.dataset.csEdit === 'q') { t.questionHtml = ed.innerHTML; t.qEdited = true; }
+  else { t.answerHtml = ed.innerHTML; t.aEdited = true; }
+  // Reflect the "edited" state (enable revert, show ✎) without re-rendering,
+  // so the caret/selection the user is typing in is left undisturbed.
+  const revertBtn = tileEl.querySelector('[data-cs-act="revert"]');
+  if (revertBtn && revertBtn.disabled) {
+    revertBtn.disabled = false;
+    revertBtn.style.opacity = '';
+    revertBtn.style.cursor = '';
+  }
+  const srcEl = tileEl.querySelector('.cs-tile-src');
+  if (srcEl && !srcEl.querySelector('.cs-edited-dot')) {
+    srcEl.insertAdjacentHTML('beforeend', ' <span class="cs-edited-dot" title="Edited on this cheat sheet">✎</span>');
+  }
+  clearTimeout(csEditSaveTimer);
+  csEditSaveTimer = setTimeout(csSaveLayout, 400);
+}
+
+/* Drop the cheat-sheet edits for this tile and pull the original draft text
+   back in. Never modifies the draft itself. */
+function csRevertTile(t) {
+  const q = loadDraft().find(x => x.id === t.qId);
+  if (q) {
+    const ext = csExtract(q, t.num - 1);
+    t.questionHtml = ext.questionHtml;
+    t.answerHtml = ext.answerHtml;
+    t.src = ext.src;
+    if (ext.imgUrl) t.imgUrl = ext.imgUrl;
+  }
+  t.qEdited = false;
+  t.aEdited = false;
   csSaveLayout();
   csRenderCanvas();
 }
@@ -7627,6 +7708,7 @@ document.getElementById('csCols').addEventListener('change', (e) => {
   csRenderCanvas();
 });
 document.getElementById('csCanvas').addEventListener('pointerdown', csOnPointerDown);
+document.getElementById('csCanvas').addEventListener('input', csOnEditInput);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && document.getElementById('cheatSheetOverlay').classList.contains('open')) {
     csClose();
