@@ -1934,6 +1934,200 @@
     font-weight: 700;
   }
 </style>
+
+<!-- =========================================================================
+     CHEAT SHEET — full-screen overlay that lays out the draft questions as
+     drag/resize tiles on A4 pages. Each tile shows the question + picture,
+     with the answer hidden behind a per-tile toggle.
+     ========================================================================= -->
+<style id="cheatSheetStyles">
+  .cs-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: #EDEDEA;
+    display: none; flex-direction: column;
+  }
+  .cs-overlay.open { display: flex; }
+
+  .cs-toolbar {
+    flex-shrink: 0;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    background: var(--bg-primary, #fff);
+    border-bottom: 1px solid var(--border-medium, #D4D4CF);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .cs-toolbar h2 {
+    font-size: 1.05rem; font-weight: 700; margin-right: 4px;
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .cs-toolbar h2 small { font-size: 0.68rem; font-weight: 400; color: var(--text-tertiary, #8A8A8A); }
+  .cs-tool-group {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-medium, #D4D4CF);
+    border-radius: 8px; background: var(--bg-secondary, #FAFAFA);
+  }
+  .cs-tool-group label {
+    font-size: 0.66rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-tertiary, #8A8A8A);
+  }
+  .cs-tool-group select, .cs-tool-group input[type="number"] {
+    padding: 3px 6px; border: 1px solid var(--border-subtle, #E8E8E4);
+    border-radius: 5px; background: #fff; font-size: 0.82rem;
+  }
+  .cs-tool-group input[type="number"] { width: 52px; }
+  .cs-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 13px; border: 1px solid var(--border-medium, #D4D4CF);
+    border-radius: 8px; background: #fff; color: var(--text-primary, #1A1A1A);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }
+  .cs-btn:hover { border-color: var(--accent-dark, #42A5F5); color: var(--accent-deep, #1E88E5); }
+  .cs-btn-primary { background: var(--accent-deep, #1E88E5); color: #fff; border-color: var(--accent-deep, #1E88E5); }
+  .cs-btn-primary:hover { background: var(--accent-dark, #42A5F5); color: #fff; }
+  .cs-btn-ghost { background: transparent; }
+  .cs-btn.cs-close { margin-left: auto; }
+  .cs-toolbar-spacer { flex: 1; }
+
+  .cs-canvas {
+    flex: 1; overflow: auto;
+    padding: 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+  }
+  .cs-page {
+    position: relative;
+    background: #fff;
+    width: var(--cs-page-w, 210mm);
+    height: var(--cs-page-h, 297mm);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    border-radius: 2px;
+    flex-shrink: 0;
+    background-image: radial-gradient(circle at 1px 1px, #E2E2DE 0.7px, transparent 0);
+    background-size: 5mm 5mm;
+    overflow: hidden;
+  }
+  .cs-page-label {
+    position: absolute; top: 4mm; right: 6mm;
+    font-size: 0.62rem; color: var(--text-tertiary, #8A8A8A);
+    pointer-events: none; z-index: 0;
+  }
+  .cs-page-empty {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-tertiary, #B0B0B0); font-size: 0.95rem; font-style: italic;
+    text-align: center; padding: 24px; pointer-events: none;
+  }
+
+  .cs-tile {
+    position: absolute;
+    background: #fff;
+    border: 1.4px solid var(--border-medium, #D4D4CF);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .cs-tile:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2; }
+  .cs-tile.selected {
+    border-color: var(--accent-deep, #1E88E5);
+    box-shadow: 0 0 0 1.5px var(--accent-deep, #1E88E5), 0 4px 12px rgba(30,136,229,0.18);
+    z-index: 10;
+  }
+  .cs-tile-bar {
+    height: 16px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5px;
+    background: var(--bg-tertiary, #F3F3F0);
+    border-bottom: 1px solid var(--border-subtle, #E8E8E4);
+    cursor: move; user-select: none;
+    font-size: 0.56rem; color: var(--text-tertiary, #8A8A8A);
+  }
+  .cs-tile-src { font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .cs-tile-bar-actions { display: flex; gap: 2px; flex-shrink: 0; }
+  .cs-mini {
+    width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center;
+    border: none; background: transparent; border-radius: 3px; cursor: pointer;
+    font-size: 0.62rem; line-height: 1; color: var(--text-secondary, #5C5C5C); padding: 0;
+  }
+  .cs-mini:hover { background: rgba(0,0,0,0.08); }
+  .cs-mini.on { background: var(--accent-deep, #1E88E5); color: #fff; }
+  .cs-mini.danger:hover { background: var(--danger-bg, #FDECEA); color: var(--danger-dark, #C62828); }
+
+  .cs-tile-body {
+    flex: 1; min-height: 0; overflow: auto;
+    padding: 6px 8px;
+    font-size: var(--cs-tile-font, 0.78rem); line-height: 1.35;
+    color: var(--text-primary, #1A1A1A);
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .cs-q-num {
+    display: inline-block; font-weight: 700; color: var(--accent-deep, #1E88E5);
+    margin-right: 4px;
+  }
+  .cs-q-text { word-break: break-word; overflow-wrap: anywhere; }
+  .cs-q-text p { margin: 0 0 3px; }
+  .cs-q-img { text-align: center; }
+  .cs-q-img img { max-width: 100%; max-height: 100%; margin: 0 auto; object-fit: contain; }
+  .cs-q-answer {
+    margin-top: auto;
+    border-top: 1px dashed var(--correct-dark, #43A047);
+    padding-top: 4px;
+    background: var(--correct-bg, #F1F8E9);
+    border-radius: 4px; padding: 4px 6px;
+    font-size: 0.94em;
+  }
+  .cs-q-answer .cs-ans-label { font-weight: 700; color: var(--correct-dark, #43A047); }
+  .cs-q-answer.hidden { display: none; }
+
+  /* Stacked-fraction support (mirrors the worksheet .frac styles) */
+  .cs-tile-body .frac {
+    display: inline-flex; flex-direction: column; vertical-align: middle;
+    text-align: center; line-height: 1; margin: 0 2px; font-size: 0.92em;
+  }
+  .cs-tile-body .frac-num { border-bottom: 1.2px solid currentColor; padding: 0 3px; }
+  .cs-tile-body .frac-den { padding: 0 3px; }
+
+  /* Resize handle (corner only — keeps it simple) */
+  .cs-resize {
+    position: absolute; right: -1px; bottom: -1px;
+    width: 14px; height: 14px; cursor: nwse-resize; z-index: 12;
+    opacity: 0;
+  }
+  .cs-resize::after {
+    content: ''; position: absolute; right: 3px; bottom: 3px;
+    width: 8px; height: 8px;
+    border-right: 2px solid var(--accent-deep, #1E88E5);
+    border-bottom: 2px solid var(--accent-deep, #1E88E5);
+    border-bottom-right-radius: 2px;
+  }
+  .cs-tile.selected .cs-resize, .cs-tile:hover .cs-resize { opacity: 1; }
+
+  .cs-empty-state {
+    margin: auto; text-align: center; color: var(--text-tertiary, #8A8A8A);
+    max-width: 360px;
+  }
+  .cs-empty-state .cs-empty-icon { font-size: 3rem; opacity: 0.4; }
+  .cs-empty-state h3 { font-size: 1.1rem; margin: 10px 0 6px; color: var(--text-secondary, #5C5C5C); }
+
+  @media print {
+    body.cs-printing > *:not(.cs-overlay) { display: none !important; }
+    body.cs-printing .cs-overlay { position: static; background: #fff; }
+    body.cs-printing .cs-toolbar { display: none !important; }
+    body.cs-printing .cs-canvas { padding: 0; gap: 0; display: block; overflow: visible; }
+    body.cs-printing .cs-page {
+      box-shadow: none; border-radius: 0; background-image: none;
+      page-break-after: always; break-after: page; margin: 0;
+    }
+    body.cs-printing .cs-page:last-child { page-break-after: auto; }
+    body.cs-printing .cs-page-label, body.cs-printing .cs-tile-bar,
+    body.cs-printing .cs-resize { display: none !important; }
+    body.cs-printing .cs-tile { box-shadow: none !important; border-color: #BBB; }
+    body.cs-printing .cs-tile.selected { box-shadow: none !important; }
+  }
+</style>
 </head>
 <body>
 
@@ -1984,6 +2178,7 @@
         <button class="btn admin-only" id="addAllToDraftBtn" title="Copy every question in this worksheet into the draft at once">📋＋ Add all to Draft</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
+        <button class="btn admin-only" id="cheatSheetBtn" title="Lay out the draft questions as drag-and-resize tiles on a printable cheat sheet">🧾 Cheat Sheet (0)</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
         <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
         <button class="btn" id="practiceModeBtn" title="Try the worksheet on screen — select answers and check your score">✏️ Practice mode</button>
@@ -2024,6 +2219,38 @@
   </main>
 </div>
 <button class="btn btn-primary panel-expand-btn" id="panelExpandBtn" title="Show the worksheet panel">» Worksheets</button>
+
+<!-- =============== CHEAT SHEET OVERLAY =============== -->
+<div class="cs-overlay" id="cheatSheetOverlay">
+  <div class="cs-toolbar">
+    <h2>🧾 Cheat Sheet
+      <small>Drag &amp; resize the draft questions onto a printable page</small>
+    </h2>
+    <div class="cs-tool-group">
+      <label>Page</label>
+      <select id="csPageSize">
+        <option value="a4">A4</option>
+        <option value="a3">A3</option>
+        <option value="letter">Letter</option>
+      </select>
+      <select id="csOrient">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+    </div>
+    <div class="cs-tool-group">
+      <label>Columns</label>
+      <input type="number" id="csCols" min="1" max="6" step="1" value="2" />
+    </div>
+    <button class="cs-btn" id="csRepackBtn" title="Auto-arrange every tile back into a tidy grid">▦ Auto-pack</button>
+    <button class="cs-btn" id="csReloadDraftBtn" title="Rebuild the cheat sheet from the current draft questions">↻ Rebuild from draft</button>
+    <button class="cs-btn" id="csToggleAnswersBtn" title="Show or hide every answer at once">👁 Show all answers</button>
+    <div class="cs-toolbar-spacer"></div>
+    <button class="cs-btn cs-btn-primary" id="csPrintBtn">🖨 Print / PDF</button>
+    <button class="cs-btn cs-close" id="csCloseBtn">✕ Close</button>
+  </div>
+  <div class="cs-canvas" id="csCanvas"></div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
@@ -6534,6 +6761,415 @@ function updateDraftBadge() {
   if (openBtn) openBtn.textContent = `📋 Open Draft (${n})`;
   const clearBtn = document.getElementById('clearDraftBtn');
   if (clearBtn) clearBtn.style.display = n > 0 ? '' : 'none';
+  const csBtn = document.getElementById('cheatSheetBtn');
+  if (csBtn) csBtn.textContent = `🧾 Cheat Sheet (${n})`;
+}
+
+/* =========================================================================
+   CHEAT SHEET — lay out the draft questions as drag-and-resize tiles on
+   printable A4 pages. Each tile shows the question + picture; the answer is
+   hidden behind a per-tile toggle. The heavy content (text/images) is always
+   rebuilt from the live draft, while only the lightweight layout (position,
+   size, answer-visibility) is persisted — keyed by question id.
+   ========================================================================= */
+const CHEATSHEET_KEY = 'wsgen.cheatsheet';
+const CS_PAGE_SIZES = {
+  a4:     { w: 210,   h: 297   },
+  a3:     { w: 297,   h: 420   },
+  letter: { w: 215.9, h: 279.4 },
+};
+const CS_MARGIN = 8;   // mm page margin
+const CS_GAP = 4;      // mm gap between tiles
+const CS_TOP = 10;     // mm reserved at the top of each page (page label)
+const CS_SNAP = 5;     // mm snap grid while dragging/resizing
+
+const cheat = {
+  pageSizeId: 'a4',
+  orientation: 'portrait',
+  cols: 2,
+  showAll: false,
+  tiles: [],        // [{ id, qId, num, src, questionHtml, imgUrl, answerHtml, showAnswer, page, x, y, w, h }]
+  selectedId: null,
+};
+
+function csPageDims() {
+  const def = CS_PAGE_SIZES[cheat.pageSizeId] || CS_PAGE_SIZES.a4;
+  return cheat.orientation === 'landscape'
+    ? { w: def.h, h: def.w }
+    : { w: def.w, h: def.h };
+}
+
+function csLoadLayout() {
+  try {
+    const raw = localStorage.getItem(CHEATSHEET_KEY);
+    const p = raw ? JSON.parse(raw) : null;
+    if (!p) return null;
+    return p;
+  } catch (_) { return null; }
+}
+function csSaveLayout() {
+  const layout = {};
+  cheat.tiles.forEach(t => {
+    layout[t.qId] = { page: t.page, x: t.x, y: t.y, w: t.w, h: t.h, showAnswer: t.showAnswer };
+  });
+  const payload = {
+    pageSizeId: cheat.pageSizeId,
+    orientation: cheat.orientation,
+    cols: cheat.cols,
+    showAll: cheat.showAll,
+    layout,
+  };
+  try { localStorage.setItem(CHEATSHEET_KEY, JSON.stringify(payload)); } catch (_) {}
+}
+
+/* Pull the displayable bits out of a draft question: the question text/options,
+   the first picture, and a derived answer. */
+function csExtract(q, idx) {
+  const els = q.elements || [];
+  const letters = ['(1)', '(2)', '(3)', '(4)', '(5)', '(6)'];
+  const qParts = [];
+  const ansParts = [];
+  let imgUrl = '';
+  for (const el of els) {
+    switch (el && el.type) {
+      case 'text':
+        if (el.text && el.text.trim())
+          qParts.push(`<div class="cs-q-text">${formatTextWithFractions(el.text)}</div>`);
+        break;
+      case 'part':
+        if ((el.text && el.text.trim()) || el.label)
+          qParts.push(`<div class="cs-q-text"><b>${escapeHtml(el.label || '')}</b> ${formatTextWithFractions(el.text || '')}</div>`);
+        break;
+      case 'mcq':
+        if (Array.isArray(el.options)) {
+          const opts = el.options.map((o, i) =>
+            `<div>${letters[i] || ''} ${formatTextWithFractions(o.text || '')}</div>`).join('');
+          qParts.push(`<div class="cs-q-text cs-q-opts">${opts}</div>`);
+          const ci = el.options.findIndex(o => o.id === el.correctId);
+          if (ci >= 0)
+            ansParts.push(`${letters[ci]} ${formatTextWithFractions(el.options[ci].text || '')}`);
+        }
+        break;
+      case 'image':
+        if (!imgUrl && el.dataUrl) imgUrl = el.dataUrl;
+        break;
+      case 'answer':
+        if (el.answer && el.answer.trim())
+          ansParts.push(`<span class="cs-ans-label">${escapeHtml(el.label || 'Ans')}</span> ${formatTextWithFractions(el.answer)}`);
+        break;
+      case 'answerKey':
+        if (el.text && el.text.trim()) ansParts.push(formatTextWithFractions(el.text));
+        if (el.dataUrl) ansParts.push(`<img src="${el.dataUrl}" alt="" style="max-width:100%;margin-top:3px;" />`);
+        break;
+    }
+  }
+  return {
+    qId: q.id,
+    num: idx + 1,
+    src: (q.source || '').trim(),
+    questionHtml: qParts.join('') || '<div class="cs-q-text" style="color:#999;font-style:italic;">(no question text)</div>',
+    imgUrl,
+    answerHtml: ansParts.join('<br>'),
+  };
+}
+
+/* Place every tile into a uniform grid; pages are added as the grid fills.
+   Tiles that have a saved layout (same qId) keep their position/size. */
+function csAutoPack(force) {
+  const dims = csPageDims();
+  const cols = Math.max(1, Math.min(6, cheat.cols | 0 || 2));
+  const usableW = dims.w - CS_MARGIN * 2;
+  const colW = (usableW - (cols - 1) * CS_GAP) / cols;
+  const rowH = 60; // mm default tile height
+  const usableH = dims.h - CS_TOP - CS_MARGIN;
+  const rowsPerPage = Math.max(1, Math.floor((usableH + CS_GAP) / (rowH + CS_GAP)));
+  const perPage = cols * rowsPerPage;
+  cheat.tiles.forEach((t, i) => {
+    if (!force && t._placed) return;
+    const page = Math.floor(i / perPage);
+    const slot = i % perPage;
+    const row = Math.floor(slot / cols);
+    const col = slot % cols;
+    t.page = page;
+    t.x = round1cs(CS_MARGIN + col * (colW + CS_GAP));
+    t.y = round1cs(CS_TOP + row * (rowH + CS_GAP));
+    t.w = round1cs(colW);
+    t.h = rowH;
+    t._placed = true;
+  });
+}
+
+function round1cs(n) { return Math.round(n * 10) / 10; }
+
+/* Build the tile list from the live draft, applying any saved layout. */
+function csBuildTiles() {
+  const draft = loadDraft();
+  const saved = csLoadLayout();
+  const layout = (saved && saved.layout) || {};
+  cheat.tiles = draft
+    .filter(q => !isInstruction(q))
+    .map((q, i) => {
+      const ext = csExtract(q, i);
+      const lay = layout[ext.qId];
+      return {
+        id: newId(),
+        qId: ext.qId,
+        num: ext.num,
+        src: ext.src,
+        questionHtml: ext.questionHtml,
+        imgUrl: ext.imgUrl,
+        answerHtml: ext.answerHtml,
+        showAnswer: lay ? !!lay.showAnswer : false,
+        page: lay ? (lay.page | 0) : 0,
+        x: lay ? lay.x : 0,
+        y: lay ? lay.y : 0,
+        w: lay ? lay.w : 0,
+        h: lay ? lay.h : 0,
+        _placed: !!lay,
+      };
+    });
+  csAutoPack(false);
+}
+
+/* Re-fetch images that live in Cloud Storage (draft stores refs, not base64),
+   then refresh the affected tiles in place. */
+function csHydrateImages() {
+  const draft = loadDraft();
+  const byQ = new Map(draft.map(q => [q.id, q]));
+  const tasks = [];
+  for (const q of draft) {
+    for (const el of (q.elements || [])) {
+      if (el.type !== 'image') continue;
+      if (el.dataUrl) continue;
+      if (!el.imageRef || !el.imageRef.path) continue;
+      const path = el.imageRef.path;
+      if (!imageHydrateCache.has(path)) {
+        imageHydrateCache.set(path,
+          retrying('fetch image URL',
+            () => getDownloadURL(storageRef(fbStorage, path)),
+            { attempts: 2, timeoutMs: 10000 }
+          ).catch(() => null));
+      }
+      tasks.push(imageHydrateCache.get(path).then(url => { if (url) el.dataUrl = url; }));
+    }
+  }
+  if (!tasks.length) return;
+  Promise.allSettled(tasks).then(() => {
+    // Re-derive image URLs onto existing tiles without disturbing layout.
+    cheat.tiles.forEach(t => {
+      const q = byQ.get(t.qId);
+      if (!q) return;
+      const img = (q.elements || []).find(e => e.type === 'image' && e.dataUrl);
+      if (img && img.dataUrl !== t.imgUrl) {
+        t.imgUrl = img.dataUrl;
+        const bodyImg = document.querySelector(`.cs-tile[data-tile-id="${t.id}"] .cs-q-img img`);
+        if (bodyImg) bodyImg.src = img.dataUrl;
+        else csRenderCanvas();
+      }
+    });
+  });
+}
+
+function csRenderCanvas() {
+  const canvas = document.getElementById('csCanvas');
+  if (!canvas) return;
+  canvas.innerHTML = '';
+
+  if (cheat.tiles.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'cs-empty-state';
+    empty.innerHTML = `
+      <div class="cs-empty-icon">🧾</div>
+      <h3>Your draft is empty</h3>
+      <div>Click 📋 on any question (or “Add all to Draft”) to collect questions,
+      then reopen the cheat sheet to lay them out.</div>`;
+    canvas.appendChild(empty);
+    return;
+  }
+
+  const dims = csPageDims();
+  const pageCount = Math.max(1, cheat.tiles.reduce((m, t) => Math.max(m, (t.page | 0) + 1), 1));
+  const pages = [];
+  for (let p = 0; p < pageCount; p++) {
+    const page = document.createElement('div');
+    page.className = 'cs-page';
+    page.dataset.page = String(p);
+    page.style.setProperty('--cs-page-w', dims.w + 'mm');
+    page.style.setProperty('--cs-page-h', dims.h + 'mm');
+    const label = document.createElement('div');
+    label.className = 'cs-page-label';
+    label.textContent = `Page ${p + 1} / ${pageCount}`;
+    page.appendChild(label);
+    canvas.appendChild(page);
+    pages.push(page);
+  }
+
+  cheat.tiles.forEach(t => {
+    const page = pages[Math.min(t.page | 0, pages.length - 1)];
+    page.appendChild(csRenderTile(t));
+  });
+}
+
+function csRenderTile(t) {
+  const el = document.createElement('div');
+  el.className = 'cs-tile' + (cheat.selectedId === t.id ? ' selected' : '');
+  el.dataset.tileId = t.id;
+  el.style.left = t.x + 'mm';
+  el.style.top = t.y + 'mm';
+  el.style.width = t.w + 'mm';
+  el.style.height = t.h + 'mm';
+
+  const showAns = cheat.showAll || t.showAnswer;
+  const hasAns = !!(t.answerHtml && t.answerHtml.trim());
+
+  const bar = document.createElement('div');
+  bar.className = 'cs-tile-bar';
+  bar.dataset.role = 'drag';
+  bar.innerHTML = `
+    <span class="cs-tile-src">${escapeHtml(t.src || ('Q' + t.num))}</span>
+    <span class="cs-tile-bar-actions">
+      <button class="cs-mini ${showAns ? 'on' : ''}" data-cs-act="answer" title="Show/hide answer" ${hasAns ? '' : 'disabled style="opacity:.3;cursor:default;"'}>👁</button>
+      <button class="cs-mini danger" data-cs-act="remove" title="Remove this tile from the cheat sheet">✕</button>
+    </span>`;
+  el.appendChild(bar);
+
+  const body = document.createElement('div');
+  body.className = 'cs-tile-body';
+  let html = `<div class="cs-q-text"><span class="cs-q-num">${t.num}.</span></div>${t.questionHtml}`;
+  if (t.imgUrl) html += `<div class="cs-q-img"><img src="${t.imgUrl}" alt="" /></div>`;
+  if (hasAns) html += `<div class="cs-q-answer${showAns ? '' : ' hidden'}"><span class="cs-ans-label">Ans:</span> ${t.answerHtml}</div>`;
+  body.innerHTML = html;
+  el.appendChild(body);
+
+  const rz = document.createElement('div');
+  rz.className = 'cs-resize';
+  rz.dataset.role = 'resize';
+  el.appendChild(rz);
+
+  return el;
+}
+
+/* ---- drag / resize ---- */
+let csDrag = null;
+function csOnPointerDown(e) {
+  const tileEl = e.target.closest('.cs-tile');
+  if (!tileEl) return;
+  const tileId = tileEl.dataset.tileId;
+  const t = cheat.tiles.find(x => x.id === tileId);
+  if (!t) return;
+
+  // Mini-button actions
+  const actBtn = e.target.closest('[data-cs-act]');
+  if (actBtn) {
+    const act = actBtn.dataset.csAct;
+    if (act === 'answer') {
+      t.showAnswer = !t.showAnswer;
+      csSaveLayout();
+      csRenderCanvas();
+    } else if (act === 'remove') {
+      csRemoveTile(tileId);
+    }
+    return;
+  }
+
+  cheat.selectedId = tileId;
+  document.getElementById('csCanvas').querySelectorAll('.cs-tile.selected').forEach(n => n.classList.remove('selected'));
+  tileEl.classList.add('selected');
+
+  const role = e.target.closest('[data-role]') && e.target.closest('[data-role]').dataset.role;
+  const isResize = role === 'resize';
+  const isDrag = role === 'drag';
+  if (!isResize && !isDrag) return; // clicks in the body just select
+
+  e.preventDefault();
+  const pageEl = tileEl.closest('.cs-page');
+  const rect = pageEl.getBoundingClientRect();
+  const dims = csPageDims();
+  const pxPerMm = rect.width / dims.w;
+  csDrag = {
+    mode: isResize ? 'resize' : 'drag',
+    t, tileEl, pageEl, pxPerMm, dims,
+    startX: e.clientX, startY: e.clientY,
+    ox: t.x, oy: t.y, ow: t.w, oh: t.h,
+  };
+  window.addEventListener('pointermove', csOnPointerMove);
+  window.addEventListener('pointerup', csOnPointerUp);
+}
+function csOnPointerMove(e) {
+  const d = csDrag;
+  if (!d) return;
+  const dxMm = (e.clientX - d.startX) / d.pxPerMm;
+  const dyMm = (e.clientY - d.startY) / d.pxPerMm;
+  const snap = v => Math.round(v / CS_SNAP) * CS_SNAP;
+  if (d.mode === 'drag') {
+    let nx = snap(d.ox + dxMm);
+    let ny = snap(d.oy + dyMm);
+    nx = Math.max(0, Math.min(nx, d.dims.w - d.t.w));
+    ny = Math.max(0, Math.min(ny, d.dims.h - d.t.h));
+    d.t.x = round1cs(nx); d.t.y = round1cs(ny);
+    d.tileEl.style.left = d.t.x + 'mm';
+    d.tileEl.style.top = d.t.y + 'mm';
+  } else {
+    let nw = snap(d.ow + dxMm);
+    let nh = snap(d.oh + dyMm);
+    nw = Math.max(25, Math.min(nw, d.dims.w - d.t.x));
+    nh = Math.max(20, Math.min(nh, d.dims.h - d.t.y));
+    d.t.w = round1cs(nw); d.t.h = round1cs(nh);
+    d.tileEl.style.width = d.t.w + 'mm';
+    d.tileEl.style.height = d.t.h + 'mm';
+  }
+}
+function csOnPointerUp() {
+  if (!csDrag) return;
+  csDrag = null;
+  window.removeEventListener('pointermove', csOnPointerMove);
+  window.removeEventListener('pointerup', csOnPointerUp);
+  csSaveLayout();
+}
+
+function csRemoveTile(tileId) {
+  cheat.tiles = cheat.tiles.filter(t => t.id !== tileId);
+  csSaveLayout();
+  csRenderCanvas();
+}
+
+/* ---- open / close / controls ---- */
+function csOpen() {
+  if (!isAdmin()) return;
+  const saved = csLoadLayout();
+  if (saved) {
+    cheat.pageSizeId = CS_PAGE_SIZES[saved.pageSizeId] ? saved.pageSizeId : 'a4';
+    cheat.orientation = saved.orientation === 'landscape' ? 'landscape' : 'portrait';
+    cheat.cols = Math.max(1, Math.min(6, (saved.cols | 0) || 2));
+    cheat.showAll = !!saved.showAll;
+  }
+  document.getElementById('csPageSize').value = cheat.pageSizeId;
+  document.getElementById('csOrient').value = cheat.orientation;
+  document.getElementById('csCols').value = String(cheat.cols);
+  csSyncAnswerBtn();
+  csBuildTiles();
+  csRenderCanvas();
+  csHydrateImages();
+  document.getElementById('cheatSheetOverlay').classList.add('open');
+}
+function csClose() {
+  csSaveLayout();
+  document.getElementById('cheatSheetOverlay').classList.remove('open');
+}
+function csSyncAnswerBtn() {
+  const btn = document.getElementById('csToggleAnswersBtn');
+  if (btn) btn.textContent = cheat.showAll ? '🙈 Hide all answers' : '👁 Show all answers';
+}
+function csPrint() {
+  cheat.selectedId = null;
+  csRenderCanvas();
+  document.body.classList.add('cs-printing');
+  const cleanup = () => {
+    document.body.classList.remove('cs-printing');
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  setTimeout(() => window.print(), 120);
 }
 
 /* =========================================================================
@@ -6944,6 +7580,58 @@ document.getElementById('addAllToDraftBtn').addEventListener('click', copyWorksh
 document.getElementById('openDraftBtn').addEventListener('click', openDraft);
 document.getElementById('clearDraftBtn').addEventListener('click', clearDraft);
 updateDraftBadge();
+
+/* ---- Cheat sheet wiring ---- */
+document.getElementById('cheatSheetBtn').addEventListener('click', () => {
+  if (loadDraft().filter(q => !isInstruction(q)).length === 0) {
+    alert('Your draft is empty. Click 📋 on any question (or "Add all to Draft") to collect questions for the cheat sheet first.');
+    return;
+  }
+  csOpen();
+});
+document.getElementById('csCloseBtn').addEventListener('click', csClose);
+document.getElementById('csPrintBtn').addEventListener('click', csPrint);
+document.getElementById('csRepackBtn').addEventListener('click', () => {
+  cheat.cols = Math.max(1, Math.min(6, parseInt(document.getElementById('csCols').value, 10) || 2));
+  csAutoPack(true);
+  csSaveLayout();
+  csRenderCanvas();
+});
+document.getElementById('csReloadDraftBtn').addEventListener('click', () => {
+  csBuildTiles();
+  csRenderCanvas();
+  csHydrateImages();
+});
+document.getElementById('csToggleAnswersBtn').addEventListener('click', () => {
+  cheat.showAll = !cheat.showAll;
+  csSyncAnswerBtn();
+  csSaveLayout();
+  csRenderCanvas();
+});
+document.getElementById('csPageSize').addEventListener('change', (e) => {
+  cheat.pageSizeId = CS_PAGE_SIZES[e.target.value] ? e.target.value : 'a4';
+  csAutoPack(true);
+  csSaveLayout();
+  csRenderCanvas();
+});
+document.getElementById('csOrient').addEventListener('change', (e) => {
+  cheat.orientation = e.target.value === 'landscape' ? 'landscape' : 'portrait';
+  csAutoPack(true);
+  csSaveLayout();
+  csRenderCanvas();
+});
+document.getElementById('csCols').addEventListener('change', (e) => {
+  cheat.cols = Math.max(1, Math.min(6, parseInt(e.target.value, 10) || 2));
+  csAutoPack(true);
+  csSaveLayout();
+  csRenderCanvas();
+});
+document.getElementById('csCanvas').addEventListener('pointerdown', csOnPointerDown);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('cheatSheetOverlay').classList.contains('open')) {
+    csClose();
+  }
+});
 
 async function migrateLegacyWorksheets() {
   if (!isAdmin()) return;
