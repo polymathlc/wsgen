@@ -6592,28 +6592,40 @@ async function deleteFromSystem(id) {
 
 async function refreshSavedList() {
   const list = document.getElementById('savedList');
-  list.innerHTML = '';
-  if (!currentUser) { savedItemsCache = []; return; }
+  // NOTE: don't blank the list here. We clear it only once we actually have
+  // data to (re-)render, further down. Clearing up-front meant a slow or
+  // failed Firestore read left the panel empty — which looked like every
+  // saved worksheet had vanished (and explains why another browser, which
+  // happened to read cleanly, still showed them).
+  if (!currentUser) { savedItemsCache = []; list.innerHTML = ''; return; }
   const isRealWorksheet = (d, docId) =>
     !isChunkDocId(docId) && d && d.parentId === undefined && (d.title || d.id);
+
+  // Fetch every worksheet metadata doc and order client-side. We deliberately
+  // avoid a Firestore orderBy(): it silently drops any doc missing the sort
+  // field and can hit index/availability quirks that differ between browsers.
+  // A couple of quick retries smooth over transient network blips.
+  let fetched = null; // null ⇒ the read failed; keep the last good list visible
   try {
-    const col = worksheetsCol();
-    const snap = await getDocs(query(col, orderBy('savedAtClient', 'desc')));
-    savedItemsCache = snap.docs
+    const snap = await retrying('load worksheet list',
+      () => getDocs(worksheetsCol()), { attempts: 2, baseMs: 500, timeoutMs: 15000 });
+    fetched = snap.docs
       .filter(d => isRealWorksheet(d.data(), d.id))
-      .map(d => d.data());
+      .map(d => d.data())
+      .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''));
   } catch (e) {
-    try {
-      const snap = await getDocs(worksheetsCol());
-      savedItemsCache = snap.docs
-        .filter(d => isRealWorksheet(d.data(), d.id))
-        .map(d => d.data())
-        .sort((a, b) => (b.savedAtClient || '').localeCompare(a.savedAtClient || ''));
-    } catch (e2) {
-      console.error(e2);
-      savedItemsCache = [];
-    }
+    console.error('Could not refresh the saved worksheet list:', e);
   }
+
+  if (fetched !== null) {
+    savedItemsCache = fetched;
+  } else if (savedItemsCache.length === 0) {
+    // The read failed and we have nothing cached to show — leave the UI as-is
+    // and let the next refresh try again, rather than flashing an empty list.
+    return;
+  }
+  // Otherwise the read failed but we still have the previously loaded list;
+  // fall through and re-render that so the panel never goes blank.
   // Keep a stable display order: a worksheet that already appears in the list
   // keeps its position even after it is edited / re-saved (so it doesn't jump
   // to the top mid-edit). Worksheets seen for the first time go to the top,
@@ -6630,6 +6642,8 @@ async function refreshSavedList() {
   }
   // The link indicator needs the cache to resolve the linked worksheet's name.
   updateLinkStatus();
+  // Now that we have data in hand, swap in the freshly built list.
+  list.innerHTML = '';
   // Students only see worksheets the admin has chosen to show.
   const visibleItems = isAdmin()
     ? savedItemsCache
@@ -7760,7 +7774,7 @@ var DV_CHROME_CSS = `
 :root{ --dv-content-w:178mm; }
 html,body{ background:#71777d; margin:0; padding:0; }
 .dv-bar{ position:sticky; top:0; z-index:30; display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-  padding:10px 16px; background:#fff; border-bottom:1px solid #D4D4CF; box-shadow:0 1px 4px rgba(0,0,0,.15); }
+  padding:10px 190px 10px 16px; background:#fff; border-bottom:1px solid #D4D4CF; box-shadow:0 1px 4px rgba(0,0,0,.15); }
 .dv-bar h1{ font-size:1rem; font-weight:700; margin-right:8px; color:#1A1A1A; }
 .dv-spacer{ flex:1; }
 .dv-btn{ padding:7px 13px; border:1px solid #D4D4CF; border-radius:8px; background:#fff; font-size:.85rem; font-weight:700; cursor:pointer; font-family:inherit; color:#1A1A1A; }
