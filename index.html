@@ -2221,6 +2221,29 @@
   .cs-guide.v { width: 1px; top: 0; bottom: 0; }
   .cs-guide.h { height: 1px; left: 0; right: 0; }
 
+  /* ===== Data table element ===== */
+  .data-table-wrap { position: relative; margin: 12px 0; overflow-x: auto; }
+  .data-table { border-collapse: collapse; width: auto; max-width: 100%; }
+  .data-table th, .data-table td {
+    border: 1px solid #1A1A1A; padding: 6px 12px; text-align: left;
+    vertical-align: top; min-width: 52px; line-height: 1.4;
+  }
+  .data-table th { background: #F3F3F0; font-weight: 700; }
+  .data-table td.pv-editable:empty::before,
+  .data-table th.pv-editable:empty::before {
+    content: attr(data-placeholder); color: var(--text-tertiary, #8A8A8A); font-style: italic;
+  }
+  .dt-tools {
+    display: none; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+  }
+  .data-table-wrap:hover .dt-tools, .data-table-wrap:focus-within .dt-tools { display: flex; }
+  .dt-tool-btn {
+    padding: 3px 10px; border: 1px solid var(--border-medium, #D4D4CF); border-radius: 999px;
+    background: #fff; font-family: inherit; font-size: 0.72rem; font-weight: 700;
+    color: var(--text-secondary, #5C5C5C); cursor: pointer;
+  }
+  .dt-tool-btn:hover { border-color: var(--accent-dark, #42A5F5); color: var(--accent-deep, #1E88E5); }
+
   /* ===== Design / Layout view (A4 design surface in an isolated iframe) ===== */
   .dv-overlay { position: fixed; inset: 0; z-index: 1900; background: #71777d; display: none; }
   .dv-overlay.open { display: block; }
@@ -2298,6 +2321,8 @@
       </div>
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
+        <button class="btn admin-only" id="undoBtn" title="Undo the last edit (Ctrl+Z)" disabled>↶ Undo</button>
+        <button class="btn admin-only" id="redoBtn" title="Redo (Ctrl+Y / Ctrl+Shift+Z)" disabled>↷ Redo</button>
         <button class="btn admin-only" id="randomizeOrderBtn" title="Shuffle the order of questions in this worksheet (instruction blocks stay in place)">🔀 Randomize order</button>
         <div class="sort-menu admin-only" id="sortMenu">
           <button class="btn" id="sortQuestionsBtn" title="Group and reorder questions by topic (instruction blocks stay in place)">↕ Sort questions ▾</button>
@@ -2625,7 +2650,37 @@ function makeElement(type) {
       return { ...base, title: 'Common Mistake', text: '', color: 'teal' };
     case 'studentAnswer':
       return { ...base, label: "Student's Answer", answer: '', whyLines: 2, corrected: false, correctedLines: 2 };
+    case 'table':
+      return { ...base, headerRow: true, rows: [['', '', ''], ['', '', '']] };
   }
+}
+
+/* ── Table helpers (shared by editor, preview, print & HTML export) ──────── */
+function tableColCount(el) {
+  return (el.rows && el.rows[0]) ? el.rows[0].length : 0;
+}
+function normalizeTable(el) {
+  // Guarantee a rectangular, non-empty grid so every renderer can trust it.
+  if (!Array.isArray(el.rows) || el.rows.length === 0) el.rows = [['', '']];
+  const cols = Math.max(1, ...el.rows.map(r => (Array.isArray(r) ? r.length : 0)));
+  el.rows = el.rows.map(r => {
+    const row = Array.isArray(r) ? r.slice() : [];
+    while (row.length < cols) row.push('');
+    return row;
+  });
+  return el;
+}
+function tableAddRow(el) { normalizeTable(el); el.rows.push(Array(tableColCount(el)).fill('')); }
+function tableAddCol(el) { normalizeTable(el); el.rows.forEach(r => r.push('')); }
+function tableDelRow(el) { normalizeTable(el); if (el.rows.length > 1) el.rows.pop(); }
+function tableDelCol(el) { normalizeTable(el); if (tableColCount(el) > 1) el.rows.forEach(r => r.pop()); }
+function tableToHtml(el) {
+  normalizeTable(el);
+  const body = el.rows.map((row, ri) => {
+    const tag = (el.headerRow && ri === 0) ? 'th' : 'td';
+    return '<tr>' + row.map(c => `<${tag}>${formatTextWithFractions(c || '')}</${tag}>`).join('') + '</tr>';
+  }).join('');
+  return `<div class="data-table-wrap"><table class="data-table">${body}</table></div>`;
 }
 function nextPartLabel() {
   return '(a)';
@@ -2689,6 +2744,7 @@ function renderEditorQuestion(q, qIndex) {
   addRow.appendChild(makeAddBtn('+ Page break', () => addElement(q, 'pageBreak')));
   addRow.appendChild(makeAddBtn('+ Answer key', () => addElement(q, 'answerKey')));
   addRow.appendChild(makeAddBtn('+ Video (Dropbox)', () => addElement(q, 'video')));
+  addRow.appendChild(makeAddBtn('+ Table', () => addElement(q, 'table')));
   card.appendChild(addRow);
 
   return card;
@@ -3205,6 +3261,29 @@ function clampLines(v) {
 const IMG_SCALE_MIN = 0.2;
 const IMG_SCALE_MAX = 1.0;
 const IMG_SCALE_STEP = 0.1;
+
+// The image/diagram block the pointer last hovered, so keyboard shortcuts
+// ([ / ] or - / +) can resize it without opening a menu (PowerPoint-style).
+let resizeTarget = null;
+document.addEventListener('keydown', (e) => {
+  if (!isAdmin() || !resizeTarget) return;
+  // Don't hijack typing in a cell / text field, and stay out of the overlays.
+  if (e.target && (e.target.isContentEditable ||
+      /^(input|textarea|select)$/i.test(e.target.tagName || ''))) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const cs = document.getElementById('cheatSheetOverlay');
+  const dv = document.getElementById('dvOverlay');
+  if ((cs && cs.classList.contains('open')) || (dv && dv.classList.contains('open'))) return;
+  let delta = 0;
+  if (e.key === ']' || e.key === '+' || e.key === '=') delta = IMG_SCALE_STEP;
+  else if (e.key === '[' || e.key === '-' || e.key === '_') delta = -IMG_SCALE_STEP;
+  else return;
+  if (!resizeTarget.dataUrl) return; // nothing to resize yet
+  e.preventDefault();
+  resizeTarget.scale = clampImgScale((resizeTarget.scale ?? 1.0) + delta);
+  renderPreview();
+});
+
 function clampImgScale(v) {
   const n = parseFloat(v);
   if (!Number.isFinite(n)) return 1.0;
@@ -3856,6 +3935,12 @@ function renderPreviewQuestion(q, qIndex) {
       wrap.className = 'pv-el';
       wrap.appendChild(rendered);
       wrap.appendChild(buildElementControls(q, idx, el));
+      // Remember which resizable block the pointer is over, so the keyboard
+      // resize shortcuts ([ ] or +/-) know what to act on.
+      if (el.type === 'image' || el.type === 'answerKey') {
+        wrap.addEventListener('mouseenter', () => { resizeTarget = el; });
+        wrap.addEventListener('focusin', () => { resizeTarget = el; });
+      }
       card.appendChild(wrap);
       // Insert bar after each element, to add a new element right below it.
       card.appendChild(buildInsertBar(q, idx));
@@ -4083,7 +4168,8 @@ const INSERT_TYPES = [
   ['Answer field', 'answer'], ['Open-ended box', 'openLines'],
   ['Working space', 'workingSpace'], ['Page break', 'pageBreak'],
   ['Answer key', 'answerKey'], ['Video', 'video'],
-  ['Common mistake', 'commonMistake'], ["Student's answer", 'studentAnswer']
+  ['Common mistake', 'commonMistake'], ["Student's answer", 'studentAnswer'],
+  ['Table', 'table']
 ];
 
 // Colour themes for the "Common mistake" card (header pill + body tint).
@@ -4208,8 +4294,8 @@ function buildElementControls(q, idx, el) {
       });
       return b;
     };
-    const shrink = mkScale('−', `Shrink image (currently ${Math.round(scale*100)}%)`, -IMG_SCALE_STEP);
-    const grow = mkScale('+', `Enlarge image (currently ${Math.round(scale*100)}%)`, +IMG_SCALE_STEP);
+    const shrink = mkScale('−', `Shrink image (currently ${Math.round(scale*100)}%) — or hover & press [`, -IMG_SCALE_STEP);
+    const grow = mkScale('+', `Enlarge image (currently ${Math.round(scale*100)}%) — or hover & press ]`, +IMG_SCALE_STEP);
     shrink.disabled = scale <= IMG_SCALE_MIN + 1e-9;
     grow.disabled = scale >= IMG_SCALE_MAX - 1e-9;
     bar.appendChild(shrink);
@@ -4723,7 +4809,59 @@ function renderPreviewElement(el, ctx = {}) {
       }
       return card;
     }
+    case 'table':
+      return buildTablePreview(el, editable);
   }
+}
+
+// Editable data table: contenteditable cells plus a hover toolbar to add /
+// remove rows & columns and toggle the header row. Read-only in student view.
+function buildTablePreview(el, editable) {
+  normalizeTable(el);
+  const wrap = document.createElement('div');
+  wrap.className = 'data-table-wrap';
+
+  const table = document.createElement('table');
+  table.className = 'data-table';
+  el.rows.forEach((row, ri) => {
+    const tr = document.createElement('tr');
+    row.forEach((cellText, ci) => {
+      const isHead = el.headerRow && ri === 0;
+      const cell = document.createElement(isHead ? 'th' : 'td');
+      cell.innerHTML = formatTextWithFractions(cellText || '');
+      if (editable) {
+        attachInlineText(cell,
+          () => (el.rows[ri] && el.rows[ri][ci]) || '',
+          (v) => { if (el.rows[ri]) el.rows[ri][ci] = v; },
+          isHead ? 'Heading' : 'Cell');
+      }
+      tr.appendChild(cell);
+    });
+    table.appendChild(tr);
+  });
+  wrap.appendChild(table);
+
+  if (editable) {
+    const tools = document.createElement('div');
+    tools.className = 'dt-tools';
+    const mk = (label, title, fn) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dt-tool-btn';
+      b.textContent = label;
+      b.title = title;
+      b.addEventListener('click', (e) => { e.stopPropagation(); fn(); renderPreview(); });
+      return b;
+    };
+    tools.appendChild(mk('+ Col', 'Add a column', () => tableAddCol(el)));
+    tools.appendChild(mk('− Col', 'Remove the last column', () => tableDelCol(el)));
+    tools.appendChild(mk('+ Row', 'Add a row', () => tableAddRow(el)));
+    tools.appendChild(mk('− Row', 'Remove the last row', () => tableDelRow(el)));
+    tools.appendChild(mk(el.headerRow ? '✓ Header' : 'Header',
+      'Toggle a bold header row', () => { el.headerRow = !el.headerRow; }));
+    wrap.appendChild(tools);
+  }
+  return wrap;
 }
 
 // A labelled block of blank ruled writing lines inside a Student's-answer card
@@ -5257,6 +5395,8 @@ function elementToPrintHtml(el, qIndex, elIndex) {
       return commonMistakeHtml(el);
     case 'studentAnswer':
       return studentAnswerHtml(el, false);
+    case 'table':
+      return tableToHtml(el);
   }
   return '';
 }
@@ -5566,6 +5706,8 @@ function elementToHtml(el, qIndex, elIndex) {
       return commonMistakeHtml(el);
     case 'studentAnswer':
       return studentAnswerHtml(el, true);
+    case 'table':
+      return tableToHtml(el);
   }
   return '';
 }
@@ -5675,6 +5817,10 @@ body{font-family:var(--font-family); color:var(--text-primary); background:var(-
 .frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.85em; line-height:1; margin:0 0.18em; position:relative; top:-0.05em;}
 .frac > .frac-num{border-bottom:1.2px solid currentColor; padding:0 0.3em 1px; display:block;}
 .frac > .frac-den{padding:1px 0.3em 0; display:block;}
+.data-table-wrap{margin:12px 0; overflow-x:auto;}
+.data-table{border-collapse:collapse; width:auto; max-width:100%;}
+.data-table th,.data-table td{border:1px solid #1A1A1A; padding:6px 12px; text-align:left; vertical-align:top; min-width:52px; line-height:1.4;}
+.data-table th{background:#F3F3F0; font-weight:700;}
 `;
 }
 
@@ -5707,6 +5853,7 @@ function loadJson(file) {
       if (!parsed || !Array.isArray(parsed.questions)) throw new Error('Invalid file.');
       logActivity('before loading a file');
       state = parsed;
+      resetHistory();
       // A file load is a brand-new worksheet — never silently overwrite the
       // cloud worksheet that happened to be open before.
       currentSavedId = null;
@@ -6522,6 +6669,7 @@ async function loadFromSystem(id) {
     const parsed = await fetchWorksheetState(data);
     if (isAdmin()) logActivity('before opening: ' + (data.title || 'worksheet'));
     state = parsed;
+    resetHistory();
     currentSavedId = id;
     currentSavedTitle = state.title || 'Untitled';
     currentSavedLocked = !!data.locked;
@@ -6738,6 +6886,7 @@ function newWorksheet() {
   if (state.questions.length > 0 && !confirm('Discard the current worksheet and start fresh?')) return;
   logActivity('before new worksheet');
   state = { title: 'New Worksheet', subtitle: '', questions: [] };
+  resetHistory();
   currentSavedId = null;
   currentSavedTitle = null;
   currentSavedLocked = false;
@@ -6906,6 +7055,7 @@ function openDraft() {
     subtitle: '',
     questions: draft.map(reidQuestion)
   };
+  resetHistory();
   currentSavedId = null;
   currentSavedTitle = null;
   currentSavedLocked = false;
@@ -7701,6 +7851,7 @@ function dvElemLabel(el) {
     case 'video': return 'Video';
     case 'commonMistake': return 'Mistake note';
     case 'studentAnswer': return "Student answer";
+    case 'table': return 'Table';
   }
   return 'Block';
 }
@@ -7816,7 +7967,7 @@ html,body{ background:#71777d; margin:0; padding:0; }
 .dv-student-row{ display:flex; gap:20px; flex-wrap:wrap; margin-top:8px; font-size:.85rem; }
 .dv-line{ display:inline-block; min-width:160px; border-bottom:1px solid #1A1A1A; }
 .dv-line.short{ min-width:70px; }
-.dv-elem .question-sub,.dv-elem .question-stem,.dv-elem .part-stem,.dv-elem .answer-field,.dv-elem .options-list,.dv-elem .open-lines-box,.dv-elem .working-space-box,.dv-elem .sa-body,.dv-elem .sa-reason,.dv-elem .sa-correct-text,.dv-elem .cm-body,.dv-elem .cm-header,.dv-elem .video-print,.dv-elem .img-caption,.dv-elem .question-header,.dv-elem .dv-doc-header{ font-size:calc(1em * var(--escale)); }
+.dv-elem .question-sub,.dv-elem .question-stem,.dv-elem .part-stem,.dv-elem .answer-field,.dv-elem .options-list,.dv-elem .open-lines-box,.dv-elem .working-space-box,.dv-elem .sa-body,.dv-elem .sa-reason,.dv-elem .sa-correct-text,.dv-elem .cm-body,.dv-elem .cm-header,.dv-elem .video-print,.dv-elem .img-caption,.dv-elem .question-header,.dv-elem .dv-doc-header,.dv-elem .data-table{ font-size:calc(1em * var(--escale)); }
 .dv-elem.dv-media{ width:calc(100% * var(--escale)); margin-left:auto; margin-right:auto; }
 .page-logo{ display:none; }
 @page{ @bottom-center{ content:"\\2013\\00A0\\00A0" counter(page) "\\00A0\\00A0\\2013"; font-family:'Century Gothic',CenturyGothic,sans-serif; font-size:9pt; font-weight:700; letter-spacing:0.34em; color:#9A9A9A; } }
@@ -7869,6 +8020,17 @@ var DV_ENGINE = `
   function updateReadout(el,eid){ var s=scaleOf(eid); var v=el.querySelector('.dv-val'); if(v) v.textContent=s+'%'; var d=el.querySelector('[data-act=down]'), u=el.querySelector('[data-act=up]'); if(d) d.disabled=(s<=MIN); if(u) u.disabled=(s>=MAX); }
   function setScale(eid, ns){ ns=Math.max(MIN,Math.min(MAX,ns)); if(scaleOf(eid)===ns) return; DV.scales[eid]=ns; var el=byEid(eid); if(el){ el.style.setProperty('--escale', String(ns/100)); updateReadout(el,eid); } scheduleGuides(); post(); }
   function toggleBreak(eid){ var on=!DV.breaks[eid]; if(on) DV.breaks[eid]=true; else delete DV.breaks[eid]; var el=byEid(eid); if(el){ el.classList.toggle('break-after',on); var b=el.querySelector('.dv-pb'); if(b){ b.classList.toggle('active',on); var t=b.querySelector('.t'); if(t) t.textContent=on?'break after \\u2713':'break after'; } } refreshContinued(); scheduleGuides(); post(); }
+  // Keyboard resize / break: hover a block, then press [ / ] (or - / +) to
+  // resize and 'b' to toggle a page break — no need to aim at the tiny rail.
+  var hoverEid=null;
+  document.addEventListener('mouseover', function(e){ var el=e.target.closest('.dv-elem'); if(el) hoverEid=el.getAttribute('data-eid'); });
+  document.addEventListener('keydown', function(e){
+    if(!hoverEid) return;
+    var t=e.target; if(t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName||''))) return;
+    if(e.key===']'||e.key==='+'||e.key==='='){ e.preventDefault(); setScale(hoverEid, scaleOf(hoverEid)+STEP); }
+    else if(e.key==='['||e.key==='-'||e.key==='_'){ e.preventDefault(); setScale(hoverEid, scaleOf(hoverEid)-STEP); }
+    else if((e.key||'').toLowerCase()==='b'){ e.preventDefault(); toggleBreak(hoverEid); }
+  });
   document.addEventListener('click', function(e){
     var btn=e.target.closest('[data-act]'); if(!btn) return;
     var act=btn.getAttribute('data-act'), eid=btn.getAttribute('data-eid');
@@ -7967,6 +8129,7 @@ function autoSaveLocal() {
 }
 
 function scheduleAutoSave() {
+  if (typeof recordHistory === 'function') recordHistory();
   clearTimeout(localAutoSaveTimer);
   localAutoSaveTimer = setTimeout(runAutoSave, 600);
 }
@@ -7995,6 +8158,7 @@ function restoreAutoSave() {
     const parsed = JSON.parse(raw);
     if (parsed && Array.isArray(parsed.questions) && parsed.questions.length > 0) {
       state = parsed;
+      resetHistory();
       document.getElementById('worksheetTitle').value = state.title || '';
       document.getElementById('worksheetSubtitle').value = state.subtitle || '';
 syncCoverInputs();
@@ -8007,6 +8171,109 @@ syncCoverInputs();
   } catch (_) {}
   return false;
 }
+
+/* =========================================================================
+   UNDO / REDO — PowerPoint-style edit history for the worksheet (admin).
+   Every edit funnels through scheduleAutoSave(); rapid changes (typing,
+   dragging a slider, resizing) are coalesced into one history step. We snapshot
+   with the same image-stripping serializer used for the cloud, so snapshots
+   stay small, and rehydrate images on undo. History is per-document: loading or
+   starting a worksheet calls resetHistory() so Ctrl+Z never swaps documents.
+   ========================================================================= */
+const HISTORY_LIMIT = 80;
+let undoStack = [];
+let redoStack = [];
+let histBaseline = null;   // serialized state matching what's currently on screen
+let histTimer = null;
+let histApplying = false;  // true while an undo/redo is repainting
+
+function serializeForHistory() {
+  try { return serializeStateForCloud(state); } catch (_) {
+    try { return JSON.stringify(state); } catch (_2) { return null; }
+  }
+}
+function resetHistory() {
+  undoStack = [];
+  redoStack = [];
+  histBaseline = serializeForHistory();
+  clearTimeout(histTimer); histTimer = null;
+  updateUndoRedoUi();
+}
+function captureHistoryNow() {
+  clearTimeout(histTimer); histTimer = null;
+  if (histApplying) return;
+  const cur = serializeForHistory();
+  if (cur === null || cur === histBaseline) return;
+  if (histBaseline !== null) {
+    undoStack.push(histBaseline);
+    if (undoStack.length > HISTORY_LIMIT) undoStack.shift();
+    redoStack = []; // a fresh edit invalidates the redo branch
+  }
+  histBaseline = cur;
+  updateUndoRedoUi();
+}
+function recordHistory() {
+  if (histApplying) return;
+  clearTimeout(histTimer);
+  histTimer = setTimeout(captureHistoryNow, 450);
+}
+function applyHistorySnapshot(serialized) {
+  histApplying = true;
+  try {
+    state = JSON.parse(serialized);
+    const titleEl = document.getElementById('worksheetTitle');
+    const subEl = document.getElementById('worksheetSubtitle');
+    if (titleEl) titleEl.value = state.title || '';
+    if (subEl) subEl.value = state.subtitle || '';
+    if (typeof syncCoverInputs === 'function') syncCoverInputs();
+    if (typeof hydrateImageRefs === 'function') hydrateImageRefs(state);
+    if (typeof applyLockedUi === 'function') applyLockedUi();
+    renderEditor();
+    renderPreview();
+  } catch (e) {
+    console.error('Undo/redo failed:', e);
+  } finally {
+    histApplying = false;
+  }
+  histBaseline = serialized;
+  updateUndoRedoUi();
+}
+function undoEdit() {
+  captureHistoryNow();            // fold any in-flight typing into history first
+  if (!undoStack.length) return;
+  const prev = undoStack.pop();
+  if (histBaseline !== null) redoStack.push(histBaseline);
+  applyHistorySnapshot(prev);
+}
+function redoEdit() {
+  if (!redoStack.length) return;
+  const next = redoStack.pop();
+  if (histBaseline !== null) undoStack.push(histBaseline);
+  applyHistorySnapshot(next);
+}
+function updateUndoRedoUi() {
+  const u = document.getElementById('undoBtn');
+  const r = document.getElementById('redoBtn');
+  if (u) u.disabled = undoStack.length === 0;
+  if (r) r.disabled = redoStack.length === 0;
+}
+(function wireUndoRedo() {
+  const u = document.getElementById('undoBtn');
+  const r = document.getElementById('redoBtn');
+  if (u) u.addEventListener('click', undoEdit);
+  if (r) r.addEventListener('click', redoEdit);
+  document.addEventListener('keydown', (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    if (!isAdmin()) return;
+    // Leave the overlays' own surfaces (cheat sheet, design iframe) alone.
+    const cs = document.getElementById('cheatSheetOverlay');
+    const dv = document.getElementById('dvOverlay');
+    if ((cs && cs.classList.contains('open')) || (dv && dv.classList.contains('open'))) return;
+    const k = (e.key || '').toLowerCase();
+    if (k === 'z' && !e.shiftKey) { e.preventDefault(); undoEdit(); }
+    else if (k === 'y' || (k === 'z' && e.shiftKey)) { e.preventDefault(); redoEdit(); }
+  });
+})();
 
 /* =========================================================================
    ACTIVITY LOG — a per-browser history of worksheet snapshots so an
@@ -8141,6 +8408,7 @@ function restoreActivityEntry(index) {
   try { restored = JSON.parse(entry.state); }
   catch (e) { alert('Could not restore this snapshot: ' + e.message); return; }
   state = restored;
+  resetHistory();
   // Never auto-relink — the admin decides where the restored copy is saved.
   currentSavedId = null;
   currentSavedTitle = null;
@@ -8303,6 +8571,7 @@ async function searchAllWorksheets() {
         : `No questions across your saved worksheets match ${crit}.`,
       questions: matches
     };
+    resetHistory();
     currentSavedId = null;
     currentSavedTitle = null;
     currentSavedLocked = false;
@@ -8461,6 +8730,7 @@ onAuthStateChanged(fbAuth, async (user) => {
   // For students, clear any in-progress editor state and let them pick from the library.
   if (currentUser && !isAdmin()) {
     state = { title: '', subtitle: '', questions: [] };
+    resetHistory();
     document.getElementById('worksheetTitle').value = '';
     document.getElementById('worksheetSubtitle').value = '';
   syncCoverInputs();
@@ -8495,6 +8765,7 @@ try {
 // single empty question so the workflow is obvious. (Students get reset to an
 // empty preview by onAuthStateChanged once their sign-in resolves.)
 if (!restoreAutoSave()) addQuestion();
+resetHistory(); // clean baseline so the first edit is undoable
 updateLinkStatus();
 </script>
 </body>
