@@ -333,9 +333,130 @@
     font-style: italic;
     opacity: 0.6;
   }
+  /* pastel decorations sit behind the cover content */
+  .cover-preview .cover-deco,
+  .contents-preview .cover-deco {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .cover-preview .cover-header,
+  .cover-preview .cover-footer,
+  .cover-preview .cover-center {
+    position: relative;
+    z-index: 1;
+  }
   .cover-blank-page {
     background: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  /* ── Contents-page preview inside the preview pane ─────────────── */
+  .contents-preview {
+    width: min(100%, 210mm);
+    aspect-ratio: 210 / 297;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    padding: 25mm 22mm;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+  }
+  .contents-preview::before,
+  .contents-preview::after {
+    content: '';
+    position: absolute;
+    left: 22mm; right: 22mm;
+    height: 1px;
+    background: #111;
+  }
+  .contents-preview::before { top: 18mm; }
+  .contents-preview::after  { bottom: 18mm; }
+  .contents-preview .cover-header,
+  .contents-preview .cover-footer,
+  .contents-preview .contents-body {
+    position: relative;
+    z-index: 1;
+  }
+  .contents-preview .cover-header {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #111;
+    min-height: 1em;
+  }
+  .contents-preview .cover-footer {
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #666;
+    min-height: 1em;
+  }
+  .contents-preview .contents-body {
+    flex: 1;
+    padding: 10mm 4mm 0;
+  }
+  .contents-preview .contents-edit-hint {
+    position: absolute;
+    top: 6mm;
+    right: 0;
+    z-index: 2;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    padding: 2px 10px;
+  }
+  /* contents list itself (shared classes with the print/export css) */
+  .contents-preview .contents-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 1.6rem;
+  }
+  .contents-preview .contents-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .contents-preview .contents-section {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111;
+    margin: 1.4rem 0 0.6rem;
+  }
+  .contents-preview .contents-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: #333;
+    padding: 0.28rem 0;
+  }
+  .contents-preview .contents-num {
+    font-weight: 600;
+    min-width: 2em;
+    color: #111;
+  }
+  .contents-preview .contents-dots {
+    flex: 1;
+    border-bottom: 1px dotted #999;
+    transform: translateY(-0.25em);
   }
 
   .title-input:focus {
@@ -1902,6 +2023,41 @@
     border-color: var(--accent-deep);
   }
 
+  /* ── Cut & insert reordering ──
+     ✂ picks a question up; every insert bar becomes a visible drop target so
+     a question can jump many positions in two clicks instead of many ↑/↓. */
+  .question-card.cut-pending {
+    outline: 2px dashed var(--accent-deep);
+    outline-offset: 2px;
+    opacity: 0.55;
+  }
+  .q-insert-btn.q-move-target {
+    opacity: 1;
+    background: var(--accent-bg);
+    color: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+  .q-insert-btn.q-move-target:hover {
+    background: var(--accent-deep);
+    color: #fff;
+    border-style: solid;
+  }
+  .cut-mode-hint {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1500;
+    background: var(--text-primary);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+
   /* ============================ INSTRUCTION BLOCK ============================ */
   .instruction-block {
     background: var(--accent-bg);
@@ -2368,6 +2524,9 @@
           <input type="text" id="coverSubheaderInput" class="cover-field-input" placeholder="Cover subheader (italic, e.g. Worksheet)" />
           <input type="text" id="coverFooterInput" class="cover-field-input" placeholder="Cover footer (bottom, optional)" />
         </div>
+        <label class="cover-toggle" style="margin-top:6px;">
+          <input type="checkbox" id="contentsEnabledToggle" /> Include contents page in exports
+        </label>
       </div>
       <div class="toolbar-row">
         <button class="btn btn-primary admin-only" id="addQuestionBtn">+ Add Question</button>
@@ -2523,7 +2682,8 @@ let state = {
   title: 'New Worksheet',
   subtitle: '',
   questions: [],
-  cover: defaultCover()
+  cover: defaultCover(),
+  contents: defaultContents()
 };
 
 function defaultCover() {
@@ -2539,6 +2699,18 @@ function defaultCover() {
 function getCover() {
   if (!state.cover) state.cover = defaultCover();
   return state.cover;
+}
+
+/* The contents page: a "Contents" listing of the worksheet's sections /
+   questions, printed after the cover. `html` stores the user's edited list
+   (made editable in the Design view); empty means auto-generate from the
+   questions at export time. */
+function defaultContents() {
+  return { enabled: false, html: '' };
+}
+function getContents() {
+  if (!state.contents) state.contents = defaultContents();
+  return state.contents;
 }
 let showAnswers = false;
 let showSources = false;
@@ -3861,6 +4033,51 @@ function moveQuestion(i, dir) {
   [state.questions[i], state.questions[j]] = [state.questions[j], state.questions[i]];
   renderEditor(); renderPreview();
 }
+
+/* ── Cut & insert reordering ──
+   Clicking ✂ on a question "picks it up" (cutQuestionId). Every insert bar
+   then becomes an "Insert here" target, so a question can move across many
+   positions in two clicks instead of repeated ↑ / ↓. Esc or clicking ✂
+   again cancels. */
+let cutQuestionId = null;
+
+function toggleCutQuestion(qIndex) {
+  const q = state.questions[qIndex];
+  cutQuestionId = (q && cutQuestionId === q.id) ? null : (q ? q.id : null);
+  renderPreview();
+}
+function cancelCutQuestion() {
+  if (cutQuestionId === null) return;
+  cutQuestionId = null;
+  renderPreview();
+}
+function dropCutQuestion(afterIndex) {
+  const from = state.questions.findIndex(q => q.id === cutQuestionId);
+  cutQuestionId = null;
+  if (from < 0) { renderPreview(); return; }
+  const [q] = state.questions.splice(from, 1);
+  let to = afterIndex + 1;
+  if (from < to) to--; // removing the question shifted everything after it up by one
+  to = Math.max(0, Math.min(state.questions.length, to));
+  state.questions.splice(to, 0, q);
+  renderEditor(); renderPreview();
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && cutQuestionId !== null) cancelCutQuestion();
+});
+
+// A bar shown between cards while a question is "cut": click to drop it there.
+function buildMoveTargetBar(afterIndex) {
+  const bar = document.createElement('div');
+  bar.className = 'q-insert-bar';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'q-insert-btn q-move-target';
+  btn.textContent = '📍 Insert here';
+  btn.addEventListener('click', () => dropCutQuestion(afterIndex));
+  bar.appendChild(btn);
+  return bar;
+}
 function addElement(q, type) {
   q.elements.push(makeElement(type));
   renderEditor(); renderPreview();
@@ -3892,6 +4109,7 @@ function renderPreview() {
   scheduleAutoSave();
   if (typeof dtSelected !== 'undefined' && dtSelected) hideRtBar(); // selection points at DOM we're about to discard
   ensureCoverPreview();
+  ensureContentsPreview();
   const coverOn = !!getCover().enabled;
   // The cover page replaces the worksheet's own title row — hide the h2
   // header so the cover isn't followed by a duplicate title.
@@ -3912,16 +4130,26 @@ function renderPreview() {
     return;
   }
 
+  // While a question is "cut", drop the cut state if the question vanished
+  // (e.g. it was deleted or the worksheet was replaced).
+  if (cutQuestionId !== null && !state.questions.some(q => q.id === cutQuestionId)) {
+    cutQuestionId = null;
+  }
+  const cutMode = isAdmin() && cutQuestionId !== null;
+
   // "Add question here" bars between cards — admin only, and only when no
   // filter is active (with a filter, blank new questions would be hidden).
-  const showQIns = isAdmin() && !filterTopic.trim() && !filterConcept.trim();
+  // In cut mode the bars become "Insert here" targets instead (they work with
+  // a filter on too, since they reference real question indices).
+  const showQIns = isAdmin() && !filterTopic.trim() && !filterConcept.trim() && !cutMode;
+  const mkBar = (afterIndex) => cutMode ? buildMoveTargetBar(afterIndex) : buildQuestionInsertBar(afterIndex);
   let shown = 0;
-  if (showQIns) previewContainer.appendChild(buildQuestionInsertBar(-1));
+  if (showQIns || cutMode) previewContainer.appendChild(mkBar(-1));
   state.questions.forEach((q, qIndex) => {
     if (!questionMatchesFilter(q)) return;
     shown++;
     previewContainer.appendChild(renderPreviewQuestion(q, qIndex));
-    if (showQIns) previewContainer.appendChild(buildQuestionInsertBar(qIndex));
+    if (showQIns || cutMode) previewContainer.appendChild(mkBar(qIndex));
   });
   if (shown === 0) {
     const empty = document.createElement('div');
@@ -3930,6 +4158,13 @@ function renderPreview() {
     previewContainer.appendChild(empty);
   }
   if (practiceMode && shown > 0) previewContainer.appendChild(buildPracticeBar());
+  // Floating hint while a question is picked up.
+  if (cutMode) {
+    const hint = document.createElement('div');
+    hint.className = 'cut-mode-hint';
+    hint.textContent = 'Click "📍 Insert here" to move the question — Esc to cancel';
+    previewContainer.appendChild(hint);
+  }
   updateFilterCount(shown);
 }
 
@@ -3968,13 +4203,18 @@ function renderPreviewQuestion(q, qIndex) {
 
   const card = document.createElement('article');
   card.className = 'question-card';
+  if (cutQuestionId !== null && q.id === cutQuestionId) card.classList.add('cut-pending');
 
-  // Per-question controls — admin only: move, copy to draft, delete.
+  // Per-question controls — admin only: move, cut & insert, copy to draft, delete.
   if (isAdmin()) {
     const qc = document.createElement('div');
     qc.className = 'pv-q-controls';
     qc.appendChild(makeIconBtn('↑', 'Move question up', () => moveQuestion(qIndex, -1)));
     qc.appendChild(makeIconBtn('↓', 'Move question down', () => moveQuestion(qIndex, 1)));
+    qc.appendChild(makeIconBtn('✂', cutQuestionId === q.id
+      ? 'Cancel move'
+      : 'Move this question: pick it up, then click "Insert here" at its new position',
+      () => toggleCutQuestion(qIndex)));
     qc.appendChild(makeIconBtn('📋', 'Copy this question to the draft worksheet', () => copyQuestionToDraft(qIndex)));
     qc.appendChild(makeIconBtn('✕', 'Delete this question', () => {
       if (confirm('Delete this entire question?')) removeQuestion(qIndex);
@@ -4127,12 +4367,17 @@ function renderPreviewQuestion(q, qIndex) {
 function renderInstructionBlock(q, qIndex) {
   const card = document.createElement('article');
   card.className = 'question-card instruction-block';
+  if (cutQuestionId !== null && q.id === cutQuestionId) card.classList.add('cut-pending');
 
   if (isAdmin()) {
     const qc = document.createElement('div');
     qc.className = 'pv-q-controls';
     qc.appendChild(makeIconBtn('↑', 'Move instruction up', () => moveQuestion(qIndex, -1)));
     qc.appendChild(makeIconBtn('↓', 'Move instruction down', () => moveQuestion(qIndex, 1)));
+    qc.appendChild(makeIconBtn('✂', cutQuestionId === q.id
+      ? 'Cancel move'
+      : 'Move this instruction: pick it up, then click "Insert here" at its new position',
+      () => toggleCutQuestion(qIndex)));
     qc.appendChild(makeIconBtn('✕', 'Delete this instruction', () => {
       if (confirm('Delete this instruction block?')) removeQuestion(qIndex);
     }, true));
@@ -5639,6 +5884,60 @@ async function exportPdf() {
   });
 }
 
+/* Pastel decorations (circles, shapes & math symbols) layered behind the
+   cover / contents page content. Shared by the in-app preview, the print &
+   standalone exports and the Design view so they all match. */
+function coverDecoSvg() {
+  return `
+  <svg class="cover-deco" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+
+    <!-- top-left cluster (turquoise, hints of pink) -->
+    <circle cx="8" cy="14" r="26" fill="#a5e3dd" opacity="0.5"/>
+    <circle cx="36" cy="6" r="13" fill="#cdf0ec" opacity="0.6"/>
+    <circle cx="6" cy="46" r="9" fill="#7fd6cd" opacity="0.4"/>
+    <circle cx="28" cy="32" r="4.5" fill="#f5c1d6" opacity="0.65"/>
+    <circle cx="52" cy="14" r="3" fill="#a5e3dd" opacity="0.7"/>
+    <polygon points="42,26 52,30 44,38" fill="#bdebe6" opacity="0.8"/>
+    <rect x="14" y="58" width="7" height="7" rx="1" fill="#f9d8e6" transform="rotate(20 17.5 61.5)"/>
+    <text x="40" y="54" font-size="11" font-weight="600" fill="#6cc9c0" opacity="0.75" transform="rotate(-12 40 54)">π</text>
+    <text x="24" y="78" font-size="9" font-weight="500" fill="#eb9bbf" opacity="0.7" transform="rotate(15 24 78)">+</text>
+
+    <!-- bottom-right cluster (pink, hints of turquoise) -->
+    <circle cx="202" cy="284" r="26" fill="#f5c1d6" opacity="0.5"/>
+    <circle cx="174" cy="292" r="13" fill="#fbe0eb" opacity="0.6"/>
+    <circle cx="204" cy="252" r="9" fill="#f0a8c8" opacity="0.4"/>
+    <circle cx="182" cy="266" r="4.5" fill="#a5e3dd" opacity="0.65"/>
+    <circle cx="156" cy="282" r="3" fill="#f5c1d6" opacity="0.7"/>
+    <polygon points="168,268 158,272 166,260" fill="#f9d8e6" opacity="0.8"/>
+    <rect x="190" y="232" width="7" height="7" rx="1" fill="#bdebe6" transform="rotate(-20 193.5 235.5)"/>
+    <text x="158" y="294" font-size="10" font-weight="600" fill="#eb9bbf" opacity="0.75" transform="rotate(10 158 294)">÷</text>
+    <text x="176" y="246" font-size="9" font-weight="500" fill="#6cc9c0" opacity="0.7" transform="rotate(-15 176 246)">×</text>
+
+    <!-- sprinkles: top edge -->
+    <polygon points="150,6 157,8 152,14" fill="#f9d8e6" opacity="0.75"/>
+    <circle cx="180" cy="10" r="4" fill="#bdebe6" opacity="0.6"/>
+    <text x="196" y="28" font-size="7" font-weight="500" fill="#eb9bbf" opacity="0.6" transform="rotate(18 196 28)">×</text>
+    <circle cx="203" cy="44" r="2.5" fill="#f5c1d6" opacity="0.6"/>
+
+    <!-- sprinkles: right edge -->
+    <text x="199" y="120" font-size="8" font-weight="500" fill="#6cc9c0" opacity="0.55" transform="rotate(-10 199 120)">+</text>
+    <circle cx="205" cy="160" r="3.5" fill="#fbe0eb" opacity="0.8"/>
+    <polygon points="202,196 208,199 203,205" fill="#bdebe6" opacity="0.65"/>
+
+    <!-- sprinkles: left edge -->
+    <circle cx="5" cy="120" r="3" fill="#f5c1d6" opacity="0.6"/>
+    <text x="3" y="166" font-size="8" font-weight="600" fill="#6cc9c0" opacity="0.55" transform="rotate(12 3 166)">=</text>
+    <polygon points="6,210 13,213 8,219" fill="#cdf0ec" opacity="0.8"/>
+    <text x="3" y="252" font-size="7" font-weight="500" fill="#eb9bbf" opacity="0.6" transform="rotate(-15 3 252)">%</text>
+
+    <!-- sprinkles: bottom edge -->
+    <circle cx="34" cy="290" r="4" fill="#a5e3dd" opacity="0.55"/>
+    <text x="58" y="294" font-size="8" font-weight="600" fill="#eb9bbf" opacity="0.6" transform="rotate(-8 58 294)">√</text>
+    <circle cx="100" cy="293" r="2.5" fill="#f9d8e6" opacity="0.8"/>
+    <polygon points="124,288 131,290 126,296" fill="#bdebe6" opacity="0.7"/>
+  </svg>`;
+}
+
 function buildCoverHtml() {
   const c = getCover();
   if (!c.enabled) return '';
@@ -5648,6 +5947,7 @@ function buildCoverHtml() {
   const ftr = (c.footer || '').trim();
   return `
 <section class="cover-page">
+  ${coverDecoSvg()}
   ${hdr ? `<div class="cover-header">${escapeHtml(hdr)}</div>` : '<div class="cover-header"></div>'}
   <div class="cover-center">
     <img class="cover-logo" src="https://www.dropbox.com/scl/fi/2wc1ulpjuiaqlxk5qhc07/polymath-logo-sticker-copy.png?rlkey=jhutxqmdbwe0jgoqcwdxzwt55&raw=1" alt="" />
@@ -5663,6 +5963,50 @@ function buildCoverHtml() {
         <div class="cover-field-line"></div>
       </div>
     </div>
+  </div>
+  <div class="cover-footer">${ftr ? escapeHtml(ftr) : ''}</div>
+</section>`;
+}
+
+/* ── Contents page ──
+   Auto-generates a "Contents" listing from the worksheet: instruction blocks
+   become section headings, questions are listed by number with their topic
+   (falling back to the first words of the stem). The Design view lets the
+   user edit the generated list; edits are kept in state.contents.html. */
+function contentsSnippet(s, max) {
+  const t = (s || '').replace(/\s+/g, ' ').trim();
+  return t.length > max ? t.slice(0, max - 1).trimEnd() + '…' : t;
+}
+function buildContentsListHtml() {
+  const rows = state.questions.map((q, i) => {
+    const firstText = (q.elements || []).find(e => e.type === 'text');
+    if (isInstruction(q)) {
+      const label = contentsSnippet(firstText ? firstText.text : '', 80);
+      return label ? `<li class="contents-section">${escapeHtml(label)}</li>` : '';
+    }
+    const num = questionDisplayNumber(i);
+    const topics = topicsOf(q).join(', ');
+    const label = topics || contentsSnippet(firstText ? firstText.text : '', 60);
+    return `<li class="contents-item"><span class="contents-num">${num}</span>`
+      + `<span class="contents-label">${escapeHtml(label)}</span>`
+      + `<span class="contents-dots"></span></li>`;
+  }).filter(Boolean);
+  return `<ol class="contents-list">${rows.join('')}</ol>`;
+}
+function buildContentsHtml() {
+  const c = getContents();
+  if (!c.enabled) return '';
+  const cover = getCover();
+  const hdr = (cover.header || '').trim();
+  const ftr = (cover.footer || '').trim();
+  const body = (c.html && c.html.trim()) ? c.html : buildContentsListHtml();
+  return `
+<section class="contents-page">
+  ${coverDecoSvg()}
+  <div class="cover-header">${hdr ? escapeHtml(hdr) : ''}</div>
+  <div class="contents-body">
+    <h2 class="contents-title">Contents</h2>
+    <div class="contents-entries">${body}</div>
   </div>
   <div class="cover-footer">${ftr ? escapeHtml(ftr) : ''}</div>
 </section>`;
@@ -5774,6 +6118,26 @@ function getCoverCss() {
   border-bottom: 1px solid #111;
   height: 1.6rem;
 }
+/* pastel decorations sit behind the cover / contents content */
+.cover-deco {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.cover-page .cover-header,
+.cover-page .cover-footer,
+.cover-page .cover-center,
+.contents-page .cover-header,
+.contents-page .cover-footer,
+.contents-page .contents-body {
+  position: relative;
+  z-index: 1;
+}
 .cover-blank-print {
   display: block;
   width: 100%;
@@ -5781,6 +6145,74 @@ function getCoverCss() {
   page-break-after: always;
   break-after: page;
   background: #fff;
+}
+/* ── Contents page ──────────────────────────────────────── */
+.contents-page {
+  width: 100%;
+  min-height: 297mm;
+  padding: 25mm 22mm;
+  background: #fff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  box-sizing: border-box;
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.contents-page::before,
+.contents-page::after {
+  content: '';
+  position: absolute;
+  left: 22mm; right: 22mm;
+  height: 1px;
+  background: #111;
+}
+.contents-page::before { top: 18mm; }
+.contents-page::after  { bottom: 18mm; }
+.contents-page .cover-header { min-height: 1em; }
+.contents-page .cover-footer { min-height: 1em; }
+.contents-body {
+  flex: 1;
+  padding: 12mm 4mm 0;
+}
+.contents-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 1.6rem;
+}
+.contents-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contents-section {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #111;
+  margin: 1.4rem 0 0.6rem;
+}
+.contents-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: #333;
+  padding: 0.28rem 0;
+}
+.contents-num {
+  font-weight: 600;
+  min-width: 2em;
+  color: #111;
+}
+.contents-dots {
+  flex: 1;
+  border-bottom: 1px dotted #999;
+  transform: translateY(-0.25em);
 }
 `;
 }
@@ -5790,6 +6222,7 @@ function buildPrintableHtml() {
   const body = state.questions.map((q, qIndex) => questionToPrintHtml(q, qIndex)).join('\n');
   const coverOn = !!getCover().enabled;
   const cover = buildCoverHtml();
+  const contents = buildContentsHtml();
   // When the cover is on, push a deliberately blank page between cover and
   // questions, and drop the old per-worksheet print header (the cover
   // already carries the title and Name/Date fields).
@@ -5815,6 +6248,7 @@ function buildPrintableHtml() {
 <body>
 ${cover}
 ${blankPage}
+${contents}
 <div class="print-doc">${printHeader}
   ${body}
 </div>
@@ -6121,6 +6555,7 @@ function buildStandaloneHtml() {
   });
 
   const coverOn = !!getCover().enabled;
+  const contents = buildContentsHtml();
   const blankPage = coverOn ? `<section class="cover-blank-print" aria-hidden="true"></section>` : '';
   const pageHeader = coverOn ? '' : `
   <header class="preview-header">
@@ -6139,6 +6574,7 @@ function buildStandaloneHtml() {
 <body>
 ${cover}
 ${blankPage}
+${contents}
 <div class="page">${pageHeader}
   <div class="questions-container">
     ${body}
@@ -6493,13 +6929,21 @@ function syncCoverInputs() {
   document.getElementById('coverHeaderInput').value = c.header || '';
   document.getElementById('coverSubheaderInput').value = c.subheader || '';
   document.getElementById('coverFooterInput').value = c.footer || '';
+  document.getElementById('contentsEnabledToggle').checked = !!getContents().enabled;
   applyCoverEnabledClass();
   ensureCoverPreview();
+  ensureContentsPreview();
 }
 document.getElementById('coverEnabledToggle').addEventListener('change', (e) => {
   getCover().enabled = e.target.checked;
   applyCoverEnabledClass();
   ensureCoverPreview();
+  ensureContentsPreview();
+  scheduleAutoSave();
+});
+document.getElementById('contentsEnabledToggle').addEventListener('change', (e) => {
+  getContents().enabled = e.target.checked;
+  ensureContentsPreview();
   scheduleAutoSave();
 });
 document.getElementById('coverHeaderInput').addEventListener('input', (e) => {
@@ -6551,6 +6995,7 @@ function refreshCoverPreviewField(field) {
 function buildCoverPreviewMarkup() {
   return `
     <section class="cover-preview" aria-label="Cover page preview">
+      ${coverDecoSvg()}
       <div class="cover-header" contenteditable="true" spellcheck="false" data-cover-field="header"></div>
       <div class="cover-center">
         <img class="cover-logo" src="${COVER_LOGO_URL}" alt="" />
@@ -6625,6 +7070,39 @@ function ensureCoverPreview() {
   // Mirror state into the editable fields, but never clobber a field the
   // user is actively typing into.
   ['header', 'title', 'subheader', 'footer'].forEach(refreshCoverPreviewField);
+}
+
+// ── In-preview contents page (read-only — edit it in the Design view) ──
+function ensureContentsPreview() {
+  const pane = document.querySelector('.preview-pane');
+  if (!pane) return;
+  const c = getContents();
+  let wrap = document.getElementById('contentsPreviewWrap');
+  if (!c.enabled) {
+    if (wrap) wrap.remove();
+    return;
+  }
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.id = 'contentsPreviewWrap';
+    // Sits right below the cover preview (or at the top when there's no cover).
+    const coverWrap = document.getElementById('coverPreviewWrap');
+    if (coverWrap) coverWrap.insertAdjacentElement('afterend', wrap);
+    else pane.insertBefore(wrap, pane.firstChild);
+  }
+  const cover = getCover();
+  const body = (c.html && c.html.trim()) ? c.html : buildContentsListHtml();
+  wrap.innerHTML = `
+    <section class="contents-preview" aria-label="Contents page preview">
+      ${coverDecoSvg()}
+      <span class="contents-edit-hint">Edit in 🎨 Design view</span>
+      <div class="cover-header">${escapeHtml((cover.header || '').trim())}</div>
+      <div class="contents-body">
+        <h2 class="contents-title">Contents</h2>
+        <div class="contents-entries">${body}</div>
+      </div>
+      <div class="cover-footer">${escapeHtml((cover.footer || '').trim())}</div>
+    </section>`;
 }
 
 syncCoverInputs();
@@ -8533,8 +9011,20 @@ html,body{ background:#71777d; margin:0; padding:0; }
 .dv-elem.dv-media{ width:calc(100% * var(--escale)); margin-left:auto; margin-right:auto; }
 /* Working space: the size control adjusts the box's vertical thickness. */
 .dv-elem.dv-vbox .working-space-box{ min-height:calc(var(--wsh, 180px) * var(--escale)) !important; }
+/* ── Front matter (cover + contents) sheets ── */
+.dv-fm-sheet{ margin-bottom:26px; }
+.dv-fm-sheet.dv-off{ display:none!important; }
+.dv-fm-sheet .cover-page, .dv-fm-sheet .contents-page{ min-height:261mm; height:261mm; padding:12mm 10mm; page-break-after:auto; break-after:auto; }
+.dv-fm-sheet .cover-page::before, .dv-fm-sheet .contents-page::before{ top:6mm; left:10mm; right:10mm; }
+.dv-fm-sheet .cover-page::after, .dv-fm-sheet .contents-page::after{ bottom:6mm; left:10mm; right:10mm; }
+.dv-fm-sheet [contenteditable="true"]{ outline:none; border-radius:3px; transition:background .15s; min-height:1em; }
+.dv-fm-sheet [contenteditable="true"]:hover{ background:rgba(245,222,130,.25); }
+.dv-fm-sheet [contenteditable="true"]:focus{ background:#faf6e8; }
+.dv-print-only{ display:none; }
 .page-logo{ display:none; }
 @page{ @bottom-center{ content:"\\2013\\00A0\\00A0" counter(page) "\\00A0\\00A0\\2013"; font-family:'Century Gothic',CenturyGothic,sans-serif; font-size:9pt; font-weight:700; letter-spacing:0.34em; color:#9A9A9A; } }
+/* front-matter pages print without a page number in the footer */
+@page frontmatter{ @bottom-center{ content:none; } }
 @media print{
   html,body{ background:#fff!important; }
   .dv-bar{ display:none!important; }
@@ -8546,6 +9036,11 @@ html,body{ background:#71777d; margin:0; padding:0; }
   .dv-elem.break-after{ page-break-after:always; break-after:page; }
   .dv-elem.show-continued > .dv-continued{ display:block; }
   .page-logo{ display:block; position:fixed; right:5mm; bottom:3mm; height:11mm; width:auto; opacity:.9; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .dv-fm-sheet{ margin:0; }
+  .dv-fm-sheet .cover-page, .dv-fm-sheet .contents-page{ height:261mm; min-height:261mm; page-break-after:always; break-after:page; page:frontmatter; }
+  .dv-print-only{ display:block; }
+  .dv-fm-sheet .cover-blank-print{ height:261mm; min-height:261mm; page-break-after:always; break-after:page; page:frontmatter; }
+  .dv-fm-sheet [contenteditable="true"]{ background:transparent!important; }
 }
 `;
 
@@ -8602,6 +9097,49 @@ var DV_ENGINE = `
     else if(e.key==='['||e.key==='-'||e.key==='_'){ e.preventDefault(); setScale(hoverEid, scaleOf(hoverEid)-STEP); }
     else if((e.key||'').toLowerCase()==='b'){ e.preventDefault(); toggleBreak(hoverEid); }
   });
+  /* ── Front matter: cover & contents pages ── */
+  var FM = window.__DV_FM || { cover:false, contents:false };
+  // The cover prints with a blank back side, so it consumes 2 physical pages.
+  function fmCount(){ return (FM.cover?2:0)+(FM.contents?1:0); }
+  // "First page #" refers to the first QUESTION page; subtract the front
+  // matter so its pages don't shift the question numbering.
+  function applyPageCounter(){ var v=DV.firstPage||1; document.body.style.counterReset='page '+(v-1-fmCount()); }
+  function postFM(){ try{ parent.postMessage({ type:'dvFrontMatter', cover:!!FM.cover, contents:!!FM.contents }, '*'); }catch(e){} }
+  function applyFM(notify){
+    var cs=document.getElementById('dvCoverSheet'); if(cs) cs.classList.toggle('dv-off', !FM.cover);
+    var ts=document.getElementById('dvContentsSheet'); if(ts) ts.classList.toggle('dv-off', !FM.contents);
+    var cl=document.getElementById('dvCoverLbl'); if(cl) cl.textContent=FM.cover?'✓ Cover page':'+ Cover page';
+    var tl=document.getElementById('dvContentsLbl'); if(tl) tl.textContent=FM.contents?'✓ Contents page':'+ Contents page';
+    var rb=document.getElementById('dvContentsResetBtn'); if(rb) rb.style.display=FM.contents?'':'none';
+    applyPageCounter();
+    if(notify) postFM();
+  }
+  // Edits on the cover fields / contents list post back to the parent app.
+  var _ct=null;
+  document.addEventListener('input', function(e){
+    var t=e.target; if(!t || !t.closest) return;
+    var fieldEl=t.closest('[data-cover-field]');
+    if(fieldEl){
+      var f=fieldEl.getAttribute('data-cover-field');
+      // The cover and contents pages share header / footer text — mirror the
+      // edit into the other page's matching field.
+      Array.prototype.forEach.call(document.querySelectorAll('[data-cover-field="'+f+'"]'), function(other){
+        if(other!==fieldEl && other.textContent!==fieldEl.textContent) other.textContent=fieldEl.textContent;
+      });
+      try{ parent.postMessage({ type:'dvCoverField', field:f, value:fieldEl.textContent }, '*'); }catch(_){}
+      return;
+    }
+    var entries=t.closest('#dvContentsEntries');
+    if(entries){ if(_ct) clearTimeout(_ct); _ct=setTimeout(function(){ _ct=null; try{ parent.postMessage({ type:'dvContents', html:entries.innerHTML }, '*'); }catch(_){} }, 250); }
+  });
+  // Plain-text paste into the cover fields (no rich text).
+  document.addEventListener('paste', function(e){
+    var t=e.target && e.target.closest ? e.target.closest('[data-cover-field]') : null;
+    if(!t) return;
+    e.preventDefault();
+    var text=(e.clipboardData||window.clipboardData).getData('text/plain')||'';
+    document.execCommand('insertText', false, text);
+  });
   document.addEventListener('click', function(e){
     var btn=e.target.closest('[data-act]'); if(!btn) return;
     var act=btn.getAttribute('data-act'), eid=btn.getAttribute('data-eid');
@@ -8609,12 +9147,15 @@ var DV_ENGINE = `
     else if(act==='up') setScale(eid, scaleOf(eid)+STEP);
     else if(act==='break') toggleBreak(eid);
     else if(act==='toggle-guides'){ guidesVisible=!guidesVisible; document.body.classList.toggle('guides-hidden', !guidesVisible); var l=document.getElementById('dvGuidesLbl'); if(l) l.textContent=guidesVisible?'Hide page guides':'Show page guides'; if(guidesVisible) scheduleGuides(); }
+    else if(act==='toggle-cover'){ FM.cover=!FM.cover; applyFM(true); }
+    else if(act==='toggle-contents'){ FM.contents=!FM.contents; applyFM(true); }
+    else if(act==='reset-contents'){ var en=document.getElementById('dvContentsEntries'); if(en){ en.innerHTML=window.__DV_CONTENTS_AUTO||''; try{ parent.postMessage({ type:'dvContents', html:'' }, '*'); }catch(_){} } }
     else if(act==='print') window.print();
   });
   var ps=document.getElementById('dvPageStart');
-  function applyPS(){ var v=parseInt(ps.value,10); if(isNaN(v)||v<1) v=1; DV.firstPage=v; document.body.style.counterReset='page '+(v-1); post(); }
+  function applyPS(){ var v=parseInt(ps.value,10); if(isNaN(v)||v<1) v=1; DV.firstPage=v; applyPageCounter(); post(); }
   if(ps){ ps.addEventListener('input', applyPS); ps.addEventListener('change', applyPS); }
-  document.body.style.counterReset='page '+((DV.firstPage||1)-1);
+  applyFM(false);
   document.body.classList.add('dv-tools-on');
   window.addEventListener('resize', function(){ _ppm=null; scheduleGuides(); });
   window.addEventListener('load', function(){ _ppm=null; scheduleGuides(); });
@@ -8623,10 +9164,54 @@ var DV_ENGINE = `
 })();
 `;
 
+/* ── Design view front matter: cover + contents pages ──
+   These mirror buildCoverHtml() / buildContentsHtml() but are always rendered
+   (visibility is toggled in the iframe) and their text is contenteditable.
+   Edits post back to the parent, which writes them into state. */
+function dvCoverPageHtml() {
+  var c = getCover();
+  return '<section class="cover-page">'
+    + coverDecoSvg()
+    + '<div class="cover-header" contenteditable="true" spellcheck="false" data-cover-field="header">' + escapeHtml((c.header || '').trim()) + '</div>'
+    + '<div class="cover-center">'
+      + '<img class="cover-logo" src="' + COVER_LOGO_URL + '" alt="" />'
+      + '<h1 class="cover-title" contenteditable="true" spellcheck="false" data-cover-field="title">' + escapeHtml((state.title || '').trim() || 'Worksheet') + '</h1>'
+      + '<div class="cover-subtitle" contenteditable="true" spellcheck="false" data-cover-field="subheader">' + escapeHtml((c.subheader || '').trim()) + '</div>'
+      + '<div class="cover-fields-grid">'
+        + '<div class="cover-field"><div class="cover-field-label">Name</div><div class="cover-field-line"></div></div>'
+        + '<div class="cover-field"><div class="cover-field-label">Date</div><div class="cover-field-line"></div></div>'
+      + '</div>'
+    + '</div>'
+    + '<div class="cover-footer" contenteditable="true" spellcheck="false" data-cover-field="footer">' + escapeHtml((c.footer || '').trim()) + '</div>'
+  + '</section>';
+}
+function dvContentsPageHtml() {
+  var c = getContents();
+  var cover = getCover();
+  var body = (c.html && c.html.trim()) ? c.html : buildContentsListHtml();
+  return '<section class="contents-page">'
+    + coverDecoSvg()
+    + '<div class="cover-header" contenteditable="true" spellcheck="false" data-cover-field="header">' + escapeHtml((cover.header || '').trim()) + '</div>'
+    + '<div class="contents-body">'
+      + '<h2 class="contents-title">Contents</h2>'
+      + '<div class="contents-entries" id="dvContentsEntries" contenteditable="true" spellcheck="false">' + body + '</div>'
+    + '</div>'
+    + '<div class="cover-footer" contenteditable="true" spellcheck="false" data-cover-field="footer">' + escapeHtml((cover.footer || '').trim()) + '</div>'
+  + '</section>';
+}
+
 function dvBuildDoc() {
   var L = dvLayout();
-  var css = getEmbeddedPreviewCss() + getPrintCss() + DV_CHROME_CSS;
-  var inject = 'window.__DV=' + JSON.stringify({ scales: L.scales, breaks: L.breaks, firstPage: L.firstPage }) + ';';
+  var css = getEmbeddedPreviewCss() + getPrintCss() + getCoverCss() + DV_CHROME_CSS;
+  var coverOn = !!getCover().enabled;
+  var contentsOn = !!getContents().enabled;
+  // Embed strings inside the iframe's script tag safely: escape "<" so a
+  // closing script tag or comment marker inside JSON-encoded HTML can't
+  // break out of the tag.
+  var jsStr = function (v) { return JSON.stringify(v).replace(/</g, '\\u003c'); };
+  var inject = 'window.__DV=' + jsStr({ scales: L.scales, breaks: L.breaks, firstPage: L.firstPage }) + ';'
+    + 'window.__DV_FM=' + jsStr({ cover: coverOn, contents: contentsOn }) + ';'
+    + 'window.__DV_CONTENTS_AUTO=' + jsStr(buildContentsListHtml()) + ';';
   var logo = 'https://www.dropbox.com/scl/fi/2wc1ulpjuiaqlxk5qhc07/polymath-logo-sticker-copy.png?rlkey=jhutxqmdbwe0jgoqcwdxzwt55&raw=1';
   return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
     + '<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">'
@@ -8634,10 +9219,20 @@ function dvBuildDoc() {
     + '<div class="dv-bar"><h1>\u{1F3A8} Design — ' + escapeHtml(state.title || 'Worksheet') + '</h1>'
       + '<span class="dv-pagestart">First page # <input type="number" id="dvPageStart" min="1" step="1" value="' + (L.firstPage || 1) + '"></span>'
       + '<button class="dv-btn" data-act="toggle-guides"><span id="dvGuidesLbl">Hide page guides</span></button>'
+      + '<button class="dv-btn" data-act="toggle-cover" title="Add or remove the worksheet cover page"><span id="dvCoverLbl"></span></button>'
+      + '<button class="dv-btn" data-act="toggle-contents" title="Add or remove an editable Contents page"><span id="dvContentsLbl"></span></button>'
+      + '<button class="dv-btn" id="dvContentsResetBtn" data-act="reset-contents" title="Throw away your edits and regenerate the contents list from the questions">↻ Auto-fill contents</button>'
       + '<span class="dv-spacer"></span>'
       + '<button class="dv-btn dv-btn-primary" data-act="print">\u{1F5A8} Export PDF</button>'
     + '</div>'
-    + '<div class="desk"><div class="sheet"><div class="page-guides" id="pageGuides"></div>'
+    + '<div class="desk">'
+      // Front matter: cover + contents pages, each its own A4 sheet. Both are
+      // always in the DOM; the dv-off class hides whichever is disabled so the
+      // toolbar toggles work without rebuilding the iframe.
+      + '<div class="sheet dv-fm-sheet' + (coverOn ? '' : ' dv-off') + '" id="dvCoverSheet">' + dvCoverPageHtml()
+        + '<section class="cover-blank-print dv-print-only" aria-hidden="true"></section></div>'
+      + '<div class="sheet dv-fm-sheet' + (contentsOn ? '' : ' dv-off') + '" id="dvContentsSheet">' + dvContentsPageHtml() + '</div>'
+      + '<div class="sheet" id="sheet"><div class="page-guides" id="pageGuides"></div>'
       + '<div class="page" id="page">' + dvContentHtml() + '</div></div></div>'
     + '<img class="page-logo" src="' + logo + '" alt="">'
     + '<scr' + 'ipt>' + inject + DV_ENGINE + '</scr' + 'ipt>'
@@ -8665,15 +9260,43 @@ function dvClose() {
   if (f) f.srcdoc = '';
 }
 
-/* persist layout changes the iframe reports back */
+/* persist layout / front-matter changes the iframe reports back */
 window.addEventListener('message', function (e) {
   var d = e.data;
-  if (!d || d.type !== 'dvLayout') return;
-  var L = dvLayout();
-  if (d.scales && typeof d.scales === 'object') L.scales = d.scales;
-  if (d.breaks && typeof d.breaks === 'object') L.breaks = d.breaks;
-  if (typeof d.firstPage === 'number') L.firstPage = d.firstPage;
-  scheduleAutoSave();
+  if (!d || !d.type) return;
+  if (d.type === 'dvLayout') {
+    var L = dvLayout();
+    if (d.scales && typeof d.scales === 'object') L.scales = d.scales;
+    if (d.breaks && typeof d.breaks === 'object') L.breaks = d.breaks;
+    if (typeof d.firstPage === 'number') L.firstPage = d.firstPage;
+    scheduleAutoSave();
+  } else if (d.type === 'dvFrontMatter') {
+    // Cover / contents toggled from the design view toolbar.
+    var changed = (!!getCover().enabled !== !!d.cover) || (!!getContents().enabled !== !!d.contents);
+    if (!changed) return;
+    getCover().enabled = !!d.cover;
+    getContents().enabled = !!d.contents;
+    syncCoverInputs();
+    renderPreview();
+  } else if (d.type === 'dvCoverField') {
+    // A cover text field edited inline on the design view's cover page.
+    if (d.field === 'title') {
+      state.title = d.value;
+      var ti = document.getElementById('worksheetTitle');
+      if (ti) ti.value = d.value;
+      previewTitleEl.textContent = d.value || 'Untitled Worksheet';
+    } else if (d.field === 'header' || d.field === 'subheader' || d.field === 'footer') {
+      getCover()[d.field] = d.value;
+    }
+    syncCoverInputs();
+    scheduleAutoSave();
+  } else if (d.type === 'dvContents') {
+    // The contents list edited inline on the design view's contents page.
+    // Empty means "auto-generate from the questions again".
+    getContents().html = d.html || '';
+    ensureContentsPreview();
+    scheduleAutoSave();
+  }
 });
 
 (function () {
