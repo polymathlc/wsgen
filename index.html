@@ -8866,17 +8866,21 @@ function csPrint() {
    + getPrintCss), so what you design is exactly what prints — but laid out as
    a continuous A4 sheet with:
      • dotted page-break guides (computed from real rendered heights)
-     • a hover rail on every block: size −/+ (50–100%, scales font + width)
-       and a "break after" toggle (manual page break + "…continued" note)
+     • a hover rail on every block: size −/+ (50–100%, scales font + width),
+       space −/+ (extra gap below the block, for breathing room between
+       blocks that sit too close together) and a "break after" toggle
+       (manual page break + "…continued" note)
      • a first-page-number control and a per-page corner logo for print
-   The layout (per-element scales + breaks + first page) lives in state.layout,
-   which is serialised with the worksheet, so it saves to the cloud / autosave
-   like everything else. The iframe posts changes up; the parent persists them.
+   The layout (per-element scales + gaps + breaks + first page) lives in
+   state.layout, which is serialised with the worksheet, so it saves to the
+   cloud / autosave like everything else. The iframe posts changes up; the
+   parent persists them.
    ========================================================================= */
 function dvLayout() {
   if (!state.layout || typeof state.layout !== 'object') state.layout = {};
   if (!state.layout.scales || typeof state.layout.scales !== 'object') state.layout.scales = {};
   if (!state.layout.breaks || typeof state.layout.breaks !== 'object') state.layout.breaks = {};
+  if (!state.layout.gaps || typeof state.layout.gaps !== 'object') state.layout.gaps = {};
   if (typeof state.layout.firstPage !== 'number' || state.layout.firstPage < 1) state.layout.firstPage = 1;
   return state.layout;
 }
@@ -8884,6 +8888,13 @@ function dvScaleOf(eid) {
   var s = dvLayout().scales[eid];
   s = (typeof s === 'number') ? s : 100;
   return Math.max(50, Math.min(100, s));
+}
+// Extra spacing (mm) added below a block in the design view, 0–100mm.
+var DV_GAP_MAX = 100;
+function dvGapOf(eid) {
+  var g = dvLayout().gaps[eid];
+  g = (typeof g === 'number') ? g : 0;
+  return Math.max(0, Math.min(DV_GAP_MAX, g));
 }
 function dvElemLabel(el) {
   switch (el.type) {
@@ -8901,18 +8912,26 @@ function dvElemLabel(el) {
   }
   return 'Block';
 }
-function dvToolsHtml(eid, scale, resizable) {
+function dvToolsHtml(eid, scale, gap, resizable) {
   var dminus = scale <= 50 ? ' disabled' : '';
   var dplus = scale >= 100 ? ' disabled' : '';
+  var gminus = gap <= 0 ? ' disabled' : '';
+  var gplus = gap >= DV_GAP_MAX ? ' disabled' : '';
   var broken = !!dvLayout().breaks[eid];
   var h = '<div class="dv-tools" contenteditable="false">';
   if (resizable) {
     h += '<span class="lab">size</span>'
-       + '<button class="dv-tb" data-act="down" data-eid="' + escapeAttr(eid) + '"' + dminus + '>−</button>'
+       + '<button class="dv-tb" data-act="down" data-eid="' + escapeAttr(eid) + '"' + dminus + ' title="Shrink this block">−</button>'
        + '<span class="dv-val">' + scale + '%</span>'
-       + '<button class="dv-tb" data-act="up" data-eid="' + escapeAttr(eid) + '"' + dplus + '>+</button>'
+       + '<button class="dv-tb" data-act="up" data-eid="' + escapeAttr(eid) + '"' + dplus + ' title="Enlarge this block">+</button>'
        + '<span class="dv-sep"></span>';
   }
+  // Spacing: extra gap below this block, to push the next block down.
+  h += '<span class="lab">space</span>'
+     + '<button class="dv-tb" data-act="gap-down" data-eid="' + escapeAttr(eid) + '"' + gminus + ' title="Less space below this block">−</button>'
+     + '<span class="dv-val dv-gap-val">' + gap + 'mm</span>'
+     + '<button class="dv-tb" data-act="gap-up" data-eid="' + escapeAttr(eid) + '"' + gplus + ' title="More space below this block">+</button>'
+     + '<span class="dv-sep"></span>';
   h += '<button class="dv-pb' + (broken ? ' active' : '') + '" data-act="break" data-eid="' + escapeAttr(eid) + '" title="Start a new page after this block">'
      + '✂ <span class="t">' + (broken ? 'break after ✓' : 'break after') + '</span></button>';
   h += '</div>';
@@ -8922,14 +8941,15 @@ function dvToolsHtml(eid, scale, resizable) {
 function dvWrap(eid, qkey, inner, opts) {
   opts = opts || {};
   var scale = dvScaleOf(eid);
+  var gap = dvGapOf(eid);
   var broken = !!dvLayout().breaks[eid];
-  var cls = 'dv-elem' + (broken ? ' break-after' : '') + (opts.media ? ' dv-media' : '') + (opts.vbox ? ' dv-vbox' : '');
+  var cls = 'dv-elem' + (broken ? ' break-after' : '') + (gap > 0 ? ' has-gap' : '') + (opts.media ? ' dv-media' : '') + (opts.vbox ? ' dv-vbox' : '');
   var qattr = (qkey != null && qkey !== '') ? ' data-q="' + escapeAttr(qkey) + '"' : '';
   return '<div class="' + cls + '" id="dv-' + escapeAttr(eid) + '" data-eid="' + escapeAttr(eid) + '"' + qattr
-       + ' style="--escale:' + (scale / 100) + ';">'
+       + ' style="--escale:' + (scale / 100) + ';--egap:' + gap + 'mm;">'
        + '<div class="dv-continued">…continued from previous page</div>'
        + '<span class="dv-tag">' + escapeHtml(opts.label || 'Block') + '</span>'
-       + dvToolsHtml(eid, scale, opts.resizable !== false)
+       + dvToolsHtml(eid, scale, gap, opts.resizable !== false)
        + inner
        + '</div>';
 }
@@ -8994,7 +9014,14 @@ html,body{ background:#71777d; margin:0; padding:0; }
 .page-guides .margin-line{ position:absolute; top:0; bottom:0; width:0; border-left:1px dashed rgba(216,67,67,.45); }
 .page-guides .page-break-line{ position:absolute; left:-20px; right:-20px; height:0; border-top:2px dashed rgba(216,67,67,.55); }
 .page-guides .pb-tag{ position:absolute; right:0; top:-9px; font-size:.62rem; font-weight:800; color:#fff; background:#E57373; padding:1px 8px; border-radius:999px; white-space:nowrap; }
-.dv-elem{ position:relative; --escale:1; border-radius:6px; outline:2px solid transparent; outline-offset:3px; transition:outline-color .15s; break-inside:avoid; page-break-inside:avoid; }
+/* Spacing uses padding (not margin) so it never collapses with the content's
+   own margins — 10mm of added space is always exactly 10mm on the page. */
+.dv-elem{ position:relative; --escale:1; --egap:0mm; padding-bottom:var(--egap); border-radius:6px; outline:2px solid transparent; outline-offset:3px; transition:outline-color .15s; break-inside:avoid; page-break-inside:avoid; }
+/* On hover, shade the added spacing below a block so it's visible on screen
+   (prints as plain empty space). */
+.dv-tools-on .dv-elem.has-gap:hover::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:var(--egap); pointer-events:none; border-radius:4px;
+  background:repeating-linear-gradient(45deg, rgba(100,181,246,.18), rgba(100,181,246,.18) 6px, transparent 6px, transparent 12px); }
 .dv-tools-on .dv-elem:hover{ outline-color:#E57373; background:rgba(229,115,115,.05); }
 .dv-tools-on .dv-elem:hover > .dv-tag{ opacity:1; }
 .dv-elem.break-after{ box-shadow:0 2px 0 -1px #E57373; }
@@ -9056,11 +9083,14 @@ html,body{ background:#71777d; margin:0; padding:0; }
 
 var DV_ENGINE = `
 (function(){
-  var DV = window.__DV || { scales:{}, breaks:{}, firstPage:1 };
+  var DV = window.__DV || { scales:{}, breaks:{}, gaps:{}, firstPage:1 };
+  if(!DV.gaps || typeof DV.gaps!=='object') DV.gaps={};
   var MIN=50, MAX=100, STEP=10;
+  var GSTEP=5, GMAX=100; // spacing below a block, in mm
   var guidesVisible = true;
   function scaleOf(eid){ var s=DV.scales[eid]; s=(typeof s==='number')?s:100; return Math.max(MIN,Math.min(MAX,s)); }
-  function post(){ try{ parent.postMessage({ type:'dvLayout', scales:DV.scales, breaks:DV.breaks, firstPage:DV.firstPage }, '*'); }catch(e){} }
+  function gapOf(eid){ var g=DV.gaps[eid]; g=(typeof g==='number')?g:0; return Math.max(0,Math.min(GMAX,g)); }
+  function post(){ try{ parent.postMessage({ type:'dvLayout', scales:DV.scales, breaks:DV.breaks, gaps:DV.gaps, firstPage:DV.firstPage }, '*'); }catch(e){} }
   var _ppm=null;
   function mmToPx(mm){ if(_ppm) return mm*_ppm; var p=document.createElement('div'); p.style.cssText='position:absolute;visibility:hidden;height:100mm;'; document.body.appendChild(p); _ppm=(p.getBoundingClientRect().height/100)||3.7795; document.body.removeChild(p); return mm*_ppm; }
   function elems(){ return Array.prototype.slice.call(document.querySelectorAll('.page .dv-elem')); }
@@ -9095,9 +9125,12 @@ var DV_ENGINE = `
   function byEid(eid){ return document.getElementById('dv-'+eid); }
   function updateReadout(el,eid){ var s=scaleOf(eid); var v=el.querySelector('.dv-val'); if(v) v.textContent=s+'%'; var d=el.querySelector('[data-act=down]'), u=el.querySelector('[data-act=up]'); if(d) d.disabled=(s<=MIN); if(u) u.disabled=(s>=MAX); }
   function setScale(eid, ns){ ns=Math.max(MIN,Math.min(MAX,ns)); if(scaleOf(eid)===ns) return; DV.scales[eid]=ns; var el=byEid(eid); if(el){ el.style.setProperty('--escale', String(ns/100)); updateReadout(el,eid); } scheduleGuides(); post(); }
+  function updateGapReadout(el,eid){ var g=gapOf(eid); var v=el.querySelector('.dv-gap-val'); if(v) v.textContent=g+'mm'; var d=el.querySelector('[data-act=gap-down]'), u=el.querySelector('[data-act=gap-up]'); if(d) d.disabled=(g<=0); if(u) u.disabled=(g>=GMAX); }
+  function setGap(eid, ng){ ng=Math.max(0,Math.min(GMAX,ng)); if(gapOf(eid)===ng) return; if(ng===0) delete DV.gaps[eid]; else DV.gaps[eid]=ng; var el=byEid(eid); if(el){ el.style.setProperty('--egap', ng+'mm'); el.classList.toggle('has-gap', ng>0); updateGapReadout(el,eid); } scheduleGuides(); post(); }
   function toggleBreak(eid){ var on=!DV.breaks[eid]; if(on) DV.breaks[eid]=true; else delete DV.breaks[eid]; var el=byEid(eid); if(el){ el.classList.toggle('break-after',on); var b=el.querySelector('.dv-pb'); if(b){ b.classList.toggle('active',on); var t=b.querySelector('.t'); if(t) t.textContent=on?'break after \\u2713':'break after'; } } refreshContinued(); scheduleGuides(); post(); }
-  // Keyboard resize / break: hover a block, then press [ / ] (or - / +) to
-  // resize and 'b' to toggle a page break — no need to aim at the tiny rail.
+  // Keyboard shortcuts: hover a block, then press [ / ] (or - / +) to resize,
+  // , / . to remove / add space below it, and 'b' to toggle a page break —
+  // no need to aim at the tiny rail.
   var hoverEid=null;
   document.addEventListener('mouseover', function(e){ var el=e.target.closest('.dv-elem'); if(!el) return; var id=el.getAttribute('data-eid'); if(id!==hoverEid){ hoverEid=id; try{ window.focus(); }catch(_){} } });
   document.addEventListener('keydown', function(e){
@@ -9105,6 +9138,8 @@ var DV_ENGINE = `
     var t=e.target; if(t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName||''))) return;
     if(e.key===']'||e.key==='+'||e.key==='='){ e.preventDefault(); setScale(hoverEid, scaleOf(hoverEid)+STEP); }
     else if(e.key==='['||e.key==='-'||e.key==='_'){ e.preventDefault(); setScale(hoverEid, scaleOf(hoverEid)-STEP); }
+    else if(e.key==='.'||e.key==='>'){ e.preventDefault(); setGap(hoverEid, gapOf(hoverEid)+GSTEP); }
+    else if(e.key===','||e.key==='<'){ e.preventDefault(); setGap(hoverEid, gapOf(hoverEid)-GSTEP); }
     else if((e.key||'').toLowerCase()==='b'){ e.preventDefault(); toggleBreak(hoverEid); }
   });
   /* ── Front matter: cover & contents pages ── */
@@ -9155,6 +9190,8 @@ var DV_ENGINE = `
     var act=btn.getAttribute('data-act'), eid=btn.getAttribute('data-eid');
     if(act==='down') setScale(eid, scaleOf(eid)-STEP);
     else if(act==='up') setScale(eid, scaleOf(eid)+STEP);
+    else if(act==='gap-down') setGap(eid, gapOf(eid)-GSTEP);
+    else if(act==='gap-up') setGap(eid, gapOf(eid)+GSTEP);
     else if(act==='break') toggleBreak(eid);
     else if(act==='toggle-guides'){ guidesVisible=!guidesVisible; document.body.classList.toggle('guides-hidden', !guidesVisible); var l=document.getElementById('dvGuidesLbl'); if(l) l.textContent=guidesVisible?'Hide page guides':'Show page guides'; if(guidesVisible) scheduleGuides(); }
     else if(act==='toggle-cover'){ FM.cover=!FM.cover; applyFM(true); }
@@ -9219,7 +9256,7 @@ function dvBuildDoc() {
   // closing script tag or comment marker inside JSON-encoded HTML can't
   // break out of the tag.
   var jsStr = function (v) { return JSON.stringify(v).replace(/</g, '\\u003c'); };
-  var inject = 'window.__DV=' + jsStr({ scales: L.scales, breaks: L.breaks, firstPage: L.firstPage }) + ';'
+  var inject = 'window.__DV=' + jsStr({ scales: L.scales, breaks: L.breaks, gaps: L.gaps, firstPage: L.firstPage }) + ';'
     + 'window.__DV_FM=' + jsStr({ cover: coverOn, contents: contentsOn }) + ';'
     + 'window.__DV_CONTENTS_AUTO=' + jsStr(buildContentsListHtml()) + ';';
   var logo = 'https://www.dropbox.com/scl/fi/2wc1ulpjuiaqlxk5qhc07/polymath-logo-sticker-copy.png?rlkey=jhutxqmdbwe0jgoqcwdxzwt55&raw=1';
@@ -9257,7 +9294,7 @@ async function dvOpen() {
   frame.srcdoc = dvBuildDoc();
   document.getElementById('dvOverlay').classList.add('open');
   Loader.done();
-  // Focus the iframe so its element keyboard shortcuts ([ ] / + - / b) work
+  // Focus the iframe so its element keyboard shortcuts ([ ] resize, , . space, b break) work
   // as soon as the surface opens.
   frame.addEventListener('load', function once() {
     frame.removeEventListener('load', once);
@@ -9278,6 +9315,7 @@ window.addEventListener('message', function (e) {
     var L = dvLayout();
     if (d.scales && typeof d.scales === 'object') L.scales = d.scales;
     if (d.breaks && typeof d.breaks === 'object') L.breaks = d.breaks;
+    if (d.gaps && typeof d.gaps === 'object') L.gaps = d.gaps;
     if (typeof d.firstPage === 'number') L.firstPage = d.firstPage;
     scheduleAutoSave();
   } else if (d.type === 'dvFrontMatter') {
