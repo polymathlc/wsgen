@@ -2493,6 +2493,171 @@
     body.cs-printing .cs-q-edit:empty::before,
     body.cs-printing .cs-a-edit:empty::before { content: '' !important; }
   }
+
+  /* =========================================================================
+     DRAFT SIDEBAR — a docked panel that always shows what's currently in the
+     draft, so you get instant feedback that a question was added. Hover any
+     item to see a full preview of that question.
+     ========================================================================= */
+  .draft-sidebar {
+    position: fixed; top: 0; right: 0; z-index: 1200;
+    width: 340px; max-width: 92vw; height: 100vh;
+    background: var(--bg-primary, #fff);
+    border-left: 1px solid var(--border-medium, #D4D4CF);
+    box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.1));
+    display: flex; flex-direction: column; min-height: 0;
+    transform: translateX(105%);
+    transition: transform var(--transition-base, 0.25s ease);
+  }
+  .draft-sidebar.open { transform: translateX(0); }
+
+  .draft-sb-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 16px; border-bottom: 1px solid var(--border-subtle, #E8E8E4);
+  }
+  .draft-sb-title {
+    font-size: 1rem; font-weight: 700; color: var(--text-primary, #1A1A1A);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .draft-sb-count {
+    background: var(--accent-bg, #E3F2FD); color: var(--accent-deep, #1E88E5);
+    border-radius: var(--radius-full, 999px); padding: 2px 10px;
+    font-size: 0.78rem; font-weight: 700; min-width: 22px; text-align: center;
+  }
+  .draft-sb-close {
+    margin-left: auto; background: none; border: none; cursor: pointer;
+    font-size: 1.1rem; color: var(--text-secondary, #5C5C5C);
+    width: 30px; height: 30px; border-radius: 8px; line-height: 1;
+  }
+  .draft-sb-close:hover { background: var(--bg-tertiary, #F3F3F0); color: var(--text-primary, #1A1A1A); }
+
+  .draft-sb-hint {
+    padding: 10px 16px; font-size: 0.78rem; line-height: 1.45;
+    color: var(--text-secondary, #5C5C5C); background: var(--bg-soft, #F7F9FC);
+    border-bottom: 1px solid var(--border-subtle, #E8E8E4);
+  }
+
+  .draft-sb-list { flex: 1; overflow-y: auto; padding: 10px; min-height: 60px; }
+
+  .draft-sb-empty {
+    text-align: center; color: var(--text-tertiary, #8A8A8A);
+    padding: 40px 18px; font-size: 0.9rem; line-height: 1.6;
+  }
+  .draft-sb-empty .draft-sb-empty-icon { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+
+  .draft-sb-item {
+    position: relative;
+    display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; align-items: start;
+    padding: 10px 10px 10px 8px; margin-bottom: 8px;
+    border: 1px solid var(--border-subtle, #E8E8E4); border-radius: 10px;
+    background: var(--bg-primary, #fff); cursor: default;
+    transition: border-color var(--transition-fast, 0.15s ease),
+                box-shadow var(--transition-fast, 0.15s ease),
+                background var(--transition-fast, 0.15s ease);
+  }
+  .draft-sb-item:hover {
+    border-color: var(--accent-dark, #42A5F5);
+    box-shadow: var(--shadow-sm, 0 4px 12px rgba(0,0,0,0.06));
+    background: var(--bg-soft, #F7F9FC);
+  }
+  /* brief green flash when a fresh question lands in the draft */
+  @keyframes draftJustAdded {
+    0%   { background: var(--correct-bg, #F1F8E9); border-color: var(--correct-base, #66BB6A); }
+    100% { background: var(--bg-primary, #fff); border-color: var(--border-subtle, #E8E8E4); }
+  }
+  .draft-sb-item.just-added { animation: draftJustAdded 1.6s ease; }
+
+  .draft-sb-num {
+    width: 24px; height: 24px; border-radius: var(--radius-full, 999px);
+    background: var(--accent-bg, #E3F2FD); color: var(--accent-deep, #1E88E5);
+    font-size: 0.78rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .draft-sb-body { min-width: 0; }
+  .draft-sb-src {
+    font-size: 0.72rem; font-weight: 700; color: var(--text-tertiary, #8A8A8A);
+    text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .draft-sb-text {
+    font-size: 0.86rem; color: var(--text-primary, #1A1A1A); line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .draft-sb-badges {
+    margin-top: 4px; font-size: 0.72rem; color: var(--text-tertiary, #8A8A8A);
+  }
+  .draft-sb-remove {
+    background: none; border: none; cursor: pointer; align-self: center;
+    color: var(--text-tertiary, #8A8A8A); font-size: 1rem; line-height: 1;
+    width: 26px; height: 26px; border-radius: 8px;
+  }
+  .draft-sb-remove:hover { background: var(--wrong-bg, #FFEBEE); color: var(--wrong-dark, #E53935); }
+
+  .draft-sb-actions {
+    border-top: 1px solid var(--border-subtle, #E8E8E4);
+    padding: 12px; display: flex; flex-direction: column; gap: 8px;
+    background: var(--bg-secondary, #FAFAFA);
+  }
+  .draft-sb-actions .btn { width: 100%; justify-content: center; }
+  .draft-sb-actions-row { display: flex; gap: 8px; }
+  .draft-sb-actions-row .btn { flex: 1; }
+
+  /* floating hover preview */
+  .draft-preview-pop {
+    position: fixed; z-index: 1300; width: 340px; max-width: 90vw;
+    background: var(--bg-primary, #fff);
+    border: 1px solid var(--border-medium, #D4D4CF); border-radius: 12px;
+    box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.1));
+    padding: 14px 16px; pointer-events: none; display: none;
+    max-height: 70vh; overflow-y: auto;
+  }
+  .draft-preview-pop.show { display: block; }
+  .draft-preview-pop .dpp-src {
+    font-size: 0.72rem; font-weight: 700; color: var(--text-tertiary, #8A8A8A);
+    text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px;
+  }
+  .draft-preview-pop .cs-q-text { font-size: 0.9rem; line-height: 1.5; margin-bottom: 4px; }
+  .draft-preview-pop .cs-q-opts > div { margin: 2px 0; }
+  .draft-preview-pop .dpp-img { margin-top: 8px; }
+  .draft-preview-pop .dpp-img img { max-width: 100%; border-radius: 6px; display: block; }
+  .draft-preview-pop .dpp-ans {
+    margin-top: 10px; padding-top: 8px; font-size: 0.85rem;
+    border-top: 1px dashed var(--border-medium, #D4D4CF); color: var(--correct-dark, #43A047);
+  }
+  .draft-preview-pop .dpp-ans .cs-ans-label { font-weight: 700; }
+
+  /* the toolbar Draft button pulses when something is freshly added */
+  @keyframes draftBtnPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(67,160,71,0.45); }
+    100% { box-shadow: 0 0 0 10px rgba(67,160,71,0); }
+  }
+  #openDraftBtn.draft-pulse { animation: draftBtnPulse 0.7s ease; }
+
+  /* toast notifications — instant "added to draft" feedback */
+  .toast-host {
+    position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%);
+    z-index: 1400; display: flex; flex-direction: column; gap: 8px;
+    align-items: center; pointer-events: none;
+  }
+  .toast {
+    background: var(--text-primary, #1A1A1A); color: #fff;
+    padding: 10px 16px; border-radius: var(--radius-full, 999px);
+    font-size: 0.85rem; font-weight: 600; box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 10px; max-width: 90vw;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity var(--transition-base, 0.25s ease),
+                transform var(--transition-base, 0.25s ease);
+    pointer-events: auto;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.toast-success { background: var(--correct-dark, #43A047); }
+  .toast-action {
+    background: rgba(255,255,255,0.22); color: #fff; border: none; cursor: pointer;
+    padding: 4px 12px; border-radius: var(--radius-full, 999px);
+    font-size: 0.8rem; font-weight: 700; font-family: inherit;
+  }
+  .toast-action:hover { background: rgba(255,255,255,0.35); }
 </style>
 </head>
 <body>
@@ -2547,7 +2712,7 @@
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
         <button class="btn btn-newws admin-only" id="newWorksheetBtn" title="Start a brand-new blank worksheet — then use Load JSON to import a file into it">＋ New Worksheet</button>
         <button class="btn admin-only" id="addAllToDraftBtn" title="Copy every question in this worksheet into the draft at once">📋＋ Add all to Draft</button>
-        <button class="btn admin-only" id="openDraftBtn" title="Open the draft worksheet built from questions you've copied">📋 Open Draft (0)</button>
+        <button class="btn admin-only" id="openDraftBtn" title="Open the draft panel — see every question you've collected, preview each one, then build a worksheet or cheat sheet">🗂 Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="cheatSheetBtn" title="Lay out the draft questions as drag-and-resize tiles on a printable cheat sheet">🧾 Cheat Sheet (0)</button>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
@@ -2591,6 +2756,28 @@
   </main>
 </div>
 <button class="btn btn-primary panel-expand-btn" id="panelExpandBtn" title="Show the worksheet panel">» Worksheets</button>
+
+<!-- =============== DRAFT SIDEBAR =============== -->
+<aside class="draft-sidebar admin-only" id="draftSidebar" aria-hidden="true">
+  <div class="draft-sb-head">
+    <span class="draft-sb-title">🗂 Draft <span class="draft-sb-count" id="draftSbCount">0</span></span>
+    <button class="draft-sb-close" id="draftSbClose" title="Close the draft panel">✕</button>
+  </div>
+  <div class="draft-sb-hint">
+    These are the questions you've collected. Click 📋 on any question to add more —
+    each one appears here instantly. Hover an item to preview the full question.
+  </div>
+  <div class="draft-sb-list" id="draftSbList"></div>
+  <div class="draft-sb-actions">
+    <button class="btn btn-primary" id="draftSbBuildBtn" title="Turn these draft questions into a new worksheet you can edit, print or export">📄 Build worksheet from these</button>
+    <div class="draft-sb-actions-row">
+      <button class="btn" id="draftSbCheatBtn" title="Lay these questions out as a printable cheat sheet">🧾 Cheat sheet</button>
+      <button class="btn" id="draftSbClearBtn" title="Remove every question from the draft">🗑 Clear all</button>
+    </div>
+  </div>
+</aside>
+<div class="draft-preview-pop" id="draftPreviewPop" aria-hidden="true"></div>
+<div class="toast-host" id="toastHost" aria-live="polite"></div>
 
 <!-- =============== CHEAT SHEET OVERLAY =============== -->
 <div class="cs-overlay" id="cheatSheetOverlay">
@@ -2951,7 +3138,7 @@ function renderEditorQuestion(q, qIndex) {
   actions.className = 'header-actions';
   actions.appendChild(makeIconBtn('↑', 'Move up', () => moveQuestion(qIndex, -1)));
   actions.appendChild(makeIconBtn('↓', 'Move down', () => moveQuestion(qIndex, 1)));
-  actions.appendChild(makeIconBtn('📋', 'Copy to draft worksheet', () => copyQuestionToDraft(qIndex)));
+  actions.appendChild(makeIconBtn('📋', 'Add this question to the draft (collect it in the 🗂 Draft panel)', () => copyQuestionToDraft(qIndex)));
   actions.appendChild(makeIconBtn('✕', 'Delete question', () => removeQuestion(qIndex), true));
   header.appendChild(actions);
 
@@ -4222,7 +4409,7 @@ function renderPreviewQuestion(q, qIndex) {
         : 'Move this question: pick it up, then click "Insert here" at its new position',
         () => toggleCutQuestion(qIndex)));
     }
-    qc.appendChild(makeIconBtn('📋', 'Copy this question to the draft worksheet', () => copyQuestionToDraft(qIndex)));
+    qc.appendChild(makeIconBtn('📋', 'Add this question to the draft (collect it in the 🗂 Draft panel)', () => copyQuestionToDraft(qIndex)));
     if (!currentSavedLocked) {
       qc.appendChild(makeIconBtn('✕', 'Delete this question', () => {
         if (confirm('Delete this entire question?')) removeQuestion(qIndex);
@@ -8058,6 +8245,53 @@ async function copyQuestionToDraft(qIndex) {
   draft.push(clone);
   saveDraft(draft);
   updateDraftBadge();
+  // Instant feedback: confirm the add, open the panel so it's visibly there,
+  // pulse the toolbar button, and flash the newly-added row.
+  const total = realDraftQuestions().length;
+  // The very first time someone adds to the draft, pop the panel open so they
+  // immediately see WHERE the question went — afterwards, just toast + pulse.
+  if (!draftSidebarOpen && !draftPanelSeen()) {
+    openDraftSidebar();
+    markDraftPanelSeen();
+  }
+  showToast(`Added to draft — ${total} question${total === 1 ? '' : 's'} collected`, {
+    type: 'success',
+    actionLabel: draftSidebarOpen ? null : 'View',
+    onAction: openDraftSidebar,
+  });
+  pulseDraftButton();
+  if (draftSidebarOpen) renderDraftSidebar();
+  flashDraftItem(clone.id);
+}
+
+// Remember (per browser) whether the user has seen the draft panel, so we only
+// auto-open it the very first time — never naggingly thereafter.
+const DRAFT_PANEL_SEEN_KEY = 'wsgen.draftPanelSeen';
+function draftPanelSeen() {
+  try { return localStorage.getItem(DRAFT_PANEL_SEEN_KEY) === '1'; } catch (_) { return false; }
+}
+function markDraftPanelSeen() {
+  try { localStorage.setItem(DRAFT_PANEL_SEEN_KEY, '1'); } catch (_) {}
+}
+
+// Briefly highlight a freshly-added row in the open sidebar.
+function flashDraftItem(qid) {
+  if (!draftSidebarOpen) return;
+  requestAnimationFrame(() => {
+    const row = document.querySelector(`.draft-sb-item[data-qid="${qid}"]`);
+    if (!row) return;
+    row.classList.add('just-added');
+    row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    setTimeout(() => row.classList.remove('just-added'), 1700);
+  });
+}
+function pulseDraftButton() {
+  const btn = document.getElementById('openDraftBtn');
+  if (!btn) return;
+  btn.classList.remove('draft-pulse');
+  void btn.offsetWidth;
+  btn.classList.add('draft-pulse');
+  setTimeout(() => btn.classList.remove('draft-pulse'), 800);
 }
 // Copy every item in the current worksheet (questions and instruction blocks)
 // into the draft in one go, so they don't have to be added one by one.
@@ -8083,7 +8317,13 @@ async function copyWorksheetToDraft() {
   clones.forEach(c => draft.push(c));
   saveDraft(draft);
   updateDraftBadge();
-  alert(`Added ${added} question(s) from this worksheet to the draft (now ${draft.length} item(s) total). Click "Open Draft" to build a worksheet from them.`);
+  const total = realDraftQuestions().length;
+  showToast(`Added ${added} question${added === 1 ? '' : 's'} — ${total} in draft`, {
+    type: 'success',
+    actionLabel: 'View draft',
+    onAction: openDraftSidebar,
+  });
+  pulseDraftButton();
 }
 function openDraft() {
   const draft = loadDraft();
@@ -8126,11 +8366,218 @@ function clearDraft() {
 function updateDraftBadge() {
   const n = loadDraft().length;
   const openBtn = document.getElementById('openDraftBtn');
-  if (openBtn) openBtn.textContent = `📋 Open Draft (${n})`;
+  if (openBtn) openBtn.textContent = `🗂 Draft (${n})`;
   const clearBtn = document.getElementById('clearDraftBtn');
   if (clearBtn) clearBtn.style.display = n > 0 ? '' : 'none';
   const csBtn = document.getElementById('cheatSheetBtn');
   if (csBtn) csBtn.textContent = `🧾 Cheat Sheet (${n})`;
+  // Keep the live draft panel in sync whenever the draft changes.
+  renderDraftSidebar();
+}
+
+/* =========================================================================
+   TOAST — small, auto-dismissing confirmation messages. Gives instant
+   feedback (e.g. "Added to draft") so an action never feels like it did
+   nothing.
+   ========================================================================= */
+function showToast(message, opts) {
+  opts = opts || {};
+  const host = document.getElementById('toastHost');
+  if (!host) return;
+  const el = document.createElement('div');
+  el.className = 'toast' + (opts.type ? ` toast-${opts.type}` : '');
+  const text = document.createElement('span');
+  text.textContent = message;
+  el.appendChild(text);
+  if (opts.actionLabel && typeof opts.onAction === 'function') {
+    const btn = document.createElement('button');
+    btn.className = 'toast-action';
+    btn.textContent = opts.actionLabel;
+    btn.addEventListener('click', () => { dismiss(); opts.onAction(); });
+    el.appendChild(btn);
+  }
+  host.appendChild(el);
+  // force reflow so the entrance transition runs
+  void el.offsetWidth;
+  el.classList.add('show');
+  let timer = setTimeout(dismiss, opts.duration || 2800);
+  function dismiss() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 300);
+  }
+}
+
+/* =========================================================================
+   DRAFT SIDEBAR — a docked panel listing every question in the draft, so
+   adding a question gives immediate, visible feedback. Hovering an item
+   shows a full preview of that question.
+   ========================================================================= */
+// Resolved Storage URLs, keyed by image path. loadDraft() returns fresh
+// objects every call, so we re-apply these cached URLs at render time rather
+// than mutating throwaway objects.
+const draftHydratedUrls = new Map();
+
+function realDraftQuestions() {
+  // The list shown to the user mirrors what "Build worksheet" produces:
+  // real questions, not instruction blocks.
+  const qs = loadDraft().filter(q => !isInstruction(q));
+  // Fill in any image URLs we've already fetched from Storage.
+  if (draftHydratedUrls.size) {
+    for (const q of qs) {
+      for (const el of (q.elements || [])) {
+        if (el.dataUrl) continue;
+        const path = el.imageRef && el.imageRef.path;
+        if (path && draftHydratedUrls.has(path)) el.dataUrl = draftHydratedUrls.get(path);
+      }
+    }
+  }
+  return qs;
+}
+
+function renderDraftSidebar() {
+  const list = document.getElementById('draftSbList');
+  const countEl = document.getElementById('draftSbCount');
+  if (!list) return;
+  const qs = realDraftQuestions();
+  if (countEl) countEl.textContent = String(qs.length);
+  // Enable/disable the build & cheat-sheet actions when empty.
+  const buildBtn = document.getElementById('draftSbBuildBtn');
+  const cheatBtn = document.getElementById('draftSbCheatBtn');
+  const clearBtn = document.getElementById('draftSbClearBtn');
+  [buildBtn, cheatBtn, clearBtn].forEach(b => { if (b) b.disabled = qs.length === 0; });
+
+  if (qs.length === 0) {
+    list.innerHTML = `
+      <div class="draft-sb-empty">
+        <span class="draft-sb-empty-icon">🗂</span>
+        Your draft is empty.<br>
+        Click the <b>📋</b> button on any question to collect it here.
+      </div>`;
+    return;
+  }
+  list.innerHTML = '';
+  qs.forEach((q, i) => {
+    const ext = csExtract(q, i);
+    const plain = csStrip(ext.questionHtml);
+    const badges = [];
+    if (ext.imgUrl) badges.push('📷 picture');
+    if (ext.answerHtml) badges.push('✔ answer');
+    const row = document.createElement('div');
+    row.className = 'draft-sb-item';
+    row.dataset.qid = q.id;
+    row.innerHTML = `
+      <div class="draft-sb-num">${ext.num}</div>
+      <div class="draft-sb-body">
+        <div class="draft-sb-src">${escapeHtml(ext.src || ('Question ' + ext.num))}</div>
+        <div class="draft-sb-text">${escapeHtml(plain || '(no question text)')}</div>
+        ${badges.length ? `<div class="draft-sb-badges">${badges.join(' · ')}</div>` : ''}
+      </div>
+      <button class="draft-sb-remove" data-draft-remove="${q.id}" title="Remove this question from the draft">✕</button>`;
+    list.appendChild(row);
+  });
+}
+
+let draftSidebarOpen = false;
+function openDraftSidebar() {
+  const sb = document.getElementById('draftSidebar');
+  if (!sb) return;
+  renderDraftSidebar();
+  draftHydrateImages();
+  sb.classList.add('open');
+  sb.setAttribute('aria-hidden', 'false');
+  draftSidebarOpen = true;
+  markDraftPanelSeen();
+}
+function closeDraftSidebar() {
+  const sb = document.getElementById('draftSidebar');
+  if (!sb) return;
+  sb.classList.remove('open');
+  sb.setAttribute('aria-hidden', 'true');
+  draftSidebarOpen = false;
+  hideDraftPreview();
+}
+function toggleDraftSidebar() {
+  if (draftSidebarOpen) closeDraftSidebar();
+  else openDraftSidebar();
+}
+
+function removeDraftQuestion(qid) {
+  const draft = loadDraft();
+  const idx = draft.findIndex(q => q.id === qid);
+  if (idx < 0) return;
+  draft.splice(idx, 1);
+  saveDraft(draft);
+  updateDraftBadge();
+  hideDraftPreview();
+}
+
+/* ---- hover preview popup ---- */
+function showDraftPreview(qid, anchorEl) {
+  const pop = document.getElementById('draftPreviewPop');
+  if (!pop) return;
+  const qs = realDraftQuestions();
+  const i = qs.findIndex(q => q.id === qid);
+  if (i < 0) { hideDraftPreview(); return; }
+  const ext = csExtract(qs[i], i);
+  let html = `<div class="dpp-src">${escapeHtml(ext.src || ('Question ' + ext.num))}</div>`;
+  html += `<div>${ext.questionHtml}</div>`;
+  if (ext.imgUrl) html += `<div class="dpp-img"><img src="${ext.imgUrl}" alt="" /></div>`;
+  if (ext.answerHtml) html += `<div class="dpp-ans"><span class="cs-ans-label">Ans:</span> ${ext.answerHtml}</div>`;
+  pop.innerHTML = html;
+  pop.classList.add('show');
+  pop.setAttribute('aria-hidden', 'false');
+  positionDraftPreview(anchorEl);
+}
+function positionDraftPreview(anchorEl) {
+  const pop = document.getElementById('draftPreviewPop');
+  if (!pop || !anchorEl) return;
+  const r = anchorEl.getBoundingClientRect();
+  const pw = pop.offsetWidth || 340;
+  const ph = pop.offsetHeight || 200;
+  const gap = 12;
+  // Prefer placing the popup to the LEFT of the sidebar item.
+  let left = r.left - pw - gap;
+  if (left < 8) left = r.right + gap; // not enough room — flip to the right
+  if (left + pw > window.innerWidth - 8) left = Math.max(8, window.innerWidth - pw - 8);
+  let top = r.top;
+  if (top + ph > window.innerHeight - 8) top = Math.max(8, window.innerHeight - ph - 8);
+  pop.style.left = left + 'px';
+  pop.style.top = top + 'px';
+}
+function hideDraftPreview() {
+  const pop = document.getElementById('draftPreviewPop');
+  if (!pop) return;
+  pop.classList.remove('show');
+  pop.setAttribute('aria-hidden', 'true');
+}
+
+/* Fetch Storage-backed images so draft previews/thumbnails show pictures
+   (draft questions store lightweight image refs, not inline base64). */
+function draftHydrateImages() {
+  const draft = loadDraft();
+  const tasks = [];
+  for (const q of draft) {
+    for (const el of (q.elements || [])) {
+      if (el.type !== 'image' && el.type !== 'answerKey') continue;
+      if (el.dataUrl) continue;
+      if (!el.imageRef || !el.imageRef.path) continue;
+      const path = el.imageRef.path;
+      if (draftHydratedUrls.has(path)) { el.dataUrl = draftHydratedUrls.get(path); continue; }
+      if (!imageHydrateCache.has(path)) {
+        imageHydrateCache.set(path,
+          retrying('fetch image URL',
+            () => getDownloadURL(storageRef(fbStorage, path)),
+            { attempts: 2, timeoutMs: 10000 }
+          ).catch(() => null));
+      }
+      tasks.push(imageHydrateCache.get(path).then(url => {
+        if (url) draftHydratedUrls.set(path, url);
+      }));
+    }
+  }
+  if (!tasks.length) return;
+  Promise.allSettled(tasks).then(() => { renderDraftSidebar(); });
 }
 
 /* =========================================================================
@@ -9875,18 +10322,52 @@ document.getElementById('signOutBtn').addEventListener('click', signOutUser);
 document.getElementById('googleSignInBtn').addEventListener('click', signInGoogle);
 document.getElementById('newWorksheetBtn').addEventListener('click', newWorksheet);
 document.getElementById('addAllToDraftBtn').addEventListener('click', copyWorksheetToDraft);
-document.getElementById('openDraftBtn').addEventListener('click', openDraft);
+// The toolbar "🗂 Draft (n)" button now opens the panel so you can SEE what's
+// collected (and preview each question) before turning it into a worksheet.
+document.getElementById('openDraftBtn').addEventListener('click', toggleDraftSidebar);
 document.getElementById('clearDraftBtn').addEventListener('click', clearDraft);
 updateDraftBadge();
 
-/* ---- Cheat sheet wiring ---- */
-document.getElementById('cheatSheetBtn').addEventListener('click', () => {
-  if (loadDraft().filter(q => !isInstruction(q)).length === 0) {
+/* ---- Draft sidebar wiring ---- */
+function openCheatSheetFromDraft() {
+  if (realDraftQuestions().length === 0) {
     alert('Your draft is empty. Click 📋 on any question (or "Add all to Draft") to collect questions for the cheat sheet first.');
     return;
   }
   csOpen();
+}
+document.getElementById('draftSbClose').addEventListener('click', closeDraftSidebar);
+document.getElementById('draftSbBuildBtn').addEventListener('click', () => {
+  closeDraftSidebar();
+  openDraft();
 });
+document.getElementById('draftSbCheatBtn').addEventListener('click', () => {
+  closeDraftSidebar();
+  openCheatSheetFromDraft();
+});
+document.getElementById('draftSbClearBtn').addEventListener('click', clearDraft);
+// One delegated listener handles removing items and showing hover previews.
+const draftSbListEl = document.getElementById('draftSbList');
+draftSbListEl.addEventListener('click', (e) => {
+  const rm = e.target.closest('[data-draft-remove]');
+  if (rm) { removeDraftQuestion(rm.dataset.draftRemove); }
+});
+draftSbListEl.addEventListener('mouseover', (e) => {
+  const row = e.target.closest('.draft-sb-item');
+  if (row) showDraftPreview(row.dataset.qid, row);
+});
+draftSbListEl.addEventListener('mouseout', (e) => {
+  const row = e.target.closest('.draft-sb-item');
+  const to = e.relatedTarget;
+  if (row && (!to || !row.contains(to))) hideDraftPreview();
+});
+draftSbListEl.addEventListener('scroll', hideDraftPreview);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && draftSidebarOpen) closeDraftSidebar();
+});
+
+/* ---- Cheat sheet wiring ---- */
+document.getElementById('cheatSheetBtn').addEventListener('click', openCheatSheetFromDraft);
 document.getElementById('csCloseBtn').addEventListener('click', csClose);
 document.getElementById('csPrintBtn').addEventListener('click', csPrint);
 document.getElementById('csAddAllBtn').addEventListener('click', () => {
