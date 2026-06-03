@@ -2059,6 +2059,23 @@
     pointer-events: none;
   }
 
+  /* ── Drag-to-reorder questions ──
+     A grip handle on each question card lets you drag a whole question to a new
+     spot in one motion instead of repeatedly clicking ↑ / ↓. */
+  .icon-btn.q-drag-handle {
+    cursor: grab;
+    font-size: 14px;
+    color: var(--text-tertiary);
+  }
+  .icon-btn.q-drag-handle:hover { color: var(--accent-deep); background: var(--accent-bg); }
+  .icon-btn.q-drag-handle:active { cursor: grabbing; }
+  .question-card.q-dragging { opacity: 0.4; }
+  /* drop-position indicator drawn inside the card edge (no layout shift) */
+  .question-card.q-drop-before { box-shadow: inset 0 4px 0 0 var(--accent-deep), var(--shadow-md); }
+  .question-card.q-drop-after  { box-shadow: inset 0 -4px 0 0 var(--accent-deep), var(--shadow-md); }
+  body.q-reordering { cursor: grabbing; }
+  body.q-reordering .question-card * { pointer-events: none; }
+
   /* ============================ INSTRUCTION BLOCK ============================ */
   .instruction-block {
     background: var(--accent-bg);
@@ -3182,7 +3199,19 @@ function makeIconBtn(label, title, onClick, danger=false) {
   b.className = 'icon-btn' + (danger ? ' danger' : '');
   b.title = title;
   b.textContent = label;
-  b.addEventListener('click', onClick);
+  if (typeof onClick === 'function') b.addEventListener('click', onClick);
+  return b;
+}
+
+// A grip handle that makes its question card draggable for reordering.
+function makeDragHandle() {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'icon-btn q-drag-handle';
+  b.title = 'Drag to reorder this question (or use ↑ ↓)';
+  b.textContent = '⠿';
+  b.setAttribute('draggable', 'true');
+  b.setAttribute('aria-label', 'Drag to reorder');
   return b;
 }
 
@@ -4266,6 +4295,26 @@ function buildMoveTargetBar(afterIndex) {
   bar.appendChild(btn);
   return bar;
 }
+/* ── Drag-to-reorder questions ──
+   Dragging a card's grip handle moves the whole question to a new position in
+   one motion. Reordering is done by question id, so it stays correct even when
+   a topic / concept filter hides some cards. */
+function reorderQuestionById(draggedId, targetId, placeAfter) {
+  if (!draggedId || draggedId === targetId) return;
+  const from = state.questions.findIndex(q => q.id === draggedId);
+  if (from < 0) return;
+  const [moved] = state.questions.splice(from, 1);
+  const targetIdx = state.questions.findIndex(q => q.id === targetId);
+  if (targetIdx < 0) {
+    // Target vanished — put it back where it was.
+    state.questions.splice(Math.min(from, state.questions.length), 0, moved);
+    return;
+  }
+  const to = placeAfter ? targetIdx + 1 : targetIdx;
+  state.questions.splice(to, 0, moved);
+  renderEditor(); renderPreview();
+}
+
 function addElement(q, type) {
   q.elements.push(makeElement(type));
   renderEditor(); renderPreview();
@@ -4292,6 +4341,57 @@ function moveElement(q, i, dir) {
 const previewContainer = document.getElementById('previewContainer');
 const previewTitleEl = document.getElementById('previewTitle');
 const previewSubtitleEl = document.getElementById('previewSubtitle');
+
+/* Drag-to-reorder wiring (delegated on the preview container). The grip handle
+   on each card is the only thing that starts a reorder drag. */
+let dragQId = null;
+function clearDropMarkers() {
+  previewContainer.querySelectorAll('.q-drop-before, .q-drop-after')
+    .forEach(el => el.classList.remove('q-drop-before', 'q-drop-after'));
+}
+function endQuestionDrag() {
+  const src = previewContainer.querySelector('.q-dragging');
+  if (src) src.classList.remove('q-dragging');
+  clearDropMarkers();
+  document.body.classList.remove('q-reordering');
+  dragQId = null;
+}
+previewContainer.addEventListener('dragstart', (e) => {
+  const handle = e.target.closest('.q-drag-handle');
+  if (!handle) return; // only the grip starts a reorder drag
+  const card = handle.closest('.question-card');
+  if (!card || !card.dataset.qid) return;
+  dragQId = card.dataset.qid;
+  card.classList.add('q-dragging');
+  document.body.classList.add('q-reordering');
+  e.dataTransfer.effectAllowed = 'move';
+  try { e.dataTransfer.setData('text/plain', dragQId); } catch (_) {}
+  try { e.dataTransfer.setDragImage(card, 24, 16); } catch (_) {}
+});
+previewContainer.addEventListener('dragover', (e) => {
+  if (dragQId === null) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  const card = e.target.closest('.question-card');
+  clearDropMarkers();
+  if (!card || card.dataset.qid === dragQId) return;
+  const r = card.getBoundingClientRect();
+  const after = e.clientY > r.top + r.height / 2;
+  card.classList.add(after ? 'q-drop-after' : 'q-drop-before');
+});
+previewContainer.addEventListener('drop', (e) => {
+  if (dragQId === null) return;
+  e.preventDefault();
+  const card = e.target.closest('.question-card');
+  const draggedId = dragQId;
+  if (card && card.dataset.qid && card.dataset.qid !== draggedId) {
+    const r = card.getBoundingClientRect();
+    const after = e.clientY > r.top + r.height / 2;
+    reorderQuestionById(draggedId, card.dataset.qid, after);
+  }
+  endQuestionDrag();
+});
+previewContainer.addEventListener('dragend', endQuestionDrag);
 
 function renderPreview() {
   scheduleAutoSave();
@@ -4393,6 +4493,7 @@ function renderPreviewQuestion(q, qIndex) {
 
   const card = document.createElement('article');
   card.className = 'question-card';
+  card.dataset.qid = q.id;
   if (cutQuestionId !== null && q.id === cutQuestionId) card.classList.add('cut-pending');
 
   // Per-question controls — admin only: move, cut & insert, copy to draft, delete.
@@ -4402,6 +4503,7 @@ function renderPreviewQuestion(q, qIndex) {
     const qc = document.createElement('div');
     qc.className = 'pv-q-controls';
     if (!currentSavedLocked) {
+      qc.appendChild(makeDragHandle());
       qc.appendChild(makeIconBtn('↑', 'Move question up', () => moveQuestion(qIndex, -1)));
       qc.appendChild(makeIconBtn('↓', 'Move question down', () => moveQuestion(qIndex, 1)));
       qc.appendChild(makeIconBtn('✂', cutQuestionId === q.id
@@ -4563,12 +4665,14 @@ function renderPreviewQuestion(q, qIndex) {
 function renderInstructionBlock(q, qIndex) {
   const card = document.createElement('article');
   card.className = 'question-card instruction-block';
+  card.dataset.qid = q.id;
   if (cutQuestionId !== null && q.id === cutQuestionId) card.classList.add('cut-pending');
 
   // Instruction controls all edit the worksheet, so a locked worksheet shows none.
   if (isAdmin() && !currentSavedLocked) {
     const qc = document.createElement('div');
     qc.className = 'pv-q-controls';
+    qc.appendChild(makeDragHandle());
     qc.appendChild(makeIconBtn('↑', 'Move instruction up', () => moveQuestion(qIndex, -1)));
     qc.appendChild(makeIconBtn('↓', 'Move instruction down', () => moveQuestion(qIndex, 1)));
     qc.appendChild(makeIconBtn('✂', cutQuestionId === q.id
@@ -6491,9 +6595,17 @@ function questionToPrintHtml(q, qIndex) {
     if (el.type === 'pageBreak') { pages.push([]); return; }
     pages[pages.length - 1].push(elementToPrintHtml(el, qIndex, j));
   });
+  // Drop any page chunk that ended up empty — e.g. a page break placed at the
+  // very end of a question (to push the NEXT question onto a fresh page) leaves
+  // a trailing empty chunk. Rendering it would print a stray "Continued from
+  // previous page" card with no content, right where a different question
+  // begins. We always keep the first chunk (it carries the question stem), and
+  // keep later chunks only when they actually have content — so "Continued from
+  // previous page" only ever appears when ONE question really spills over.
+  const filledPages = pages.filter((parts, idx) => idx === 0 || parts.length > 0);
 
   const num = questionDisplayNumber(qIndex);
-  return pages.map((parts, pageIdx) => {
+  return filledPages.map((parts, pageIdx) => {
     const header = pageIdx === 0
       ? `<div class="question-header">
       <div class="question-number">${num}</div>
@@ -6503,7 +6615,7 @@ function questionToPrintHtml(q, qIndex) {
       <div class="question-number">${num}</div>
       <div class="continued-note">Continued from previous page</div>
     </div>`;
-    const source = (pageIdx === pages.length - 1 && q.source && showSources)
+    const source = (pageIdx === filledPages.length - 1 && q.source && showSources)
       ? `<div class="question-source">From: ${escapeHtml(q.source)}</div>`
       : '';
     return `
