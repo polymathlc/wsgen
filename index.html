@@ -9471,13 +9471,22 @@ function dvElemLabel(el) {
   }
   return 'Block';
 }
-function dvToolsHtml(eid, scale, gap, resizable) {
+function dvToolsHtml(eid, scale, gap, resizable, movable) {
   var dminus = scale <= 50 ? ' disabled' : '';
   var dplus = scale >= 100 ? ' disabled' : '';
   var gminus = gap <= 0 ? ' disabled' : '';
   var gplus = gap >= DV_GAP_MAX ? ' disabled' : '';
   var broken = !!dvLayout().breaks[eid];
   var h = '<div class="dv-tools" contenteditable="false">';
+  // Reorder controls: arrows move the block one spot; "move" cuts it so it can
+  // be dropped at any "Move here" target (instant reposition within the question).
+  if (movable) {
+    h += '<span class="lab">move</span>'
+       + '<button class="dv-tb dv-mv" data-act="el-up" data-eid="' + escapeAttr(eid) + '" title="Move this block up one position">▲</button>'
+       + '<button class="dv-tb dv-mv" data-act="el-down" data-eid="' + escapeAttr(eid) + '" title="Move this block down one position">▼</button>'
+       + '<button class="dv-pb dv-cutbtn" data-act="el-cut" data-eid="' + escapeAttr(eid) + '" title="Cut this block, then click a ‘Move here’ marker to drop it at a new position">✂ <span class="t">move</span></button>'
+       + '<span class="dv-sep"></span>';
+  }
   if (resizable) {
     h += '<span class="lab">size</span>'
        + '<button class="dv-tb" data-act="down" data-eid="' + escapeAttr(eid) + '"' + dminus + ' title="Shrink this block">−</button>'
@@ -9508,7 +9517,7 @@ function dvWrap(eid, qkey, inner, opts) {
        + ' style="--escale:' + (scale / 100) + ';--egap:' + gap + 'mm;">'
        + '<div class="dv-continued">…continued from previous page</div>'
        + '<span class="dv-tag">' + escapeHtml(opts.label || 'Block') + '</span>'
-       + dvToolsHtml(eid, scale, gap, opts.resizable !== false)
+       + dvToolsHtml(eid, scale, gap, opts.resizable !== false, !!opts.movable)
        + inner
        + '</div>';
 }
@@ -9543,11 +9552,57 @@ function dvContentHtml() {
       parts.push(dvWrap(el.id, q.id, inner, {
         label: dvElemLabel(el),
         media: el.type === 'image',
-        vbox: el.type === 'workingSpace'
+        vbox: el.type === 'workingSpace',
+        movable: true
       }));
     });
   });
   return '<div class="print-doc print-question dv-flow">' + parts.join('') + '</div>';
+}
+
+/* Reorder requests posted from the design view iframe. They move ONE element
+   within its own question's element array — the iframe has already moved the
+   matching DOM node, so we just keep state in sync (no iframe rebuild, no
+   flash). Element ids are preserved, so per-element layout stays attached. */
+function dvFindElement(eid) {
+  for (var qi = 0; qi < state.questions.length; qi++) {
+    var els = state.questions[qi].elements || [];
+    var i = els.findIndex(function (e) { return e.id === eid; });
+    if (i >= 0) return { q: state.questions[qi], i: i };
+  }
+  return null;
+}
+function dvMoveElemOp(eid, dir) {
+  var loc = dvFindElement(eid);
+  if (!loc) return;
+  var els = loc.q.elements;
+  // The first text element is the question stem (shown in the header, never a
+  // body block) and page breaks aren't rendered in the design view — skip both
+  // when picking the neighbour to swap with, so a move always lands on a
+  // visible block.
+  var stemIdx = els.findIndex(function (e) { return e.type === 'text'; });
+  var j = loc.i + dir;
+  while (j >= 0 && j < els.length && (j === stemIdx || els[j].type === 'pageBreak')) j += dir;
+  if (j < 0 || j >= els.length) return;
+  var tmp = els[loc.i]; els[loc.i] = els[j]; els[j] = tmp;
+  renderPreview();
+}
+function dvMoveElemToOp(eid, afterEid) {
+  if (afterEid != null && afterEid === eid) return;
+  var loc = dvFindElement(eid);
+  if (!loc) return;
+  var els = loc.q.elements;
+  var moved = els.splice(loc.i, 1)[0];
+  if (afterEid == null) {
+    // Drop at the top of the question — right after the stem (first text).
+    var stemIdx = els.findIndex(function (e) { return e.type === 'text'; });
+    els.splice(stemIdx >= 0 ? stemIdx + 1 : 0, 0, moved);
+  } else {
+    var ti = els.findIndex(function (e) { return e.id === afterEid; });
+    if (ti < 0) els.splice(Math.min(loc.i, els.length), 0, moved);
+    else els.splice(ti + 1, 0, moved);
+  }
+  renderPreview();
 }
 
 var DV_CHROME_CSS = `
@@ -9595,6 +9650,16 @@ html,body{ background:#71777d; margin:0; padding:0; }
 .dv-sep{ width:1px; height:18px; background:#E8E8E4; }
 .dv-pb{ display:inline-flex; align-items:center; gap:5px; cursor:pointer; padding:3px 9px; border-radius:999px; border:1.5px solid #D4D4CF; background:#fff; color:#5C5C5C; font-weight:700; font-size:.66rem; font-family:inherit; }
 .dv-pb.active{ border-color:#D84343; background:#FFEBEE; color:#D84343; }
+.dv-mv{ font-size:.72rem; }
+.dv-mv:hover{ border-color:#1E88E5; color:#1E88E5; }
+.dv-cutbtn:hover{ border-color:#1E88E5; color:#1E88E5; }
+.dv-cutbtn.active{ border-color:#1E88E5; background:#E3F2FD; color:#1E88E5; }
+.dv-elem.dv-cut{ outline:2px dashed #1E88E5!important; outline-offset:3px; opacity:.55; }
+/* "Move here" drop targets shown between blocks while a block is cut. They sit
+   in a zero-height slot so they don't disturb the page-break measurement. */
+.dv-paste{ height:0; margin:0; display:flex; justify-content:center; position:relative; z-index:9; }
+.dv-paste-btn{ transform:translateY(-50%); cursor:pointer; padding:3px 16px; border-radius:999px; border:1.5px dashed #1E88E5; background:#E3F2FD; color:#1E88E5; font-weight:800; font-size:.7rem; font-family:inherit; box-shadow:0 1px 5px rgba(0,0,0,.18); white-space:nowrap; }
+.dv-paste-btn:hover{ background:#1E88E5; color:#fff; border-style:solid; }
 .dv-continued{ display:none; font-style:italic; color:#8A8A8A; font-size:.82rem; margin:0 0 8px; padding-bottom:6px; border-bottom:1px dotted #D4D4CF; }
 .dv-elem.show-continued > .dv-continued{ display:block; }
 .dv-doc-header{ border-bottom:1.5px solid #1A1A1A; padding-bottom:10px; margin-bottom:8px; }
@@ -9628,7 +9693,8 @@ html,body{ background:#71777d; margin:0; padding:0; }
   .sheet{ width:auto!important; max-width:none!important; box-shadow:none!important; }
   .page-guides{ display:none!important; }
   .dv-elem{ outline:none!important; background:none!important; box-shadow:none!important; }
-  .dv-tag,.dv-tools{ display:none!important; }
+  .dv-tag,.dv-tools,.dv-paste{ display:none!important; }
+  .dv-elem.dv-cut{ outline:none!important; opacity:1!important; }
   .dv-elem.break-after{ page-break-after:always; break-after:page; }
   .dv-elem.show-continued > .dv-continued{ display:block; }
   .page-logo{ display:block; position:fixed; right:5mm; bottom:3mm; height:11mm; width:auto; opacity:.9; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -9687,6 +9753,62 @@ var DV_ENGINE = `
   function updateGapReadout(el,eid){ var g=gapOf(eid); var v=el.querySelector('.dv-gap-val'); if(v) v.textContent=g+'mm'; var d=el.querySelector('[data-act=gap-down]'), u=el.querySelector('[data-act=gap-up]'); if(d) d.disabled=(g<=0); if(u) u.disabled=(g>=GMAX); }
   function setGap(eid, ng){ ng=Math.max(0,Math.min(GMAX,ng)); if(gapOf(eid)===ng) return; if(ng===0) delete DV.gaps[eid]; else DV.gaps[eid]=ng; var el=byEid(eid); if(el){ el.style.setProperty('--egap', ng+'mm'); el.classList.toggle('has-gap', ng>0); updateGapReadout(el,eid); } scheduleGuides(); post(); }
   function toggleBreak(eid){ var on=!DV.breaks[eid]; if(on) DV.breaks[eid]=true; else delete DV.breaks[eid]; var el=byEid(eid); if(el){ el.classList.toggle('break-after',on); var b=el.querySelector('.dv-pb'); if(b){ b.classList.toggle('active',on); var t=b.querySelector('.t'); if(t) t.textContent=on?'break after \\u2713':'break after'; } } refreshContinued(); scheduleGuides(); post(); }
+  /* ── Reorder element blocks within their question ──
+     Two ways: ▲/▼ arrows move one position; "move" cuts the block and shows
+     "Move here" targets for an instant jump. The block keeps its eid, so its
+     size / spacing / break settings travel with it. Each change is posted to
+     the app so the underlying worksheet stays in sync. The break-toggle button
+     also uses ✂, but the move button carries a clear "move" label. */
+  var cutEid=null;
+  function qOf(el){ return el.getAttribute('data-q')||''; }
+  function isHdr(el){ var id=el.getAttribute('data-eid')||''; return id==='doc-header' || id.slice(-5)==='__hdr'; }
+  function movables(qid){ return elems().filter(function(el){ return qOf(el)===qid && !isHdr(el); }); }
+  function hdrOf(qid){ var a=elems(); for(var i=0;i<a.length;i++){ if(qOf(a[i])===qid && isHdr(a[i])) return a[i]; } return null; }
+  function postMove(eid,dir){ try{ parent.postMessage({ type:'dvMoveElem', eid:eid, dir:dir }, '*'); }catch(e){} }
+  function postMoveTo(eid,afterEid){ try{ parent.postMessage({ type:'dvMoveElemTo', eid:eid, afterEid:afterEid }, '*'); }catch(e){} }
+  function moveEl(eid,dir){
+    var el=byEid(eid); if(!el) return;
+    var sibs=movables(qOf(el)); var idx=sibs.indexOf(el); var j=idx+dir;
+    if(j<0||j>=sibs.length) return;
+    var host=el.parentNode, target=sibs[j];
+    if(dir<0) host.insertBefore(el, target); else host.insertBefore(el, target.nextSibling);
+    postMove(eid,dir);
+    if(cutEid) renderPaste();
+    scheduleGuides();
+  }
+  function clearPaste(){ Array.prototype.forEach.call(document.querySelectorAll('.dv-paste'), function(n){ if(n.parentNode) n.parentNode.removeChild(n); }); }
+  function markCut(){
+    Array.prototype.forEach.call(document.querySelectorAll('.dv-elem.dv-cut'), function(n){ n.classList.remove('dv-cut'); });
+    if(cutEid){ var el=byEid(cutEid); if(el) el.classList.add('dv-cut'); }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-act=el-cut]'), function(b){
+      var on=b.getAttribute('data-eid')===cutEid; b.classList.toggle('active',on);
+      var t=b.querySelector('.t'); if(t) t.textContent=on?'cancel':'move';
+    });
+  }
+  function startCut(eid){ if(cutEid===eid){ cancelCut(); return; } cutEid=eid; markCut(); renderPaste(); }
+  function cancelCut(){ cutEid=null; markCut(); clearPaste(); }
+  function pasteBar(afterEid){
+    var d=document.createElement('div'); d.className='dv-paste';
+    d.innerHTML='<button type="button" class="dv-paste-btn" data-act="el-paste" data-after="'+(afterEid==null?'__top':afterEid)+'">\\u2193 Move here</button>';
+    return d;
+  }
+  function renderPaste(){
+    clearPaste();
+    if(!cutEid) return;
+    var el=byEid(cutEid); if(!el) return;
+    var qid=qOf(el), host=el.parentNode, hdr=hdrOf(qid), sibs=movables(qid);
+    if(hdr) host.insertBefore(pasteBar(null), hdr.nextSibling);
+    sibs.forEach(function(s){ host.insertBefore(pasteBar(s.getAttribute('data-eid')), s.nextSibling); });
+  }
+  function pasteAt(afterEid){
+    var el=byEid(cutEid); if(!el){ cancelCut(); return; }
+    var host=el.parentNode;
+    if(afterEid==='__top'){ var hdr=hdrOf(qOf(el)); if(hdr) host.insertBefore(el, hdr.nextSibling); postMoveTo(cutEid, null); }
+    else { var t=byEid(afterEid); if(t && t!==el) host.insertBefore(el, t.nextSibling); postMoveTo(cutEid, afterEid); }
+    cancelCut();
+    scheduleGuides();
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && cutEid){ e.preventDefault(); e.stopPropagation(); cancelCut(); } }, true);
   // Keyboard shortcuts: hover a block, then press [ / ] (or - / +) to resize,
   // , / . to remove / add space below it, and 'b' to toggle a page break —
   // no need to aim at the tiny rail.
@@ -9752,6 +9874,10 @@ var DV_ENGINE = `
     else if(act==='gap-down') setGap(eid, gapOf(eid)-GSTEP);
     else if(act==='gap-up') setGap(eid, gapOf(eid)+GSTEP);
     else if(act==='break') toggleBreak(eid);
+    else if(act==='el-up') moveEl(eid, -1);
+    else if(act==='el-down') moveEl(eid, 1);
+    else if(act==='el-cut') startCut(eid);
+    else if(act==='el-paste') pasteAt(btn.getAttribute('data-after'));
     else if(act==='toggle-guides'){ guidesVisible=!guidesVisible; document.body.classList.toggle('guides-hidden', !guidesVisible); var l=document.getElementById('dvGuidesLbl'); if(l) l.textContent=guidesVisible?'Hide page guides':'Show page guides'; if(guidesVisible) scheduleGuides(); }
     else if(act==='toggle-cover'){ FM.cover=!FM.cover; applyFM(true); }
     else if(act==='toggle-contents'){ FM.contents=!FM.contents; applyFM(true); }
@@ -9877,6 +10003,12 @@ window.addEventListener('message', function (e) {
     if (d.gaps && typeof d.gaps === 'object') L.gaps = d.gaps;
     if (typeof d.firstPage === 'number') L.firstPage = d.firstPage;
     scheduleAutoSave();
+  } else if (d.type === 'dvMoveElem') {
+    // Element nudged up / down one position in the design view.
+    dvMoveElemOp(d.eid, d.dir < 0 ? -1 : 1);
+  } else if (d.type === 'dvMoveElemTo') {
+    // Element cut & dropped at a "Move here" target in the design view.
+    dvMoveElemToOp(d.eid, d.afterEid == null ? null : d.afterEid);
   } else if (d.type === 'dvFrontMatter') {
     // Cover / contents toggled from the design view toolbar.
     var changed = (!!getCover().enabled !== !!d.cover) || (!!getContents().enabled !== !!d.contents);
