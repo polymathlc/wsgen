@@ -26,37 +26,38 @@
 <style>
   :root {
     --bg-primary: #FFFFFF;
-    --bg-secondary: #FAFAFA;
-    --bg-tertiary: #F3F3F0;
-    --bg-soft: #F7F9FC;
-    --border-subtle: #E8E8E4;
-    --border-medium: #D4D4CF;
-    --border-strong: #B8B8B2;
+    --bg-secondary: #FBFBFD;
+    --bg-tertiary: #F5F5F7;
+    --bg-soft: #F5F5F7;
+    --border-subtle: #ECECEF;
+    --border-medium: #D2D2D7;
+    --border-strong: #BCBCC2;
 
-    --text-primary: #1A1A1A;
-    --text-secondary: #5C5C5C;
-    --text-tertiary: #8A8A8A;
+    --text-primary: #1D1D1F;
+    --text-secondary: #515154;
+    --text-tertiary: #86868B;
     --text-inverse: #FFFFFF;
 
-    --accent-light: #BBDEFB;
-    --accent-base: #64B5F6;
-    --accent-dark: #42A5F5;
-    --accent-deep: #1E88E5;
-    --accent-bg: #E3F2FD;
+    --accent-light: #A6D0FB;
+    --accent-base: #2E8BF5;
+    --accent-dark: #0077ED;
+    --accent-deep: #0071E3;
+    --accent-bg: #EEF5FF;
 
-    --correct-light: #C8E6C9;
-    --correct-base: #66BB6A;
-    --correct-dark: #43A047;
-    --correct-bg: #F1F8E9;
-    --wrong-light: #FFCDD2;
-    --wrong-base: #EF5350;
-    --wrong-dark: #E53935;
-    --wrong-bg: #FFEBEE;
+    --correct-light: #B7E4C0;
+    --correct-base: #34C759;
+    --correct-dark: #248A3D;
+    --correct-bg: #EFFBF1;
+    --wrong-light: #F6BFC2;
+    --wrong-base: #FF3B30;
+    --wrong-dark: #D70015;
+    --wrong-bg: #FFF2F1;
 
     --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
-    --shadow-md: 0 2px 4px rgba(0,0,0,0.05), 0 6px 20px rgba(0,0,0,0.08);
-    --shadow-lg: 0 4px 6px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.1);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.05);
+    --shadow-md: 0 2px 6px rgba(0,0,0,0.05), 0 14px 34px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08), 0 30px 64px rgba(0,0,0,0.13);
+    --ring: 0 0 0 4px rgba(0,113,227,0.18);
 
     --space-xs: 4px;
     --space-sm: 8px;
@@ -65,13 +66,16 @@
     --space-xl: 40px;
     --space-2xl: 64px;
 
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 16px;
-    --radius-xl: 22px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
     --radius-full: 999px;
 
+    /* Worksheet content keeps its schoolbook font (RobotoQuestion only styles
+       the "?" glyph). The app chrome uses a refined system UI stack. */
     --font-family: 'RobotoQuestion', 'Century Gothic', CenturyGothic, AppleGothic, 'Trebuchet MS', sans-serif;
+    --font-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, system-ui, sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -83,9 +87,9 @@
     --line-height-normal: 1.6;
     --line-height-relaxed: 1.75;
 
-    --transition-fast: 0.15s ease;
-    --transition-base: 0.25s ease;
-    --transition-slow: 0.4s ease;
+    --transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -93,16 +97,47 @@
   html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
   body {
-    font-family: var(--font-family);
+    font-family: var(--font-ui);
     color: var(--text-primary);
     background: var(--bg-secondary);
     line-height: var(--line-height-normal);
     min-height: 100vh;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
+  /* The preview shows the actual worksheet — keep its schoolbook typography. */
+  .preview-pane { font-family: var(--font-family); letter-spacing: normal; }
+
   img { max-width: 100%; display: block; }
-  input, button, select, textarea { font-family: inherit; }
+  input, button, select, textarea { font-family: var(--font-ui); }
   button { cursor: pointer; border: none; background: none; }
+
+  ::selection { background: rgba(0,113,227,0.16); }
+
+  /* Refined, unobtrusive scrollbars (WebKit). */
+  .editor-pane, .preview-pane, .saved-list, #activityLog,
+  .cs-qlist, .draft-sb-list, .sym-popover {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-medium) transparent;
+  }
+  .editor-pane::-webkit-scrollbar, .preview-pane::-webkit-scrollbar,
+  .saved-list::-webkit-scrollbar, #activityLog::-webkit-scrollbar,
+  .cs-qlist::-webkit-scrollbar, .draft-sb-list::-webkit-scrollbar,
+  .sym-popover::-webkit-scrollbar { width: 10px; height: 10px; }
+  .editor-pane::-webkit-scrollbar-thumb, .preview-pane::-webkit-scrollbar-thumb,
+  .saved-list::-webkit-scrollbar-thumb, #activityLog::-webkit-scrollbar-thumb,
+  .cs-qlist::-webkit-scrollbar-thumb, .draft-sb-list::-webkit-scrollbar-thumb,
+  .sym-popover::-webkit-scrollbar-thumb {
+    background: var(--border-medium); border-radius: 999px;
+    border: 3px solid transparent; background-clip: padding-box;
+  }
+  .editor-pane::-webkit-scrollbar-thumb:hover, .preview-pane::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong); background-clip: padding-box; border: 3px solid transparent;
+  }
+  .editor-pane::-webkit-scrollbar-track, .preview-pane::-webkit-scrollbar-track { background: transparent; }
 
   /* ============================ LAYOUT ============================ */
   .app {
@@ -133,46 +168,51 @@
     position: sticky;
     top: -24px;
     z-index: 10;
-    background: var(--bg-tertiary);
+    background: rgba(245,245,247,0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
     padding-top: var(--space-md);
     padding-bottom: var(--space-md);
-    margin-bottom: var(--space-md);
+    margin: 0 calc(-1 * var(--space-lg)) var(--space-md);
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
     border-bottom: 1px solid var(--border-subtle);
   }
 
   .toolbar h1 {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: 700;
-    color: var(--accent-deep);
-    margin-bottom: var(--space-sm);
-    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.022em;
   }
 
   .toolbar-row {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: 9px 8px;
     align-items: center;
   }
 
   .title-input {
     width: 100%;
-    padding: var(--space-sm) var(--space-md);
-    border: 1.5px solid var(--border-subtle);
+    padding: 11px var(--space-md);
+    border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
     color: var(--text-primary);
     font-size: var(--font-size-base);
     margin-bottom: var(--space-sm);
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
 
   .cover-controls {
     margin: 0 0 var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    border: 1px dashed var(--border-medium);
+    padding: 12px var(--space-md);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
+    box-shadow: var(--shadow-xs);
   }
   .cover-toggle {
     display: flex;
@@ -191,16 +231,18 @@
   .cover-controls.cover-on .cover-fields { display: flex; }
   .cover-field-input {
     width: 100%;
-    padding: 6px 10px;
-    border: 1.5px solid var(--border-subtle);
+    padding: 8px 11px;
+    border: 1px solid var(--border-medium);
     border-radius: var(--radius-sm);
     background: var(--bg-primary);
     color: var(--text-primary);
     font-size: 0.85rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
   .cover-field-input:focus {
     outline: none;
     border-color: var(--accent-base);
+    box-shadow: var(--ring);
   }
 
   /* ── Cover-page preview inside the preview pane ─────────────── */
@@ -462,32 +504,42 @@
   .title-input:focus {
     outline: none;
     border-color: var(--accent-base);
+    box-shadow: var(--ring);
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 14px;
+    padding: 8px 15px;
     border-radius: var(--radius-md);
     background: var(--bg-primary);
     color: var(--text-primary);
-    border: 1.5px solid var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-xs);
+    font-family: var(--font-ui);
     font-size: var(--font-size-sm);
-    font-weight: 600;
-    transition: all var(--transition-base);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: background var(--transition-fast), border-color var(--transition-fast),
+                color var(--transition-fast), box-shadow var(--transition-fast),
+                transform var(--transition-fast);
   }
 
   .btn:hover {
-    border-color: var(--accent-base);
-    background: var(--accent-bg);
-    color: var(--accent-deep);
+    border-color: var(--border-medium);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
   }
+  .btn:active { transform: scale(0.97); }
+  .btn:focus-visible { outline: none; box-shadow: var(--ring); }
 
   .btn-primary {
     background: var(--accent-deep);
     color: white;
     border-color: var(--accent-deep);
+    box-shadow: 0 1px 2px rgba(0,113,227,0.28);
   }
   .btn-primary:hover {
     background: var(--accent-dark);
@@ -506,19 +558,52 @@
   }
 
   .btn-newws {
-    background: var(--correct-dark);
-    color: #fff;
-    border-color: var(--correct-dark);
+    background: var(--bg-primary);
+    color: var(--correct-dark);
+    border-color: var(--correct-light);
   }
   .btn-newws:hover {
-    background: var(--correct-base);
+    background: var(--correct-bg);
     border-color: var(--correct-base);
-    color: #fff;
+    color: var(--correct-dark);
   }
 
   .btn-tiny {
-    padding: 4px 10px;
+    padding: 5px 11px;
     font-size: var(--font-size-xs);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Elegant custom checkboxes for the app's toggle controls. */
+  .cover-toggle input[type="checkbox"],
+  .preview-toggle input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    cursor: pointer;
+    position: relative;
+    transition: background var(--transition-fast), border-color var(--transition-fast),
+                box-shadow var(--transition-fast);
+  }
+  .cover-toggle input[type="checkbox"]:hover,
+  .preview-toggle input[type="checkbox"]:hover { border-color: var(--accent-base); }
+  .cover-toggle input[type="checkbox"]:focus-visible,
+  .preview-toggle input[type="checkbox"]:focus-visible { outline: none; box-shadow: var(--ring); }
+  .cover-toggle input[type="checkbox"]:checked,
+  .preview-toggle input[type="checkbox"]:checked {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+  .cover-toggle input[type="checkbox"]:checked::after,
+  .preview-toggle input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5.5px; top: 2px;
+    width: 4px; height: 8px;
+    border: solid #fff; border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
   }
 
   .btn:disabled,
@@ -528,12 +613,14 @@
     background: var(--bg-tertiary);
     color: var(--text-tertiary);
     border-color: var(--border-subtle);
+    box-shadow: none;
   }
   .btn:disabled:hover,
   .btn[disabled]:hover {
     background: var(--bg-tertiary);
     color: var(--text-tertiary);
     border-color: var(--border-subtle);
+    transform: none;
   }
 
   /* ============================ EDITOR CARDS ============================ */
@@ -544,7 +631,9 @@
     margin-bottom: var(--space-md);
     box-shadow: var(--shadow-xs);
     border: 1px solid var(--border-subtle);
+    transition: box-shadow var(--transition-base);
   }
+  .editor-question:hover { box-shadow: var(--shadow-sm); }
 
   .editor-question-header {
     display: flex;
@@ -552,7 +641,7 @@
     align-items: center;
     margin-bottom: var(--space-sm);
     padding-bottom: var(--space-sm);
-    border-bottom: 1px dashed var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .editor-question-title {
@@ -616,21 +705,23 @@
   }
 
   .icon-btn {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: var(--radius-sm);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--text-tertiary);
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1;
-    transition: all var(--transition-fast);
+    transition: background var(--transition-fast), color var(--transition-fast),
+                transform var(--transition-fast);
   }
   .icon-btn:hover {
     background: var(--bg-tertiary);
     color: var(--text-primary);
   }
+  .icon-btn:active { transform: scale(0.9); }
   .icon-btn.danger:hover {
     background: var(--wrong-bg);
     color: var(--wrong-dark);
@@ -638,20 +729,21 @@
 
   .text-area, .text-line {
     width: 100%;
-    padding: var(--space-sm);
-    border: 1.5px solid var(--border-subtle);
+    padding: 9px 11px;
+    border: 1px solid var(--border-medium);
     border-radius: var(--radius-sm);
     background: var(--bg-primary);
     color: var(--text-primary);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
     resize: vertical;
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
   .text-area { min-height: 64px; }
   .text-area:focus, .text-line:focus {
     outline: none;
     border-color: var(--accent-base);
+    box-shadow: var(--ring);
   }
 
   /* ============ Fraction editor controls ============ */
@@ -853,7 +945,7 @@
     gap: 6px;
     margin-top: var(--space-sm);
     padding-top: var(--space-sm);
-    border-top: 1px dashed var(--border-subtle);
+    border-top: 1px solid var(--border-subtle);
   }
 
   /* ============================ PREVIEW (matches index.html) ============================ */
@@ -866,12 +958,13 @@
     font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
   }
   .preview-header p {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
-    margin-top: 4px;
+    margin-top: 6px;
   }
 
   .questions-container {
@@ -885,9 +978,15 @@
     border-radius: var(--radius-xl);
     padding: var(--space-xl);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-base);
+    border: 1px solid var(--border-subtle);
+    transition: box-shadow var(--transition-base), transform var(--transition-base),
+                border-color var(--transition-base);
   }
-  .question-card:hover { box-shadow: var(--shadow-md); }
+  .question-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+    transform: translateY(-2px);
+  }
 
   .question-header {
     display: flex;
@@ -1107,15 +1206,16 @@
     align-items: flex-start;
     gap: var(--space-md);
     padding: var(--space-md);
-    border: 1.5px solid var(--border-subtle);
+    border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-fast), background var(--transition-fast),
+                box-shadow var(--transition-fast);
   }
   .option-item:hover {
     border-color: var(--accent-base);
     background: var(--accent-bg);
-    transform: translateX(2px);
+    box-shadow: var(--shadow-xs);
   }
   .option-item.correct-preview {
     border-color: var(--correct-base);
@@ -1164,11 +1264,24 @@
     color: var(--text-tertiary);
     background: var(--bg-primary);
     border-radius: var(--radius-xl);
-    border: 2px dashed var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    font-family: var(--font-ui);
+    letter-spacing: -0.01em;
   }
 
   .preview-toggle {
-    margin-left: auto;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  /* Thin separators that group the toolbar into clusters. */
+  .tb-sep {
+    width: 1px;
+    height: 22px;
+    background: var(--border-medium);
+    margin: 0 5px;
+    align-self: center;
+    flex: 0 0 auto;
+    border-radius: 1px;
   }
 
   /* ============================ PRACTICE MODE ============================ */
@@ -1249,13 +1362,14 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: var(--radius-full);
     background: var(--accent-bg);
     color: var(--accent-deep);
     font-size: var(--font-size-xs);
     font-weight: 600;
-    border: 1px solid var(--accent-light);
+    border: 1px solid transparent;
+    letter-spacing: -0.01em;
   }
   .auth-chip.guest {
     background: var(--bg-primary);
@@ -1327,6 +1441,7 @@
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     overflow-y: auto;
+    box-shadow: var(--shadow-xs);
   }
   /* The worksheet list fills the left pane now that the question editor is gone. */
   #savedList { max-height: none; }
@@ -1336,10 +1451,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 10px;
+    padding: 9px 12px;
     border-bottom: 1px solid var(--border-subtle);
     font-size: var(--font-size-sm);
+    transition: background var(--transition-fast);
   }
+  .saved-item:hover { background: var(--bg-tertiary); }
   .saved-item:last-child { border-bottom: none; }
   .saved-item-name { flex: 1; color: var(--text-primary); cursor: pointer; }
   .saved-item-name:hover { color: var(--accent-deep); }
@@ -1348,6 +1465,7 @@
     background: var(--accent-bg);
     box-shadow: inset 3px 0 0 var(--accent-deep);
   }
+  .saved-item.saved-item-current:hover { background: var(--accent-bg); }
   .saved-item.saved-item-current .saved-item-name {
     font-weight: 700;
     color: var(--accent-deep);
@@ -1792,15 +1910,16 @@
     color: var(--text-secondary);
   }
   .filter-input {
-    padding: 6px 10px;
-    border: 1.5px solid var(--border-subtle);
+    padding: 7px 12px;
+    border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
     color: var(--text-primary);
     font-size: var(--font-size-sm);
     width: 150px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
-  .filter-input:focus { outline: none; border-color: var(--accent-base); }
+  .filter-input:focus { outline: none; border-color: var(--accent-base); box-shadow: var(--ring); }
   .filter-count {
     font-size: var(--font-size-xs);
     color: var(--text-tertiary);
@@ -1936,28 +2055,30 @@
     z-index: 60;
     top: 100%;
     left: 0;
-    margin-top: 4px;
-    min-width: 240px;
-    padding: 4px;
+    margin-top: 6px;
+    min-width: 248px;
+    padding: 6px;
     flex-direction: column;
     gap: 2px;
     background: var(--bg-primary);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
   }
   .sort-menu.open .sort-menu-list { display: flex; }
   .sort-menu-item {
     text-align: left;
-    padding: 7px 10px;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
+    padding: 8px 11px;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: -0.01em;
     border: none;
     background: transparent;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     border-radius: var(--radius-sm);
     cursor: pointer;
     white-space: nowrap;
+    transition: background var(--transition-fast), color var(--transition-fast);
   }
   .sort-menu-item:hover {
     background: var(--accent-bg);
@@ -2724,18 +2845,22 @@
             <button type="button" class="sort-menu-item" data-sort="concept-az">Alphabetical by concept (A–Z)</button>
           </div>
         </div>
+        <span class="tb-sep admin-only" aria-hidden="true"></span>
         <button class="btn admin-only" id="saveSystemBtn" title="Save to your account — updates the linked worksheet, or creates a new one if none is linked">☁ Save to System</button>
         <button class="btn admin-only" id="saveAsNewBtn" title="Always save as a brand-new worksheet — never overwrites an existing one">☁＋ Save as New</button>
         <button class="btn admin-only" id="activityLogBtn" title="View and restore earlier versions of your worksheet">📜 Activity Log</button>
         <button class="btn btn-newws admin-only" id="newWorksheetBtn" title="Start a brand-new blank worksheet — then use Load JSON to import a file into it">＋ New Worksheet</button>
+        <span class="tb-sep admin-only" aria-hidden="true"></span>
         <button class="btn admin-only" id="addAllToDraftBtn" title="Copy every question in this worksheet into the draft at once">📋＋ Add all to Draft</button>
         <button class="btn admin-only" id="openDraftBtn" title="Open the draft panel — see every question you've collected, preview each one, then build a worksheet or cheat sheet">🗂 Draft (0)</button>
         <button class="btn admin-only" id="clearDraftBtn" title="Clear all questions from the draft" style="display:none;">Clear Draft</button>
         <button class="btn admin-only" id="cheatSheetBtn" title="Lay out the draft questions as drag-and-resize tiles on a printable cheat sheet">🧾 Cheat Sheet (0)</button>
+        <span class="tb-sep admin-only" aria-hidden="true"></span>
         <button class="btn admin-only" id="exportHtmlBtn">Download HTML</button>
         <button class="btn admin-only" id="designViewBtn" title="Open the A4 design surface: see page breaks, resize blocks, add manual breaks, then export the exact pages to PDF">🎨 Design view</button>
         <button class="btn" id="exportPdfBtn">Print / Export PDF</button>
         <button class="btn" id="practiceModeBtn" title="Try the worksheet on screen — select answers and check your score">✏️ Practice mode</button>
+        <span class="tb-sep admin-only" aria-hidden="true"></span>
         <button class="btn admin-only" id="saveJsonBtn">Save JSON</button>
         <button class="btn admin-only" id="loadJsonBtn">Load JSON</button>
         <input type="file" id="loadJsonInput" accept="application/json" style="display:none" />
